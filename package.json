@@ -10,7 +10,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_c28032a4c31d317"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
@@ -42,6 +43,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "chromatic": "^11.7.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.7",
     "eslint-plugin-storybook": "^0.8.0",
