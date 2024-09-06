@@ -6,15 +6,13 @@ import InputText from '@/shared/common/ui/InputText';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between gap-5 p-24">
-      {/* 각자 만든 컴포넌트 불러오기 */}
-      {/* <ExampleComponent />  */}
+    <div className="flex min-h-screen flex-col items-center gap-5 p-24">
       <SelectBox
         placeholder="장소를 선택해주세요"
         menuItems={selectBoxMenuItems}
       />
       <CommonButton variant="outlined" size="lg" content="생성하기" />
       <InputText placeholder="내용을 입력해주세요" />
-    </main>
+    </div>
   );
 }
