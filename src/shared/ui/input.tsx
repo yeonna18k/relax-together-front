@@ -50,7 +50,7 @@ const InputPassword = React.forwardRef<
         ref={ref}
         type={showPassword ? 'text' : 'password'}
         className={cn(
-          'h-[44px] w-[460px] rounded-md bg-[#f9fafb] px-[16px] py-[10px] text-[#1f2937] focus:outline-none focus:ring-2 focus:ring-[#ea580c]',
+          'h-[44px] w-[460px] rounded-md bg-[#f9fafb] px-[16px] py-[10px] text-[#1f2937] hover:ring-2 hover:ring-[#fdba74] focus:outline-none focus:ring-2 focus:ring-[#ea580c]',
           'md:w-[350px] lg:w-[472px]',
           inputState === 'hover' && 'border-[#fdba74]',
           inputState === 'typing' && 'border-[#ea580c]',
