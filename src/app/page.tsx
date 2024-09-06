@@ -1,9 +1,8 @@
-import SelectBox from '@/shared/common/ui/select/index';
-import { selectBoxMenuItems } from '@/shared/fixture/selectbox-menu-items';
-
 import CommonButton from '@/shared/common/ui/CommonButton';
 import InputText from '@/shared/common/ui/InputText';
 import CommonBadge from '@/shared/common/ui/badge';
+import SelectBox from '@/shared/common/ui/select/index';
+import { selectBoxMenuItems } from '@/shared/fixture/selectbox-menu-items';
 
 export default function Home() {
   return (
@@ -14,7 +13,12 @@ export default function Home() {
         placeholder="장소를 선택해주세요"
         menuItems={selectBoxMenuItems}
       />
-      <CommonButton variant="outlined" size="lg" content="생성하기" />
+      <CommonButton
+        variant="outlined"
+        size="lg"
+        content="생성하기"
+        onClickHandler={() => console.log('click')}
+      />
       <InputText placeholder="내용을 입력해주세요" />
     </div>
   );
