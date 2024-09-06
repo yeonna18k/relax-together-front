@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} container mx-auto`}>
+      <body className={`${inter.className} bg-background`}>
         <Context>
           <Container>{children}</Container>
         </Context>
