@@ -1,4 +1,6 @@
 import CommonButton from '@/shared/common/ui/CommonButton';
+import CommonInput from '@/shared/common/ui/commoninput';
+
 import InputText from '@/shared/common/ui/InputText';
 import CommonBadge from '@/shared/common/ui/badge';
 import SelectBox from '@/shared/common/ui/select/index';
@@ -20,6 +22,7 @@ export default function Home() {
         onClickHandler={() => console.log('click')}
       />
       <InputText placeholder="내용을 입력해주세요" />
+      <CommonInput />
     </div>
   );
 }
