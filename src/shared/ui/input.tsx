@@ -66,7 +66,7 @@ const InputPassword = React.forwardRef<
       />
       <button
         type="button"
-        className="absolute right-3"
+        className="absolute right-3 text-black"
         onClick={() => {
           setShowPassword(!showPassword);
           handleToggle();

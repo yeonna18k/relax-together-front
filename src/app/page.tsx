@@ -1,9 +1,10 @@
 import CommonButton from '@/shared/common/ui/CommonButton';
-import CommonInput from '@/shared/common/ui/commoninput';
 
 import InputText from '@/shared/common/ui/InputText';
 import CommonBadge from '@/shared/common/ui/badge';
+import CommonInput from '@/shared/common/ui/common-input';
 import SelectBox from '@/shared/common/ui/select/index';
+import TagClock from '@/shared/common/ui/tag-clock';
 import { selectBoxMenuItems } from '@/shared/fixture/selectbox-menu-items';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <CommonButton variant="outlined" size="lg" content="생성하기" />
       <InputText placeholder="내용을 입력해주세요" />
       <CommonInput />
+      <TagClock message="오늘 21시 마감" variant="default" />
     </div>
   );
 }
