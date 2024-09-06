@@ -1,3 +1,3 @@
-import LikeGatherings from '@/pages/like-gatherings';
-
-export default LikeGatherings;
+export default function LikeGatherings() {
+  return <div>찜한 모임 페이지</div>;
+}
