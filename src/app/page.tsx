@@ -15,12 +15,7 @@ export default function Home() {
         placeholder="장소를 선택해주세요"
         menuItems={selectBoxMenuItems}
       />
-      <CommonButton
-        variant="outlined"
-        size="lg"
-        content="생성하기"
-        onClickHandler={() => console.log('click')}
-      />
+      <CommonButton variant="outlined" size="lg" content="생성하기" />
       <InputText placeholder="내용을 입력해주세요" />
       <CommonInput />
     </div>

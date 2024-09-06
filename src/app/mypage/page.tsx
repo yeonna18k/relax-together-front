@@ -1,3 +1,3 @@
-import Mypage from '@/pages/mypage';
-
-export default Mypage;
+export default function Mypage() {
+  return <div>마이페이지</div>;
+}
