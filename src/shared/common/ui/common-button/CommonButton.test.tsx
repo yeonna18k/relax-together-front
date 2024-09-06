@@ -1,4 +1,4 @@
-import CommonButton from '@/shared/common/ui/CommonButton';
+import CommonButton from '@/shared/common/ui/common-button/index';
 import { render, screen } from '@testing-library/react';
 
 describe('Common Button Component', () => {

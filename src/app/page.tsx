@@ -1,4 +1,4 @@
-import CommonButton from '@/shared/common/ui/CommonButton';
+import CommonButton from '@/shared/common/ui/common-button';
 import InputText from '@/shared/common/ui/InputText';
 import SelectBox from '@/shared/common/ui/select/index';
 import { selectBoxMenuItems } from '@/shared/fixture/selectbox-menu-items';
