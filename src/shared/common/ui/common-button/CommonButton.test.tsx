@@ -7,9 +7,10 @@ describe('Common Button Component', () => {
       <CommonButton
         variant="default"
         size="sm"
-        content="생성하기"
-        onClickHandler={() => console.log('click')}
-      />,
+        onClick={() => console.log('click')}
+      >
+        생성하기
+      </CommonButton>,
     );
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('생성하기');

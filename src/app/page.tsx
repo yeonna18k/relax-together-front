@@ -13,9 +13,10 @@ export default function Home() {
       <CommonButton
         variant="outlined"
         size="lg"
-        content="생성하기"
-        onClickHandler={() => console.log('click')}
-      />
+        onClick={() => console.log('click')}
+      >
+        생성하기
+      </CommonButton>
       <InputText placeholder="내용을 입력해주세요" />
     </div>
   );
