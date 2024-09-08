@@ -1,3 +1,3 @@
-import Reviews from '@/pages/reviews';
-
-export default Reviews;
+export default function Reviews() {
+  return <div>리뷰 페이지</div>;
+}
