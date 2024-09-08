@@ -2,17 +2,26 @@
 // 선택 되었을 때 gray-900 선택 안되었을 때 gray-200  -> props
 // sm - 모바일, lg - 태블릿, 모니터  -> 반응형
 
+import { cn } from '@/shared/lib/utils';
+import { ReactNode } from 'react';
+
 interface ChipProps {
   selected: boolean;
-  content: string;
+  children: ReactNode;
 }
 
-export default function Chip({ selected, content }: ChipProps) {
+export default function Chip({ selected, children }: ChipProps) {
   return (
     <div
-      className={`h-10 p-3 md:p-4 ${selected ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-900'} rounded-xl text-sm font-medium`}
+      className={cn(
+        `h-10 cursor-pointer content-center rounded-xl px-3 text-sm font-medium md:px-4`,
+        {
+          'bg-gray-900 text-white': selected,
+          'bg-gray-200 text-gray-900': !selected,
+        },
+      )}
     >
-      {content}
+      {children}
     </div>
   );
 }
