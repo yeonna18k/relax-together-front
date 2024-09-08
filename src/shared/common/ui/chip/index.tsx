@@ -13,6 +13,7 @@ interface ChipProps {
 export default function Chip({ selected, children }: ChipProps) {
   return (
     <button
+      data-testid="chip"
       className={cn(
         `h-10 content-center rounded-xl px-3 text-sm font-medium md:px-4`,
         {
