@@ -1,7 +1,8 @@
-import CommonButton from '@/shared/common/ui/common-button';
-import InputText from '@/shared/common/ui/InputText';
 import CommonBadge from '@/shared/common/ui/badge';
+import Chip from '@/shared/common/ui/chip';
+import CommonButton from '@/shared/common/ui/common-button';
 import CommonInput from '@/shared/common/ui/common-input';
+import InputText from '@/shared/common/ui/InputText';
 import SelectBox from '@/shared/common/ui/select/index';
 import TagClock from '@/shared/common/ui/tag-clock';
 import { selectBoxMenuItems } from '@/shared/fixture/selectbox-menu-items';
@@ -15,13 +16,10 @@ export default function Home() {
         placeholder="장소를 선택해주세요"
         menuItems={selectBoxMenuItems}
       />
-      <CommonButton
-        variant="outlined"
-        size="lg"
-        onClick={() => console.log('click')}
-      >
+      <CommonButton variant="outlined" size="lg">
         생성하기
       </CommonButton>
+      <Chip selected={true}>전체</Chip>
       <InputText placeholder="내용을 입력해주세요" />
       <CommonInput />
       <TagClock message="오늘 21시 마감" variant="default" />
