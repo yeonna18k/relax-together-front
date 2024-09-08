@@ -12,9 +12,9 @@ interface ChipProps {
 
 export default function Chip({ selected, children }: ChipProps) {
   return (
-    <div
+    <button
       className={cn(
-        `h-10 cursor-pointer content-center rounded-xl px-3 text-sm font-medium md:px-4`,
+        `h-10 content-center rounded-xl px-3 text-sm font-medium md:px-4`,
         {
           'bg-gray-900 text-white': selected,
           'bg-gray-200 text-gray-900': !selected,
@@ -22,6 +22,6 @@ export default function Chip({ selected, children }: ChipProps) {
       )}
     >
       {children}
-    </div>
+    </button>
   );
 }

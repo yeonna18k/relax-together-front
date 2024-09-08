@@ -19,7 +19,7 @@ export default function Home() {
       <CommonButton variant="outlined" size="lg">
         생성하기
       </CommonButton>
-      <Chip selected={false}>전체</Chip>
+      <Chip selected={true}>전체</Chip>
       <InputText placeholder="내용을 입력해주세요" />
       <CommonInput />
       <TagClock message="오늘 21시 마감" variant="default" />
