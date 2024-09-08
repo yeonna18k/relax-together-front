@@ -9,6 +9,7 @@ interface ChipTimeProps {
 export default function ChipTime({ state, hour, minute }: ChipTimeProps) {
   return (
     <button
+      data-testid="chip-time"
       className={cn('h-8 w-[60px] rounded-lg text-center text-sm font-medium', {
         'border border-gray-200 bg-gray-50 text-gray-900': state === 'enabled',
         'bg-gray-900 text-white': state === 'selected',
