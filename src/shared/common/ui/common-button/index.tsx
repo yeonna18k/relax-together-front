@@ -1,18 +1,19 @@
 import { Button, ButtonProps } from '@/shared/ui/button';
 
 interface CommonButtonProps extends ButtonProps {
-  onClickHandler?: () => void;
+  variant: 'default' | 'outlined';
+  size: 'sm' | 'lg';
 }
 
 export default function CommonButton({
   variant,
   size,
-  content,
-  onClickHandler,
+  children,
+  ...props
 }: CommonButtonProps) {
   return (
-    <Button variant={variant} size={size} onClick={onClickHandler}>
-      {content}
+    <Button variant={variant} size={size} {...props}>
+      {children}
     </Button>
   );
 }

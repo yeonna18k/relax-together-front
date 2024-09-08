@@ -1,5 +1,4 @@
-import CommonButton from '@/shared/common/ui/CommonButton';
-
+import CommonButton from '@/shared/common/ui/common-button';
 import InputText from '@/shared/common/ui/InputText';
 import CommonBadge from '@/shared/common/ui/badge';
 import CommonInput from '@/shared/common/ui/common-input';
@@ -16,7 +15,13 @@ export default function Home() {
         placeholder="장소를 선택해주세요"
         menuItems={selectBoxMenuItems}
       />
-      <CommonButton variant="outlined" size="lg" content="생성하기" />
+      <CommonButton
+        variant="outlined"
+        size="lg"
+        onClick={() => console.log('click')}
+      >
+        생성하기
+      </CommonButton>
       <InputText placeholder="내용을 입력해주세요" />
       <CommonInput />
       <TagClock message="오늘 21시 마감" variant="default" />

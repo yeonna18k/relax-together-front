@@ -18,8 +18,8 @@ export const Default: Story = {
   args: {
     variant: 'default',
     size: 'sm',
-    content: '생성하기',
-    onClickHandler: () => {
+    children: '생성하기',
+    onClick: () => {
       console.log('click');
     },
   },
