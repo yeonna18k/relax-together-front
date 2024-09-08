@@ -1,6 +1,6 @@
 'use client';
 
-import CommonButton from '../../common-button';
+import CommonButton from '../../../common/ui/common-button';
 
 interface DeleteModalProps {
   isOpen: boolean;
