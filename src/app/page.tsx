@@ -6,11 +6,11 @@ import ChipTime from '@/shared/common/ui/chip-time';
 import CommonButton from '@/shared/common/ui/common-button';
 import CommonInput from '@/shared/common/ui/common-input';
 import InputText from '@/shared/common/ui/input-text';
-import DeleteModal from '@/shared/common/ui/popup-modal/delete-modal';
-import SignupModal from '@/shared/common/ui/popup-modal/signup-modal';
 
 import SelectBox from '@/shared/common/ui/select/index';
 import TagClock from '@/shared/common/ui/tag-clock';
+import DeleteModal from '@/shared/components/popup-modal/delete-modal';
+import SignupModal from '@/shared/components/popup-modal/signup-modal';
 import { selectBoxMenuItems } from '@/shared/fixture/selectbox-menu-items';
 import { useState } from 'react';
 
