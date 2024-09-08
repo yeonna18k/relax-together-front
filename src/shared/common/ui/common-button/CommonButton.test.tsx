@@ -12,7 +12,7 @@ describe('Common Button Component', () => {
         생성하기
       </CommonButton>,
     );
-    const button = screen.getByRole('button');
+    const button = screen.getByTestId('common-button');
     expect(button).toHaveTextContent('생성하기');
     expect(button).toHaveClass('bg-[#ea580c]');
   });

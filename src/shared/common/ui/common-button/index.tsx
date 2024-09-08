@@ -12,7 +12,12 @@ export default function CommonButton({
   ...props
 }: CommonButtonProps) {
   return (
-    <Button variant={variant} size={size} {...props}>
+    <Button
+      data-testid="common-button"
+      variant={variant}
+      size={size}
+      {...props}
+    >
       {children}
     </Button>
   );
