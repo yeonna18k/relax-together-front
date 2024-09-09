@@ -37,16 +37,9 @@ jobs:
       - name: Run Tests
         run: yarn test
 
-      # 프로젝트 빌드
-      - name: Build the project
-        run: yarn build
-
       # Chromatic으로 Storybook 실행
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      # Firebase에 배포
-      - name: Deploy to Firebase
-        run: firebase deploy
