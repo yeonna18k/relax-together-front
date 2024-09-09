@@ -24,6 +24,7 @@ const ChipStateText: Record<ChipStateTypes, string> = {
 export default function ChipState({ state }: ChipStateProps) {
   return (
     <div
+      data-testid="chip-state"
       className={cn(
         'inline-flex h-8 items-center rounded-3xl bg-white px-3 py-[6px] text-sm font-medium',
         ChipStateStyles[state],
