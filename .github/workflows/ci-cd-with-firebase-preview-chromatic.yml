@@ -1,0 +1,53 @@
+name: CI/CD Pipeline with Firebase Preview Deploy and Chromatic
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # PR에 대한 빌드 및 Firebase 배포
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      # 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Node.js와 Yarn 설정
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.10.0'
+          cache: 'yarn'
+
+      # 의존성 설치 (frozen-lockfile)
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # Lint 실행
+      - name: Run Lint
+        run: yarn lint
+
+      # 테스트 실행
+      - name: Run Tests
+        run: yarn test
+
+      # 빌드 실행
+      - name: Build the project
+        run: yarn build
+
+      # Chromatic 실행
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      # Firebase PR Preview 배포
+      - name: Firebase Deploy Preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RELAX_TOGETHER }}
+          projectId: relax-together

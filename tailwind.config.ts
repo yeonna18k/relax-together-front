@@ -86,8 +86,6 @@ const config: Config = {
             backgroundColor: '#E5E7EB',
             border: '6px solid #F9FAFB',
             borderRadius: '8px',
-            // height: "28px",
-            // minHeight: "28px",
           },
         },
       };

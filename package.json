@@ -14,7 +14,7 @@
     "chromatic": "npx chromatic --project-token=chpt_c28032a4c31d317",
     "add-component": "bash ./scripts/add-component.sh",
     "prepare": "husky",
-    "pre-commit": "npx lint-staged"
+    "pre-commit": "npx lint-staged && yarn build"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.1",
