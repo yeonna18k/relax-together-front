@@ -1,6 +1,7 @@
 'use client';
 
 import CommonBadge from '@/shared/common/ui/badge';
+import Check from '@/shared/common/ui/check';
 import Chip from '@/shared/common/ui/chip';
 import ChipTime from '@/shared/common/ui/chip-time';
 import CommonButton from '@/shared/common/ui/common-button';
@@ -37,11 +38,9 @@ export default function Home() {
         생성하기
       </CommonButton>
       <Chip selected={true}>전체</Chip>
-
       <ChipTime state="enabled" hour={11} minute={0} />
       <ChipTime state="disabled" hour={9} minute={30} />
       <ChipTime state="selected" hour={15} minute={0} />
-      <InputText placeholder="내용을 입력해주세요" />
       <CommonInput />
       <TagClock message="오늘 21시 마감" variant="default" />
 
@@ -53,6 +52,7 @@ export default function Home() {
       </CommonButton>
       <SignupModal isOpen={isSignupModalOpen} onClose={closeSignupModal} />
       <DeleteModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
+      <Check participantCount={5} isDark={false} />
     </div>
   );
 }
