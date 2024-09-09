@@ -1,12 +1,10 @@
 import { cn } from '@/shared/lib/utils';
 import Image from 'next/image';
-import { ReactNode } from 'react';
 
 type ChipStateTypes = 'scheduled' | 'completed' | 'confirmed' | 'pending';
 
 interface ChipStateProps {
   state: ChipStateTypes;
-  children: ReactNode;
 }
 
 const ChipStateStyles: Record<ChipStateTypes, string> = {
@@ -16,26 +14,34 @@ const ChipStateStyles: Record<ChipStateTypes, string> = {
   pending: 'border border-gray-200 text-gray-500',
 };
 
-export default function ChipState({ state, children }: ChipStateProps) {
+const ChipStateText: Record<ChipStateTypes, string> = {
+  scheduled: '이용 예정',
+  completed: '이용 완료',
+  confirmed: '개설확정',
+  pending: '개설대기',
+};
+
+export default function ChipState({ state }: ChipStateProps) {
   return (
     <div
       className={cn(
-        'inline-block h-8 rounded-3xl bg-white px-3 py-[6px] text-sm font-medium',
+        'inline-flex h-8 items-center rounded-3xl bg-white px-3 py-[6px] text-sm font-medium',
         ChipStateStyles[state],
       )}
     >
-      <div className="flex gap-1">
+      <div className="flex items-center gap-1">
         {state === 'confirmed' ? (
           <Image
             src="/assets/check.svg"
             alt="Check icon"
             width={16}
             height={16}
+            className="inline-block align-middle"
           />
         ) : (
-          ''
+          <></>
         )}
-        {children}
+        {ChipStateText[state]}
       </div>
     </div>
   );
