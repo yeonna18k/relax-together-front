@@ -13,6 +13,7 @@ const ChipInfoMatch = {
 export default function ChipInfo({ type, children }: ChipInfoProps) {
   return (
     <div
+      data-testid="chip-info"
       className={cn(
         `inline-block h-6 w-fit whitespace-nowrap rounded bg-gray-900 px-2 py-[2px] text-sm font-medium ${ChipInfoMatch[type]}`,
       )}
