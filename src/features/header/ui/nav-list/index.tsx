@@ -21,7 +21,7 @@ const navList: Array<Nav> = [
 
 export default function NavList() {
   return (
-    <ul className="flex flex-col gap-6 md:items-center">
+    <ul className="flex flex-col gap-6 md:flex-row md:items-center">
       {navList.map(nav => (
         <TopTap
           key={nav.path}
