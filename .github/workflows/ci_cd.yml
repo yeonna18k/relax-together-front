@@ -15,11 +15,12 @@ jobs:
     steps:
       # 코드 체크아웃
       - name: Checkout code
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       # Node.js와 Yarn 설정
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.10.0' # Node.js 버전 설정
           cache: 'yarn'
@@ -46,7 +47,6 @@ jobs:
         with:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-
       # Firebase에 배포
       - name: Deploy to Firebase
         run: firebase deploy
