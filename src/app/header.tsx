@@ -9,7 +9,6 @@ export default function Header() {
     ref,
     box: 'border-box',
   });
-  console.log('🚀 ~ Header ~ width:', width);
   return (
     <header
       className="h-[60px] w-full border-b-2 border-black bg-orange-600"
