@@ -1,11 +1,14 @@
-import CheckIcon from '../../../../../public/assets/CheckIcon';
+import CheckIcon from '@/shared/assets/icons/check-icon';
 
 interface CheckProps {
   participantCount: number;
-  isDark: boolean;
+  isDark?: boolean;
 }
 
-export default function Check({ participantCount, isDark }: CheckProps) {
+export default function Check({
+  participantCount,
+  isDark = false,
+}: CheckProps) {
   const bgColor = isDark ? 'bg-gray-900' : 'bg-orange-500';
   const iconColor = isDark ? '#f97316' : '#ffffff';
 
