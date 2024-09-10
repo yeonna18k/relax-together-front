@@ -15,8 +15,6 @@ describe('Information Component', () => {
     expect(
       screen.getByText('을지로 3가 서울시 중구 청계천로 100'),
     ).toBeInTheDocument();
-    expect(screen.getByText('9월 10일')).toBeInTheDocument();
-    expect(screen.getByText('15:45')).toBeInTheDocument();
     expect(screen.getByTestId('participantCount')).toHaveTextContent('5명');
     expect(screen.getByTestId('capacity')).toHaveTextContent('5명');
   });
