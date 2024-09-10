@@ -61,6 +61,20 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(-100%)', opacity: '0' },
+        },
+      },
+      animation: {
+        slideIn: 'slideIn 0.5s ease-out forwards',
+        slideOut: 'slideOut 0.5s ease-out forwards',
+      },
     },
   },
   plugins: [
@@ -68,17 +82,14 @@ const config: Config = {
     function ({ addUtilities }: any) {
       const newUtilities = {
         '.custom-scrollbar': {
-          // 스크롤바 너비 지정
           '&::-webkit-scrollbar': {
             width: '16px',
             borderRadius: '8px',
           },
-          // 스크롤바 트랙 꾸미기
           '&::-webkit-scrollbar-track': {
             backgroundColor: 'transparent',
             margin: '10px 0',
           },
-          // 스크롤바 손잡이 꾸미기
           '&::-webkit-scrollbar-thumb': {
             backgroundColor: '#E5E7EB',
             border: '6px solid #F9FAFB',
@@ -90,4 +101,5 @@ const config: Config = {
     },
   ],
 };
+
 export default config;
