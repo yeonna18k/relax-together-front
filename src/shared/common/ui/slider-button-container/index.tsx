@@ -1,7 +1,7 @@
 'use client';
 
-import DalrempitIcon from '@/shared/assets/icon/DalrempitIcon';
-import WorcationIcon from '@/shared/assets/icons/WorcationIcon';
+import DalrempitIcon from '@/shared/assets/icons/dalrempit-icon';
+import WorcationIcon from '@/shared/assets/icons/worcation-icon';
 import { useState } from 'react';
 import SliderButtonWithIcon from '../slider-button-with-icon';
 

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import SliderButton from '.';
+import SliderButton from './index';
 
 test('달램핏 버튼 클릭 시 달램핏 아이콘이 활성화되고, 워케이션 버튼 클릭 시 워케이션 아이콘이 활성화됩니다.', async () => {
   render(<SliderButton />);
