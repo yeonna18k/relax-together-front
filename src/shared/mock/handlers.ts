@@ -1,19 +1,12 @@
-import { http, HttpResponse } from 'msw';
+import { rest } from 'msw';
 
-export const handlers = [
-  // Intercept "GET https://example.com/user" requests...
+const API_BASE_URL = 'http://localhost:3000/api';
 
-  http.get('https://api.example.com/user', () => {
-    return HttpResponse.json({
-      firstName: 'John',
-
-      lastName: 'Maverick',
-    });
-  }),
-
-  http.get('http://localhost:3000/product', () => {
-    return HttpResponse.json({
-      name: 'Awesome Product',
-    });
-  }),
+const handlers = [
+  rest.get(`${API_BASE_URL}/users/me`, (req, res, ctx) => res(ctx.status(201))),
+  rest.post(`${API_BASE_URL}/users`, (req, res, ctx) =>
+    res(ctx.status(201), ctx.json({ accessToken: 'Access-Token' })),
+  ),
 ];
+
+export default handlers;

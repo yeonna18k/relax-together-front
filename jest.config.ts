@@ -7,13 +7,12 @@ const createJestConfig = nextJest({
 });
 
 const config: Config = {
-  testEnvironment: 'node',
   rootDir: __dirname,
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  setupFiles: ['<rootDir>/jest.polyfills.ts'],
   transform: {
     '^.+\\.tsx?$': '@swc/jest',
   },
+  testEnvironment: 'jsdom',
   testEnvironmentOptions: {
     customExportConditions: [''],
   },
