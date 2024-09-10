@@ -1,5 +1,5 @@
-import DalrempitIcon from '@/shared/assets/icon/DalrempitIcon';
-import WorcationIcon from '@/shared/assets/icon/WorcationIcon';
+import DalrempitIcon from '@/shared/assets/icons/dalrempit-icon';
+import WorcationIcon from '@/shared/assets/icons/worcation-icon';
 import { Meta, StoryObj } from '@storybook/react';
 import SliderButtonWithIcon from './index';
 
