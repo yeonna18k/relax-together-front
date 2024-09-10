@@ -1,6 +1,6 @@
+import PersonIcon from '@/shared/assets/icons/person-icon';
 import Check from '@/shared/common/ui/check';
 import { Progress } from '@/shared/ui/progress';
-import PersonIcon from '../../../public/assets/person-icon';
 
 interface ProgressBarProps {
   value: number;

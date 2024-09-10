@@ -1,4 +1,4 @@
-import CheckIcon from '../../../../../public/assets/check-icon';
+import CheckIcon from '@/shared/assets/icons/check-icon';
 
 interface CheckProps {
   participantCount: number;
