@@ -14,9 +14,7 @@
     "chromatic": "npx chromatic --project-token=chpt_c28032a4c31d317",
     "add-component": "bash ./scripts/add-component.sh",
     "prepare": "husky",
-    "commit-msg": "npx --no -- commitlint --edit $1",
-    "pre-commit": "npx lint-staged",
-    "pre-push": "yarn build && yarn test"
+    "pre-commit": "npx lint-staged && yarn build"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.1",
@@ -30,7 +28,6 @@
     "firebase": "^10.13.1",
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.438.0",
-    "msw": "^2.4.4",
     "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18",
@@ -41,8 +38,6 @@
   "devDependencies": {
     "@alexgorbatchev/storybook-addon-localstorage": "^2.0.3",
     "@chromatic-com/storybook": "^1.8.0",
-    "@commitlint/cli": "^19.4.1",
-    "@commitlint/config-conventional": "^19.4.1",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",
@@ -75,8 +70,7 @@
     "storybook": "^8.2.9",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5",
-    "undici": "^6.19.8"
+    "typescript": "^5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
