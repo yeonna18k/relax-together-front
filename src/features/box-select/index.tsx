@@ -16,6 +16,7 @@ export default function BoxSelect({ group, text }: BoxSelectProps) {
   };
   return (
     <div
+      data-testid="box-select"
       className={cn(
         `flex h-[76px] w-full min-w-[109px] max-w-40 items-start gap-[2px] break-keep rounded-lg pb-[14px] pl-2 pr-5 pt-[6px] md:h-[70px] md:gap-2 md:pb-[14px] md:pl-4 md:pr-5 md:pt-3`,
         { 'bg-gray-900': isChecked, 'bg-gray-50': !isChecked },
