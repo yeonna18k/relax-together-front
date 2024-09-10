@@ -91,10 +91,11 @@ export default function Information({
               </div>
               <div>
                 <ul className="flex">
-                  {participantList.slice(0, 4).map(item => {
+                  {participantList.slice(0, 4).map((item, index) => {
                     return (
                       <li
-                        key={gatheringsInfo.id}
+                        // 임시 key값 index
+                        key={index}
                         className="-ml-[10px] h-[29px] w-[29px] overflow-hidden rounded-full first:ml-0"
                       >
                         <Image
