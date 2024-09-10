@@ -1,15 +1,14 @@
 import { Meta, StoryObj } from '@storybook/react';
-
-import SliderButton from './index';
+import SliderButtonContainer from './index';
 
 const meta = {
-  title: 'Shared/ui/SlideButton',
-  component: SliderButton,
+  title: 'Shared/ui/SliderButtonContainer',
+  component: SliderButtonContainer,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof SliderButton>;
+} satisfies Meta<typeof SliderButtonContainer>;
 
 export default meta;
 
