@@ -1,6 +1,6 @@
-import ProgressBar from '@/shared/common/ui/progress-bar';
 import { Progress } from '@/shared/ui/progress';
 import { render, screen } from '@testing-library/react';
+import ProgressBar from '.';
 
 describe('ProgressBar Component', () => {
   test('화면에 렌더링이 된다.', () => {
