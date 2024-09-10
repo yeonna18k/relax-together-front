@@ -11,7 +11,7 @@ interface BoxSelectProps {
 export default function BoxSelect({ group, text }: BoxSelectProps) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const checkedChangeHandler = (checked: boolean) => {
+  const handleCheckedChange = (checked: boolean) => {
     setIsChecked(checked);
   };
   return (
@@ -22,7 +22,7 @@ export default function BoxSelect({ group, text }: BoxSelectProps) {
         { 'bg-gray-900': isChecked, 'bg-gray-50': !isChecked },
       )}
     >
-      <Checkbox checked={isChecked} onCheckedChange={checkedChangeHandler} />
+      <Checkbox checked={isChecked} onCheckedChange={handleCheckedChange} />
       <div className="flex flex-col gap-1 md:gap-[2px]">
         <div
           className={`text-sm font-semibold md:text-base ${isChecked ? '' : 'text-gray-900'}`}
