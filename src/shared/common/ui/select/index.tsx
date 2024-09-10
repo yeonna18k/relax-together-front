@@ -1,38 +1,21 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/ui/select';
+import { Select, SelectTrigger, SelectValue } from '@/shared/ui/select';
 
-export type SelectBoxMenuItem = {
-  value: string;
-  label: string;
-};
-
-interface DropdownProps {
+interface SelectProps {
   placeholder: string;
-  menuItems: Array<SelectBoxMenuItem>;
   onValueChange?: (value: string) => void;
+  children?: React.ReactNode;
 }
 export default function SelectBox({
   placeholder,
-  menuItems,
   onValueChange,
-}: DropdownProps) {
+  children,
+}: SelectProps) {
   return (
     <Select onValueChange={onValueChange}>
       <SelectTrigger className="max-w-[28.75rem] lg:w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent>
-        {menuItems.map(menuItem => (
-          <SelectItem key={menuItem.value} value={menuItem.value}>
-            {menuItem.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
+      {children}
     </Select>
   );
 }

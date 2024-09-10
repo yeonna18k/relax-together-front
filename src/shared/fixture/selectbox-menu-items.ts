@@ -1,4 +1,4 @@
-import { SelectBoxMenuItem } from '@/shared/common/ui/select';
+import { SelectBoxMenuItem } from '@/shared/common/ui/select-content';
 
 export const selectBoxMenuItems: Array<SelectBoxMenuItem> = [
   {
