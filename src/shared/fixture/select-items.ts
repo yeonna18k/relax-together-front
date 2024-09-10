@@ -1,6 +1,10 @@
-import { SelectBoxMenuItem } from '@/shared/common/ui/select-content';
+import { CommonSelectItem } from '@/shared/common/ui/common-select-items';
 
-export const selectBoxMenuItems: Array<SelectBoxMenuItem> = [
+export const commonSelectItems: Array<CommonSelectItem> = [
+  {
+    value: 'ALL',
+    label: '지역 전체',
+  },
   {
     value: '건대입구',
     label: '건대입구',
