@@ -5,24 +5,21 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// 날짜 포맷
-export function formatDate(dateTime: string) {
-  const eventDate = new Date(dateTime);
+// 날짜 포맷팅 (ex. 1월 7일)
+export const formatDate = (stringDate: string): string => {
+  const date = new Date(stringDate);
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+};
 
-  const month = eventDate.getMonth() + 1;
-  const date = eventDate.getDate();
-  const formattedDate = `${month}월 ${date}일`;
-
-  return formattedDate;
-}
-
-// 시간 포맷
-export function formatTime(dateTime: string) {
-  const eventDate = new Date(dateTime);
-
-  const hour = eventDate.getHours();
-  const minute = eventDate.getMinutes();
-  const formattedTime = `${hour}:${minute}`;
-
-  return formattedTime;
-}
+// 시간 포맷팅 (ex. 17:30)
+export const formatTime = (stringDate: string): string => {
+  const date = new Date(stringDate);
+  return new Intl.DateTimeFormat('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date);
+};

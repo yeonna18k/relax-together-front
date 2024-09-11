@@ -42,7 +42,7 @@ export default function Information({
   gatheringsInfo,
   participantList,
 }: InformationProps) {
-  // 날짜, 시간
+  // 날짜, 시간 포맷팅
   const formattedDate = formatDate(gatheringsInfo.dateTime);
   const formattedTime = formatTime(gatheringsInfo.dateTime);
 
