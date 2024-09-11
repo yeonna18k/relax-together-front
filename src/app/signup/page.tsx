@@ -1,5 +1,4 @@
-import ReviewCard from '@/features/review-card';
-import { SCORE_EXAMPLE } from '@/features/review-card/ReviewCard.stories';
+import ReviewCard, { SCORE_EXAMPLE } from '@/features/review-card';
 
 export default function Signup() {
   return (
