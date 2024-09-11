@@ -19,7 +19,13 @@ export interface ReviewCardProps {
 export default function ReviewCard(props: ReviewCardProps) {
   return (
     <div className="flex w-full flex-col gap-6 md:max-w-[648px] md:flex-row lg:max-w-[948px]">
-      {props.page !== 'search' && <ImageCard />}
+      {props.page !== 'search' && (
+        <ImageCard
+          width={'w-[311px] md:w-[280px]'}
+          height={'h-[156px]'}
+          style={{ borderRadius: '24px' }}
+        />
+      )}
       <ReviewContent {...props} />
     </div>
   );
