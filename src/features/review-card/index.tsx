@@ -2,7 +2,7 @@
 // 태블릿
 // 웹
 
-import ReviewContent from '../review-content';
+import ReviewContent from '../../shared/common/ui/review-content';
 import ReviewImage from '../review-image';
 
 interface ScoreProps {
