@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReviewCard from './index';
+import ReviewCard, { SCORE_EXAMPLE } from './index';
 
 const meta = {
   title: 'Shared/ui/ReviewCard',
@@ -13,16 +13,6 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
-
-export const SCORE_EXAMPLE = [
-  {
-    oneStar: 1,
-    twoStars: 1,
-    threeStars: 1,
-    fourStars: 0,
-    fiveStars: 0,
-  },
-];
 
 export const Mypage: Story = {
   args: {

@@ -1,6 +1,16 @@
 import ImageCard from '@/shared/common/ui/review-image/ImageCard';
 import ReviewContent from './ReviewContent';
 
+export const SCORE_EXAMPLE = [
+  {
+    oneStar: 1,
+    twoStars: 1,
+    threeStars: 1,
+    fourStars: 0,
+    fiveStars: 0,
+  },
+];
+
 interface ScoreProps {
   [key: string]: number;
 }
