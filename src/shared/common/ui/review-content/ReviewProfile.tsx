@@ -2,10 +2,7 @@ import Image from 'next/image';
 
 export default function ReviewProfile({ user }: { user: string }) {
   return (
-    <div
-      data-testid="review-profile"
-      className="flex items-center gap-2 text-xs font-medium"
-    >
+    <div className="flex items-center gap-2 text-xs font-medium">
       <Image
         src="/assets/check.svg"
         alt="user-img"
