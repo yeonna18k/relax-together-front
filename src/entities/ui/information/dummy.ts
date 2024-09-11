@@ -1,0 +1,82 @@
+export const gatheringsInfo = {
+  teamId: 0,
+  id: 0,
+  type: 'string',
+  name: '달램핏 오피스 스트레칭',
+  dateTime: '2024-09-10T06:45:28.484Z',
+  registrationEnd: '2024-09-10T09:53:00.221Z',
+  location: '을지로 3가 서울시 중구 청계천로 100',
+  participantCount: 5,
+  capacity: 5,
+  image: 'string',
+  createdBy: 0,
+  canceledAt: '2024-09-10T09:53:00.221Z',
+};
+
+export const participantList = [
+  {
+    teamId: 0,
+    userId: 0,
+    gatheringId: 0,
+    joinedAt: '2024-09-10T09:43:10.020Z',
+    User: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      companyName: 'string',
+      image: './assets/user-profile-image.svg',
+    },
+  },
+  {
+    teamId: 0,
+    userId: 0,
+    gatheringId: 0,
+    joinedAt: '2024-09-10T09:43:10.020Z',
+    User: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      companyName: 'string',
+      image: './assets/user-profile-image.svg',
+    },
+  },
+  {
+    teamId: 0,
+    userId: 0,
+    gatheringId: 0,
+    joinedAt: '2024-09-10T09:43:10.020Z',
+    User: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      companyName: 'string',
+      image: './assets/user-profile-image.svg',
+    },
+  },
+  {
+    teamId: 0,
+    userId: 0,
+    gatheringId: 0,
+    joinedAt: '2024-09-10T09:43:10.020Z',
+    User: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      companyName: 'string',
+      image: './assets/user-profile-image.svg',
+    },
+  },
+  {
+    teamId: 0,
+    userId: 0,
+    gatheringId: 0,
+    joinedAt: '2024-09-10T09:43:10.020Z',
+    User: {
+      id: 0,
+      email: 'string',
+      name: 'string',
+      companyName: 'string',
+      image: './assets/user-profile-image.svg',
+    },
+  },
+];
