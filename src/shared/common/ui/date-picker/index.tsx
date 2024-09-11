@@ -1,12 +1,12 @@
 'use client';
 
+import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown';
 import PopupCalendar from '@/shared/common/ui/popup-calendar';
 import { Device } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
@@ -28,6 +28,7 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
     date === undefined
       ? 'bg-white text-gray-900 hover:bg-white active:bg-white'
       : 'bg-gray-900 text-white hover:bg-gray-900 active:bg-gray-900';
+  const getIconFillColor = date === undefined ? '#1F2937' : '#FFFFFF';
   const isMobile = width <= Device.mobile;
 
   return (
@@ -35,12 +36,12 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
       <PopoverTrigger asChild>
         <Button
           className={cn(
-            'flex w-[120px] items-center justify-between rounded-xl border-2 border-gray-100 px-3 py-2 text-sm',
+            'group flex w-[120px] items-center justify-between rounded-xl border-2 border-gray-100 px-3 py-2 text-sm',
             triggerStyles,
           )}
         >
-          <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? format(date, 'yy/MM/dd') : <span>날짜 선택</span>}
+          <ArrowDropdown fill={getIconFillColor} />
         </Button>
       </PopoverTrigger>
       <PopoverContent
