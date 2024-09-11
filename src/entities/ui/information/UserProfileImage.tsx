@@ -1,5 +1,8 @@
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/model/informationModel';
 import Image from 'next/image';
-import { GatheringsInfoTypes, ParticipantListTypes } from '.';
 
 interface UserProfileImageProps {
   gatheringsInfo: GatheringsInfoTypes;

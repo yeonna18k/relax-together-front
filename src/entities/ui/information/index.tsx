@@ -1,34 +1,9 @@
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/model/informationModel';
 import InformationBottom from './InformationBottom';
 import InformationTop from './InformationTop';
-
-export type GatheringsInfoTypes = {
-  teamId: number;
-  id: number;
-  type: string;
-  name: string;
-  dateTime: string;
-  registrationEnd: string;
-  location: string;
-  participantCount: number;
-  capacity: number;
-  image: string;
-  createdBy: number;
-  canceledAt: string;
-};
-
-export type ParticipantListTypes = {
-  teamId: number;
-  userId: number;
-  gatheringId: number;
-  joinedAt: string;
-  User: {
-    id: number;
-    email: string;
-    name: string;
-    companyName: string;
-    image: string;
-  };
-};
 
 interface InformationProps {
   gatheringsInfo: GatheringsInfoTypes;

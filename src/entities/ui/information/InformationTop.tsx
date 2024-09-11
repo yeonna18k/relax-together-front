@@ -1,4 +1,4 @@
-import { GatheringsInfoTypes } from '.';
+import { GatheringsInfoTypes } from '@/entities/model/informationModel';
 import GatheringChip from './GatheringChip';
 import GatheringInfo from './GatheringInfo';
 
