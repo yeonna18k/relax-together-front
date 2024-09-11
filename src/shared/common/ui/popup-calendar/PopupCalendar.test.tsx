@@ -2,9 +2,10 @@ import PopupCalendar from '@/shared/common/ui/popup-calendar';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 const date = new Date();
-const mockSetDate = jest.fn();
+
 describe('PopupCalendar Component', () => {
   test('팝업 캘린더가 렌더링된다.', () => {
+    const mockSetDate = jest.fn();
     const currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
     const currentYear = new Date().getFullYear();
     render(<PopupCalendar date={date} setDate={mockSetDate} />);
@@ -14,6 +15,7 @@ describe('PopupCalendar Component', () => {
   });
 
   test('적용 버튼을 누르면 mockSetDate 함수가 호출된다.', async () => {
+    const mockSetDate = jest.fn();
     render(<PopupCalendar date={date} setDate={mockSetDate} />);
 
     const submitButton = screen.getByRole('button', { name: '적용' });
@@ -24,6 +26,7 @@ describe('PopupCalendar Component', () => {
   });
 
   test('초기화 버튼을 누르면 mockSetDate 함수가 호출된다.', async () => {
+    const mockSetDate = jest.fn();
     render(<PopupCalendar date={date} setDate={mockSetDate} />);
 
     const resetButton = screen.getByRole('button', { name: '초기화' });
