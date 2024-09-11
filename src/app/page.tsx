@@ -1,6 +1,5 @@
 'use client';
 import CommonSelect from '@/shared/common/ui/common-select';
-import CommonSelectCalendar from '@/shared/common/ui/common-select-calendar';
 import CommonSelectContent from '@/shared/common/ui/common-select-content';
 import CommonSelectItems from '@/shared/common/ui/common-select-items';
 import { commonSelectItems } from '@/shared/fixture/select-items';
@@ -32,7 +31,7 @@ export default function Home() {
         selectedValue={selectedValue}
       >
         <CommonSelectContent>
-          <CommonSelectCalendar />
+          <></>
         </CommonSelectContent>
       </CommonSelect>
     </div>
