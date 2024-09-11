@@ -21,7 +21,7 @@ export const WithState: Story = {
 
     return (
       <div>
-        <PopupCalendar setDate={setDate} />
+        <PopupCalendar date={date} setDate={setDate} />
         <p className="text-black">현재 선택된 날짜: {date?.toLocaleString()}</p>
       </div>
     );
