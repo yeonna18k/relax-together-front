@@ -18,7 +18,7 @@ export default function PopupCalendar({ setDate }: PopupCalendarProps) {
   };
 
   return (
-    <div className="flex flex-col space-y-3 rounded-lg border-2 border-gray-200 px-[53px] py-6">
+    <div className="flex flex-col space-y-3 rounded-lg px-[53px] py-6">
       <Calendar
         mode="single"
         selected={selectedDate}
