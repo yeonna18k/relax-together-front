@@ -14,7 +14,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const SCORE_EXAMPLE = [
+export const SCORE_EXAMPLE = [
   {
     oneStar: 1,
     twoStars: 1,

@@ -1,9 +1,5 @@
-// 모바일
-// 태블릿
-// 웹
-
+import ReviewImage from '@/shared/common/ui/review-image';
 import ReviewContent from '../../shared/common/ui/review-content';
-import ReviewImage from '../review-image';
 
 interface ScoreProps {
   [key: string]: number;

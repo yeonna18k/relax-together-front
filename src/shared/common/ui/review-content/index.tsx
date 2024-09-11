@@ -1,4 +1,4 @@
-import { ReviewCardProps } from '../../../../features/review-card';
+import { ReviewCardProps } from '@/features/review-card';
 import HeartImage from './HeartImage';
 import ReviewPlaceTag from './PlaceTag';
 import ReviewProfile from './ReviewProfile';
