@@ -6,15 +6,7 @@ import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
   dsn: 'https://854d6e88d4c9ec4747239c9a04cc376b@o4507882123558912.ingest.us.sentry.io/4507893461876736',
-  beforeSend(event) {
-    if (
-      window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1'
-    ) {
-      return null; // 로컬호스트에서 발생한 이벤트는 전송하지 않음
-    }
-    return event;
-  },
+  enabled: process.env.NODE_ENV !== 'development',
   environment: process.env.NODE_ENV,
   // Add optional integrations for additional features
   integrations: [Sentry.replayIntegration()],
