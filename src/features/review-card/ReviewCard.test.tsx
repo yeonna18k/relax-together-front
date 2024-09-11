@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ReviewCard, { ReviewCardProps } from '.';
-import { SCORE_EXAMPLE } from './ReviewCard.stories';
+import ReviewCard, { ReviewCardProps, SCORE_EXAMPLE } from '.';
 
 describe('Review Card Component', () => {
   const mockProps: Omit<ReviewCardProps, 'page'> = {
