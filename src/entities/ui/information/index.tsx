@@ -1,3 +1,4 @@
+import { MAX_CAPACITY } from '@/constants';
 import ChipInfo from '@/shared/common/ui/chip-info';
 import OpenBadge from '@/shared/common/ui/open-badge';
 import { formatDate, formatTime } from '@/shared/lib/utils';
@@ -131,7 +132,7 @@ export default function Information({
               className={`text-xs font-medium text-gray-700 ${textColor}`}
             >
               <span>최대인원</span>
-              <span className="ml-[6px]">20명</span>
+              <span className="ml-[6px]">{MAX_CAPACITY}명</span>
             </div>
           </div>
         </div>
