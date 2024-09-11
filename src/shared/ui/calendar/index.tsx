@@ -3,9 +3,10 @@
 import * as React from 'react';
 import { DayPicker, Formatters } from 'react-day-picker';
 
+import ChevronLeft from '@/shared/assets/icons/chevron-left';
+import ChevronRight from '@/shared/assets/icons/chevron-right';
 import { cn } from '@/shared/lib/utils';
 import { cva } from 'class-variance-authority';
-import Image from 'next/image';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -52,7 +53,7 @@ function Calendar({
     <DayPicker
       formatters={formatters}
       showOutsideDays={showOutsideDays}
-      className={cn('p-3', className)}
+      className={cn('', className)}
       classNames={{
         months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
         month: '',
@@ -77,7 +78,7 @@ function Calendar({
         ),
         day_range_end: 'day-range-end',
         day_selected:
-          'bg-orange-600 text-black hover:bg-orange-600 hover:text-white focus:bg-orange-600 focus:text-white',
+          'bg-orange-600 text-white hover:bg-orange-600 hover:text-white focus:bg-orange-600 focus:text-white',
         day_today: 'bg-orange-600 text-orange-600 bg-white',
         day_outside:
           'day-outside text-muted-foreground opacity-50 aria-selected:bg-orange-600 aria-selected:text-white aria-selected:opacity-30',
@@ -88,24 +89,8 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => (
-          <Image
-            priority
-            src="/assets/left_arrow.svg"
-            alt="left arrow"
-            width={24}
-            height={24}
-          />
-        ),
-        IconRight: ({ ...props }) => (
-          <Image
-            priority
-            src="/assets/right_arrow.svg"
-            alt="right arrow"
-            width={24}
-            height={24}
-          />
-        ),
+        IconLeft: ({ ...props }) => <ChevronLeft className="h-6 w-6" />,
+        IconRight: ({ ...props }) => <ChevronRight className="h-6 w-6" />,
       }}
       {...props}
     />
