@@ -1,5 +1,5 @@
-import ReviewImage from '@/shared/common/ui/review-image';
-import ReviewContent from '../../shared/common/ui/review-content';
+import ImageCard from '@/shared/common/ui/review-image/ImageCard';
+import ReviewContent from './ReviewContent';
 
 interface ScoreProps {
   [key: string]: number;
@@ -19,7 +19,7 @@ export interface ReviewCardProps {
 export default function ReviewCard(props: ReviewCardProps) {
   return (
     <div className="flex w-full flex-col gap-6 md:max-w-[648px] md:flex-row lg:max-w-[948px]">
-      {props.page !== 'search' && <ReviewImage />}
+      {props.page !== 'search' && <ImageCard />}
       <ReviewContent {...props} />
     </div>
   );
