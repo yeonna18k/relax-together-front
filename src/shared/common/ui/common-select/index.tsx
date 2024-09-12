@@ -1,5 +1,5 @@
-import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown';
-import SortArrow from '@/shared/assets/icons/sort-arrow';
+import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
+import SortArrow from '@/shared/assets/icons/sort-arrow.svg';
 import { cn } from '@/shared/lib/utils';
 import {
   Select,
@@ -58,11 +58,15 @@ export default function CommonSelect({
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
-      ? '#1F2937'
-      : '#FFFFFF';
+      ? 'fill-[#1F2937]'
+      : 'fill-[#FFFFFF]';
 
   const filterIconMap: Record<FilterIconType, React.ReactNode> = {
-    default: <ArrowDropdown fill={getIconFillColor} />,
+    default: (
+      <ArrowDropdown
+        className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
+      />
+    ),
     sort: <SortArrow />,
   };
   return (
