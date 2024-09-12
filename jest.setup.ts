@@ -1,4 +1,4 @@
-import { server } from '@/shared/mock/node';
+import { server } from '@/shared/mocks/node';
 import '@testing-library/jest-dom';
 
 beforeAll(() => {

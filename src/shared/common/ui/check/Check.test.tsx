@@ -40,10 +40,10 @@ describe('Check Component', () => {
   test('isDark prop에 따라 CheckIcon에 색을 전달한다.', () => {
     const { rerender } = render(<Check participantCount={5} isDark={false} />);
     let checkIcon = screen.getByTestId('check-icon');
-    expect(checkIcon).toHaveAttribute('stroke', '#ffffff');
+    expect(checkIcon).toHaveClass('stroke-[#ffffff]');
 
     rerender(<Check participantCount={5} isDark={true} />);
     checkIcon = screen.getByTestId('check-icon');
-    expect(checkIcon).toHaveAttribute('stroke', '#f97316');
+    expect(checkIcon).toHaveClass('stroke-[#f97316]');
   });
 });

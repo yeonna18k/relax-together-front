@@ -1,6 +1,6 @@
 'use client';
 
-import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown';
+import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
 import PopupCalendar from '@/shared/common/ui/popup-calendar';
 import { Device } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
@@ -28,7 +28,8 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
     date === undefined
       ? 'bg-white text-gray-900 hover:bg-white active:bg-white'
       : 'bg-gray-900 text-white hover:bg-gray-900 active:bg-gray-900';
-  const getIconFillColor = date === undefined ? '#1F2937' : '#FFFFFF';
+  const getIconFillColor =
+    date === undefined ? 'fill-[#1F2937]' : 'fill-[#FFFFFF]';
   const isMobile = width <= Device.mobile;
 
   return (
@@ -41,7 +42,9 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
           )}
         >
           {date ? format(date, 'yy/MM/dd') : <span>날짜 선택</span>}
-          <ArrowDropdown fill={getIconFillColor} />
+          <ArrowDropdown
+            className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent

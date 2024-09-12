@@ -1,9 +1,9 @@
 'use client';
 
-import DalrempitIcon from '@/shared/assets/icons/dalrempit-icon';
-import WorcationIcon from '@/shared/assets/icons/worcation-icon';
+import DalrempitIcon from '@/shared/assets/icons/dalrempit-icon.svg';
+import WorcationIcon from '@/shared/assets/icons/worcation-icon.svg';
+import SliderButtonWithIcon from '@/shared/common/ui/slider-button-with-icon';
 import { useState } from 'react';
-import SliderButtonWithIcon from '../slider-button-with-icon';
 
 const SliderButtonContainer = () => {
   const [activeButton, setActiveButton] = useState('dalrempit');

@@ -9,7 +9,7 @@ interface ProgressBarProps {
 export default function ProgressBar({ value }: ProgressBarProps) {
   const isClosed = value === 20;
 
-  const iconColor = isClosed ? '#fb923c' : '#374151';
+  const iconColor = isClosed ? 'fill-[#fb923c]' : 'fill-[#374151]';
   const valueColor = isClosed ? 'text-orange-400' : 'text-gray-900';
   const textColor = isClosed ? 'text-orange-400' : 'text-orange-600';
   const text = isClosed ? 'Closed' : 'join now';

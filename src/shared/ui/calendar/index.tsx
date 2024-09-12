@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { DayPicker, Formatters } from 'react-day-picker';
 
-import ChevronLeft from '@/shared/assets/icons/chevron-left';
-import ChevronRight from '@/shared/assets/icons/chevron-right';
+import ChevronLeft from '@/shared/assets/icons/chevron-left.svg';
+import ChevronRight from '@/shared/assets/icons/chevron-right.svg';
 import { cn } from '@/shared/lib/utils';
 import { cva } from 'class-variance-authority';
 

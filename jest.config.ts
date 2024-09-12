@@ -16,6 +16,9 @@ const config: Config = {
   testEnvironmentOptions: {
     customExportConditions: [''],
   },
+  moduleNameMapper: {
+    '^.+\\.(svg)$': '<rootDir>/src/shared/mocks/mockSvgr.ts',
+  },
 };
 
 export default createJestConfig(config);
