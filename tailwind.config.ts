@@ -66,10 +66,31 @@ const config: Config = {
           '0%': { transform: 'translateX(0)', opacity: '1' },
           '100%': { transform: 'translateX(-100%)', opacity: '0' },
         },
+        fillHeart: {
+          '0%': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(0)',
+            position: 'absolute',
+          },
+          '50%': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(0.5)',
+            position: 'absolute',
+          },
+          '100%': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(1)',
+            position: 'absolute',
+          },
+        },
       },
       animation: {
         slideIn: 'slideIn 0.5s ease-out forwards',
         slideOut: 'slideOut 0.5s ease-out forwards',
+        fillHeart: 'fillHeart 0.3s ease-out forwards',
       },
     },
   },
