@@ -1,6 +1,6 @@
 'use client';
-import LikeHeartEmptyIcon from '@/shared/assets/icons/like-heart-empty-icon';
-import LikeHeartIcon from '@/shared/assets/icons/like-heart-icon';
+import LikeHeartEmptyIcon from '@/shared/assets/icons/like-heart-empty-icon.svg';
+import LikeHeartIcon from '@/shared/assets/icons/like-heart-icon.svg';
 import { Button } from '@/shared/ui/button';
 import { useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
@@ -43,6 +43,7 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
     >
       <LikeHeartEmptyIcon className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform" />
       <LikeHeartIcon
+        data-testid="like-heart-icon"
         className={`absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform ${liked ? 'animate-fillHeart' : 'scale-0'}`}
       />
     </Button>
