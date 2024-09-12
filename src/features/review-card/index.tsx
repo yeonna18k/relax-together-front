@@ -1,10 +1,6 @@
 import ImageCard from '@/shared/common/ui/review-image/ImageCard';
 import ReviewContent from './ReviewContent';
 
-interface ScoreProps {
-  [key: string]: number;
-}
-
 export interface ReviewCardProps {
   page: 'mypage' | 'reviews' | 'search';
   score: number;

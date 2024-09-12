@@ -5,3 +5,5 @@ export const Device = {
 } as const;
 
 export const MAX_CAPACITY = 20;
+
+export const MAX_SCORE = 5;
