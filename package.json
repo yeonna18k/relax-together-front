@@ -16,7 +16,7 @@
     "prepare": "husky",
     "commit-msg": "npx --no -- commitlint --edit $1",
     "pre-commit": "npx lint-staged",
-    "pre-push": "yarn build"
+    "pre-push": "yarn test && yarn build"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.1",

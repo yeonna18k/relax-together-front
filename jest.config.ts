@@ -17,7 +17,7 @@ const config: Config = {
     customExportConditions: [''],
   },
   moduleNameMapper: {
-    '\\.svg$': '<rootDir>/src/shared/mocks/mockSvgr.ts',
+    '^.+\\.(svg)$': '<rootDir>/src/shared/mocks/mockSvgr.ts',
   },
 };
 

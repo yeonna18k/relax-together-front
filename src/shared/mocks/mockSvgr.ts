@@ -1,8 +1,3 @@
-// const SvgrMock = React.forwardRef<SVGSVGElement, React.SVGProps<SVGSVGElement>>(
-//   (props, ref) => <svg ref={ref} {...props} />,
-// );
-
-// SvgrMock.displayName = 'SvgrMock';
-
-export default 'SvgrURL';
+/* eslint-disable import/no-anonymous-default-export */
+export default 'svg';
 export const ReactComponent = 'div';

@@ -4,7 +4,7 @@ interface ButtonProps {
   label: string;
   isActive: boolean;
   onClick: () => void;
-  IconComponent: React.FC<{ isActive: boolean }>;
+  IconComponent: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 const SliderButtonWithIcon: React.FC<ButtonProps> = ({
@@ -22,7 +22,9 @@ const SliderButtonWithIcon: React.FC<ButtonProps> = ({
     <div className="font-pretendard h-[28px] text-left text-[18px] font-semibold leading-[1.56]">
       {label}
     </div>
-    <IconComponent isActive={isActive} />
+    <IconComponent
+      className={`${isActive ? 'fill-[#1F2937] stroke-[#1F2937]' : 'fill-[#9CA3AF] stroke-[#9CA3AF]'}`}
+    />
   </div>
 );
 

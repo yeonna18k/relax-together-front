@@ -1,4 +1,4 @@
-import PersonIcon from '@/shared/assets/icons/person-icon';
+import PersonIcon from '@/shared/assets/icons/person-icon.svg';
 import OpenBadge from '@/shared/common/ui/open-badge';
 import { Progress } from '@/shared/ui/progress';
 
@@ -9,7 +9,7 @@ interface ProgressBarProps {
 export default function ProgressBar({ value }: ProgressBarProps) {
   const isClosed = value === 20;
 
-  const iconColor = isClosed ? '#fb923c' : '#374151';
+  const iconColor = isClosed ? 'fill-[#fb923c]' : 'fill-[#374151]';
   const valueColor = isClosed ? 'text-orange-400' : 'text-gray-900';
   const textColor = isClosed ? 'text-orange-400' : 'text-orange-600';
   const text = isClosed ? 'Closed' : 'join now';
@@ -19,7 +19,7 @@ export default function ProgressBar({ value }: ProgressBarProps) {
       <div className="flex w-full flex-col gap-2">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-[2px]">
-            <PersonIcon color={iconColor} />
+            <PersonIcon className={`${iconColor}`} />
             <span className={`text-sm font-medium ${valueColor}`}>
               {value}/20
             </span>

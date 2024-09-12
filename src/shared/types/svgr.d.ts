@@ -1,9 +1,6 @@
-import { FC, SVGProps, SVGSVGElement } from 'react';
-
-declare global {
-  module '*.svg' {
-    const component: FC<SVGProps<SVGSVGElement>>;
-
-    export default component;
-  }
+declare module '*.svg' {
+  import React from 'react';
+  const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
+  export default SVG;
+  export const ReactComponent: React.VFC<React.SVGProps<SVGSVGElement>>;
 }
