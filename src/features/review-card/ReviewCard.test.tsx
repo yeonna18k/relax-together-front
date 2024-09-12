@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import ReviewCard, { ReviewCardProps, SCORE_EXAMPLE } from '.';
+import ReviewCard, { ReviewCardProps } from '.';
 
 describe('Review Card Component', () => {
   const mockProps: Omit<ReviewCardProps, 'page'> = {
-    score: SCORE_EXAMPLE,
+    score: 3,
     user_name: '럽윈즈올',
     user_image: '',
     content:
@@ -13,11 +13,12 @@ describe('Review Card Component', () => {
     date: '2024.01.25',
   };
 
-  test('화면에 Review Card 컴포넌트의 내용(content)이 렌더링 된다', () => {
+  test('화면에 Review Card 컴포넌트의 내용(content)과 별점이 렌더링 된다', () => {
     render(<ReviewCard {...mockProps} page="mypage" />);
 
     const reviewContent = screen.getByText(mockProps.content);
     expect(reviewContent).toBeInTheDocument();
+    expect(screen.getAllByAltText('active-heart')).toHaveLength(3);
   });
 
   test('Mypage에서는 리뷰를 남긴 장소, 날짜가 렌더링 된다', () => {

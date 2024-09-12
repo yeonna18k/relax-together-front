@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReviewCard, { SCORE_EXAMPLE } from './index';
+import ReviewCard from './index';
 
 const meta = {
   title: 'Shared/ui/ReviewCard',
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Mypage: Story = {
   args: {
     page: 'mypage',
-    score: SCORE_EXAMPLE,
+    score: 3,
     user_name: '럽윈즈올',
     user_image: '',
     content:
@@ -30,7 +30,7 @@ export const Mypage: Story = {
 export const Reviews: Story = {
   args: {
     page: 'reviews',
-    score: SCORE_EXAMPLE,
+    score: 3,
     user_name: '럽윈즈올',
     user_image: '',
     content:
@@ -44,7 +44,7 @@ export const Reviews: Story = {
 export const Search: Story = {
   args: {
     page: 'search',
-    score: SCORE_EXAMPLE,
+    score: 3,
     user_name: '럽윈즈올',
     user_image: '',
     content:
