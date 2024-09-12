@@ -1,5 +1,5 @@
-import PersonIcon from '@/shared/assets/icons/person-icon';
 import OpenBadge from '@/shared/common/ui/open-badge';
+import ParticipantCounter from '@/shared/common/ui/participant-counter';
 import { Progress } from '@/shared/ui/progress';
 
 interface ProgressBarProps {
@@ -18,12 +18,11 @@ export default function ProgressBar({ value }: ProgressBarProps) {
     <div className="flex w-full items-end gap-6">
       <div className="flex w-full flex-col gap-2">
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-[2px]">
-            <PersonIcon color={iconColor} />
-            <span className={`text-sm font-medium ${valueColor}`}>
-              {value}/20
-            </span>
-          </div>
+          <ParticipantCounter
+            value={value}
+            iconColor={iconColor}
+            valueColor={valueColor}
+          />
           {value >= 5 ? <OpenBadge value={value} /> : null}
         </div>
         <Progress value={value} isClosed={isClosed} />
