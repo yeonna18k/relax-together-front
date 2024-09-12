@@ -8,7 +8,7 @@ export default function ReviewProfile({ user }: { user: string }) {
         alt="user-img"
         width={24}
         height={24}
-        style={{ backgroundColor: 'black', borderRadius: '50%' }}
+        className="rounded-full bg-black"
       />
       <span>{user}</span>
       <span>|</span>

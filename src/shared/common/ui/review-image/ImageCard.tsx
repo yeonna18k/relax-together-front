@@ -1,21 +1,18 @@
 import Image from 'next/image';
-import { CSSProperties } from 'react';
 
 interface ImageCardProps {
-  width: string;
-  height: string;
-  style?: CSSProperties;
+  width: number;
+  className?: string;
 }
 
-export default function ImageCard({ width, height, style }: ImageCardProps) {
+export default function ImageCard({ width, className }: ImageCardProps) {
   return (
-    <div className={`relative ${width} ${height} flex-shrink-0`}>
-      <Image
-        src="/assets/review-sample.png"
-        alt="review-sample-image"
-        fill
-        style={{ objectFit: 'cover', ...style }}
-      />
-    </div>
+    <Image
+      src="/assets/review-sample.png"
+      alt="review-sample-image"
+      width={width}
+      height={0}
+      className={`${className || ''}`}
+    />
   );
 }
