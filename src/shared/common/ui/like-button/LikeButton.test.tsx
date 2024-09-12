@@ -3,14 +3,11 @@ import mockLocalStorage from '@/shared/mocks/mockLocalStrage';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-jest.mock(
-  '.src/shared/assets/icons/like-heart-empty-icon.svg',
-  () => 'LikeHeartEmptyIcon',
-);
-jest.mock(
-  '.src/shared/assets/icons/like-heart-icon.svg',
-  () => 'LikeHeartIcon',
-);
+// jest.mock(
+//   '.src/shared/assets/icons/LikeHeartEmptyIcon.svg',
+//   () => 'LikeHeartEmptyIcon',
+// );
+// jest.mock('.src/shared/assets/icons/LikeHeartIcon.svg', () => 'LikeHeartIcon');
 
 describe('LikeButton Component', () => {
   beforeEach(() => {
@@ -25,9 +22,9 @@ describe('LikeButton Component', () => {
     expect(likeButton).toBeInTheDocument();
   });
 
-  test('좋아요 버튼을 클릭하면 애니메이션 className이 추가되고, 취소하면 애니메이션 className이 사라진다.', async () => {
-    render(<LikeButton gatheringId="1" />);
-
+  test.only('좋아요 버튼을 클릭하면 애니메이션 className이 추가되고, 취소하면 애니메이션 className이 사라진다.', async () => {
+    const { debug } = render(<LikeButton gatheringId="1" />);
+    debug();
     const likeButton = screen.getByRole('button');
     const likeHeartIcon = screen.getByTestId('like-heart-icon');
 
