@@ -5,9 +5,9 @@ import { MAX_SCORE } from '@/shared/lib/constants';
 export default function ReviewHearts({ score }: { score: number }) {
   const renderHearts = Array.from({ length: MAX_SCORE }).map((_, index) => {
     return index < score ? (
-      <ActiveHeart data-testid="active-heart" />
+      <ActiveHeart data-testid="active-heart" key={`heart-${index}`} />
     ) : (
-      <DefaultHeart />
+      <DefaultHeart key={`heart-${index}`} />
     );
   });
   return <div className="flex gap-[2px]">{renderHearts}</div>;
