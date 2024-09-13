@@ -8,12 +8,12 @@ export type GatheringLocation = '건대입구' | '을지로3가' | '신림' | '�
 export interface Gathering {
   id?: number;
   type?: GatheringType;
-  name?: string;
+  name: string;
   /** @format date-time */
   dateTime?: string;
   /** @format date-time */
   registrationEnd?: string;
-  location?: GatheringLocation;
+  location: GatheringLocation;
   participantCount?: number;
   capacity?: number;
   image: string;

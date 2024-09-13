@@ -1,16 +1,46 @@
 'use client';
 import GatheringDatetime from '@/entities/ui/mypage-card/GatheringDatetime';
 import MypageCardContentBottomButtonContainer from '@/entities/ui/mypage-card/MypageCardContentBottomButtonContainer';
+import CardTitle from '@/shared/common/ui/card-title';
+import ChipState from '@/shared/common/ui/chip-state';
 import ParticipantCounter from '@/shared/common/ui/participant-counter';
-import { useParticipantStatus } from '@/shared/hooks/useParticipantStatus';
-import { useTimeComparison } from '@/shared/hooks/useTimeComparison';
+import {
+  OpenChipStateTypes,
+  useParticipantStatus,
+} from '@/shared/hooks/useParticipantStatus';
+import {
+  UseChipStateTypes,
+  useTimeComparison,
+} from '@/shared/hooks/useTimeComparison';
 import { formatDate, formatTime } from '@/shared/lib/utils';
 
+const useChipStateMap: Record<
+  UseChipStateTypes,
+  (
+    participantStatus: OpenChipStateTypes,
+    timeStatus: UseChipStateTypes,
+  ) => React.ReactNode
+> = {
+  scheduled: (participantStatus, timeStatus) => (
+    <>
+      <ChipState state={timeStatus} />
+      <ChipState state={participantStatus} />
+    </>
+  ),
+  completed: (participantStatus, timeStatus) => (
+    <ChipState state={participantStatus} />
+  ),
+};
+
 interface MypageCardContentProps {
+  title: string;
+  location: string;
   startGatheringTime: string;
   participantCount: number;
 }
 export default function MypageCardContent({
+  title,
+  location,
   startGatheringTime,
   participantCount,
 }: MypageCardContentProps) {
@@ -19,9 +49,11 @@ export default function MypageCardContent({
   return (
     <div className="flex h-[156px] w-full flex-col xs:w-[calc(100%-280px)]">
       {/* chip-status */}
-      <div className="mb-3">chip</div>
+      <div className="mb-3 flex gap-2">
+        {useChipStateMap[timeStatus](participantStatus, timeStatus)}
+      </div>
       {/* title */}
-      <div>타이틀</div>
+      <CardTitle title={title} location={location} />
       {/* date */}
       <div className="mt-1.5 flex gap-3">
         <GatheringDatetime

@@ -1,6 +1,6 @@
 interface CardContentSectionProps {
-  title?: string;
-  location?: string;
+  title: string;
+  location: string;
 }
 
 export default function CardTitle({
