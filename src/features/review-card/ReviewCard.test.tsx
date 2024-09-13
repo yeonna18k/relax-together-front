@@ -18,7 +18,7 @@ describe('Review Card Component', () => {
 
     const reviewContent = screen.getByText(mockProps.content);
     expect(reviewContent).toBeInTheDocument();
-    expect(screen.getAllByAltText('active-heart')).toHaveLength(3);
+    expect(screen.getAllByTestId('active-heart')).toHaveLength(3);
   });
 
   test('Mypage에서는 리뷰를 남긴 장소, 날짜가 렌더링 된다', () => {
