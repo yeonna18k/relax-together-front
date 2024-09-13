@@ -1,7 +1,7 @@
 'use client';
 
+import CheckIcon from '@/shared/assets/icons/check.svg';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-import Image from 'next/image';
 import * as React from 'react';
 import { cn } from '../lib/utils';
 
@@ -26,7 +26,7 @@ const Checkbox = React.forwardRef<
     <CheckboxPrimitive.Indicator
       className={cn('flex items-center justify-center text-current')}
     >
-      <Image src="/assets/check.svg" alt="check icon" width={18} height={18} />
+      <CheckIcon />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));
