@@ -133,7 +133,20 @@ export default function PaginationComponent({
       <ul>
         {/* 임시 key값 index */}
         {reviewList?.map((review: Review, index) => {
-          return <li key={index}></li>;
+          return (
+            <li key={index}>
+              {/* <ReviewCard
+                page="search"
+                score={review.score}
+                user_name={review.User.name}
+                user_image={review.User.image}
+                content={review.comment}
+                place=""
+                address=""
+                date={review.createdAt}
+              /> */}
+            </li>
+          );
         })}
       </ul>
       <Pagination
