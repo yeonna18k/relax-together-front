@@ -4,8 +4,8 @@ import { cn } from '@/shared/lib/utils';
 import { Pagination, PaginationItemType } from '@nextui-org/pagination';
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
-import ArrowLeftIcon from '../../shared/assets/icons/arrow-left-pagination';
-import ArrowRightIcon from '../../shared/assets/icons/arrow-right-pagination';
+import ArrowLeftIcon from '../../shared/assets/icons/arrow-left-pagination.svg';
+import ArrowRightIcon from '../../shared/assets/icons/arrow-right-pagination.svg';
 import { Review } from './types';
 
 interface PaginationComponentProps {
@@ -75,7 +75,9 @@ export default function PaginationComponent({
           onClick={handleNextBtnClick}
           disabled={isNextDisabled}
         >
-          <ArrowRightIcon color={isNextDisabled ? '#E5E7EB' : '#1f2937'} />
+          <ArrowRightIcon
+            className={isNextDisabled ? 'fill-[#E5E7EB]' : 'fill-[#1f2937]'}
+          />
         </button>
       );
     }
@@ -91,7 +93,9 @@ export default function PaginationComponent({
           onClick={handlePrevBtnClick}
           disabled={isPrevDisabled}
         >
-          <ArrowLeftIcon color={isPrevDisabled ? '#E5E7EB' : '#1f2937'} />
+          <ArrowLeftIcon
+            className={isPrevDisabled ? 'fill-[#E5E7EB]' : 'fill-[#1f2937]'}
+          />
         </button>
       );
     }

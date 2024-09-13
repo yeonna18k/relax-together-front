@@ -4,8 +4,8 @@ import * as React from 'react';
 import { cn } from '@/shared/lib/utils';
 import { ButtonProps, buttonVariants } from '@/shared/ui/pagination-button';
 import Link from 'next/link';
-import ArrowLeftIcon from '../assets/icons/arrow-left-pagination';
-import ArrowRightIcon from '../assets/icons/arrow-right-pagination';
+import ArrowLeftIcon from '../assets/icons/arrow-left-pagination.svg';
+import ArrowRightIcon from '../assets/icons/arrow-right-pagination.svg';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
@@ -73,7 +73,7 @@ const PaginationPrevious = ({
     {...props}
   >
     <span>
-      <ArrowLeftIcon color="#E5E7EB" />
+      <ArrowLeftIcon />
     </span>
   </PaginationLink>
 );
@@ -90,7 +90,7 @@ const PaginationNext = ({
     {...props}
   >
     <span>
-      <ArrowRightIcon color="#1f2937" />
+      <ArrowRightIcon />
     </span>
   </PaginationLink>
 );
