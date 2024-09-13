@@ -17,21 +17,18 @@ describe('CardList Component', () => {
   it('renders the card title correctly', () => {
     render(<GatheringCardList {...mockProps} />);
 
-    // Title이 올바르게 렌더링되는지 확인
     expect(screen.getByText('달램핏 마인드풀니스')).toBeInTheDocument();
   });
 
   it('displays the correct location', () => {
     render(<GatheringCardList {...mockProps} />);
 
-    // Location이 올바르게 렌더링되는지 확인
-    expect(screen.getByText('서울')).toBeInTheDocument();
+    expect(screen.getByText('을지로 3가')).toBeInTheDocument();
   });
 
   it('shows the correct date and time', () => {
     render(<GatheringCardList {...mockProps} />);
 
-    // 날짜와 시간이 올바르게 렌더링되는지 확인
     expect(screen.getByText('1월 7일')).toBeInTheDocument();
     expect(screen.getByText('17:30')).toBeInTheDocument();
   });
@@ -39,7 +36,6 @@ describe('CardList Component', () => {
   it('renders the tag clock message', () => {
     render(<GatheringCardList {...mockProps} />);
 
-    // TagClock 메시지가 올바르게 표시되는지 확인
     expect(screen.getByText('오늘 21시 마감')).toBeInTheDocument();
   });
 });
