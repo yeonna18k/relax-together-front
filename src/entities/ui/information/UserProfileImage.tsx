@@ -1,7 +1,7 @@
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
-} from '@/entities/model/informationModel';
+} from '@/entities/model/information';
 import Image from 'next/image';
 
 interface UserProfileImageProps {

@@ -1,7 +1,11 @@
 import { cn } from '@/shared/lib/utils';
 import Image from 'next/image';
 
-type ChipStateTypes = 'scheduled' | 'completed' | 'confirmed' | 'pending';
+export type ChipStateTypes =
+  | 'scheduled'
+  | 'completed'
+  | 'confirmed'
+  | 'pending';
 
 interface ChipStateProps {
   state: ChipStateTypes;
