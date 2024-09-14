@@ -10,11 +10,11 @@ export interface Gathering {
   type?: GatheringType;
   name: string;
   /** @format date-time */
-  dateTime?: string;
+  dateTime: string;
   /** @format date-time */
   registrationEnd?: string;
   location: GatheringLocation;
-  participantCount?: number;
+  participantCount: number;
   capacity?: number;
   image: string;
   /** @format date-time */
