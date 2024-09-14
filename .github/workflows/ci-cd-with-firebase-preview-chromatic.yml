@@ -51,3 +51,5 @@ jobs:
         with:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RELAX_TOGETHER }}
           projectId: relax-together
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks

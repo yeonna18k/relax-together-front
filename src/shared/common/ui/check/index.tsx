@@ -1,13 +1,16 @@
-import CheckIcon from '../../../../../public/assets/CheckIcon';
+import CheckIcon from '@/shared/assets/icons/check-icon.svg';
 
 interface CheckProps {
   participantCount: number;
-  isDark: boolean;
+  isDark?: boolean;
 }
 
-export default function Check({ participantCount, isDark }: CheckProps) {
+export default function Check({
+  participantCount,
+  isDark = false,
+}: CheckProps) {
   const bgColor = isDark ? 'bg-gray-900' : 'bg-orange-500';
-  const iconColor = isDark ? '#f97316' : '#ffffff';
+  const iconColor = isDark ? 'stroke-[#f97316]' : 'stroke-[#ffffff]';
 
   const isOpen = participantCount >= 5 ? true : false;
 
@@ -18,7 +21,7 @@ export default function Check({ participantCount, isDark }: CheckProps) {
           data-testid="check"
           className={`h-[18px] w-[18px] ${bgColor} flex cursor-pointer items-center justify-center rounded-full`}
         >
-          <CheckIcon data-testid="check-icon" color={iconColor} />
+          <CheckIcon data-testid="check-icon" className={`${iconColor}`} />
         </div>
       ) : null}
     </>
