@@ -1,10 +1,10 @@
-import TopTap from '@/features/header/ui/top-tap';
+import TopTap from '@/features/header/top-tap';
 
 type Nav = {
   path: string;
   name: string;
 };
-const navList: Array<Nav> = [
+export const navList: Array<Nav> = [
   {
     path: '/gatherings',
     name: '모임 찾기',
@@ -21,7 +21,7 @@ const navList: Array<Nav> = [
 
 export default function NavList() {
   return (
-    <ul className="flex flex-col gap-6 md:flex-row md:items-center">
+    <ul className="flex flex-col gap-5 md:flex-row md:items-center">
       {navList.map(nav => (
         <TopTap
           key={nav.path}
