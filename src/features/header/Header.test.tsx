@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 describe('Header Component', () => {
   test('화면에 렌더링이 된다.', () => {
-    const { debug } = render(<Header />);
+    render(<Header />);
     const logoText = screen.getByAltText('logo-text');
     const logoIcon = screen.getByAltText('logo-icon');
 

@@ -7,6 +7,5 @@ interface CommonBadgeProps {
   count: number;
 }
 export default function CommonBadge({ count }: CommonBadgeProps) {
-  console.log('🚀 ~ CommonBadge ~ count:', count);
   return <Badge>{transformCount(count)}</Badge>;
 }

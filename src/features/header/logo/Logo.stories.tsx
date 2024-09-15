@@ -6,10 +6,6 @@ const meta = {
   component: Logo,
   parameters: {
     layout: 'centered',
-    backgrounds: {
-      default: 'orange',
-      values: [{ name: 'orange', value: '#ea580c' }],
-    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Logo>;

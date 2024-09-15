@@ -6,10 +6,8 @@ jest.mock('next/navigation', () => ({
   usePathname: jest.fn(),
 }));
 
-const selectedClassName =
-  'flex items-center gap-[5px] font-semibold hover:text-gray-900 text-gray-900';
-const defaultClassName =
-  'flex items-center gap-[5px] font-semibold hover:text-gray-900';
+const selectedClassName = 'font-semibold hover:text-green-500 text-green-500';
+const defaultClassName = 'font-semibold text-gray-700 hover:text-green-500';
 
 describe('TopTap Component', () => {
   function renderedTopTap() {
