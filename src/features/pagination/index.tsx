@@ -8,7 +8,7 @@ import ArrowLeftIcon from '../../shared/assets/icons/arrow-left-pagination.svg';
 import ArrowRightIcon from '../../shared/assets/icons/arrow-right-pagination.svg';
 import { Review } from './types';
 
-interface PaginationComponentProps {
+export interface PaginationComponentProps {
   reviewList: Review[];
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
@@ -28,7 +28,7 @@ export default function PaginationComponent({
     if (page < 1 || page > totalPages) return;
 
     setCurrentPage(page);
-    getReviewData(currentPage);
+    getReviewData(page);
   };
 
   const renderItem = ({
@@ -67,6 +67,8 @@ export default function PaginationComponent({
     if (value === PaginationItemType.NEXT) {
       return (
         <button
+          role="button"
+          aria-label="next"
           key={key}
           className={cn(
             className,
@@ -85,6 +87,8 @@ export default function PaginationComponent({
     if (value === PaginationItemType.PREV) {
       return (
         <button
+          role="button"
+          aria-label="prev"
           key={key}
           className={cn(
             className,
@@ -118,6 +122,8 @@ export default function PaginationComponent({
 
     return (
       <button
+        role="button"
+        aria-label={value}
         key={key}
         ref={ref}
         className={cn(
@@ -154,6 +160,7 @@ export default function PaginationComponent({
         })}
       </ul>
       <Pagination
+        data-testid="pagination"
         disableCursorAnimation
         showControls
         total={totalPages}
