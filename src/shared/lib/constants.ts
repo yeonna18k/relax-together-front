@@ -7,3 +7,5 @@ export const Device = {
 export const MAX_CAPACITY = 20;
 
 export const MAX_SCORE = 5;
+
+export const REVIEWS_PER_PAGE = 4;
