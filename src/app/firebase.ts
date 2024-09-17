@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCB1KzJhjbDZk4Dz6appQTHt14C80kRu4A',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: 'relax-together.firebaseapp.com',
   databaseURL:
     'https://relax-together-default-rtdb.asia-southeast1.firebasedatabase.app',
