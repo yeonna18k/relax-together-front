@@ -1,5 +1,5 @@
-import Context from '@/app/context';
 import Header from '@/app/header';
+import Provider from '@/app/provider';
 import Container from '@/shared/layout/Container';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${inter.className} bg-background`}>
-        <Context>
+        <Provider>
           <Header />
           <Container>{children}</Container>
-        </Context>
+        </Provider>
       </body>
     </html>
   );
