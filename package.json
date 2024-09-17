@@ -19,6 +19,7 @@
     "pre-push": "yarn test && yarn build"
   },
   "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.1.1",
     "@nextui-org/pagination": "^2.0.35",
     "@nextui-org/system": "^2.2.5",
     "@nextui-org/theme": "^2.2.9",
