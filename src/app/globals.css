@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Ensure you have the Tailwind CSS directives at the top of your CSS file */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -80,9 +81,23 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border: var(--border);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
+}
+
+@font-face {
+  font-family: 'Paperlogy';
+  src:
+    url('/fonts/Paperlogy.woff2') format('woff2'),
+    url('/fonts/Paperlogy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-paperlogy {
+  font-family: 'Paperlogy', sans-serif;
 }
