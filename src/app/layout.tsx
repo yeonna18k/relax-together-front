@@ -3,10 +3,16 @@ import Header from '@/features/header';
 import Container from '@/shared/layout/Container';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const paperLogyExtraBold = localFont({
+  src: '../../public/fonts/Paperlogy-8ExtraBold.ttf',
+  variable: '--font-paperlogy-extrabold',
+});
 
 export const metadata: Metadata = {
   title: '같이 달램',
@@ -21,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} bg-background`}>
+      <body
+        className={`${inter.className} ${paperLogyExtraBold.variable} bg-background`}
+      >
         <Provider>
           <Header />
           <Container>{children}</Container>

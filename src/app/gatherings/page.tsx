@@ -1,21 +1,20 @@
 'use client';
 
-import Banner from '@/entities/gatherings/ui/Banner';
-import GatheringSearch from '@/entities/gatherings/ui/GatheringSearch';
-import SearchFilter from '@/entities/gatherings/ui/SearchFilter';
-import GatheringCreate from '@/features/gathering-create';
+import Banner from '@/entities/gatherings/ui/main/Banner';
+import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
+import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
+import SearchFilter from '@/entities/gatherings/ui/main/SearchFilter';
 
 export default function Gatherings() {
   return (
-    <div className="relative">
+    <div className="relative flex w-full flex-col justify-center">
+      <div className="absolute left-0 top-0 z-20 hidden h-[635px] w-full bg-[url('/assets/gathering-no-bg.png')] bg-contain bg-center bg-no-repeat lg:block" />
       <Banner />
-      <GatheringSearch />
-      <SearchFilter />
-
-      <div className="fixed bottom-20 left-20 flex justify-start">
-        {' '}
-        <GatheringCreate />
+      <div className="z-10 flex h-screen w-full flex-col items-center bg-white">
+        <GatheringSearch />
+        <SearchFilter />
       </div>
+      <CreateButton />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import GatheringCardList from './index';
+import GatheringCard from './index';
 
 export default {
-  title: 'Features/GatheringCardList',
-  component: GatheringCardList,
+  title: 'Features/ui/GatheringCard',
+  component: GatheringCard,
   argTypes: {
     image: {
       control: 'text',
@@ -39,13 +39,13 @@ export default {
     },
     tags: ['autodocs'],
   },
-} as Meta<typeof GatheringCardList>;
+} as Meta<typeof GatheringCard>;
 
-const Template: StoryObj<typeof GatheringCardList> = {
-  render: args => <GatheringCardList {...args} />,
+const Template: StoryObj<typeof GatheringCard> = {
+  render: args => <GatheringCard {...args} />,
 };
 
-export const Default: StoryObj<typeof GatheringCardList> = {
+export const Default: StoryObj<typeof GatheringCard> = {
   ...Template,
   args: {
     image: '/assets/mind-full-ness.svg',

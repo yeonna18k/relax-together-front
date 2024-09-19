@@ -31,7 +31,7 @@ const getTriggerStyles = ({
   filterIconType: FilterIconType;
 }) => {
   if (filterIconType === 'sort') {
-    return 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:md:block w-9 p-[6px] md:w-[120px]';
+    return 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:md:block px-2 py-2 justify-end gap-1';
   }
   return selectedValue === 'ALL' || selectedValue === undefined
     ? 'bg-white text-gray-900'
@@ -74,7 +74,7 @@ export default function CommonSelect({
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          'w-[120px]',
+          'h-10 w-[120px]',
           `${getTriggerStyles({ selectedValue, filterIconType })}`,
         )}
         icon={filterIconMap[filterIconType]}

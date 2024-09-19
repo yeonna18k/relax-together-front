@@ -1,10 +1,8 @@
-'use client';
+import GatheringsCard from '@/entities/gatherings/ui/card';
 
-import GatheringCardList from '@/entities/ui/gathering-card';
-
-const GatheringListCard = () => {
+export default function GatheringsCardList() {
   return (
-    <GatheringCardList
+    <GatheringsCard
       image="https://example.com/image.jpg"
       message="모임에 오세요!"
       title="정기 모임"
@@ -15,4 +13,4 @@ const GatheringListCard = () => {
       gatheringId="12345"
     />
   );
-};
+}

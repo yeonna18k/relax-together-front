@@ -12,7 +12,7 @@ interface GatheringCardProps {
   gatheringId: string;
 }
 
-export default function GatheringCardList({
+export default function GatheringsCard({
   image,
   message,
   title,

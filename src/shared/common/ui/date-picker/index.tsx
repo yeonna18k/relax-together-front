@@ -41,7 +41,11 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
             triggerStyles,
           )}
         >
-          {date ? format(date, 'yy/MM/dd') : <span>날짜 선택</span>}
+          {date ? (
+            format(date, 'yy/MM/dd')
+          ) : (
+            <span className="font-normal">날짜 선택</span>
+          )}
           <ArrowDropdown
             className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
           />

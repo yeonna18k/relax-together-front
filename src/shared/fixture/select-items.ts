@@ -25,7 +25,7 @@ export const commonSelectItems: Array<CommonSelectItem> = [
 export const commonSortItems: Array<CommonSelectItem> = [
   {
     value: 'DUE_DATE',
-    label: '마감임박',
+    label: '마감 임박',
   },
   {
     value: 'PARTICIPANTS',

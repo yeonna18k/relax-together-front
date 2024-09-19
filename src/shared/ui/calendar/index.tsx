@@ -14,7 +14,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         outline: 'bg-background text-accent-foreground',
-        ghost: 'text-black hover:bg-orange-600 hover:text-white cursor-pointer',
+        ghost: 'text-black hover:bg-green-500 hover:text-white cursor-pointer',
       },
     },
   },
@@ -78,13 +78,12 @@ function Calendar({
         ),
         day_range_end: 'day-range-end',
         day_selected:
-          'bg-orange-600 text-white hover:bg-orange-600 hover:text-white focus:bg-orange-600 focus:text-white',
-        day_today: 'bg-orange-600 text-orange-600 bg-white',
+          'bg-green-500 text-white hover:bg-green-500 hover:text-white focus:bg-green-500 focus:text-white',
+        day_today: 'bg-green-500 text-green-500 bg-white',
         day_outside:
-          'day-outside text-muted-foreground opacity-50 aria-selected:bg-orange-600 aria-selected:text-white aria-selected:opacity-30',
+          'day-outside text-muted-foreground opacity-50 aria-selected:bg-green-500 aria-selected:text-white aria-selected:opacity-30',
         day_disabled: 'text-white opacity-50',
-        day_range_middle:
-          'aria-selected:bg-orange-600 aria-selected:text-white',
+        day_range_middle: 'aria-selected:bg-green-500 aria-selected:text-white',
         day_hidden: 'invisible',
         ...classNames,
       }}
