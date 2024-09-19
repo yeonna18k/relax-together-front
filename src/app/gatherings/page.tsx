@@ -7,7 +7,7 @@ import GatheringCreate from '@/features/gathering-create';
 
 export default function Gatherings() {
   return (
-    <div>
+    <div className="relative">
       <Banner />
       <GatheringSearch />
       <SearchFilter />
