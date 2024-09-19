@@ -1,4 +1,4 @@
-import { GatheringsInfoTypes } from '@/entities/model/informationModel';
+import { GatheringsInfoTypes } from '@/entities/model/information';
 import { MAX_CAPACITY } from '@/shared/lib/constants';
 
 interface CapacityProps {

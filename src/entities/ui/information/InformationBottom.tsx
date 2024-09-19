@@ -1,7 +1,7 @@
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
-} from '@/entities/model/informationModel';
+} from '@/entities/model/information';
 import { Progress } from '@/shared/ui/progress';
 import Capacity from './Capacity';
 import Participants from './Participants';
