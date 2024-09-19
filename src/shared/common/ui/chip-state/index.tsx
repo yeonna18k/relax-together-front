@@ -1,7 +1,11 @@
+import CheckIcon from '@/shared/assets/icons/check-icon.svg';
 import { cn } from '@/shared/lib/utils';
-import Image from 'next/image';
 
-type ChipStateTypes = 'scheduled' | 'completed' | 'confirmed' | 'pending';
+export type ChipStateTypes =
+  | 'scheduled'
+  | 'completed'
+  | 'confirmed'
+  | 'pending';
 
 interface ChipStateProps {
   state: ChipStateTypes;
@@ -32,13 +36,7 @@ export default function ChipState({ state }: ChipStateProps) {
     >
       <div className="flex items-center gap-1">
         {state === 'confirmed' ? (
-          <Image
-            src="/assets/check.svg"
-            alt="Check icon"
-            width={16}
-            height={16}
-            className="inline-block align-middle"
-          />
+          <CheckIcon className="stroke-orange-600" />
         ) : (
           <></>
         )}
