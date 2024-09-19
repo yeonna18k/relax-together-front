@@ -1,7 +1,11 @@
 'use client';
 
 import { cn } from '@/shared/lib/utils';
-import { Pagination, PaginationItemType } from '@nextui-org/pagination';
+import {
+  Pagination,
+  PaginationItemRenderProps,
+  PaginationItemType,
+} from '@nextui-org/pagination';
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
 import ArrowLeftIcon from '../../shared/assets/icons/arrow-left-pagination.svg';
@@ -40,7 +44,7 @@ export default function PaginationComponent({
     onPrevious,
     setPage,
     className,
-  }: any) => {
+  }: PaginationItemRenderProps) => {
     // 첫 페이지, 마지막 페이지일 경우 좌우 버튼 비활성화
     const isNextDisabled = currentPage === totalPages;
     const isPrevDisabled = currentPage === 1;
@@ -59,7 +63,7 @@ export default function PaginationComponent({
       }
     };
 
-    const handlePageBtnClick = () => {
+    const handlePageBtnClick = (value: number) => {
       setPage(value);
       handlePageChange(value);
     };
@@ -123,7 +127,7 @@ export default function PaginationComponent({
     return (
       <button
         role="button"
-        aria-label={value}
+        aria-label={String(value)}
         key={key}
         ref={ref}
         className={cn(
@@ -131,7 +135,7 @@ export default function PaginationComponent({
           'h-12 w-12 min-w-12 rounded-lg bg-white text-[#C4C4C4]',
           isActive && 'font-semibold text-[#1F1F1F]',
         )}
-        onClick={handlePageBtnClick}
+        onClick={() => handlePageBtnClick(value)}
       >
         {value}
       </button>
