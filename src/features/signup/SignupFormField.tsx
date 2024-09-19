@@ -52,7 +52,7 @@ export default function SignupFormField({ form, name }: SignupFormFieldProps) {
   const commonInputProps = {
     placeholder: signupFormData[name].placeholder,
     className:
-      'text-gray h-10 w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
+      'text-gray h-10 w-full md:w-full xl:w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
   };
 
   return (

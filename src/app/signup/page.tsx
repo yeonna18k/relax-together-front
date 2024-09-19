@@ -4,9 +4,11 @@ import SignupHeader from '@/features/signup/SignupHeader';
 
 export default function Signup() {
   return (
-    <div>
-      <SignupHeader />
-      <AuthImage />
+    <div className="flex flex-col xl:flex-row xl:items-center xl:gap-16">
+      <div>
+        <SignupHeader />
+        <AuthImage />
+      </div>
       <SignupForm />
     </div>
   );

@@ -54,7 +54,7 @@ export default function SignupForm() {
     console.log(values);
   }
   return (
-    <div className="w-full rounded-xl bg-white px-4 py-5">
+    <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <SignupFormField form={form} name="username" />
@@ -62,10 +62,15 @@ export default function SignupForm() {
           <SignupFormField form={form} name="company" />
           <SignupFormField form={form} name="password" />
           <SignupFormField form={form} name="passwordCheck" />
-          <Button variant={`${formValid ? 'enabled' : 'disabled'}`} size="full">
-            확인
-          </Button>
-          <GoToSignin />
+          <div className="!mt-10 flex flex-col gap-6">
+            <Button
+              variant={`${formValid ? 'enabled' : 'disabled'}`}
+              size="full"
+            >
+              확인
+            </Button>
+            <GoToSignin />
+          </div>
         </form>
       </Form>
     </div>
