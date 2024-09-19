@@ -1,4 +1,4 @@
-import MypageCard from '@/entities/ui/mypage-card';
+import MypageCard from '@/entities/mypage/ui/card';
 import { getISOTimeWithOffset } from '@/shared/lib/utils';
 import { mockUseSearchParams } from '@/shared/mocks/mockUseSearchParams';
 import { render, screen } from '@testing-library/react';
