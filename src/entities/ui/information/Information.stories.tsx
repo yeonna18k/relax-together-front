@@ -3,7 +3,7 @@ import { gatheringsInfo, participantList } from './dummy';
 import Information from './index';
 
 const meta = {
-  title: 'Shared/ui/Information',
+  title: 'Entities/ui/Information',
   component: Information,
   parameters: {
     layout: 'centered',

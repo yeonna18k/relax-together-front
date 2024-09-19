@@ -6,7 +6,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        xs: '430px',
+        xs: '435px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -58,6 +58,42 @@ const config: Config = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
+        },
+        gray: {
+          50: '#FAFAFA',
+          100: '#F5F5F5',
+          200: '#EFEFEF',
+          300: '#E1E1E1',
+          400: '#BEBEBE',
+          500: '#9F9F9F',
+          600: '#767676',
+          700: '#626262',
+          800: '#434343',
+          900: '#222222',
+        },
+        green: {
+          50: '#E5F5E7',
+          100: '#C1E6C4',
+          200: '#98D69F',
+          300: '#6BC778',
+          400: '#45BB5A',
+          500: '#0AAF3B',
+          600: '#00A033',
+          700: '#008E27',
+          800: '#007D1B',
+          900: '#005E02',
+        },
+        pink: {
+          50: '#FFEBF1',
+          100: '#FFCBD9',
+          200: '#F796A4',
+          300: '#F16A80',
+          400: '#FF3D61',
+          500: '#FF0E48',
+          600: '#F80047',
+          700: '#E5003F',
+          800: '#D90037',
+          900: '#CA002B',
         },
       },
       keyframes: {

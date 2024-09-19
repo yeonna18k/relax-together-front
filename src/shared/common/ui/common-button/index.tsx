@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@/shared/ui/button';
 
 interface CommonButtonProps extends ButtonProps {
-  variant: 'default' | 'outlined';
+  variant: 'default' | 'outline';
   size: 'sm' | 'lg';
 }
 

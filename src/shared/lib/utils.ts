@@ -23,3 +23,16 @@ export const formatTime = (stringDate: string): string => {
     hour12: false,
   }).format(date);
 };
+
+export const getISOTimeWithOffset = (hourOffset: number) => {
+  // 현재 날짜와 시간 가져오기
+  const currentDate = new Date();
+
+  // 4시간 뒤의 시간을 계산 (4시간 = 4 * 60 * 60 * 1000 밀리초)
+  const futureDate = new Date(
+    currentDate.getTime() + hourOffset * 60 * 60 * 1000,
+  );
+
+  // ISO 8601 형식으로 변환
+  return futureDate.toISOString();
+};

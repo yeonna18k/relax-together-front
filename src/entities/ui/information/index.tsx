@@ -1,7 +1,7 @@
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
-} from '@/entities/model/informationModel';
+} from '@/entities/model/information';
 import InformationBottom from './InformationBottom';
 import InformationTop from './InformationTop';
 

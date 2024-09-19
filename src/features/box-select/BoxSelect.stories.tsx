@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BoxSelect from './index';
 
 const meta = {
-  title: 'Shared/ui/BoxSelect',
+  title: 'Features/ui/BoxSelect',
   component: BoxSelect,
   parameters: {
     layout: 'centered',

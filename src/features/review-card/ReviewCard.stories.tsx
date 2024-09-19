@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ReviewCard from './index';
 
 const meta = {
-  title: 'Shared/ui/ReviewCard',
+  title: 'Features/ui/ReviewCard',
   component: ReviewCard,
   parameters: {
     layout: 'centered',

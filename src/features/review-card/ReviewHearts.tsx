@@ -1,12 +1,13 @@
+import ActiveHeart from '@/shared/assets/icons/heart-active.svg';
+import DefaultHeart from '@/shared/assets/icons/heart-default.svg';
 import { MAX_SCORE } from '@/shared/lib/constants';
-import HeartImage from './HeartImage';
 
 export default function ReviewHearts({ score }: { score: number }) {
   const renderHearts = Array.from({ length: MAX_SCORE }).map((_, index) => {
     return index < score ? (
-      <HeartImage active={true} key={`heart-${index}`} />
+      <ActiveHeart data-testid="active-heart" key={`heart-${index}`} />
     ) : (
-      <HeartImage active={false} key={`heart-${index}`} />
+      <DefaultHeart key={`heart-${index}`} />
     );
   });
   return <div className="flex gap-[2px]">{renderHearts}</div>;
