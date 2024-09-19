@@ -15,11 +15,15 @@ const formSchema = z
       .max(10),
     userid: z
       .string()
-      .min(1, { message: '이메일을 입력해주세요' })
-      .email('이메일 형식을 입력해주세요'),
-    company: z.string().min(1, { message: '회사명을 입력해주세요' }),
-    password: z.string().min(1, { message: '비밀번호를 입력해주세요' }),
-    passwordCheck: z.string().min(1, { message: '비밀번호를 입력해주세요' }),
+      .min(1, { message: '이메일을 입력해주세요.' })
+      .email('이메일 형식을 입력해주세요.'),
+    company: z.string().min(1, { message: '회사명을 입력해주세요.' }),
+    password: z
+      .string()
+      .min(8, { message: '비밀번호가 8자 이상이 되도록 해 주세요.' }),
+    passwordCheck: z
+      .string()
+      .min(1, { message: '비밀번호 확인을 위해 한 번 더 입력해주세요.' }),
   })
   .refine(data => data.password === data.passwordCheck, {
     message: '비밀번호가 일치하지 않습니다.',
