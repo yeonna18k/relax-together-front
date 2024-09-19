@@ -61,7 +61,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        paperlogy: ['paperlogy', 'sans-serif'],
+        paperlogy: ['var(--font-paperlogy)'],
       },
       fontSize: {
         xs: ['12px', '16px'],

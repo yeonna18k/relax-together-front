@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 
-export default function Character() {
+export default function CharacterPage() {
   return (
-    <div className="pointer-events-none fixed inset-0 flex items-center justify-center">
+    <div className="page-container relative flex h-screen w-full items-center justify-center">
       <div className="relative h-full w-full">
         <Image
           src="/assets/charactor.svg"
@@ -28,6 +28,14 @@ export default function Character() {
           className="absolute bottom-[25%] right-10"
         />
       </div>
+
+      <style jsx>{`
+        .page-container {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+      `}</style>
     </div>
   );
 }

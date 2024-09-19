@@ -1,22 +1,18 @@
 'use client';
-
 import GatheringCreate from '@/features/gathering-create';
-import Banner from './Banner';
-import Character from './Character';
-import GatheringSearch from './GatheringSearch';
-import SearchFilter from './SearchFilter';
-import SliderButton from './SliderButton';
+import Banner from '../../entities/gatherings/ui/Banner';
+import GatheringSearch from '../../entities/gatherings/ui/GatheringSearch';
+import SearchFilter from '../../entities/gatherings/ui/SearchFilter';
 
 export default function Gatherings() {
   return (
-    <div className="h-screen bg-white">
+    <div>
       <Banner />
-      <Character />
-      <SliderButton />
       <GatheringSearch />
-
       <SearchFilter />
-      <GatheringCreate />
+      <div className="fixed bottom-20 left-20 flex justify-start">
+        <GatheringCreate />
+      </div>
     </div>
   );
 }
