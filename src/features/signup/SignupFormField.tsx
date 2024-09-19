@@ -1,12 +1,11 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/shared/ui/form';
-import { Input } from '@/shared/ui/input';
+import { Input, InputPassword } from '@/shared/ui/input';
 import { UseFormReturn } from 'react-hook-form';
 import { SignupFormType } from './SignupForm';
 
@@ -49,6 +48,13 @@ const signupFormData: SignupFormFieldPropsMap = {
 };
 
 export default function SignupFormField({ form, name }: SignupFormFieldProps) {
+  const isPasswordField = name === 'password' || name === 'passwordCheck';
+  const commonInputProps = {
+    placeholder: signupFormData[name].placeholder,
+    className:
+      'text-gray h-10 w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
+  };
+
   return (
     <FormField
       control={form.control}
@@ -59,16 +65,12 @@ export default function SignupFormField({ form, name }: SignupFormFieldProps) {
             {signupFormData[name].label}
           </FormLabel>
           <FormControl className="mb-1.5 mt-2">
-            <Input
-              type={signupFormData[name].type ?? 'input'}
-              placeholder={signupFormData[name].placeholder}
-              className="text-gray h-10 w-full text-sm font-medium text-gray-800 placeholder:text-gray-400"
-              {...field}
-            />
+            {isPasswordField ? (
+              <InputPassword {...commonInputProps} {...field} />
+            ) : (
+              <Input {...commonInputProps} {...field} />
+            )}
           </FormControl>
-          <FormDescription>
-            {/* This is your public display name. */}
-          </FormDescription>
           <FormMessage className="text-sm font-medium text-[#DC2626]" />
         </FormItem>
       )}
