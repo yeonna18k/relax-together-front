@@ -1,5 +1,5 @@
-import Header from '@/app/header';
 import Provider from '@/app/provider';
+import Header from '@/features/header';
 import Container from '@/shared/layout/Container';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
