@@ -3,7 +3,7 @@ interface ContainerProps {
 }
 export default function Container({ children }: ContainerProps) {
   return (
-    <main className="mx-auto w-full bg-foreground px-4 pt-10 md:px-6 xl:max-w-[1200px] xl:px-[102px]">
+    <main className="mx-auto w-full bg-gray-50 px-4 pt-10 md:px-6 xl:max-w-[1200px] xl:px-[102px]">
       {children}
     </main>
   );
