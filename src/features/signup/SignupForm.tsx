@@ -4,6 +4,7 @@ import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import GoToSignin from './GoToSignin';
 import SignupFormField from './SignupFormField';
 
 const formSchema = z
@@ -53,7 +54,7 @@ export default function SignupForm() {
     console.log(values);
   }
   return (
-    <div className="w-full bg-white px-4 py-5">
+    <div className="w-full rounded-xl bg-white px-4 py-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <SignupFormField form={form} name="username" />
@@ -64,6 +65,7 @@ export default function SignupForm() {
           <Button variant={`${formValid ? 'enabled' : 'disabled'}`} size="full">
             확인
           </Button>
+          <GoToSignin />
         </form>
       </Form>
     </div>
