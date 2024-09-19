@@ -31,6 +31,7 @@ export const Default: Story = {
     title: '리뷰 작성하기',
     variant: 'default',
     disabled: false,
+    size: 'lg',
     actionBtnName: '확인',
     handleAction: () => {},
   },
@@ -52,6 +53,7 @@ export const NonTitle: Story = {
   args: {
     variant: 'default',
     disabled: false,
+    size: 'lg',
     actionBtnName: '확인',
     handleAction: () => {},
   },
@@ -74,6 +76,7 @@ export const Single: Story = {
     title: '리뷰 작성하기',
     variant: 'single',
     disabled: false,
+    size: 'sm',
     actionBtnName: '확인',
     handleAction: () => {},
   },

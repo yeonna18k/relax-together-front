@@ -17,7 +17,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 const footerVariants = cva('w-full', {
   variants: {
     variant: {
-      default: 'flex gap-4',
+      default: 'flex justify-center gap-4',
       single: 'flex justify-center xs:justify-end',
     },
   },
@@ -30,6 +30,7 @@ interface ModalProps {
   title?: string;
   children: React.ReactNode;
   variant?: VariantProps<typeof footerVariants>['variant'];
+  size: 'lg' | 'sm';
   disabled?: boolean;
   actionBtnName?: string;
   handleAction?: () => void;
@@ -39,6 +40,7 @@ export default function Modal({
   title,
   children,
   variant,
+  size,
   disabled,
   actionBtnName = '확인',
   handleAction,
@@ -64,9 +66,11 @@ export default function Modal({
         <AlertDialogDescription asChild>{children}</AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter className={cn(footerVariants({ variant }))}>
-        {isNonSingleVariant && <AlertDialogCancel>취소</AlertDialogCancel>}
+        {isNonSingleVariant && (
+          <AlertDialogCancel size={size}>취소</AlertDialogCancel>
+        )}
         <AlertDialogAction
-          size={isNonSingleVariant ? 'lg' : 'sm'}
+          size={size}
           onClick={handleAction}
           disabled={disabled}
         >
