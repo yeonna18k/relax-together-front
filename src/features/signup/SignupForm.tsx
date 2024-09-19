@@ -1,4 +1,5 @@
 'use client';
+import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -44,11 +45,11 @@ export default function SignupForm() {
       passwordCheck: '',
     },
   });
+  const formValid = form.formState.isValid;
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    // Do something with the form values. ✅ This will be type-safe and validated.
     console.log(values);
   }
   return (
@@ -60,7 +61,9 @@ export default function SignupForm() {
           <SignupFormField form={form} name="company" />
           <SignupFormField form={form} name="password" />
           <SignupFormField form={form} name="passwordCheck" />
-          {/* <Button type="submit">Submit</Button> */}
+          <Button variant={`${formValid ? 'enabled' : 'disabled'}`} size="full">
+            확인
+          </Button>
         </form>
       </Form>
     </div>
