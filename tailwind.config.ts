@@ -115,6 +115,7 @@ const config: Config = {
         semibold: '600',
         bold: '700',
       },
+
       keyframes: {
         slideIn: {
           '0%': { transform: 'translateX(-100%)', opacity: '0' },

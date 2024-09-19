@@ -2,18 +2,17 @@ import Image from 'next/image';
 
 export default function GatheringCreate() {
   return (
-    <div>
-      <div className="flex h-[92px] w-[282px] items-center justify-center gap-2 rounded-full bg-[#FF3D61] text-[32px] font-semibold text-white">
-        <div>모임 만들기</div>
-        <div>
-          <Image
-            src="/assets/red-logo.svg"
-            alt="arrow-right"
-            width={36}
-            height={36}
-          />
-        </div>
-      </div>
+    <div className="flex justify-center">
+      <button className="flex h-[52px] w-[158px] items-center justify-center gap-2 rounded-full bg-[#FF3D61] text-[18px] font-semibold text-white transition-all duration-300 hover:bg-[#e63255] lg:h-[92px] lg:w-[282px] lg:text-[32px]">
+        <span>모임 만들기</span>
+        <Image
+          src="/assets/red-logo.svg"
+          alt="arrow-right"
+          width={18}
+          height={18}
+          className="lg:h-[36px] lg:w-[36px]"
+        />
+      </button>
     </div>
   );
 }

@@ -2394,68 +2394,68 @@
   integrity sha512-pxsI23gKWRt/SPHFkDEsP+w+Nd7gK37Hpv0ngc5HpWy2e7cKx9zR/+Q2ptAUqICNTecAaGWvmhway7pj/JLEWA==
 
 "@nextui-org/pagination@^2.0.35":
-  version "2.0.35"
-  resolved "https://registry.yarnpkg.com/@nextui-org/pagination/-/pagination-2.0.35.tgz#e3901427f029fe66bcc82401c8334c2ee7c575e6"
-  integrity sha512-07KJgZcJBt2e9RY6TsiQm5qrjDLH+gT3yB7yQ4jPdCK9fkTB0r2kvTOYdPUvrtVJYRq2bwFCWOz+9mokdNfcwg==
+  version "2.0.36"
+  resolved "https://registry.yarnpkg.com/@nextui-org/pagination/-/pagination-2.0.36.tgz#75728369c02b6ecbb4d400f376a8195707612358"
+  integrity sha512-VKs2vMj8dybNzb/WkAMmvFBsxdgBvpVihIA4eXSo2ve7fpcLjIF1iPLHuDgpSyv3h3dy009sQTVo3lVTVT1a6w==
   dependencies:
-    "@nextui-org/react-utils" "2.0.16"
+    "@nextui-org/react-utils" "2.0.17"
     "@nextui-org/shared-icons" "2.0.9"
-    "@nextui-org/shared-utils" "2.0.7"
-    "@nextui-org/use-pagination" "2.0.9"
+    "@nextui-org/shared-utils" "2.0.8"
+    "@nextui-org/use-pagination" "2.0.10"
     "@react-aria/focus" "3.17.1"
     "@react-aria/i18n" "3.11.1"
     "@react-aria/interactions" "3.21.3"
     "@react-aria/utils" "3.24.1"
     scroll-into-view-if-needed "3.0.10"
 
-"@nextui-org/react-rsc-utils@2.0.13":
-  version "2.0.13"
-  resolved "https://registry.yarnpkg.com/@nextui-org/react-rsc-utils/-/react-rsc-utils-2.0.13.tgz#b63b0e20542a39fe43052a30432ef0408cc7a5b6"
-  integrity sha512-QewsXtoQlMsR9stThdazKEImg9oyZkPLs7wsymhrzh6/HdQCl9bTdb6tJcROg4vg5LRYKGG11USSQO2nKlfCcQ==
+"@nextui-org/react-rsc-utils@2.0.14":
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/@nextui-org/react-rsc-utils/-/react-rsc-utils-2.0.14.tgz#277523854e594858c0b713df783f2d5228915f83"
+  integrity sha512-s0GVgDhScyx+d9FtXd8BXf049REyaPvWsO4RRr7JDHrk91NlQ11Mqxka9o+8g5NX0rphI0rbe3/b1Dz+iQRx3w==
 
-"@nextui-org/react-utils@2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@nextui-org/react-utils/-/react-utils-2.0.16.tgz#6c90c6ca14d9a6f135b9907be744e45705d2ae3b"
-  integrity sha512-QdDoqzhx+4t9cDTVmtw5iOrfyLvpqyKsq8PARHUniCiQQDQd1ao7FCpzHgvU9poYcEdRk+Lsna66zbeMkFBB6w==
+"@nextui-org/react-utils@2.0.17":
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/@nextui-org/react-utils/-/react-utils-2.0.17.tgz#3ed7903496ca8a9f5678ad816a2b24f1cd0581f9"
+  integrity sha512-U/b49hToVfhOM4dg4n57ZyUjLpts4JogQ139lfQBYPTb8z/ATNsJ3vLIqW5ZvDK6L0Er+JT11UVQ+03m7QMvaQ==
   dependencies:
-    "@nextui-org/react-rsc-utils" "2.0.13"
-    "@nextui-org/shared-utils" "2.0.7"
+    "@nextui-org/react-rsc-utils" "2.0.14"
+    "@nextui-org/shared-utils" "2.0.8"
 
 "@nextui-org/shared-icons@2.0.9":
   version "2.0.9"
   resolved "https://registry.yarnpkg.com/@nextui-org/shared-icons/-/shared-icons-2.0.9.tgz#ecc674ec51ba7f0570ee821aed317fba4cc70376"
   integrity sha512-WG3yinVY7Tk9VqJgcdF4V8Ok9+fcm5ey7S1els7kujrfqLYxtqoKywgiY/7QHwZlfQkzpykAfy+NAlHkTP5hMg==
 
-"@nextui-org/shared-utils@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@nextui-org/shared-utils/-/shared-utils-2.0.7.tgz#c6f02f68ad7f8a3b0d5b1d92d00fa31b9ad1d671"
-  integrity sha512-FxY3N0i1Al7Oz3yOQN0dSpG8UUrLIP3iYh3ubD7BhdQoZLl5xbG6++q1gqOzZXV+ZWeUFMY/or0ofzWxGHiOow==
+"@nextui-org/shared-utils@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@nextui-org/shared-utils/-/shared-utils-2.0.8.tgz#6e6e71a067c273581839c2226fd9fb4e1e3a3410"
+  integrity sha512-ZEtoMPXS+IjT8GvpJTS9IWDnT1JNCKV+NDqqgysAf1niJmOFLyJgl6dh/9n4ufcGf1GbSEQN+VhJasEw7ajYGQ==
 
-"@nextui-org/system-rsc@2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@nextui-org/system-rsc/-/system-rsc-2.1.5.tgz#8899457297113171244994059e5b7355a287d62b"
-  integrity sha512-tkJLAyJu34Rr5KUMMqoB7cZjOVXB+7a/7N4ushZfuiLdoYijgmcXFMzLxjm+tbt9zA5AV+ivsfbHvscg77dJ6w==
+"@nextui-org/system-rsc@2.1.6":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@nextui-org/system-rsc/-/system-rsc-2.1.6.tgz#a1ea223c331d651eb629a55b0df271e34eea8399"
+  integrity sha512-Wl2QwEFjYwuvw26R1RH3ZY81PD8YmfgtIjFvJZRP2VEIT6rPvlQ4ojgqdrkVkQZQ0L/K+5ZLbTKgLEFkj5ysdQ==
   dependencies:
     "@react-types/shared" "3.23.1"
     clsx "^1.2.1"
 
 "@nextui-org/system@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@nextui-org/system/-/system-2.2.5.tgz#e8c5968daf4e5b90a79b889d0b12464fd8182ebb"
-  integrity sha512-nrX6768aiyWtpxX3OTFBIVWR+v9nlMsC3KaBinNfek97sNm7gAfTHi7q5kylE3L5yIMpNG+DclAKpuxgDQEmvw==
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@nextui-org/system/-/system-2.2.6.tgz#837223d2acbfb6499fbd03d6345387897fa3d2a0"
+  integrity sha512-tjIkOI0w32g68CGWleuSyIbEz8XBbeoNogR2lu7MWk3QovHCqgr4VVrP1cwMRYnwDPFQP3OpmH+NR9yzt+pIfg==
   dependencies:
     "@internationalized/date" "^3.5.4"
-    "@nextui-org/react-utils" "2.0.16"
-    "@nextui-org/system-rsc" "2.1.5"
+    "@nextui-org/react-utils" "2.0.17"
+    "@nextui-org/system-rsc" "2.1.6"
     "@react-aria/i18n" "3.11.1"
     "@react-aria/overlays" "3.22.1"
     "@react-aria/utils" "3.24.1"
     "@react-stately/utils" "3.10.1"
 
 "@nextui-org/theme@^2.2.9":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.2.9.tgz#adecdc069cf62c3337e92d65edc13b1a1210115e"
-  integrity sha512-TN2I9sMriLaj00pXsIMlg19+UHeOdjzS2JV0u4gjL14mSbQl5BYNxgbvU3gbMqkZZQ6OpwT4RnT8RS+ks6TXCw==
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.2.11.tgz#e56bd6568326819c8bd22ae58fb9d75ac6c7cb39"
+  integrity sha512-bg9+KNnFxcP3w/ugivEJtvQibODbTxfl6UdVvx7TCY8Rd269U7F2+nhnw1Qd1xJT5yZQnX6m//9wOoGtJV+6Kg==
   dependencies:
     clsx "^1.2.1"
     color "^4.2.3"
@@ -2470,12 +2470,12 @@
     tailwind-merge "^1.14.0"
     tailwind-variants "^0.1.20"
 
-"@nextui-org/use-pagination@2.0.9":
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/@nextui-org/use-pagination/-/use-pagination-2.0.9.tgz#5b4a807532bfecac541f5f15f4284083510f71ee"
-  integrity sha512-p5Gssyb71/SjRezq2o1aRsYTmC9idziW3pLCJFpVwLGfgWNARf9C6NS1oQsqKgjF5lvzoa88soZRDhKKvRAt/g==
+"@nextui-org/use-pagination@2.0.10":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@nextui-org/use-pagination/-/use-pagination-2.0.10.tgz#45c029b7f315a3b4c8ced7f0f0681cf45dc85fe1"
+  integrity sha512-PD6M8QKngUnTJfyoGiZrnrfUtA1A9ZVUjmbONO/1kxPuUegv0ZOQeFECPP2h7SFPxsyOceL1T97rg/2YPS247g==
   dependencies:
-    "@nextui-org/shared-utils" "2.0.7"
+    "@nextui-org/shared-utils" "2.0.8"
     "@react-aria/i18n" "3.11.1"
 
 "@nodelib/fs.scandir@2.1.5":
@@ -5741,9 +5741,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001579, caniuse-lite@^1.0.30001646:
-  version "1.0.30001660"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001660.tgz#31218de3463fabb44d0b7607b652e56edf2e2355"
-  integrity sha512-GacvNTTuATm26qC74pt+ad1fW15mlQ/zuTzzY1ZoIzECTP8HURDfF43kNxPgf7H1jmelCBQTTbBNxdSXOA7Bqg==
+  version "1.0.30001662"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001662.tgz#3574b22dfec54a3f3b6787331da1040fe8e763ec"
+  integrity sha512-sgMUVwLmGseH8ZIrm1d51UbrhqMCH3jvS7gF/M6byuHOnKyLOBL7W8yz5V02OHwgLGA36o/AFhWzzh4uc5aqTA==
 
 case-sensitive-paths-webpack-plugin@^2.4.0:
   version "2.4.0"
@@ -9665,11 +9665,6 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next-router-mock@^0.9.13:
-  version "0.9.13"
-  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.9.13.tgz#bdee2011ea6c09e490121c354ef917f339767f72"
-  integrity sha512-906n2RRaE6Y28PfYJbaz5XZeJ6Tw8Xz1S6E31GGwZ0sXB6/XjldD1/2azn1ZmBmRk5PQRkzjg+n+RHZe5xQzWA==
-
 next-i18next@^15.3.1:
   version "15.3.1"
   resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-15.3.1.tgz#7603d1194f2eb518372e636b93b5ffa3c809b15d"
@@ -9680,6 +9675,11 @@ next-i18next@^15.3.1:
     core-js "^3"
     hoist-non-react-statics "^3.3.2"
     i18next-fs-backend "^2.3.2"
+
+next-router-mock@^0.9.13:
+  version "0.9.13"
+  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.9.13.tgz#bdee2011ea6c09e490121c354ef917f339767f72"
+  integrity sha512-906n2RRaE6Y28PfYJbaz5XZeJ6Tw8Xz1S6E31GGwZ0sXB6/XjldD1/2azn1ZmBmRk5PQRkzjg+n+RHZe5xQzWA==
 
 next@14.2.7:
   version "14.2.7"
