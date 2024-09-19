@@ -1,7 +1,7 @@
 'use client';
-import GatheringDatetime from '@/entities/ui/mypage-card/GatheringDatetime';
-import MypageCardContentBottomButtonContainer from '@/entities/ui/mypage-card/MypageCardContentBottomButtonContainer';
-import MypageCardContentTopChipState from '@/entities/ui/mypage-card/MypageCardContentTopChipState';
+import GatheringDatetime from '@/entities/mypage/ui/card/GatheringDatetime';
+import MypageCardContentBottomButtonContainer from '@/entities/mypage/ui/card/MypageCardContentBottomButtonContainer';
+import MypageCardContentTopChipState from '@/entities/mypage/ui/card/MypageCardContentTopChipState';
 import CardTitle from '@/shared/common/ui/card-title';
 import ParticipantCounter from '@/shared/common/ui/participant-counter';
 import { formatDate, formatTime } from '@/shared/lib/utils';
@@ -19,17 +19,17 @@ export default function MypageCardContent({
   participantCount,
 }: MypageCardContentProps) {
   return (
-    <div className="flex h-[156px] w-full flex-col justify-between xs:w-[calc(100%-280px)]">
-      {/* chip-status */}
-      <MypageCardContentTopChipState
-        participantCount={participantCount}
-        startGatheringTime={startGatheringTime}
-      />
+    <div className="flex h-[156px] w-full flex-col justify-between px-0 xs:w-[calc(100%-280px)] md:px-4 lg:flex-row lg:items-center lg:px-5">
       <div>
+        {/* chip-status */}
+        <MypageCardContentTopChipState
+          participantCount={participantCount}
+          startGatheringTime={startGatheringTime}
+        />
         {/* title */}
         <CardTitle title={title} location={location} />
         {/* date */}
-        <div className="mt-1.5 flex gap-3">
+        <div className="flex gap-3">
           <GatheringDatetime
             date={formatDate(startGatheringTime)}
             time={formatTime(startGatheringTime)}
