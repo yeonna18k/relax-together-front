@@ -1,4 +1,4 @@
-import Context from '@/app/context';
+import Provider from '@/app/provider';
 import Header from '@/features/header';
 import Container from '@/shared/layout/Container';
 import type { Metadata } from 'next';
@@ -20,11 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} bg-gray-50`}>
-        <Context>
+      <body className={`${inter.className} bg-background`}>
+        <Provider>
           <Header />
           <Container>{children}</Container>
-        </Context>
+        </Provider>
       </body>
     </html>
   );

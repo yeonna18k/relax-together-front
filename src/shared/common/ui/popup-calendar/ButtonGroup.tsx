@@ -16,7 +16,7 @@ export default function ButtonGroup({
 }: ButtonGroupProps) {
   return (
     <div className="flex w-full justify-between">
-      <CommonButton variant="outlined" size="sm" onClick={handleReset}>
+      <CommonButton variant="outline" size="sm" onClick={handleReset}>
         초기화
       </CommonButton>
       <CommonButton variant="default" size="sm" onClick={handleSubmit}>
