@@ -1,4 +1,4 @@
-import DateTimeText from '@/entities/ui/mypage-card/DateTimeText';
+import DateTimeText from '@/entities/mypage/ui/card/DateTimeText';
 
 interface GatheringDatetimeProps {
   date: string;
