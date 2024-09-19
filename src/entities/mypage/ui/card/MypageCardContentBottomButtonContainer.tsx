@@ -1,7 +1,7 @@
 'use client';
 
-import CanceledGatheringButton from '@/entities/ui/mypage-card/CanceledGatheringButton';
-import WriteReviewButton from '@/entities/ui/mypage-card/WriteReviewButton';
+import CanceledGatheringButton from '@/entities/mypage/ui/card/CanceledGatheringButton';
+import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
 import {
   UseChipStateTypes,
   useTimeComparison,

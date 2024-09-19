@@ -1,5 +1,5 @@
-import { Gathering } from '@/entities/model/gathering';
-import MypageCardContent from '@/entities/ui/mypage-card/MypageCardContent';
+import { Gathering } from '@/entities/mypage/model/gathering';
+import MypageCardContent from '@/entities/mypage/ui/card/MypageCardContent';
 import ImageCard from '@/shared/common/ui/common-image/ImageCard';
 
 interface MypageCardProps extends Gathering {
@@ -15,7 +15,7 @@ export default function MypageCard({
   dateTime,
 }: MypageCardProps) {
   return (
-    <li className="flex w-full flex-col gap-4 border-b-2 border-dashed pb-[23px] xs:flex-row">
+    <div className="flex w-full flex-col gap-4 rounded-xl xs:flex-row md:gap-0">
       <ImageCard src={image} alt={alt} />
       <MypageCardContent
         title={name}
@@ -23,6 +23,6 @@ export default function MypageCard({
         participantCount={participantCount}
         startGatheringTime={dateTime}
       />
-    </li>
+    </div>
   );
 }
