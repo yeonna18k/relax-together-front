@@ -1,5 +1,5 @@
 'use client';
-import ByeIcon from '@/shared/assets/icons/bye-icon';
+import ByeIcon from '@/shared/assets/icons/bye-icon.svg';
 import { Button } from '@/shared/ui/button';
 
 export default function ByeButton() {
