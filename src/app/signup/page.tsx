@@ -1,6 +1,6 @@
-import AuthImage from '@/features/signup/AuthImage';
-import SignupForm from '@/features/signup/SignupForm';
-import SignupHeader from '@/features/signup/SignupHeader';
+import AuthImage from '@/entities/signup/ui/AuthImage';
+import SignupForm from '@/entities/signup/ui/SignupForm';
+import SignupHeader from '@/entities/signup/ui/SignupHeader';
 
 export default function Signup() {
   return (
