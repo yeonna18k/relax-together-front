@@ -14,7 +14,7 @@ export default function ImageCard({ src, alt, className }: ImageCardProps) {
       alt={alt}
       width={311}
       height={156}
-      className={cn('w-full rounded-3xl xs:w-[280px]', className)}
+      className={cn('w-full rounded-xl xs:w-[280px]', className)}
     />
   );
 }

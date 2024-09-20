@@ -12,9 +12,9 @@ interface ChipStateProps {
 }
 
 const ChipStateStyles: Record<ChipStateTypes, string> = {
-  scheduled: 'bg-orange-100 text-orange-600',
+  scheduled: 'bg-green-50 text-green-500',
   completed: 'bg-gray-200 text-gray-500',
-  confirmed: 'border border-orange-100 text-orange-500',
+  confirmed: 'border border-green-50 text-green-500',
   pending: 'border border-gray-200 text-gray-500',
 };
 
@@ -36,7 +36,7 @@ export default function ChipState({ state }: ChipStateProps) {
     >
       <div className="flex items-center gap-1">
         {state === 'confirmed' ? (
-          <CheckIcon className="stroke-orange-600" />
+          <CheckIcon className="stroke-green-500" />
         ) : (
           <></>
         )}
