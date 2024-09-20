@@ -1,4 +1,5 @@
 'use client';
+import { apiService } from '@/shared/service/ApiService';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -52,10 +53,15 @@ export default function SignupForm({
   });
   const formValid = form.formState.isValid;
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values. ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const newUser = {
+      email: values.userid,
+      password: values.password,
+      name: values.username,
+      companyName: values.company,
+    };
+    const res = await apiService.signup(newUser);
+    console.log(res);
   }
   return (
     <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8">
