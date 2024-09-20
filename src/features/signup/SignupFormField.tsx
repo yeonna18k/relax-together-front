@@ -1,3 +1,4 @@
+import { cn } from '@/shared/lib/utils';
 import {
   FormControl,
   FormField,
@@ -49,10 +50,14 @@ const signupFormData: SignupFormFieldPropsMap = {
 
 export default function SignupFormField({ form, name }: SignupFormFieldProps) {
   const isPasswordField = name === 'password' || name === 'passwordCheck';
+  const error = form.formState.errors[name];
+
   const commonInputProps = {
     placeholder: signupFormData[name].placeholder,
-    className:
+    className: cn(
       'text-gray h-10 w-full md:w-full xl:w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
+      error ? 'border border-error' : '',
+    ),
   };
 
   return (
@@ -71,7 +76,7 @@ export default function SignupFormField({ form, name }: SignupFormFieldProps) {
               <Input {...commonInputProps} {...field} />
             )}
           </FormControl>
-          <FormMessage className="text-sm font-medium text-[#DC2626]" />
+          <FormMessage className="text-sm font-medium text-error" />
         </FormItem>
       )}
     />
