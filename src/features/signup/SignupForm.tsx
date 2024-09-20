@@ -34,11 +34,15 @@ const formSchema = z
 
 export type SignupFormType = z.infer<typeof formSchema>;
 
-export default function SignupForm() {
+export default function SignupForm({
+  defaultValues,
+}: {
+  defaultValues?: SignupFormType;
+}) {
   const form = useForm<SignupFormType>({
     resolver: zodResolver(formSchema),
     mode: 'all',
-    defaultValues: {
+    defaultValues: defaultValues || {
       username: '',
       userid: '',
       company: '',
@@ -64,6 +68,7 @@ export default function SignupForm() {
           <SignupFormField form={form} name="passwordCheck" />
           <div className="!mt-10 flex flex-col gap-6">
             <Button
+              disabled={!formValid}
               variant={`${formValid ? 'enabled' : 'disabled'}`}
               size="full"
             >
