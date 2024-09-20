@@ -1,8 +1,6 @@
-export interface UserInfoTextProps {
-  category: string;
-  value: string;
-}
-export default function UserInfoText({ category, value }: UserInfoTextProps) {
+import { UserInfoItem } from '@/entities/mypage/model/user';
+
+export default function UserInfoText({ category, value }: UserInfoItem) {
   return (
     <div className="flex gap-1.5">
       <p className="w-[62px] min-w-[62px] text-sm font-medium text-gray-900">
