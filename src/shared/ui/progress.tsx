@@ -7,10 +7,10 @@ import { cn } from '@/shared/lib/utils';
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
-    isClosed: boolean;
-  }
->(({ className, value, isClosed, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
+>(({ className, value, ...props }, ref) => {
+  const isClosed = value === 20;
+
   const bgColor = isClosed ? 'bg-orange-400' : 'bg-orange-600';
 
   const maxCapacity = 20;
