@@ -9,7 +9,7 @@ import {
   PaginationItemType,
 } from '@nextui-org/pagination';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Review } from './types';
 
 export interface PaginationComponentProps {
@@ -27,6 +27,19 @@ export default function PaginationComponent({
   totalPages,
   getReviewData,
 }: PaginationComponentProps) {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const handlePageChange = (page: number) => {
     // 유효한 페이지 내에서만 작동하도록 설정
     if (page < 1 || page > totalPages) return;
@@ -178,6 +191,7 @@ export default function PaginationComponent({
           radius="full"
           renderItem={renderItem}
           variant="light"
+          siblings={isMobile ? 0 : 1}
         />
       </div>
     </>
