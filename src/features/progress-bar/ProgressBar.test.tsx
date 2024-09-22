@@ -23,22 +23,22 @@ describe('ProgressBar Component', () => {
 
 describe('Progress Component', () => {
   test('화면에 렌더링이 된다.', () => {
-    render(<Progress value={0} isClosed={false} />);
+    render(<Progress value={0} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
-    expect(screen.getByTestId('indicator')).toHaveClass('bg-orange-600');
+    expect(screen.getByTestId('indicator')).toHaveClass('bg-green-400');
   });
 
   test('참여자 수에 따른 프로그레스 바 퍼센티지 계산 테스트', () => {
-    render(<Progress value={10} isClosed={false} />);
+    render(<Progress value={10} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
     expect(screen.getByTestId('indicator')).toHaveStyle(
       `transform: translateX(-50%)`,
     );
   });
 
-  test('"Closed" 상태일 때 indicator가 연한 주황색으로 변경된다.', () => {
-    render(<Progress value={20} isClosed={true} />);
+  test('"Closed" 상태일 때 indicator가 진한 초록색으로 변경된다.', () => {
+    render(<Progress value={20} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
-    expect(screen.getByTestId('indicator')).toHaveClass('bg-orange-400');
+    expect(screen.getByTestId('indicator')).toHaveClass('bg-green-500');
   });
 });
