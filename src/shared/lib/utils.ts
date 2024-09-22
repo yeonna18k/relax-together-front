@@ -36,3 +36,13 @@ export const getISOTimeWithOffset = (hourOffset: number) => {
   // ISO 8601 형식으로 변환
   return futureDate.toISOString();
 };
+
+// 클립보드에 URL 복사
+export const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    alert('링크가 복사되었습니다.');
+  } catch (err) {
+    console.error('클립보드 복사 실패:', err);
+  }
+};
