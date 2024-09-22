@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Banner() {
   return (
-    <div className="z-30 h-[549.5px] w-full sm:hidden md:hidden lg:block">
+    <div className="max-[xl]:block z-30 hidden h-[549.5px] w-full xl:block">
       <div className="mt-[103.5px] flex h-[356px] w-full items-center justify-center">
         <div className="flex w-full flex-col items-center">
           <Image
@@ -14,6 +14,7 @@ export default function Banner() {
             height={28}
           />
           <BannerText />
+
           <SliderButtonContainer />
         </div>
       </div>
