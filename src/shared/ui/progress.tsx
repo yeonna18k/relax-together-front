@@ -11,7 +11,7 @@ const Progress = React.forwardRef<
 >(({ className, value, ...props }, ref) => {
   const isClosed = value === 20;
 
-  const bgColor = isClosed ? 'bg-orange-400' : 'bg-orange-600';
+  const bgColor = isClosed ? 'bg-green-500' : 'bg-green-400';
 
   const maxCapacity = 20;
   const currentParticipants = value || 0;
@@ -21,7 +21,7 @@ const Progress = React.forwardRef<
     <ProgressPrimitive.Root
       ref={ref}
       className={cn(
-        'relative h-1 w-full overflow-hidden rounded-full bg-orange-50',
+        'relative h-1 w-full overflow-hidden rounded-full bg-green-50',
         className,
       )}
       {...props}
