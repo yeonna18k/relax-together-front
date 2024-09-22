@@ -9,8 +9,8 @@ export default function Check({
   participantCount,
   isDark = false,
 }: CheckProps) {
-  const bgColor = isDark ? 'bg-gray-900' : 'bg-orange-500';
-  const iconColor = isDark ? 'stroke-[#f97316]' : 'stroke-[#ffffff]';
+  const bgColor = isDark ? 'bg-gray-900' : 'bg-pink-500';
+  const iconColor = isDark ? 'stroke-pink-500' : 'stroke-white';
 
   const isOpen = participantCount >= 5 ? true : false;
 

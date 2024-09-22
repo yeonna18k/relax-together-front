@@ -1,5 +1,7 @@
 'use client';
 
+import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-pagination.svg';
+import ArrowRightIcon from '@/shared/assets/icons/arrow-right-pagination.svg';
 import { cn } from '@/shared/lib/utils';
 import {
   Pagination,
@@ -8,8 +10,6 @@ import {
 } from '@nextui-org/pagination';
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
-import ArrowLeftIcon from '../../shared/assets/icons/arrow-left-pagination.svg';
-import ArrowRightIcon from '../../shared/assets/icons/arrow-right-pagination.svg';
 import { Review } from './types';
 
 export interface PaginationComponentProps {
@@ -76,13 +76,13 @@ export default function PaginationComponent({
           key={key}
           className={cn(
             className,
-            'ml-[6px] h-12 w-12 min-w-12 rounded-lg bg-white',
+            'ml-[6px] h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
           )}
           onClick={handleNextBtnClick}
           disabled={isNextDisabled}
         >
           <ArrowRightIcon
-            className={isNextDisabled ? 'fill-[#E5E7EB]' : 'fill-[#1f2937]'}
+            className={isNextDisabled ? 'fill-[#E5E7EB]' : 'fill-gray-800'}
           />
         </button>
       );
@@ -96,13 +96,13 @@ export default function PaginationComponent({
           key={key}
           className={cn(
             className,
-            'mr-[6px] h-12 w-12 min-w-12 rounded-lg bg-white',
+            'mr-[6px] h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
           )}
           onClick={handlePrevBtnClick}
           disabled={isPrevDisabled}
         >
           <ArrowLeftIcon
-            className={isPrevDisabled ? 'fill-[#E5E7EB]' : 'fill-[#1f2937]'}
+            className={isPrevDisabled ? 'fill-[#E5E7EB]' : 'fill-gray-800'}
           />
         </button>
       );
@@ -112,10 +112,13 @@ export default function PaginationComponent({
       return (
         <button
           key={key}
-          className={cn(className, 'h-12 w-12 min-w-12 rounded-lg bg-white')}
+          className={cn(
+            className,
+            'h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
+          )}
         >
           <Image
-            src="./assets/ellipsis.svg"
+            src="/assets/ellipsis.svg"
             alt="생략 아이콘 이미지"
             width={13}
             height={3}
@@ -132,8 +135,9 @@ export default function PaginationComponent({
         ref={ref}
         className={cn(
           className,
-          'h-12 w-12 min-w-12 rounded-lg bg-white text-[#C4C4C4]',
-          isActive && 'font-semibold text-[#1F1F1F]',
+          'h-[34px] w-[34px] rounded-lg bg-white text-sm text-gray-300 md:h-12 md:w-12 md:text-base',
+
+          isActive && 'font-semibold text-green-800',
         )}
         onClick={() => handlePageBtnClick(value)}
       >
@@ -163,17 +167,19 @@ export default function PaginationComponent({
           );
         })}
       </ul>
-      <Pagination
-        data-testid="pagination"
-        disableCursorAnimation
-        showControls
-        total={totalPages}
-        initialPage={1}
-        className="gap-2"
-        radius="full"
-        renderItem={renderItem}
-        variant="light"
-      />
+      <div className="mx-auto mt-6 w-fit">
+        <Pagination
+          data-testid="pagination"
+          disableCursorAnimation
+          showControls
+          total={totalPages}
+          initialPage={1}
+          className="gap-2"
+          radius="full"
+          renderItem={renderItem}
+          variant="light"
+        />
+      </div>
     </>
   );
 }

@@ -24,7 +24,7 @@ export const participantList = [
       email: 'string',
       name: 'string',
       companyName: 'string',
-      image: './assets/user-profile-image.svg',
+      image: '/assets/user-profile-image.svg',
     },
   },
   {
@@ -37,7 +37,7 @@ export const participantList = [
       email: 'string',
       name: 'string',
       companyName: 'string',
-      image: './assets/user-profile-image.svg',
+      image: '/assets/user-profile-image.svg',
     },
   },
   {
@@ -50,7 +50,7 @@ export const participantList = [
       email: 'string',
       name: 'string',
       companyName: 'string',
-      image: './assets/user-profile-image.svg',
+      image: '/assets/user-profile-image.svg',
     },
   },
   {
@@ -63,7 +63,7 @@ export const participantList = [
       email: 'string',
       name: 'string',
       companyName: 'string',
-      image: './assets/user-profile-image.svg',
+      image: '/assets/user-profile-image.svg',
     },
   },
   {
@@ -76,7 +76,7 @@ export const participantList = [
       email: 'string',
       name: 'string',
       companyName: 'string',
-      image: './assets/user-profile-image.svg',
+      image: '/assets/user-profile-image.svg',
     },
   },
 ];

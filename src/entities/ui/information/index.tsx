@@ -16,7 +16,7 @@ export default function Information({
 }: InformationProps) {
   return (
     <>
-      <div className="w-full rounded-3xl border-2 border-gray-200 bg-white">
+      <div className="w-full rounded-xl border-2 border-gray-200 bg-white">
         <InformationTop gatheringsInfo={gatheringsInfo} />
         <InformationBottom
           gatheringsInfo={gatheringsInfo}
