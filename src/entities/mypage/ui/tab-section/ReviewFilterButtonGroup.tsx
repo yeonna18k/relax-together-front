@@ -1,6 +1,6 @@
+import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 
 type Filter = {
   name: string;
@@ -12,9 +12,7 @@ const filters: Array<Filter> = [
   { name: '작성한 리뷰', filter: 'completed' },
 ];
 export default function ReviewFilterButtonGroup() {
-  const searchParams = useSearchParams();
-  const currentSubPage = searchParams.get('subPage');
-  const currentFilter = searchParams.get('filter');
+  const { currentSubPage, currentFilter } = useCommonSearchParams();
   const isActive = (filter: string) => filter === currentFilter;
   return (
     <div className="flex gap-2">

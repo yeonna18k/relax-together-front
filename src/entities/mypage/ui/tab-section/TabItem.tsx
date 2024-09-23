@@ -1,8 +1,8 @@
 import { Position } from '@/entities/mypage/ui/tab-section/SlideTabs';
+import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
 import useTabPosition from '@/shared/hooks/useTabPosition';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useRef } from 'react';
 
 export type Tab = {
@@ -17,8 +17,7 @@ export interface TabProps {
 export default function TabItem({ tab, setPosition }: TabProps) {
   const { name, subPage } = tab;
   const ref = useRef<HTMLLIElement>(null);
-  const searchParams = useSearchParams();
-  const currentSubPage = searchParams.get('subPage');
+  const { currentSubPage } = useCommonSearchParams();
   const isActive = currentSubPage === subPage;
   const activeTextColor = isActive ? 'text-gray-900' : 'text-gray-400';
 
