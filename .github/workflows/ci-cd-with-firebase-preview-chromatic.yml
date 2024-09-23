@@ -2,7 +2,7 @@ name: CI/CD Pipeline with Firebase Preview Deploy and Chromatic
 
 on:
   pull_request:
-    types: opened
+    types: [opened]
     branches:
       - main
 
