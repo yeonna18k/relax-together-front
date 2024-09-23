@@ -34,13 +34,19 @@ export default function SignupEmailFormField({ form }: SignupFormFieldProps) {
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-sm font-semibold text-gray-900">
-            이메일
+            아이디
           </FormLabel>
           <FormControl className="mb-1.5 mt-2">
             <Input
               {...commonInputProps}
               {...field}
-              onBlur={e => e.preventDefault()}
+              onBlur={e => {
+                if (!field.value) {
+                  field.onBlur();
+                } else {
+                  e.preventDefault();
+                }
+              }}
               onChange={e => {
                 field.onChange(e);
                 form.setValue('email', e.target.value);

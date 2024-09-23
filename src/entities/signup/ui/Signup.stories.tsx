@@ -28,9 +28,9 @@ export const SignupWithDisabledButton: Story = {
 export const SignupWithInvalidInputs: Story = {
   args: {
     defaultValues: {
-      username: '',
-      userid: 'user',
-      company: '',
+      name: '',
+      email: 'user',
+      companyName: '',
       password: '12345',
       passwordCheck: '1234',
     },
@@ -38,19 +38,19 @@ export const SignupWithInvalidInputs: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const usernameInput = canvas.getByLabelText('이름');
-    const useridInput = canvas.getByLabelText('아이디');
-    const companyInput = canvas.getByLabelText('회사명');
+    const nameInput = canvas.getByLabelText('이름');
+    const emailInput = canvas.getByLabelText('아이디');
+    const companyNameInput = canvas.getByLabelText('회사명');
     const passwordInput = canvas.getByLabelText('비밀번호');
     const passwordCheckInput = canvas.getByLabelText('비밀번호 확인');
 
-    await userEvent.click(usernameInput);
+    await userEvent.click(nameInput);
     await userEvent.tab(); // 탭을 통해 다음 필드로 이동
 
-    await userEvent.click(useridInput);
+    await userEvent.click(emailInput);
     await userEvent.tab();
 
-    await userEvent.click(companyInput);
+    await userEvent.click(companyNameInput);
     await userEvent.tab();
 
     await userEvent.click(passwordInput);
@@ -77,21 +77,21 @@ export const SignupWithValidInputs: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const usernameInput = canvas.getByLabelText('이름');
-    const useridInput = canvas.getByLabelText('아이디');
-    const companyInput = canvas.getByLabelText('회사명');
+    const nameInput = canvas.getByLabelText('이름');
+    const emailInput = canvas.getByLabelText('아이디');
+    const companyNameInput = canvas.getByLabelText('회사명');
     const passwordInput = canvas.getByLabelText('비밀번호');
     const passwordCheckInput = canvas.getByLabelText('비밀번호 확인');
 
-    await userEvent.type(usernameInput, 'example');
-    await userEvent.type(useridInput, 'example@example.com');
-    await userEvent.type(companyInput, 'Example Corp');
+    await userEvent.type(nameInput, 'example');
+    await userEvent.type(emailInput, 'example@example.com');
+    await userEvent.type(companyNameInput, 'Example Corp');
     await userEvent.type(passwordInput, 'password123');
     await userEvent.type(passwordCheckInput, 'password123');
 
-    expect(usernameInput).toHaveValue('example');
-    expect(useridInput).toHaveValue('example@example.com');
-    expect(companyInput).toHaveValue('Example Corp');
+    expect(nameInput).toHaveValue('example');
+    expect(emailInput).toHaveValue('example@example.com');
+    expect(companyNameInput).toHaveValue('Example Corp');
     expect(passwordInput).toHaveValue('password123');
     expect(passwordCheckInput).toHaveValue('password123');
 
