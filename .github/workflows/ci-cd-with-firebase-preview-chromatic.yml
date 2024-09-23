@@ -40,10 +40,12 @@ jobs:
         run: yarn build
 
       # Chromatic 실행
-      - name: Run Chromatic
+      - name: Publish to Chromatic
+        id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitOnceUploaded: true
 
       # Chromatic 배포 완료 주소 PR에 코멘트
       - name: Publish Storybook Link in the comments
