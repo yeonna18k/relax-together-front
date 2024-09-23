@@ -15,7 +15,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://dev.relax-together.shop/:path*',
+        destination: 'https://dev.relax-together.shop/api/:path*',
       },
     ];
   },

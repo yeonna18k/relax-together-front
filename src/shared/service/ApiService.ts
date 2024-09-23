@@ -41,7 +41,7 @@ export default class ApiService {
     name: string;
     companyName: string;
   }) {
-    const response = await this.instance.post<SignUpUser>('/api/auth/signup', {
+    const response = await this.instance.post<SignUpUser>('/api/auths/signup', {
       email,
       password,
       name,
@@ -49,7 +49,12 @@ export default class ApiService {
     });
     return response;
   }
-
+  async checkEmail(email: string) {
+    const response = await this.instance.post('/api/auths/check-email', {
+      email,
+    });
+    return response;
+  }
   // async logout(): Promise<AxiosResponse<null, any>> {
   //   const response = await this.instance.post('/api/auth/logout');
   //   return response;
