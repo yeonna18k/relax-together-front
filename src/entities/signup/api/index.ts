@@ -35,7 +35,6 @@ export async function useCheckEmail(
           message: '중복된 이메일입니다.',
         });
       }
-      console.log(response.data);
       return response.data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
@@ -62,29 +61,3 @@ export async function useCheckEmail(
     });
   }, [setValue]);
 }
-
-// export async function useCheckEmail(form: UseFormReturn<SignupFormType>) {
-//   const [debouncedValue, setValue] = useDebounceValue(
-//     form.getValues('email'),
-//     500,
-//   );
-
-//   useEffect(() => {
-//     form.watch(value => {
-//       if (value.email) {
-//         setValue(value.email);
-//       }
-//     });
-//   }, [setValue]);
-
-//   try {
-//     const response = await apiService.checkEmail(debouncedValue);
-//     return response.data;
-//   } catch (e: unknown) {
-//     if (axios.isAxiosError(e)) {
-//       if (e.response?.status === 403) {
-//         form.setError('email', { message: '인증 에러' });
-//       }
-//     }
-//   }
-// }

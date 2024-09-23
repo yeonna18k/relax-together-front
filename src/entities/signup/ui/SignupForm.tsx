@@ -2,6 +2,7 @@
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignup } from '../api';
@@ -54,6 +55,7 @@ export default function SignupForm({
     },
   });
   const formValid = form.formState.isValid;
+  const router = useRouter();
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const newUser = {
@@ -63,7 +65,9 @@ export default function SignupForm({
       companyName: values.companyName,
     };
     const res = await signup(newUser);
-    console.log(res);
+    if (res !== undefined) {
+      router.push('/signin');
+    }
   }
   return (
     <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8">
