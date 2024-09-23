@@ -1,4 +1,5 @@
 import ChipState from '@/shared/common/ui/chip-state';
+import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
 import {
   OpenChipStateTypes,
   useParticipantStatus,
@@ -7,7 +8,6 @@ import {
   UseChipStateTypes,
   useTimeComparison,
 } from '@/shared/hooks/useTimeComparison';
-import { useSearchParams } from 'next/navigation';
 
 const useChipStateMap: Record<
   UseChipStateTypes,
@@ -35,14 +35,11 @@ export default function MypageCardContentTopChipState({
   participantCount,
   startGatheringTime,
 }: MypageCardContentTopChipStateProps) {
-  const searchParams = useSearchParams();
+  const { currentSubPage } = useCommonSearchParams();
   const participantStatus = useParticipantStatus(participantCount);
   const timeStatus = useTimeComparison(startGatheringTime);
 
-  if (
-    searchParams.get('filter') === 'my-reviews' ||
-    searchParams.get('filter') === 'my-created-gatherings'
-  ) {
+  if (currentSubPage !== 'my-gatherings') {
     return <></>;
   }
   return (
