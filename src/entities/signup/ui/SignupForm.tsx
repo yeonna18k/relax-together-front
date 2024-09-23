@@ -10,17 +10,17 @@ import SignupFormField from './SignupFormField';
 
 const formSchema = z
   .object({
-    username: z
+    name: z
       .string()
       .min(1, {
         message: '이름을 입력해주세요.',
       })
       .max(10),
-    userid: z
+    email: z
       .string()
       .min(1, { message: '이메일을 입력해주세요.' })
       .email('이메일 형식을 입력해주세요.'),
-    company: z.string().min(1, { message: '회사명을 입력해주세요.' }),
+    companyName: z.string().min(1, { message: '회사명을 입력해주세요.' }),
     password: z
       .string()
       .min(8, { message: '비밀번호가 8자 이상이 되도록 해 주세요.' }),
@@ -44,9 +44,9 @@ export default function SignupForm({
     resolver: zodResolver(formSchema),
     mode: 'all',
     defaultValues: defaultValues || {
-      username: '',
-      userid: '',
-      company: '',
+      name: '',
+      email: '',
+      companyName: '',
       password: '',
       passwordCheck: '',
     },
@@ -55,10 +55,10 @@ export default function SignupForm({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const newUser = {
-      email: values.userid,
+      email: values.email,
       password: values.password,
-      name: values.username,
-      companyName: values.company,
+      name: values.name,
+      companyName: values.companyName,
     };
     const res = await apiService.signup(newUser);
     console.log(res);
@@ -67,9 +67,9 @@ export default function SignupForm({
     <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <SignupFormField form={form} name="username" />
-          <SignupFormField form={form} name="userid" />
-          <SignupFormField form={form} name="company" />
+          <SignupFormField form={form} name="name" />
+          <SignupFormField form={form} name="email" />
+          <SignupFormField form={form} name="companyName" />
           <SignupFormField form={form} name="password" />
           <SignupFormField form={form} name="passwordCheck" />
           <div className="!mt-10 flex flex-col gap-6">

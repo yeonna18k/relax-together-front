@@ -24,15 +24,15 @@ type SignupFormFieldPropsMap = {
 };
 
 const signupFormData: SignupFormFieldPropsMap = {
-  username: {
+  name: {
     label: '이름',
     placeholder: '이름을 입력해주세요',
   },
-  userid: {
+  email: {
     label: '아이디',
     placeholder: '이메일을 입력해주세요',
   },
-  company: {
+  companyName: {
     label: '회사명',
     placeholder: '회사명을 입력해주세요',
   },
