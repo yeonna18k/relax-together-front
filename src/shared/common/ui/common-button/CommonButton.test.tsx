@@ -15,6 +15,6 @@ describe('Common Button Component', () => {
 
     const button = screen.getByTestId('common-button');
     expect(button).toHaveTextContent('생성하기');
-    expect(button).toHaveClass('bg-green-500');
+    expect(button).toHaveClass('bg-green-600');
   });
 });
