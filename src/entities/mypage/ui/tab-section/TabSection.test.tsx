@@ -18,12 +18,43 @@ describe('TabSection Component', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  test('현재 주소가 /mypage?subPage=my-gatherings 나의 모임의 컬러가 활성화 된다.', () => {
+  test('현재 주소가 /mypage?subPage=my-gatherings이면 나의 모임이 활성화 된다.', () => {
     mockUseSearchParams('?subPage=my-gatherings');
-    const { debug } = render(<TabSection />);
-    debug();
-    const myGatherings = screen.getByText('나의 모임');
-    const myReviews = screen.getByText('나의 리뷰');
-    const myCreatedGatherings = screen.getByText('내가 만든 모임');
+    render(<TabSection />);
+    const myGatherings = screen.getAllByRole('listitem')[0];
+    const myReviews = screen.getAllByRole('listitem')[1];
+    const myCreatedGatherings = screen.getAllByRole('listitem')[2];
+
+    expect(myGatherings).toHaveClass(activeColor);
+    expect(myReviews).toHaveClass(inactiveColor);
+    expect(myCreatedGatherings).toHaveClass(inactiveColor);
+  });
+  test('현재 주소가 /mypage?subPage=my-reviews이면 나의 리뷰가 활성화 되고, ReviewFilterButtonGroup이 활성화 된다..', () => {
+    mockUseSearchParams('?subPage=my-reviews&filter=completed');
+    render(<TabSection />);
+    const myGatherings = screen.getAllByRole('listitem')[0];
+    const myReviews = screen.getAllByRole('listitem')[1];
+    const myCreatedGatherings = screen.getAllByRole('listitem')[2];
+
+    const pendingButton = screen.getByText('작성 가능한 리뷰');
+    const completedButton = screen.getByText('작성한 리뷰');
+
+    expect(myGatherings).toHaveClass(inactiveColor);
+    expect(myReviews).toHaveClass(activeColor);
+    expect(myCreatedGatherings).toHaveClass(inactiveColor);
+
+    expect(pendingButton).toBeInTheDocument();
+    expect(completedButton).toBeInTheDocument();
+  });
+  test('현재 주소가 /mypage?subPage=my-created-gatherings이면 내가 만든 모임이 활성화 된다.', () => {
+    mockUseSearchParams('?subPage=my-created-gatherings');
+    render(<TabSection />);
+    const myGatherings = screen.getAllByRole('listitem')[0];
+    const myReviews = screen.getAllByRole('listitem')[1];
+    const myCreatedGatherings = screen.getAllByRole('listitem')[2];
+
+    expect(myGatherings).toHaveClass(inactiveColor);
+    expect(myReviews).toHaveClass(inactiveColor);
+    expect(myCreatedGatherings).toHaveClass(activeColor);
   });
 });
