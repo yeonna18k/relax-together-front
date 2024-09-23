@@ -1,10 +1,10 @@
 'use client';
-import { apiService } from '@/shared/service/ApiService';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useSignup } from '../api';
 import GoToSignin from './GoToSignin';
 import SignupFormField from './SignupFormField';
 
@@ -40,6 +40,7 @@ export default function SignupForm({
 }: {
   defaultValues?: SignupFormType;
 }) {
+  const { signup } = useSignup();
   const form = useForm<SignupFormType>({
     resolver: zodResolver(formSchema),
     mode: 'all',
@@ -60,7 +61,7 @@ export default function SignupForm({
       name: values.name,
       companyName: values.companyName,
     };
-    const res = await apiService.signup(newUser);
+    const res = await signup(newUser);
     console.log(res);
   }
   return (
