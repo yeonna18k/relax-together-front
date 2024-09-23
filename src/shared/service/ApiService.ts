@@ -10,6 +10,7 @@ type SignUpUser = {
 
 export default class ApiService {
   private instance: AxiosInstance = axios.create({
+    withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
     },

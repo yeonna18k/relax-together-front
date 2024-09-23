@@ -1,7 +1,11 @@
 import { apiService } from '@/shared/service/ApiService';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { FieldErrors, UseFormReturn } from 'react-hook-form';
+import { useDebounceValue } from 'usehooks-ts';
 import { User } from '../model/user';
+import { SignupFormType } from '../ui/SignupForm';
+
 export function useSignup() {
   const signup = async (userData: User) => {
     try {
@@ -14,19 +18,73 @@ export function useSignup() {
   return { signup };
 }
 
-export function useCheckEmail() {
-  const [emailError, setError] = useState<string | null>(null);
-  const checkEmail = async (email: string) => {
+export async function useCheckEmail(
+  form: UseFormReturn<SignupFormType>,
+  error: FieldErrors,
+) {
+  const [debouncedValue, setValue] = useDebounceValue(
+    form.getValues('email'),
+    500,
+  );
+
+  const handleCheckEmail = async () => {
     try {
-      const response = await apiService.checkEmail(email);
+      const response = await apiService.checkEmail(debouncedValue);
+      if (response.data) {
+        form.setError('email', {
+          message: '중복된 이메일입니다.',
+        });
+      }
+      console.log(response.data);
       return response.data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
         if (e.response?.status === 403) {
-          setError(e.response?.statusText);
+          form.setError('email', {
+            message: '이메일 확인 중 오류가 발생했습니다.',
+          });
         }
       }
     }
   };
-  return { checkEmail, emailError };
+
+  useEffect(() => {
+    if (debouncedValue.length > 0 && error.email === undefined) {
+      handleCheckEmail();
+    }
+  }, [debouncedValue]);
+
+  useEffect(() => {
+    form.watch(value => {
+      if (value.email) {
+        setValue(value.email);
+      }
+    });
+  }, [setValue]);
 }
+
+// export async function useCheckEmail(form: UseFormReturn<SignupFormType>) {
+//   const [debouncedValue, setValue] = useDebounceValue(
+//     form.getValues('email'),
+//     500,
+//   );
+
+//   useEffect(() => {
+//     form.watch(value => {
+//       if (value.email) {
+//         setValue(value.email);
+//       }
+//     });
+//   }, [setValue]);
+
+//   try {
+//     const response = await apiService.checkEmail(debouncedValue);
+//     return response.data;
+//   } catch (e: unknown) {
+//     if (axios.isAxiosError(e)) {
+//       if (e.response?.status === 403) {
+//         form.setError('email', { message: '인증 에러' });
+//       }
+//     }
+//   }
+// }

@@ -7,10 +7,7 @@ import {
   FormMessage,
 } from '@/shared/ui/form';
 import { Input, InputPassword } from '@/shared/ui/input';
-import { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { useDebounceValue } from 'usehooks-ts';
-import { useCheckEmail } from '../api';
 import { SignupFormType } from './SignupForm';
 
 interface SignupFormFieldProps {
@@ -52,14 +49,10 @@ const signupFormData: SignupFormFieldPropsMap = {
 };
 
 export default function SignupFormField({ form, name }: SignupFormFieldProps) {
-  const [debouncedValue, setValue] = useDebounceValue(
-    form.getValues('email'),
-    500,
-  );
-  const [emailCheckResult, setEmailCheckResult] = useState<string | null>(null);
   const isPasswordField = name === 'password' || name === 'passwordCheck';
   const error = form.formState.errors[name];
-  const { checkEmail, emailError } = useCheckEmail();
+
+  // useCheckEmail(form);
 
   const commonInputProps = {
     placeholder: signupFormData[name].placeholder,
@@ -68,21 +61,6 @@ export default function SignupFormField({ form, name }: SignupFormFieldProps) {
       error ? 'border border-error' : '',
     ),
   };
-
-  useEffect(() => {
-    if (emailError) {
-      form.setError('email', { message: emailError });
-    }
-  }, [emailError, form]);
-
-  useEffect(() => {
-    form.watch(value => {
-      if (value.email) {
-        setValue(value.email);
-        checkEmail(debouncedValue);
-      }
-    });
-  }, [form, setValue, checkEmail, debouncedValue]);
 
   return (
     <FormField

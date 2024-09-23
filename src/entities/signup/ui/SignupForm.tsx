@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignup } from '../api';
 import GoToSignin from './GoToSignin';
+import SignupEmailFormField from './SignupEmailFormField';
 import SignupFormField from './SignupFormField';
 
 const formSchema = z
@@ -69,7 +70,7 @@ export default function SignupForm({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <SignupFormField form={form} name="name" />
-          <SignupFormField form={form} name="email" />
+          <SignupEmailFormField form={form} />
           <SignupFormField form={form} name="companyName" />
           <SignupFormField form={form} name="password" />
           <SignupFormField form={form} name="passwordCheck" />
