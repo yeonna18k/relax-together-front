@@ -5,7 +5,7 @@ export const dummyUser: User = {
   email: 'test@example.com',
   name: 'test',
   companyName: 'test company',
-  image: 'test image',
+  image: '/assets/default-user.svg',
   createdAt: '2024-10-01T00:00:00Z',
   updatedAt: '2024-10-01T00:00:00Z',
 };

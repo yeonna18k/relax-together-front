@@ -126,11 +126,32 @@ const config: Config = {
             position: 'absolute',
           },
         },
+        clearHeart: {
+          '0%': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(1)',
+            position: 'absolute',
+          },
+          '50%': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(0.5)',
+            position: 'absolute',
+          },
+          '100%': {
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) scale(0)',
+            position: 'absolute',
+          },
+        },
       },
       animation: {
         slideIn: 'slideIn 0.5s ease-out forwards',
         slideOut: 'slideOut 0.5s ease-out forwards',
         fillHeart: 'fillHeart 0.3s ease-out forwards',
+        clearHeart: 'clearHeart 0.3s ease-out forwards',
       },
     },
   },

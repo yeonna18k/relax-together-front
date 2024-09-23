@@ -1,15 +1,19 @@
 'use client';
 
 import { Textarea, TextareaProps } from '@/shared/ui/textarea';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 interface InputTextProps extends TextareaProps {
+  value: string;
+  setValue: (value: string) => void;
   placeholder?: string;
 }
 
-export default function InputText({ placeholder }: InputTextProps) {
-  const [value, setValue] = useState<string>('');
-
+export default function InputText({
+  value,
+  setValue,
+  placeholder,
+}: InputTextProps) {
   const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };

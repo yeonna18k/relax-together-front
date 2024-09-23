@@ -10,9 +10,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-white bg-green-500 hover:bg-bg-green-600 active:bg-green-700 disabled:bg-[#9ca3af] rounded-md',
+          'text-white bg-green-600 hover:bg-bg-green-700 active:bg-green-800 disabled:bg-gray-400 rounded-md',
         outline:
-          'bg-white text-green-500 border border-green-500 hover:text-green-600 hover:border-green-600 active:text-bg-green-700 active:border-bg-green-700 rounded-md',
+          'bg-white text-green-500 border border-green-500 hover:text-green-600 hover:border-green-600 active:text-bg-green-700 active:border-bg-green-700 rounded-md disabled:text-gray-500',
         ghost: 'bg-transparent',
         disabled: ' bg-gray-400 h-10 rounded-md',
         enabled: 'bg-green-500 h-10 rounded-md',
