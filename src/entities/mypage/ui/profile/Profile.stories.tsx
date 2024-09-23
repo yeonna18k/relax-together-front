@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Profile from './index';
 
 const meta: Meta<typeof Profile> = {
-  title: 'Entities/ui/Profile',
+  title: 'Entities/Mypage/ui/Profile',
   component: Profile,
   parameters: {
     layout: 'fullscreen',
