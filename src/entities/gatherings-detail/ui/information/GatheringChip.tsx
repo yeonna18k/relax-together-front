@@ -1,6 +1,6 @@
-import { GatheringsInfoTypes } from '@/entities/model/information';
 import ChipInfo from '@/shared/common/ui/chip-info';
 import { formatDate, formatTime } from '@/shared/lib/utils';
+import { GatheringsInfoTypes } from '../../model/information';
 
 interface GatheringChipProps {
   gatheringsInfo: GatheringsInfoTypes;

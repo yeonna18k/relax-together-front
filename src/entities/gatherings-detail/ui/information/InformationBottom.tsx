@@ -1,7 +1,7 @@
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
-} from '@/entities/model/information';
+} from '@/entities/gatherings-detail/model/information';
 import { Progress } from '@/shared/ui/progress';
 import { useEffect, useState } from 'react';
 import Capacity from './Capacity';

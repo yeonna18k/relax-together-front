@@ -1,4 +1,4 @@
-import { GatheringsInfoTypes } from '@/entities/model/information';
+import { GatheringsInfoTypes } from '../../model/information';
 
 interface GatheringInfoProps {
   gatheringsInfo: GatheringsInfoTypes;

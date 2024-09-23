@@ -1,4 +1,4 @@
-import { GatheringsInfoTypes } from '@/entities/model/information';
+import { GatheringsInfoTypes } from '@/entities/gatherings-detail/model/information';
 import LikeButton from '@/shared/common/ui/like-button';
 import GatheringChip from './GatheringChip';
 import GatheringInfo from './GatheringInfo';

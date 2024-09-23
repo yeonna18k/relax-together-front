@@ -1,8 +1,8 @@
+import OpenBadge from '@/shared/common/ui/open-badge';
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
-} from '@/entities/model/information';
-import OpenBadge from '@/shared/common/ui/open-badge';
+} from '../../model/information';
 import UserProfileImage from './UserProfileImage';
 
 interface ParticipantsProps {
