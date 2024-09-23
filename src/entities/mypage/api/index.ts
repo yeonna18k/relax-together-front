@@ -5,7 +5,7 @@ import {
 } from '@/entities/mypage/model/user';
 import { apiService } from '@/shared/service/ApiService';
 import { queries } from '@/shared/service/queries';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -39,11 +39,14 @@ export function useUserInfoList(user?: AxiosResponse<User, any>) {
 }
 
 export async function useUpdateUserInfo() {
-  const mutation = useMutation({
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
     mutationFn: (updateUserRequest: UpdateUserRequest) => {
       return apiService.updateUser(updateUserRequest);
     },
-    onSuccess: () => queries.user.userInfo(),
+    onSuccess: () => {
+      queryClient.invalidateQueries(queries.user.userInfo());
+    },
   });
-  return mutation;
+  return mutate;
 }

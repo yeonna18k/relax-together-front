@@ -1,23 +1,20 @@
 'use client';
-import { useUserData, useUserInfoList } from '@/entities/mypage/api';
+import { useUserInfoList } from '@/entities/mypage/api';
+import { User } from '@/entities/mypage/model/user';
+import MypageImage from '@/entities/mypage/ui/common/MypageImage';
 import EditProfileButton from '@/entities/mypage/ui/profile/EditProfileButton';
 import UserInfoContainer from '@/entities/mypage/ui/profile/UserInfoContainer';
 import { Skeleton } from '@/shared/ui/skeleton';
-import Image from 'next/image';
+import { AxiosResponse } from 'axios';
 
-export default function Profile() {
-  const { user } = useUserData();
+interface ProfileProps {
+  user?: AxiosResponse<User, any>;
+}
+export default function Profile({ user }: ProfileProps) {
   const userInfoList = useUserInfoList(user);
   return (
     <section className="mb-8 mt-4 flex h-[140px] w-full items-center justify-between gap-0 rounded-xl border border-green-200 px-[14px] md:mb-[28px] md:mt-6 md:gap-4 md:px-5 lg:mb-[52px] lg:mt-11 lg:px-[54px]">
-      <Image
-        priority
-        src={user?.data.image ?? '/assets/default-user.svg'}
-        alt="user"
-        width={72}
-        height={72}
-        className="h-[72px] w-[72px]"
-      />
+      <MypageImage image={user?.data.image} />
       <div className="ml-4 flex h-full w-full items-start justify-between md:ml-0 md:w-full md:flex-row md:items-center">
         {user ? (
           <UserInfoContainer

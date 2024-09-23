@@ -18,6 +18,6 @@ export type UserInfoItem = {
 export type UserInfoList = Array<UserInfoItem>;
 
 export interface UpdateUserRequest {
-  companyName?: string;
-  profileImage?: string;
+  companyName: string;
+  profileImage: string;
 }

@@ -1,13 +1,33 @@
 'use client';
+import { useUpdateUserInfo } from '@/entities/mypage/api';
+import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
 import EditCompanyNameInput from '@/entities/mypage/ui/profile-update-modal/EditCompanyNameInput';
+import EditImage from '@/entities/mypage/ui/profile-update-modal/EditImage';
 import Modal from '@/shared/common/ui/modal';
-import { useState } from 'react';
+import { AxiosResponse } from 'axios';
+import { useEffect, useState } from 'react';
 
-export default function ReviewModal() {
-  const [value, setValue] = useState<string>('');
+interface ProfileUpdateModalProps {
+  user?: AxiosResponse<User, any>;
+}
+export default function ProfileUpdateModal({ user }: ProfileUpdateModalProps) {
+  const mutate = useUpdateUserInfo();
 
+  const [updateUser, setUpdateUser] = useState<UpdateUserRequest>({
+    companyName: '',
+    profileImage: '',
+  });
+
+  useEffect(() => {
+    if (user) {
+      setUpdateUser({
+        companyName: user.data.companyName,
+        profileImage: user.data.image,
+      });
+    }
+  }, [user]);
   const handleSubmit = async () => {
-    //TODO: 회원 정보 수정 API 연동 작업
+    (await mutate)(updateUser);
   };
   return (
     <Modal
@@ -15,15 +35,21 @@ export default function ReviewModal() {
       variant="default"
       size="lg"
       actionBtnName="수정하기"
-      disabled={value.length <= 0}
+      disabled={updateUser.companyName.length <= 0}
       handleAction={handleSubmit}
     >
-      <>
-        <EditCompanyNameInput
-          value={value}
-          onChange={e => setValue(e.target.value)}
+      <div className="flex flex-col gap-6">
+        <EditImage
+          image={updateUser.profileImage}
+          setUpdateUser={setUpdateUser}
         />
-      </>
+        <EditCompanyNameInput
+          value={updateUser.companyName}
+          onChange={e =>
+            setUpdateUser(prev => ({ ...prev, companyName: e.target.value }))
+          }
+        />
+      </div>
     </Modal>
   );
 }

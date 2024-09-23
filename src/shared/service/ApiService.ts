@@ -1,4 +1,4 @@
-import { User } from '@/entities/mypage/model/user';
+import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
 import axios, { AxiosInstance } from 'axios';
 
 type SignUpUser = {
@@ -57,6 +57,11 @@ export default class ApiService {
 
   async getUser() {
     const response = await this.instance.get<User>('/api/auths/user');
+    return response;
+  }
+
+  async updateUser(data: UpdateUserRequest) {
+    const response = await this.instance.put('/api/auths/user', data);
     return response;
   }
 }
