@@ -2,8 +2,12 @@ name: CI/CD Pipeline with Firebase Preview Deploy and Chromatic
 
 on:
   pull_request:
+    types: opened
     branches:
       - main
+
+permissions:
+  pull-requests: write
 
 jobs:
   # PR에 대한 빌드 및 Firebase 배포
