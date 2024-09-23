@@ -1,3 +1,4 @@
+import { useUserData } from '@/entities/mypage/api';
 import handlers from '@/shared/mocks/handlers';
 import type { Meta, StoryObj } from '@storybook/react';
 import Profile from './index';
@@ -22,9 +23,10 @@ export const Default: Story = {
     },
   },
   render: function Render() {
+    const { user } = useUserData();
     return (
       <div className="px-5">
-        <Profile />
+        <Profile user={user} />
       </div>
     );
   },
