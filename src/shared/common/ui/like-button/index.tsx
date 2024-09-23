@@ -38,7 +38,7 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
   };
   return (
     <Button
-      className={`relative h-12 w-12 rounded-full border-2 p-3 ${liked ? 'border-orange-50 bg-orange-50 hover:bg-orange-50 active:bg-orange-50' : 'border-gray-200 bg-white hover:bg-white active:bg-white'}`}
+      className={`relative h-12 w-12 rounded-full border-2 p-3 ${liked ? 'border-green-50 bg-green-50 hover:bg-green-50 active:bg-green-50' : 'border-gray-200 bg-white hover:bg-white active:bg-white'}`}
       onClick={toggleLike}
     >
       <LikeHeartEmptyIcon
@@ -47,7 +47,7 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
       />
       <LikeHeartIcon
         data-testid="like-heart-icon"
-        className={`absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform ${liked ? 'animate-fillHeart' : 'scale-0'}`}
+        className={`stoke-green-500 absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform fill-green-500 ${liked ? 'animate-fillHeart' : 'scale-0'}`}
       />
     </Button>
   );

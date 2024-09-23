@@ -9,6 +9,11 @@ const meta: Meta<typeof MypageCard> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  decorators: Story => (
+    <div className="w-full md:w-[996px]">
+      <Story />
+    </div>
+  ),
 };
 
 export default meta;
@@ -20,7 +25,7 @@ export const MyGatheringsWithButtonActive: Story = {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { filter: 'my-gatherings' },
+        query: { subPage: 'my-gatherings' },
       },
     },
   },
@@ -42,7 +47,7 @@ export const MyGatheringsWithButtonActiveAndCompleted: Story = {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { filter: 'my-gatherings' },
+        query: { subPage: 'my-gatherings' },
       },
     },
   },
@@ -64,7 +69,7 @@ export const MyReviewsWithButtonActive: Story = {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { filter: 'my-reviews' },
+        query: { subPage: 'my-reviews' },
       },
     },
   },
@@ -86,7 +91,7 @@ export const MyCreatedGatherings: Story = {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { filter: 'my-created-gatherings' },
+        query: { subPage: 'my-created-gatherings' },
       },
     },
   },

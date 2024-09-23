@@ -10,12 +10,14 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'text-white bg-green-500 hover:bg-bg-green-600 active:bg-green-700 disabled:bg-[#9ca3af] rounded-md',
+          'text-white bg-green-600 hover:bg-bg-green-700 active:bg-green-800 disabled:bg-gray-400 rounded-md',
         outline:
-          'bg-white text-green-500 border border-green-500 hover:text-green-600 hover:border-green-600 active:text-bg-green-700 active:border-bg-green-700 rounded-md',
+          'bg-white text-green-500 border border-green-500 hover:text-green-600 hover:border-green-600 active:text-bg-green-700 active:border-bg-green-700 rounded-md disabled:text-gray-500',
         ghost: 'bg-transparent',
+        filter: 'bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-xl',
       },
       size: {
+        default: 'py-2.5 px-4 text-sm',
         sm: 'w-[120px] h-10 px-3 text-sm',
         lg: 'w-full h-10 px-8 text-base',
         icon: 'h-6 w-6',
@@ -23,7 +25,7 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       variant: 'default',
-      size: 'sm',
+      size: 'default',
     },
   },
 );
