@@ -45,6 +45,15 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
+      # Chromatic 배포 완료 주소 PR에 코멘트
+      - name: Publish Storybook Link in the comments
+        uses: dannyhw/storybook-chromatic-link-comment@v0.10
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          review-url: ${{ steps.chromatic.outputs.url }}
+          build-url: ${{ steps.chromatic.outputs.buildUrl }}
+          storybook-url: ${{ steps.chromatic.outputs.storybookUrl }}
+
       # Firebase PR Preview 배포
       - name: Firebase Deploy Preview
         uses: FirebaseExtended/action-hosting-deploy@v0
