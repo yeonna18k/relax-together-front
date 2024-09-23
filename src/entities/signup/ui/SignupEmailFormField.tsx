@@ -17,7 +17,6 @@ interface SignupFormFieldProps {
 
 export default function SignupEmailFormField({ form }: SignupFormFieldProps) {
   const error = form.formState.errors;
-  // console.log(error.email);
   useCheckEmail(form, error);
 
   const commonInputProps = {

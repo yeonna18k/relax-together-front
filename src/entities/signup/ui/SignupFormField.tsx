@@ -52,8 +52,6 @@ export default function SignupFormField({ form, name }: SignupFormFieldProps) {
   const isPasswordField = name === 'password' || name === 'passwordCheck';
   const error = form.formState.errors[name];
 
-  // useCheckEmail(form);
-
   const commonInputProps = {
     placeholder: signupFormData[name].placeholder,
     className: cn(
