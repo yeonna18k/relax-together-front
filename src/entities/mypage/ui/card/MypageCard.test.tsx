@@ -15,7 +15,7 @@ describe('MypageCard Component', () => {
     jest.clearAllMocks();
   });
   test('모임 참여시간이 남아있고 참여인원이 5명 이상일 경우 나의 모임으로 필터를 하면 화면에 이용 예정(chip-state), 개설확정(chip-state), 모임 정보, 예약 취소하기 버튼이 렌더링된다.', () => {
-    mockUseSearchParams('?filter=my-gatherings');
+    mockUseSearchParams('?subPage=my-gatherings');
     render(
       <MypageCard
         image="/assets/review-sample.png"
@@ -40,7 +40,7 @@ describe('MypageCard Component', () => {
     expect(cancelReservationButton).toBeInTheDocument();
   });
   test('모임 참여시간이 남아있고 참여인원이 5명 이하일 경우 나의 모임으로 필터를 하면 화면에 이용 예정(chip-state), 개설대기(chip-state),  모임 정보, 예약 취소하기 버튼이 렌더링된다.', () => {
-    mockUseSearchParams('?filter=my-gatherings');
+    mockUseSearchParams('?subPage=my-gatherings');
     render(
       <MypageCard
         image="/assets/review-sample.png"
@@ -65,7 +65,7 @@ describe('MypageCard Component', () => {
     expect(cancelReservationButton).toBeInTheDocument();
   });
   test('모임 참여시간이 지났을 경우 나의 모임으로 필터를 하면 화면에 이용 완료(chip-state), 모임 정보, 리뷰 작성하기 버튼이 렌더링된다.', () => {
-    mockUseSearchParams('?filter=my-gatherings');
+    mockUseSearchParams('?subPage=my-gatherings');
     render(
       <MypageCard
         image="/assets/review-sample.png"
@@ -90,7 +90,7 @@ describe('MypageCard Component', () => {
     expect(writeReviewButton).toBeInTheDocument();
   });
   test('나의 리뷰로 필터를 하면 화면에 chip-state은 보이지 않고, 모임 정보, 리뷰 작성하기 버튼이 렌더링된다.', () => {
-    mockUseSearchParams('?filter=my-reviews');
+    mockUseSearchParams('?subPage=my-reviews');
     render(
       <MypageCard
         image="/assets/review-sample.png"
@@ -115,7 +115,7 @@ describe('MypageCard Component', () => {
     expect(writeReviewButton).toBeInTheDocument();
   });
   test('내가 만든 모임으로 필터를 하면 화면에 chip-state와 버튼은 보이지 않고, 모임 정보만 렌더링된다.', () => {
-    mockUseSearchParams('?filter=my-created-gatherings');
+    mockUseSearchParams('?subPage=my-created-gatherings');
     render(
       <MypageCard
         image="/assets/review-sample.png"
