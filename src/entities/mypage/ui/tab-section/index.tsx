@@ -1,3 +1,4 @@
+'use client';
 import ReviewFilterButtonGroup from '@/entities/mypage/ui/tab-section/ReviewFilterButtonGroup';
 import SlideTabs from '@/entities/mypage/ui/tab-section/SlideTabs';
 import { useSearchParams } from 'next/navigation';
