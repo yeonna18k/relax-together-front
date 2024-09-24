@@ -1,6 +1,6 @@
 'use client';
 
-import DalrempitIcon from '@/shared/assets/icons/dalrempit-icon.svg';
+import DalrempitIcon from '@/shared/assets/icons/dalrem-icon.svg';
 import WorcationIcon from '@/shared/assets/icons/worcation-icon.svg';
 import SliderButtonWithIcon from '@/shared/common/ui/slider-button-with-icon';
 import { useState } from 'react';

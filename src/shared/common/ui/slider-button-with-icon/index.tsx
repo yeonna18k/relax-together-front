@@ -27,12 +27,7 @@ const SliderButtonWithIcon: React.FC<ButtonProps> = ({
       }`}
     >
       <IconComponent
-        isActive={isActive} // 기존 속성 유지
-        className={`${
-          isActive
-            ? 'fill-[#1F2937] stroke-[#1F2937]'
-            : 'fill-[#9CA3AF] stroke-[#9CA3AF]'
-        }`}
+        className={` ${isActive ? 'fill-[#222222] stroke-[#222222] stroke-[0.4]' : 'fill-[#9CA3AF] stroke-[#9CA3AF] stroke-[0.4]'} h-8 w-8`}
       />
       <div
         className={`font-pretendard ${labelHeight} text-left font-bold leading-[1] ${textSize}`}

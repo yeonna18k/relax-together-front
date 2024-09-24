@@ -7,15 +7,13 @@ export default function GatheringSearch() {
     <div className="text-black">
       <div className="flex flex-col items-center justify-center p-2 lg:p-10">
         <div className="flex w-full items-center justify-center gap-10 xl:flex-row">
-          <div className="relative -ml-10 h-[112px] w-[110px] overflow-hidden xl:hidden">
-            <Image
-              src="/assets/charactor.svg"
-              alt="charactor"
-              layout="fill"
-              objectFit="cover"
-              objectPosition="top"
-            />
-          </div>
+          <Image
+            src="/assets/charactor.svg"
+            alt="charactor"
+            width={110}
+            height={112}
+            className="h-[112px] w-[110px] overflow-hidden xl:hidden"
+          />
 
           <div className="flex flex-col items-center justify-center">
             <div className="font-medium text-green-800 max-xs:-ml-5 max-xs:text-sm 2xl:text-xl">

@@ -17,9 +17,9 @@ export default function SearchFilter() {
     useState<string>('ALL');
 
   return (
-    <div className="flex w-full flex-col-reverse max-xs:mt-4 sm:my-4 sm:flex-row sm:items-center sm:justify-between sm:p-2 md:flex-row md:items-center md:justify-between xl:w-[966px]">
-      <div className="flex justify-between gap-0 md:gap-1">
-        <div className="flex gap-1.5">
+    <div className="flex w-full flex-col-reverse sm:my-4 sm:flex-row sm:items-center sm:justify-between sm:p-2 md:flex-row md:items-center md:justify-between xl:w-[966px]">
+      <div className="flex justify-between gap-1.5 py-[12px] sm:py-0 md:gap-2">
+        <div className="flex gap-1.5 md:gap-2">
           <CommonSelect
             filterIconType="default"
             menuItems={commonSelectItems}
@@ -37,10 +37,9 @@ export default function SearchFilter() {
           selectedValue="DUE_DATE"
         />
       </div>
-      <div className="flex border-b-2 border-gray-200 max-xs:mb-4 max-xs:gap-2 max-xs:py-2 sm:gap-1.5 md:hidden"></div>
-      <div>
+      <div className="flex gap-2 border-b-2 border-gray-200 py-[14px] sm:border-none sm:py-0">
         <Button
-          className={`h-8 w-[54px] rounded-md ${selectedFilterButton === 'ALL' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`h-8 w-[54px] rounded-md lg:h-10 ${selectedFilterButton === 'ALL' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
           onClick={() => setSelectedFilterButton('ALL')}
           size="sm"
           variant="ghost"
@@ -48,7 +47,7 @@ export default function SearchFilter() {
           전체
         </Button>
         <Button
-          className={`h-8 rounded-md ${selectedFilterButton === 'STRETCHING' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`h-8 rounded-md lg:h-10 ${selectedFilterButton === 'STRETCHING' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
           onClick={() => setSelectedFilterButton('STRETCHING')}
           size="sm"
           variant="ghost"
@@ -56,7 +55,7 @@ export default function SearchFilter() {
           오피스 스트레칭
         </Button>
         <Button
-          className={`h-8 rounded-md ${selectedFilterButton === 'MINDFULNESS' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`h-8 rounded-md lg:h-10 ${selectedFilterButton === 'MINDFULNESS' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
           onClick={() => setSelectedFilterButton('MINDFULNESS')}
           size="sm"
           variant="ghost"
