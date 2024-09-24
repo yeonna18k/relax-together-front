@@ -1,4 +1,5 @@
 'use client';
+import TogglePage from '@/entities/auth/ui/TogglePage';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignup } from '../api';
-import GoToSignin from './GoToSignin';
 import SignupEmailFormField from './SignupEmailFormField';
 import SignupFormField from './SignupFormField';
 
@@ -86,7 +86,7 @@ export default function SignupForm({
             >
               확인
             </Button>
-            <GoToSignin />
+            <TogglePage page="signup" />
           </div>
         </form>
       </Form>
