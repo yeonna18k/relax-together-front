@@ -14,6 +14,8 @@ const buttonVariants = cva(
         outline:
           'bg-white text-green-500 border border-green-500 hover:text-green-600 hover:border-green-600 active:text-bg-green-700 active:border-bg-green-700 rounded-md disabled:text-gray-500',
         ghost: 'bg-transparent',
+        disabled: ' bg-gray-400 h-10 rounded-md',
+        enabled: 'bg-green-500 h-10 rounded-md',
         filter: 'bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-xl',
       },
       size: {
@@ -21,6 +23,7 @@ const buttonVariants = cva(
         sm: 'w-[120px] h-10 px-3 text-sm',
         lg: 'w-full h-10 px-8 text-base',
         icon: 'h-6 w-6',
+        full: 'w-full text-sm font-semibold',
       },
     },
     defaultVariants: {
