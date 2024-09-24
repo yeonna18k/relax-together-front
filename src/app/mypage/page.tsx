@@ -10,7 +10,7 @@ import { Suspense } from 'react';
 export default function Mypage() {
   const { user } = useUserData();
   return (
-    <div className="flex h-screen w-full justify-center">
+    <div className="flex h-[calc(100vh-60px)] w-full justify-center lg:h-[calc(100vh-75px)]">
       <div className="w-full px-4 pt-6 md:px-6 md:pt-[22px] xl:max-w-[1200px] xl:px-[102px]">
         <PageTitle title="마이 페이지" />
         <Profile user={user} />

@@ -9,3 +9,5 @@ export const MIN_PARTICIPANT = 5;
 export const MAX_SCORE = 5;
 
 export const REVIEWS_PER_PAGE = 4;
+
+export const LIMIT = 10;
