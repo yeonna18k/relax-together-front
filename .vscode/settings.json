@@ -1,11 +1,5 @@
 {
-  "cSpell.words": [
-    "autodocs",
-    "lucide",
-    "selectbox",
-    "signup",
-    "testid"
-  ],
+  "cSpell.words": ["autodocs", "lucide", "selectbox", "signup", "testid"],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#4b2374",
     "activityBar.background": "#4b2374",
