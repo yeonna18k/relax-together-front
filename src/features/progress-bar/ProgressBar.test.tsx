@@ -14,10 +14,10 @@ describe('ProgressBar Component', () => {
     expect(screen.getByText('개설확정')).toBeInTheDocument();
   });
 
-  test('참여자 수가 20일 때 "Closed" 상태가 되고, 텍스트가 주황색으로 적용된다.', () => {
+  test('참여자 수가 20일 때 "Closed" 상태가 되고, 텍스트가 초록색으로 적용된다.', () => {
     render(<ProgressBar value={20} />);
     expect(screen.getByText('Closed')).toBeInTheDocument();
-    expect(screen.getByText('20/20')).toHaveClass('text-orange-400');
+    expect(screen.getByText('20/20')).toHaveClass('text-green-400');
   });
 });
 
@@ -25,7 +25,7 @@ describe('Progress Component', () => {
   test('화면에 렌더링이 된다.', () => {
     render(<Progress value={0} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
-    expect(screen.getByTestId('indicator')).toHaveClass('bg-green-400');
+    expect(screen.getByTestId('indicator')).toHaveClass('bg-green-500');
   });
 
   test('참여자 수에 따른 프로그레스 바 퍼센티지 계산 테스트', () => {
@@ -36,9 +36,9 @@ describe('Progress Component', () => {
     );
   });
 
-  test('"Closed" 상태일 때 indicator가 진한 초록색으로 변경된다.', () => {
+  test('"Closed" 상태일 때 indicator가 연한 초록색으로 변경된다.', () => {
     render(<Progress value={20} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
-    expect(screen.getByTestId('indicator')).toHaveClass('bg-green-500');
+    expect(screen.getByTestId('indicator')).toHaveClass('bg-green-400');
   });
 });
