@@ -70,7 +70,7 @@ export default function SignupForm({
     }
   }
   return (
-    <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8">
+    <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8 xl:mx-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <SignupFormField form={form} name="name" />

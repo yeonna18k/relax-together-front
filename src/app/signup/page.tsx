@@ -4,7 +4,7 @@ import SignupHeader from '@/entities/signup/ui/SignupHeader';
 
 export default function Signup() {
   return (
-    <div className="flex flex-col xl:flex-row xl:items-center xl:gap-16">
+    <div className="flex h-[calc(100vh-56px)] flex-col px-4 pt-[39px] md:pt-[54px] lg:h-[calc(100vh-80px)] xl:flex-row xl:items-center xl:justify-center xl:gap-16">
       <div>
         <SignupHeader />
         <AuthImage />
