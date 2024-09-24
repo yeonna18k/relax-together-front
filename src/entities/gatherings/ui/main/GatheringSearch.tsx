@@ -31,7 +31,7 @@ export default function GatheringSearch() {
       <div className="m-0 flex justify-center py-0"></div>
 
       <div className="mx-auto flex items-center justify-between sm:px-6 xl:hidden">
-        <p className="text-2xl font-bold">모임찾기</p>
+        <p className="text-2xl font-bold">모임 찾기</p>
         <SliderButtonContainer size="small" />
       </div>
       <div className="border-t-2 border-gray-200 max-xs:w-[375px] sm:w-[696px] md:w-[696px] lg:w-[966px] xl:w-[966px] 2xl:w-[966px]"></div>

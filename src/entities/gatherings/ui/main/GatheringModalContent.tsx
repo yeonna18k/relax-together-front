@@ -1,25 +1,25 @@
 'use client';
 import Check from '@/shared/common/ui/check';
 
-import ChipTime from '@/shared/common/ui/chip-time';
+import ChipTime, { ChipTimeProps } from '@/shared/common/ui/chip-time';
 import CommonInput from '@/shared/common/ui/common-input';
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
 import { useState } from 'react';
-import PhotoUpload from './ModalPhoto';
+import FileUpload from './FileUpLoad';
 
 export default function GatheringModalContent() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedFilterButtons, setSelectedFilterButtons] =
     useState<string>('ALL');
 
-  const morningTimes = [
+  const morningTimes: Array<ChipTimeProps> = [
     { hour: 9, minute: 0, state: 'enabled' },
     { hour: 10, minute: 0, state: 'enabled' },
     { hour: 11, minute: 0, state: 'enabled' },
   ];
 
-  const afternoonTimes = [
+  const afternoonTimes: Array<ChipTimeProps> = [
     { hour: 12, minute: 0, state: 'enabled' },
     { hour: 13, minute: 0, state: 'enabled' },
     { hour: 14, minute: 0, state: 'enabled' },
@@ -72,7 +72,7 @@ export default function GatheringModalContent() {
 
       <p className="mb-3 mt-6 text-2xl font-semibold text-gray-800">이미지</p>
       <div className="flex w-[360px] gap-2">
-        <PhotoUpload />
+        <FileUpload />
       </div>
 
       <p className="mb-3 mt-6 text-2xl font-semibold text-gray-800">날짜</p>
