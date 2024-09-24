@@ -95,6 +95,7 @@ const config: Config = {
           800: '#D90037',
           900: '#CA002B',
         },
+        error: '#DC2626',
       },
       keyframes: {
         slideIn: {
