@@ -1,4 +1,5 @@
 'use client';
+
 import { useUserData, useUserInfoList } from '@/entities/mypage/api';
 import EditProfileButton from '@/entities/mypage/ui/profile/EditProfileButton';
 import UserInfoContainer from '@/entities/mypage/ui/profile/UserInfoContainer';

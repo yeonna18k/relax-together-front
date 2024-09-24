@@ -1,4 +1,7 @@
+import { PaginationParams } from '@/entities/mypage/model/common';
+import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import { User } from '@/entities/mypage/model/user';
+import { Response } from '@/shared/model/response';
 import axios, { AxiosInstance } from 'axios';
 
 type SignUpUser = {
@@ -57,6 +60,13 @@ export default class ApiService {
 
   async getUser() {
     const response = await this.instance.get<User>('/api/auths/user');
+    return response;
+  }
+
+  async getMyJoinedGatherings({ page, size }: PaginationParams) {
+    const response = await this.instance.get<Response<MyGathering>>(
+      `/api/gatherings/joined?page=${page}&size=${size}`,
+    );
     return response;
   }
 }

@@ -18,7 +18,7 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-gatherings');
     render(
       <MypageCard
-        image="/assets/review-sample.png"
+        imageUrl="/assets/review-sample.png"
         alt="review-sample"
         name="달램핏 오피스 스트래칭"
         location="을지로3가"
@@ -43,7 +43,7 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-gatherings');
     render(
       <MypageCard
-        image="/assets/review-sample.png"
+        imageUrl="/assets/review-sample.png"
         alt="review-sample"
         name="달램핏 오피스 스트래칭"
         location="을지로3가"
@@ -68,7 +68,7 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-gatherings');
     render(
       <MypageCard
-        image="/assets/review-sample.png"
+        imageUrl="/assets/review-sample.png"
         alt="review-sample"
         name="달램핏 오피스 스트래칭"
         location="을지로3가"
@@ -93,7 +93,7 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-reviews');
     render(
       <MypageCard
-        image="/assets/review-sample.png"
+        imageUrl="/assets/review-sample.png"
         alt="review-sample"
         name="달램핏 오피스 스트래칭"
         location="을지로3가"
@@ -118,7 +118,7 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-created-gatherings');
     render(
       <MypageCard
-        image="/assets/review-sample.png"
+        imageUrl="/assets/review-sample.png"
         alt="review-sample"
         name="달램핏 오피스 스트래칭"
         location="을지로3가"
