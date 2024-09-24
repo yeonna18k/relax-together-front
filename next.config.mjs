@@ -10,6 +10,7 @@ const nextConfig = {
       },
     ];
   },
+
   // NOTE: server api 주소를 전달받으면 사용
   // async rewrites() {
   //   return [

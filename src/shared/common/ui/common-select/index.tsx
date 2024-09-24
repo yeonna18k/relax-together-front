@@ -31,7 +31,7 @@ const getTriggerStyles = ({
   filterIconType: FilterIconType;
 }) => {
   if (filterIconType === 'sort') {
-    return 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:md:block px-2 py-2 justify-end gap-1';
+    return 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5';
   }
   return selectedValue === 'ALL' || selectedValue === undefined
     ? 'bg-white text-gray-900'
@@ -67,7 +67,7 @@ export default function CommonSelect({
         className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
       />
     ),
-    sort: <SortArrow />,
+    sort: <SortArrow className="h-6 w-6" />,
   };
   return (
     <Select onValueChange={onValueChange}>

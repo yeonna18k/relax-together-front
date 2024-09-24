@@ -18,8 +18,8 @@ const SliderButtonContainer: React.FC<SliderButtonContainerProps> = ({
     setActiveButton(button);
   };
 
-  const containerHeight = size === 'small' ? 'h-[64px]' : 'h-[68px]';
-  const containerWidth = size === 'small' ? 'w-[192px]' : 'w-[288px]';
+  const containerHeight = size === 'small' ? 'h-[48px]' : 'h-[68px]';
+  const containerWidth = size === 'small' ? 'w-[190px]' : 'w-[288px]';
   const gap = size === 'small' ? 'gap-3' : 'gap-6';
 
   // 슬라이딩 바의 너비와 위치를 조정

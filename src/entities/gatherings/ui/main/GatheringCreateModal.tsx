@@ -1,11 +1,11 @@
 'use client';
 import Modal from '@/shared/common/ui/modal';
 import GatheringModalContent from './GatheringModalContent';
-
 export default function GatheringCreateModal() {
   // TODO: 모임 만들기에 필요한 상태값 정의
+
   const handleSubmit = async () => {
-    //TODO: 모임 등록 API 연동 작업
+    //TODO: 리뷰 등록 API 연동 작업
   };
   return (
     <Modal

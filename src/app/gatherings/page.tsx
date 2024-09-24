@@ -4,10 +4,10 @@ import { fetchGatherings } from '@/entities/gatherings/api';
 import GatheringsCard from '@/entities/gatherings/ui/card';
 import Banner from '@/entities/gatherings/ui/main/Banner';
 import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
+import GatheringCreateModal from '@/entities/gatherings/ui/main/GatheringCreateModal';
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import SearchFilter from '@/entities/gatherings/ui/main/SearchFilter';
 import { useEffect, useState } from 'react';
-
 interface Gathering {
   id: number;
   type: string;
@@ -82,6 +82,7 @@ export default function Gatherings() {
         </div>
       </div>
       <CreateButton />
+      <GatheringCreateModal />
     </div>
   );
 }

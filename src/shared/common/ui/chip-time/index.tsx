@@ -18,7 +18,7 @@ export default function ChipTime({ state, hour, minute }: ChipTimeProps) {
       data-testid="chip-time"
       className={`h-8 w-[60px] rounded-lg text-center text-sm font-medium ${ChipTimeStyles[state]}`}
     >
-      {String(hour).padStart(2, '0')}:{String(minute).padEnd(2, '0')}
+      {String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')}
     </button>
   );
 }
