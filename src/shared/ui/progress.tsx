@@ -11,7 +11,7 @@ const Progress = React.forwardRef<
 >(({ className, value, ...props }, ref) => {
   const isClosed = value === 20;
 
-  const bgColor = isClosed ? 'bg-green-500' : 'bg-green-400';
+  const bgColor = isClosed ? 'bg-green-400' : 'bg-green-500';
 
   const maxCapacity = 20;
   const currentParticipants = value || 0;

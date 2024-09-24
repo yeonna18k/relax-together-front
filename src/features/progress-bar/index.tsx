@@ -20,9 +20,9 @@ export default function ProgressBar({ value }: ProgressBarProps) {
 
   const isClosed = value === 20;
 
-  const iconColor = isClosed ? 'fill-orange-400' : 'fill-gray-700';
-  const valueColor = isClosed ? 'text-orange-400' : 'text-gray-700';
-  const textColor = isClosed ? 'text-orange-400' : 'text-orange-600';
+  const iconColor = isClosed ? 'fill-green-400' : 'fill-gray-700';
+  const valueColor = isClosed ? 'text-green-400' : 'text-gray-700';
+  const textColor = isClosed ? 'text-green-400' : 'text-green-500';
   const text = isClosed ? 'Closed' : 'join now';
 
   return (
