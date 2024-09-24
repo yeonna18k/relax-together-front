@@ -1,6 +1,6 @@
 type ChipTimeState = 'selected' | 'disabled' | 'enabled';
 
-interface ChipTimeProps {
+export interface ChipTimeProps {
   state: ChipTimeState;
   hour: number;
   minute: number;

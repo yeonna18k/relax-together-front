@@ -1,7 +1,7 @@
 'use client';
 import Check from '@/shared/common/ui/check';
 
-import ChipTime from '@/shared/common/ui/chip-time';
+import ChipTime, { ChipTimeProps } from '@/shared/common/ui/chip-time';
 import CommonInput from '@/shared/common/ui/common-input';
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
@@ -13,13 +13,13 @@ export default function GatheringModalContent() {
   const [selectedFilterButtons, setSelectedFilterButtons] =
     useState<string>('ALL');
 
-  const morningTimes = [
+  const morningTimes: Array<ChipTimeProps> = [
     { hour: 9, minute: 0, state: 'enabled' },
     { hour: 10, minute: 0, state: 'enabled' },
     { hour: 11, minute: 0, state: 'enabled' },
   ];
 
-  const afternoonTimes = [
+  const afternoonTimes: Array<ChipTimeProps> = [
     { hour: 12, minute: 0, state: 'enabled' },
     { hour: 13, minute: 0, state: 'enabled' },
     { hour: 14, minute: 0, state: 'enabled' },
