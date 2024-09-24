@@ -1,4 +1,6 @@
-export const reviews = [
+import { Review } from '@/features/pagination/types';
+
+export const dummyReviews: Review[] = [
   {
     teamId: 0,
     id: 0,

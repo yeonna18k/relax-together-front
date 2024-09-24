@@ -1,4 +1,9 @@
-export const gatheringsInfo = {
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/gatherings-detail/model/information';
+
+export const dummyGatheringsInfo: GatheringsInfoTypes = {
   teamId: 0,
   id: 0,
   type: 'string',
@@ -8,12 +13,12 @@ export const gatheringsInfo = {
   location: '을지로 3가 서울시 중구 청계천로 100',
   participantCount: 5,
   capacity: 5,
-  image: 'string',
+  image: '/assets/mind-full-ness.svg',
   createdBy: 0,
   canceledAt: '2024-09-10T09:53:00.221Z',
 };
 
-export const participantList = [
+export const dummyParticipantList: ParticipantListTypes[] = [
   {
     teamId: 0,
     userId: 0,
