@@ -1,4 +1,4 @@
-import { useUserData } from '@/entities/mypage/api';
+import { useUserData } from '@/entities/mypage/model/hooks/useUserData';
 import handlers from '@/shared/mocks/handlers';
 import { AlertDialog } from '@/shared/ui/alert-dialog';
 import type { Meta, StoryObj } from '@storybook/react';

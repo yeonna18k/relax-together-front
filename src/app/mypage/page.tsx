@@ -4,9 +4,13 @@ import { useUserData } from '@/entities/mypage/api';
 import PageTitle from '@/entities/mypage/ui/main/PageTitle';
 import Profile from '@/entities/mypage/ui/profile';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ProfileUpdateModal from '@/entities/mypage/ui/profile-update-modal';
 import TabSection from '@/entities/mypage/ui/tab-section';
 =======
+=======
+import ProfileUpdateModal from '@/features/mypage/ui/profile-update-modal';
+>>>>>>> 673bca2 (chore: profile update modal entities -> features로 이동)
 import ReviewModal from '@/features/mypage/ui/review-modal';
 import SubPageContainer from '@/features/mypage/ui/sub-page';
 import TabSection from '@/features/mypage/ui/tab-section';
