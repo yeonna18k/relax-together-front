@@ -29,16 +29,12 @@ export async function useCheckEmail(
 
   const handleCheckEmail = async () => {
     try {
-<<<<<<< HEAD
       const response = await apiService.checkEmail(debouncedValue);
-=======
-      const response = await signupApiService.checkEmail(debouncedValue);
-      if (response.data) {
-        form.setError('email', {
-          message: '중복된 이메일입니다.',
-        });
-      }
->>>>>>> ecbd18e (test: subPage storybook test 추가)
+      // if (response.data) {
+      //   form.setError('email', {
+      //     message: '중복된 이메일입니다.',
+      //   });
+      // }
       return response.data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
