@@ -1,5 +1,6 @@
 import { dummyUser } from '@/shared/fixture/user';
 import { rest } from 'msw';
+import { dummyGatheringsInfo } from '../fixture/information';
 
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
@@ -10,6 +11,10 @@ const handlers = [
   rest.post(`/api/auth/signup`, (req, res, ctx) =>
     res(ctx.status(201), ctx.json({ accessToken: 'Access-Token' })),
   ),
+
+  rest.get(`/api/gatherings/:id`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dummyGatheringsInfo));
+  }),
 ];
 
 export default handlers;
