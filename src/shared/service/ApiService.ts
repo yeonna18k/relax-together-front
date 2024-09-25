@@ -77,6 +77,7 @@ export default class ApiService {
   //   return response;
   // }
 
+  // MY PAGE
   async getUser() {
     const response = await this.instance.get<User>('/api/auths/user');
     return response;
@@ -84,6 +85,12 @@ export default class ApiService {
 
   async updateUser(data: UpdateUserRequest) {
     const response = await this.instance.put('/api/auths/user', data);
+    return response;
+  }
+  async getMyHostedGatherings({ page, size }: PaginationParams) {
+    const response = await this.instance.get<Response<MyHostedGathering>>(
+      `/api/gatherings/my-hosted?page=${page}&size=${size}`,
+    );
     return response;
   }
 }

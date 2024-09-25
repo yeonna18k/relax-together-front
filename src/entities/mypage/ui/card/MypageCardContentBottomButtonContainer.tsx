@@ -1,13 +1,13 @@
 'use client';
 
-import { MyGathering } from '@/entities/mypage/model/my-gatherings';
-import CanceledGatheringButton from '@/entities/mypage/ui/card/CanceledGatheringButton';
-import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import {
   UseChipStateTypes,
   useTimeComparison,
-} from '@/shared/hooks/useTimeComparison';
+} from '@/entities/mypage/model/hooks/useTimeComparison';
+import { MyGathering } from '@/entities/mypage/model/my-gatherings';
+import CanceledGatheringButton from '@/entities/mypage/ui/card/CanceledGatheringButton';
+import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
 
 const statusComponentMap: Record<
   UseChipStateTypes,
@@ -23,8 +23,6 @@ export default function MypageCardContentBottomButtonContainer({
 }: Pick<MyGathering, 'dateTime' | 'id'>) {
   const { currentSubPage } = useCommonSearchParams();
   const status = useTimeComparison(dateTime);
-  // 마이페이지에서 나의 모임, 나의 리뷰, 내가 만든 모임을 페이지 searchParams로 구분하여 렌더링
-  // 나의 모임(my-gatherings), 나의 리뷰(my-reviews), 내가 만든 모임(my-created-gatherings)
 
   if (currentSubPage === 'my-gatherings') {
     return statusComponentMap[status](id);

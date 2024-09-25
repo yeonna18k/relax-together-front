@@ -1,12 +1,16 @@
-import { useMyGatheringsData } from '@/entities/mypage/api/my-gatherings';
+'use client';
+
+import { useMyGatheringsData } from '@/entities/mypage/api/queries';
 import MypageCard from '@/entities/mypage/ui/card';
+import ContentEmptySection from '@/features/mypage/ui/sub-page/ContentEmptySection';
+import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
+import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import CommonBlurCardWrapper from '@/shared/common/ui/blur-card/CommonBlurCardWrapper';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default function MyGatheringsSection() {
-  const { data, error, fetchNextPage, isFetchingNextPage, status } =
-    useMyGatheringsData();
+  const { data, fetchNextPage, status } = useMyGatheringsData();
 
   const { ref, inView } = useInView();
 
@@ -16,14 +20,11 @@ export default function MyGatheringsSection() {
     }
   }, [fetchNextPage, inView]);
 
-  if (status === 'pending') {
-    return <section>Loading...</section>;
+  if (status === 'pending' || !data) {
+    return <LoadingSkeletonList />;
   }
-  if (status === 'error') {
-    return <section>Error</section>;
-  }
-  return (
-    <section className="mt-6 max-h-[calc(100vh-370px)] overflow-y-scroll lg:max-h-[calc(100vh-428px)]">
+  return data.pages[0].totalElements > 0 ? (
+    <ScrollSection ref={ref}>
       {data?.pages.map((page, index) => (
         <ul key={`${page}-${index}`}>
           {page.content.map(gathering => (
@@ -42,6 +43,8 @@ export default function MyGatheringsSection() {
         </ul>
       ))}
       <div ref={ref} />
-    </section>
+    </ScrollSection>
+  ) : (
+    <ContentEmptySection description="신청한 모임이 아직 없어요" />
   );
 }

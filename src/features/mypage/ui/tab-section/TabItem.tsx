@@ -1,6 +1,6 @@
-import { Position } from '@/entities/mypage/ui/tab-section/SlideTabs';
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
-import useTabPosition from '@/shared/hooks/useTabPosition';
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+import useTabPosition from '@/features/mypage/model/hooks/useTabPosition';
+import { Position } from '@/features/mypage/ui/tab-section/SlideTabs';
 
 import Link from 'next/link';
 import { useRef } from 'react';

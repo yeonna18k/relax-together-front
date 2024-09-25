@@ -1,11 +1,11 @@
-import Indicator from '@/entities/mypage/ui/tab-section/Indicator';
-import TabItem, { Tab } from '@/entities/mypage/ui/tab-section/TabItem';
+import Indicator from '@/features/mypage/ui/tab-section/Indicator';
+import TabItem, { Tab } from '@/features/mypage/ui/tab-section/TabItem';
 import { useState } from 'react';
 
 const tabs: Array<Tab> = [
   { name: '나의 모임', subPage: 'my-gatherings' },
   { name: '나의 리뷰', subPage: 'my-reviews' },
-  { name: '내가 만든 모임', subPage: 'my-created-gatherings' },
+  { name: '내가 만든 모임', subPage: 'my-hosted-gatherings' },
 ];
 
 export type Position = {

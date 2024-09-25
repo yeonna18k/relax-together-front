@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   UpdateUserRequest,
   User,
@@ -50,3 +51,7 @@ export async function useUpdateUserInfo() {
   });
   return mutate;
 }
+=======
+export * from './my-gatherings';
+export * from './my-hosted-gatherings';
+>>>>>>> aa93372 (chore: fsd 폴더 구조에 맞게 mypage 기능 단위 features로 이동)

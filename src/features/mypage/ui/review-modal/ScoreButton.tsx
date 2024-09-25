@@ -5,12 +5,12 @@ import { Button } from '@/shared/ui/button';
 import { useEffect, useState } from 'react';
 
 interface RatingButtonProps {
-  rating: number;
+  score: number;
   index: number;
 }
-export default function RatingButton({ rating, index }: RatingButtonProps) {
+export default function ScoreButton({ score, index }: RatingButtonProps) {
   const [isAnimate, setIsAnimate] = useState(false);
-  const liked = rating > index;
+  const liked = score > index;
   useEffect(() => {
     setIsAnimate(liked);
   }, [liked]);

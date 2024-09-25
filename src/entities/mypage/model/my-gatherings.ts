@@ -5,7 +5,7 @@ export type GatheringType =
   | '워케이션';
 export type GatheringLocation = '건대입구' | '을지로3가' | '신림' | '홍대입구';
 
-type MyGatheringStatus = 'ONGOING' | 'CANCELLED';
+export type MyGatheringStatus = 'ONGOING' | 'CANCELLED';
 
 export interface MyGathering {
   id: number;
@@ -18,6 +18,9 @@ export interface MyGathering {
   capacity: number;
   imageUrl: string;
   hostUser: number;
-  status: MyGatheringStatus;
-  completed: boolean;
+  status?: MyGatheringStatus;
+  completed?: boolean;
 }
+
+export interface MyHostedGathering
+  extends Omit<MyGathering, 'status' | 'completed'> {}

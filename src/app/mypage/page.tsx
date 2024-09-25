@@ -3,8 +3,14 @@
 import { useUserData } from '@/entities/mypage/api';
 import PageTitle from '@/entities/mypage/ui/main/PageTitle';
 import Profile from '@/entities/mypage/ui/profile';
+<<<<<<< HEAD
 import ProfileUpdateModal from '@/entities/mypage/ui/profile-update-modal';
 import TabSection from '@/entities/mypage/ui/tab-section';
+=======
+import ReviewModal from '@/features/mypage/ui/review-modal';
+import SubPageContainer from '@/features/mypage/ui/sub-page';
+import TabSection from '@/features/mypage/ui/tab-section';
+>>>>>>> aa93372 (chore: fsd 폴더 구조에 맞게 mypage 기능 단위 features로 이동)
 import { Suspense } from 'react';
 
 export default function Mypage() {
@@ -17,7 +23,12 @@ export default function Mypage() {
         <Suspense fallback={null}>
           <TabSection />
         </Suspense>
+<<<<<<< HEAD
         <ProfileUpdateModal user={user} />
+=======
+        <SubPageContainer />
+        <ReviewModal />
+>>>>>>> aa93372 (chore: fsd 폴더 구조에 맞게 mypage 기능 단위 features로 이동)
       </div>
     </div>
   );
