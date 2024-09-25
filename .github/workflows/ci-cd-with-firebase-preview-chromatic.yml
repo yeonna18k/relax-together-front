@@ -2,8 +2,12 @@ name: CI/CD Pipeline with Firebase Preview Deploy and Chromatic
 
 on:
   pull_request:
+    types: [opened, synchronize]
     branches:
       - main
+
+permissions:
+  pull-requests: write
 
 jobs:
   # PR에 대한 빌드 및 Firebase 배포
@@ -40,10 +44,21 @@ jobs:
         run: yarn build
 
       # Chromatic 실행
-      - name: Run Chromatic
+      - name: Publish to Chromatic
+        id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitOnceUploaded: true
+
+      # Chromatic 배포 완료 주소 PR에 코멘트
+      - name: Publish Storybook Link in the comments
+        uses: dannyhw/storybook-chromatic-link-comment@v0.10
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          review-url: ${{ steps.chromatic.outputs.url }}
+          build-url: ${{ steps.chromatic.outputs.buildUrl }}
+          storybook-url: ${{ steps.chromatic.outputs.storybookUrl }}
 
       # Firebase PR Preview 배포
       - name: Firebase Deploy Preview

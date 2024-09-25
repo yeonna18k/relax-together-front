@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ReviewModal from './index';
 
 const meta: Meta<typeof ReviewModal> = {
-  title: 'Entities/ui/ReviewModal',
+  title: 'Entities/Mypage/ui/ReviewModal',
   component: ReviewModal,
   parameters: {
     layout: 'centered',

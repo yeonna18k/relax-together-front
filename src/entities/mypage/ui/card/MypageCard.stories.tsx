@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MypageCard from './index';
 
 const meta: Meta<typeof MypageCard> = {
-  title: 'Entities/ui/MypageCard',
+  title: 'Entities/Mypage/ui/MypageCard',
   component: MypageCard,
   parameters: {
     layout: 'centered',
