@@ -1,6 +1,10 @@
-import { MyGathering, MyHostedGathering } from '@/entities/mypage/model';
+import {
+  MyGathering,
+  MyHostedGathering,
+  UpdateUserRequest,
+  User,
+} from '@/entities/mypage/model';
 import { PaginationParams } from '@/entities/mypage/model/common';
-import { User } from '@/entities/mypage/model/user';
 import { Response } from '@/shared/model/response';
 import axios, { AxiosInstance } from 'axios';
 
@@ -80,6 +84,10 @@ export default class ApiService {
     const response = await this.instance.get<Response<MyHostedGathering>>(
       `/api/gatherings/my-hosted?page=${page}&size=${size}`,
     );
+    return response;
+  }
+  async updateUser(data: UpdateUserRequest) {
+    const response = await this.instance.put('/api/auths/user', data);
     return response;
   }
 }
