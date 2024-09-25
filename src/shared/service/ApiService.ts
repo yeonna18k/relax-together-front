@@ -11,6 +11,7 @@ type SignUpUser = {
 type SigninUser = {
   email: string;
   password: string;
+  token: string;
 };
 
 export default class ApiService {

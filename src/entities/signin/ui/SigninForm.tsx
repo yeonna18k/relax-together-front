@@ -1,8 +1,10 @@
 'use client';
 import TogglePage from '@/entities/auth/ui/TogglePage';
+import useAccessToken from '@/shared/hooks/useAccessToken';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignin } from '../api';
@@ -28,11 +30,17 @@ export default function SigninForm() {
     },
   });
 
+  const router = useRouter();
   const formValid = form.formState.isValid;
   const { signin } = useSignin();
+  const { setAccessToken } = useAccessToken();
 
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
+    if (res) {
+      setAccessToken(res.token);
+      router.push('/gatherings');
+    }
     console.log(res);
   }
 
