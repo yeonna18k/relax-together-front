@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import TabSection from './index';
 
 const meta: Meta<typeof TabSection> = {
-  title: 'Entities/ui/TabSection',
+  title: 'Entities/Mypage/ui/TabSection',
   component: TabSection,
   parameters: {
     layout: 'centered',

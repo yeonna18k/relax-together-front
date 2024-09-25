@@ -1,4 +1,4 @@
-import { User } from '@/entities/mypage/model/user';
+import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
 import axios, { AxiosInstance } from 'axios';
 
 type SignUpUser = {
@@ -10,6 +10,7 @@ type SignUpUser = {
 
 export default class ApiService {
   private instance: AxiosInstance = axios.create({
+    withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -41,7 +42,7 @@ export default class ApiService {
     name: string;
     companyName: string;
   }) {
-    const response = await this.instance.post<SignUpUser>('/api/auth/signup', {
+    const response = await this.instance.post<SignUpUser>('/api/auths/signup', {
       email,
       password,
       name,
@@ -49,7 +50,12 @@ export default class ApiService {
     });
     return response;
   }
-
+  async checkEmail(email: string) {
+    const response = await this.instance.post('/api/auths/check-email', {
+      email,
+    });
+    return response;
+  }
   // async logout(): Promise<AxiosResponse<null, any>> {
   //   const response = await this.instance.post('/api/auth/logout');
   //   return response;
@@ -57,6 +63,11 @@ export default class ApiService {
 
   async getUser() {
     const response = await this.instance.get<User>('/api/auths/user');
+    return response;
+  }
+
+  async updateUser(data: UpdateUserRequest) {
+    const response = await this.instance.put('/api/auths/user', data);
     return response;
   }
 }
