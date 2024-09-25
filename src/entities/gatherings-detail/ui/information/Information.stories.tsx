@@ -1,5 +1,8 @@
+import {
+  dummyGatheringsInfo,
+  dummyParticipantList,
+} from '@/shared/fixture/information';
 import type { Meta, StoryObj } from '@storybook/react';
-import { gatheringsInfo, participantList } from './dummy';
 import Information from './index';
 
 const meta = {
@@ -17,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    gatheringsInfo: gatheringsInfo,
-    participantList: participantList,
+    gatheringsInfo: dummyGatheringsInfo,
+    participantList: dummyParticipantList,
   },
 };
