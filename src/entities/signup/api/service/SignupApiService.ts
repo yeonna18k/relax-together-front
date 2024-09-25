@@ -1,5 +1,5 @@
 import { User } from '@/entities/signup/model/user';
-import ApiService from '@/shared/service/ApiService';
+import ApiService from '@/shared/api/service/ApiService';
 
 class SignupApiService extends ApiService {
   async signup({

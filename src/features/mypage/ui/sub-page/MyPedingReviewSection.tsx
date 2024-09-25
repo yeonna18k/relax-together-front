@@ -1,7 +1,6 @@
 'use client';
 
-import { useMyGatheringsData } from '@/entities/mypage/api/queries';
-import { timeComparisonStatus } from '@/entities/mypage/model/lib/utils';
+import { useMyPendingReviewsData } from '@/entities/mypage/api/queries/my-pending-reviews';
 import MypageCard from '@/entities/mypage/ui/card';
 import ContentEmptySection from '@/features/mypage/ui/sub-page/ContentEmptySection';
 import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
@@ -10,7 +9,7 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default function MyPendingReviewSection() {
-  const { data, fetchNextPage, status } = useMyGatheringsData();
+  const { data, fetchNextPage, status } = useMyPendingReviewsData();
 
   const { ref, inView } = useInView();
 
@@ -27,17 +26,14 @@ export default function MyPendingReviewSection() {
     <ScrollSection ref={ref}>
       {data?.pages.map((page, index) => (
         <ul key={`my-pending-reviews-${page}-${index}`}>
-          {page.content.map(gathering => {
-            const status = timeComparisonStatus(gathering.dateTime);
-            return status === 'completed' ? (
-              <li
-                key={gathering.id}
-                className="border-b-2 border-dashed border-gray-300 py-6 first:pt-0"
-              >
-                <MypageCard alt="my-gatherings-image" {...gathering} />
-              </li>
-            ) : null;
-          })}
+          {page.content.map(gathering => (
+            <li
+              key={gathering.id}
+              className="border-b-2 border-dashed border-gray-300 py-6 first:pt-0"
+            >
+              <MypageCard alt="my-gatherings-image" {...gathering} />
+            </li>
+          ))}
         </ul>
       ))}
       <div ref={ref} />

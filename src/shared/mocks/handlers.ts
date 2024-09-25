@@ -1,4 +1,8 @@
-import { MyGathering, MyHostedGathering } from '@/entities/mypage/model';
+import {
+  MyGathering,
+  MyHostedGathering,
+  WriteReviewRequest,
+} from '@/entities/mypage/model';
 
 import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
@@ -59,6 +63,30 @@ const handlers = [
 
     // 응답 반환
     return res(ctx.status(200), ctx.json(mockResponse));
+  }),
+  rest.delete(`api/gatherings/:gatheringId/leave`, (req, res, ctx) => {
+    const { gatheringId } = req.params;
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: `${gatheringId}의 모임 참여를 취소합니다.`,
+      }),
+    );
+  }),
+  rest.post(`/api/reviews`, async (req, res, ctx) => {
+    const data = (await req.json()) as WriteReviewRequest;
+    const { gatheringId, score, comment } = data;
+
+    if (comment.length > 0 && score > 0 && gatheringId >= 0) {
+      console.log('Received valid review data:', data);
+      return res(
+        ctx.status(200),
+        ctx.json({ message: 'Review submitted successfully', data }),
+      );
+    } else {
+      console.error('Invalid review data received:', data);
+      return res(ctx.status(400), ctx.json({ error: 'Invalid review data' }));
+    }
   }),
 ];
 
