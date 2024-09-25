@@ -8,7 +8,7 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { UseFormReturn } from 'react-hook-form';
-import { useCheckEmail } from '../api';
+import { useCheckEmail } from '../model/hooks/useCheckEmail';
 import { SignupFormType } from './SignupForm';
 
 interface SignupFormFieldProps {

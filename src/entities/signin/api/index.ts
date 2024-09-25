@@ -1,12 +1,12 @@
-import { apiService } from '@/shared/service/ApiService';
 import { UseFormReturn } from 'react-hook-form';
 import { User } from '../model/user';
 import { SigninFormType } from '../ui/SigninForm';
+import { signinApiService } from './service/SigninApiService';
 
 export function useSignin(form: UseFormReturn<SigninFormType>) {
   const signin = async (userData: User) => {
     try {
-      const response = await apiService.signin(userData);
+      const response = await signinApiService.signin(userData);
       return response.data;
     } catch (e) {
       console.error(e);
