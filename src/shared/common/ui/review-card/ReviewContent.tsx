@@ -25,7 +25,7 @@ export default function ReviewContent(props: ReviewCardProps) {
         <div className="line-clamp-3 overflow-hidden text-sm font-medium">
           {comment}
         </div>
-        {page !== Page.ALL_REVIEWS && (
+        {page !== Page.GATHERING_DETAIL && (
           <ReviewPlaceTag
             gatheringType={gatheringType}
             gatheringLocation={gatheringLocation}

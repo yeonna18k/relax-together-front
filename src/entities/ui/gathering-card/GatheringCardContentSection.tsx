@@ -1,11 +1,10 @@
+import { PickMyGathering } from '@/entities/ui/gathering-card';
 import ProgressBar from '@/features/progress-bar';
 import CardTitle from '@/shared/common/ui/card-title';
 import ChipInfo from '@/shared/common/ui/chip-info';
 import LikeButton from '@/shared/common/ui/like-button';
 
-interface GatheringCardContentSectionProps {
-  title: string;
-  location: string;
+interface GatheringCardContentSectionProps extends PickMyGathering {
   date: string;
   time: string;
   value: number;
@@ -13,7 +12,7 @@ interface GatheringCardContentSectionProps {
 }
 
 export default function GatheringCardContentSection({
-  title,
+  type,
   location,
   date,
   time,
@@ -24,7 +23,7 @@ export default function GatheringCardContentSection({
     <div className="flex w-full flex-col justify-between gap-4 pb-4 pl-4 pt-2 xs:w-[calc(100%-280px)]">
       <div className="flex justify-between">
         <div>
-          <CardTitle title={title} location={location} />
+          <CardTitle type={type} location={location} />
           <div className="mt-2 flex items-start justify-start">
             <div className="items-start space-x-2">
               <ChipInfo type="date">{date}</ChipInfo>

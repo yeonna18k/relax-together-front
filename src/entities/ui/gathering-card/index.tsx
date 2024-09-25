@@ -1,11 +1,11 @@
+import { MyGathering } from '@/entities/mypage/model';
 import GatheringCardContentSection from './GatheringCardContentSection';
 import GatheringCardImageSection from './GatheringCardImageSection';
 
-interface GatheringCardProps {
+export type PickMyGathering = Pick<MyGathering, 'type' | 'location'>;
+interface GatheringCardProps extends PickMyGathering {
   image: string;
   message: string;
-  title: string;
-  location: string;
   date: string;
   time: string;
   value: number;
@@ -15,7 +15,7 @@ interface GatheringCardProps {
 export default function GatheringCardList({
   image,
   message,
-  title,
+  type,
   location,
   date,
   time,
@@ -26,7 +26,7 @@ export default function GatheringCardList({
     <div className="shadow-l flex w-full flex-col gap-3 overflow-hidden rounded-3xl border-2 border-gray-100 xs:flex-row">
       <GatheringCardImageSection image={image} message={message} />
       <GatheringCardContentSection
-        title={title}
+        type={type}
         location={location}
         date={date}
         time={time}

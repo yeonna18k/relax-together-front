@@ -1,4 +1,4 @@
-import TabSection from '@/entities/mypage/ui/tab-section';
+import TabSection from '@/features/mypage/ui/tab-section';
 import { mockUseSearchParams } from '@/shared/mocks/mockUseSearchParams';
 import { render, screen } from '@testing-library/react';
 
