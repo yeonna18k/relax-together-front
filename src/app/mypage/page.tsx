@@ -1,24 +1,13 @@
 'use client';
 
-import { useUserData } from '@/entities/mypage/api';
+import { useUserData } from '@/entities/mypage/model/hooks/useUserData';
 import PageTitle from '@/entities/mypage/ui/main/PageTitle';
 import Profile from '@/entities/mypage/ui/profile';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import ProfileUpdateModal from '@/entities/mypage/ui/profile-update-modal';
-import TabSection from '@/entities/mypage/ui/tab-section';
-=======
-=======
 import ProfileUpdateModal from '@/features/mypage/ui/profile-update-modal';
->>>>>>> 673bca2 (chore: profile update modal entities -> features로 이동)
 import ReviewModal from '@/features/mypage/ui/review-modal';
 import SubPageContainer from '@/features/mypage/ui/sub-page';
 import TabSection from '@/features/mypage/ui/tab-section';
-<<<<<<< HEAD
->>>>>>> aa93372 (chore: fsd 폴더 구조에 맞게 mypage 기능 단위 features로 이동)
-=======
 import { useModal } from '@/shared/hooks/useModal';
->>>>>>> ecbd18e (test: subPage storybook test 추가)
 import { Suspense } from 'react';
 
 export default function Mypage() {
@@ -31,18 +20,10 @@ export default function Mypage() {
         <Profile user={user} />
         <Suspense fallback={null}>
           <TabSection />
+          <SubPageContainer />
         </Suspense>
-<<<<<<< HEAD
-        <ProfileUpdateModal user={user} />
-=======
-        <SubPageContainer />
-<<<<<<< HEAD
-        <ReviewModal />
->>>>>>> aa93372 (chore: fsd 폴더 구조에 맞게 mypage 기능 단위 features로 이동)
-=======
         {modal.includes('writeReview') && <ReviewModal />}
         {modal.includes('profileUpdate') && <ProfileUpdateModal user={user} />}
->>>>>>> ecbd18e (test: subPage storybook test 추가)
       </div>
     </div>
   );
