@@ -21,6 +21,3 @@ export interface MyGathering {
   status?: MyGatheringStatus;
   completed?: boolean;
 }
-
-export interface MyHostedGathering
-  extends Omit<MyGathering, 'status' | 'completed'> {}
