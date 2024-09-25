@@ -1,3 +1,4 @@
+import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 import MyGatheringsSection from '@/features/mypage/ui/sub-page/MyGatheringsSection';
 import MyHostedGatheringsSection from '@/features/mypage/ui/sub-page/MyHostedGatheringsSection';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -41,18 +42,16 @@ export default function SubPageContainer() {
 
   return (
     <AnimatePresence mode="wait">
-      {subPage && (
-        <motion.div
-          key={subPage}
-          initial="initial"
-          animate="in"
-          exit="out"
-          variants={pageVariants}
-          transition={pageTransition}
-        >
-          {subPageTargetMap[subPage]}
-        </motion.div>
-      )}
+      <motion.div
+        key={subPage}
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
+        {subPage ? <>{subPageTargetMap[subPage]}</> : <LoadingSkeletonList />}
+      </motion.div>
     </AnimatePresence>
   );
 }

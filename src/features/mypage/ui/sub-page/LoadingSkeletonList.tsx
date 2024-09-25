@@ -1,4 +1,4 @@
-import CommonSection from '@/entities/mypage/ui/sub-page/CommonSection';
+import CommonSection from '@/features/mypage/ui/sub-page/CommonSection';
 import { Skeleton } from '@/shared/ui/skeleton';
 
 export default function LoadingSkeletonList() {
