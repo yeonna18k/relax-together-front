@@ -1,4 +1,7 @@
-import { GatheringsInfoTypes } from '@/entities/gatherings-detail/model/information';
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/gatherings-detail/model/information';
 import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
 import axios, { AxiosInstance } from 'axios';
 
@@ -75,6 +78,13 @@ export default class ApiService {
   async getGatheringsInfo(id: string) {
     const response = await this.instance.get<GatheringsInfoTypes>(
       `/api/gatherings/${id}`,
+    );
+    return response;
+  }
+
+  async getParticipantList(id: string) {
+    const response = await this.instance.get<ParticipantListTypes[]>(
+      `/api/gatherings/${id}/participants`,
     );
     return response;
   }

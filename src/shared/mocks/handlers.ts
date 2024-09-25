@@ -1,6 +1,9 @@
 import { dummyUser } from '@/shared/fixture/user';
 import { rest } from 'msw';
-import { dummyGatheringsInfo } from '../fixture/information';
+import {
+  dummyGatheringsInfo,
+  dummyParticipantList,
+} from '../fixture/information';
 
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
@@ -14,6 +17,9 @@ const handlers = [
 
   rest.get(`/api/gatherings/:id`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(dummyGatheringsInfo));
+  }),
+  rest.get(`/api/gatherings/:id/participants`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dummyParticipantList));
   }),
 ];
 
