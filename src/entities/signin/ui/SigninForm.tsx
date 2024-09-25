@@ -41,7 +41,6 @@ export default function SigninForm() {
       setAccessToken(res.token);
       router.push('/gatherings');
     }
-    console.log(res);
   }
 
   return (

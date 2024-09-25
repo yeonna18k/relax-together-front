@@ -11,6 +11,7 @@ type SignUpUser = {
 type SigninUser = {
   email: string;
   password: string;
+  // NOTE: token 타입 어디서 넣어야하는지 확인하기
   token: string;
 };
 
