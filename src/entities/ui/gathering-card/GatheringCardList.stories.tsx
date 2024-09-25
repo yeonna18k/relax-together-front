@@ -50,8 +50,8 @@ export const Default: StoryObj<typeof GatheringCardList> = {
   args: {
     image: '/assets/mind-full-ness.svg',
     message: '오늘 21시 마감',
-    title: '달램핏 마인드풀니스',
-    location: '을지로 3가',
+    type: '마인드풀니스',
+    location: '을지로3가',
     date: '1월 7일',
     time: '17:30',
     value: 18,
