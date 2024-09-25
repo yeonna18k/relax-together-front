@@ -56,7 +56,7 @@ export default function SigninFormField({ form, name }: SigninFormFieldProps) {
           <FormLabel className="text-sm font-semibold text-gray-900">
             {signinFormData[name].label}
           </FormLabel>
-          <FormControl className="mb-1.5 mt-2">
+          <FormControl className="mt-2">
             {isPasswordField ? (
               <InputPassword {...commonInputProps} {...field} />
             ) : (

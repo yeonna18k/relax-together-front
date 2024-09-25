@@ -38,7 +38,7 @@ const InputPassword = React.forwardRef<
   const handleToggle = () => setToggled(!toggled);
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center text-center">
       <input
         ref={ref}
         type={toggled ? 'text' : 'password'}
@@ -51,7 +51,7 @@ const InputPassword = React.forwardRef<
       />
       <button
         type="button"
-        className="absolute right-3 text-black"
+        className="absolute bottom-2 right-4 text-black"
         onClick={() => {
           handleToggle();
         }}

@@ -69,7 +69,7 @@ export default function SignupFormField({ form, name }: SignupFormFieldProps) {
           <FormLabel className="text-sm font-semibold text-gray-900">
             {signupFormData[name].label}
           </FormLabel>
-          <FormControl className="mb-1.5 mt-2">
+          <FormControl className="mt-2">
             {isPasswordField ? (
               <InputPassword {...commonInputProps} {...field} />
             ) : (

@@ -34,7 +34,7 @@ export default function SigninForm() {
   }
 
   return (
-    <div className="w-full rounded-xl bg-white px-4 py-8">
+    <div className="mt-[15px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px]">
       <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
         로그인
       </div>
@@ -47,8 +47,9 @@ export default function SigninForm() {
               disabled={!formValid}
               variant={`${formValid ? 'enabled' : 'disabled'}`}
               size="full"
+              className="md:h-11 md:text-base"
             >
-              확인
+              로그인
             </Button>
             <TogglePage page="signin" />
           </div>

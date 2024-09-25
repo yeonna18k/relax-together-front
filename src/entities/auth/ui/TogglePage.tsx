@@ -32,7 +32,7 @@ export default function TogglePage({
   };
 
   return (
-    <div className="flex justify-center gap-1 text-[15px] font-medium">
+    <div className="flex h-[18px] justify-center gap-1 text-[15px] font-medium">
       <p className="text-gray-800">{PageMap[page].span}</p>
       <Link href={PageMap[page].href} className="text-green-500 underline">
         {PageMap[page].link}
