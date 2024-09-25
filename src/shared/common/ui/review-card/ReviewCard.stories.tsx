@@ -16,41 +16,41 @@ type Story = StoryObj<typeof meta>;
 
 export const Mypage: Story = {
   args: {
-    page: 'mypage',
+    page: 'MYPAGE',
     score: 3,
-    user_name: '럽윈즈올',
-    user_image: '',
-    content:
+    userName: '럽윈즈올',
+    userProfileImage: '/assets/profile.svg',
+    comment:
       '따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요. 따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요. 따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요.',
-    place: '달램핏 오피스 스트레칭 이용',
-    address: '을지로 3가',
-    date: '2024.01.25',
+    gatheringType: '오피스 스트레칭',
+    gatheringLocation: '을지로3가',
+    createdDate: '2024.01.25',
   },
 };
 export const Reviews: Story = {
   args: {
-    page: 'reviews',
+    page: 'GATHERING_DETAIL',
     score: 3,
-    user_name: '럽윈즈올',
-    user_image: '',
-    content:
+    userName: '럽윈즈올',
+    userProfileImage: '/assets/profile.svg',
+    comment:
       '따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요. 따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요. 따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요.',
-    place: '달램핏 오피스 스트레칭 이용',
-    address: '을지로 3가',
-    date: '2024.01.25',
+    gatheringType: '오피스 스트레칭',
+    gatheringLocation: '을지로3가',
+    createdDate: '2024.01.25',
   },
 };
 
 export const Search: Story = {
   args: {
-    page: 'search',
+    page: 'ALL_REVIEWS',
     score: 3,
-    user_name: '럽윈즈올',
-    user_image: '',
-    content:
+    userName: '럽윈즈올',
+    userProfileImage: '/assets/profile.svg',
+    comment:
       '따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요. 따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요. 따듯하게 느껴지는 공간이에요 :) 평소에 달램 이용해보고 싶었는데 이렇게 같이 달램 생기니까 너무 좋아요! 프로그램이 더 많이 늘어났으면 좋겠어요.',
-    place: '달램핏 오피스 스트레칭 이용',
-    address: '을지로 3가',
-    date: '2024.01.25',
+    gatheringType: '오피스 스트레칭',
+    gatheringLocation: '을지로3가',
+    createdDate: '2024.01.25',
   },
 };

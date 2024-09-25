@@ -1,15 +1,16 @@
 'use client';
 
-import { useMyHostedGatheringsData } from '@/entities/mypage/api/queries';
-import MypageCard from '@/entities/mypage/ui/card';
+import { useMyWrittenReviewsData } from '@/entities/mypage/api/queries/my-written-reviews';
 import ContentEmptySection from '@/features/mypage/ui/sub-page/ContentEmptySection';
 import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
+import ReviewCard from '@/shared/common/ui/review-card';
+import { Page } from '@/shared/lib/constants';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-export default function MyHostedGatheringsSection() {
-  const { data, fetchNextPage, status } = useMyHostedGatheringsData();
+export default function MyWrittenReviewSection() {
+  const { data, fetchNextPage, status } = useMyWrittenReviewsData();
 
   const { ref, inView } = useInView();
 
@@ -25,13 +26,13 @@ export default function MyHostedGatheringsSection() {
   return data.pages[0].totalElements > 0 ? (
     <ScrollSection ref={ref}>
       {data?.pages.map((page, index) => (
-        <ul key={`my-hosted-gatherings-${page}-${index}`}>
-          {page.content.map(gathering => (
+        <ul key={`my-written-reviews-${page}-${index}`}>
+          {page.content.map((review, i) => (
             <li
-              key={gathering.id}
-              className="border-b-2 border-dashed border-gray-300 py-6 first:pt-0"
+              key={`${review.gatheringType}-${i}`}
+              className="py-6 first:pt-0"
             >
-              <MypageCard alt="my-gatherings-image" {...gathering} />
+              <ReviewCard page={Page.MYPAGE} {...review} />
             </li>
           ))}
         </ul>
@@ -39,6 +40,6 @@ export default function MyHostedGatheringsSection() {
       <div ref={ref} />
     </ScrollSection>
   ) : (
-    <ContentEmptySection description="아직 만든 모임이 없어요" />
+    <ContentEmptySection description="아직 작성 가능한 리뷰가 없어요" />
   );
 }

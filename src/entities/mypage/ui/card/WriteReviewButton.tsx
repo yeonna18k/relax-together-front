@@ -5,10 +5,10 @@ import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/button';
 
 export default function WriteReviewButton({ id }: Pick<MyGathering, 'id'>) {
-  const { setOpen } = useModal();
+  const { openModal } = useModal();
   const { setTargetGatheringId } = useReviewStore();
   const handleClick = () => {
-    setOpen(true);
+    openModal('writeReview');
     setTargetGatheringId(id);
   };
   return (

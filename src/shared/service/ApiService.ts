@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
 import axios, { AxiosInstance } from 'axios';
 
@@ -7,6 +8,9 @@ type SignUpUser = {
   name: string;
   companyName: string;
 };
+=======
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+>>>>>>> ecbd18e (test: subPage storybook test 추가)
 
 type SigninUser = {
   email: string;
@@ -16,27 +20,25 @@ type SigninUser = {
 };
 
 export default class ApiService {
-  private instance: AxiosInstance = axios.create({
+  protected static instance: AxiosInstance = axios.create({
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  private accessToken = '';
+  private static accessToken = '';
 
-  setAccessToken(accessToken: string) {
+  static setAccessToken(accessToken: string) {
     if (accessToken === this.accessToken) {
       return;
     }
-
     const authorization = accessToken ? `Bearer ${accessToken}` : undefined;
-
     this.instance.defaults.headers.common['Authorization'] = authorization;
-
     this.accessToken = accessToken;
   }
 
+<<<<<<< HEAD
   //NOTE: api 사용 예제
   async signup({
     email,
@@ -86,13 +88,38 @@ export default class ApiService {
   async updateUser(data: UpdateUserRequest) {
     const response = await this.instance.put('/api/auths/user', data);
     return response;
+=======
+  async get<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.get<T, R, D>(url, config);
   }
-  async getMyHostedGatherings({ page, size }: PaginationParams) {
-    const response = await this.instance.get<Response<MyHostedGathering>>(
-      `/api/gatherings/my-hosted?page=${page}&size=${size}`,
-    );
-    return response;
-  }
-}
 
-export const apiService = new ApiService();
+  async post<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.post<T, R, D>(url, data, config);
+>>>>>>> ecbd18e (test: subPage storybook test 추가)
+  }
+
+  async put<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.put<T, R, D>(url, data, config);
+  }
+<<<<<<< HEAD
+=======
+
+  async delete<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.delete<T, R, D>(url, config);
+  }
+>>>>>>> ecbd18e (test: subPage storybook test 추가)
+}

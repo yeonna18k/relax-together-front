@@ -1,4 +1,4 @@
-import { apiService } from '@/shared/service/ApiService';
+import { signupApiService } from '@/entities/signup/api/service/SignupApiService';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { FieldErrors, UseFormReturn } from 'react-hook-form';
@@ -9,7 +9,7 @@ import { SignupFormType } from '../ui/SignupForm';
 export function useSignup() {
   const signup = async (userData: User) => {
     try {
-      const response = await apiService.signup(userData);
+      const response = await signupApiService.signup(userData);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -29,7 +29,16 @@ export async function useCheckEmail(
 
   const handleCheckEmail = async () => {
     try {
+<<<<<<< HEAD
       const response = await apiService.checkEmail(debouncedValue);
+=======
+      const response = await signupApiService.checkEmail(debouncedValue);
+      if (response.data) {
+        form.setError('email', {
+          message: '중복된 이메일입니다.',
+        });
+      }
+>>>>>>> ecbd18e (test: subPage storybook test 추가)
       return response.data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {

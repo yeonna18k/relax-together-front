@@ -1,10 +1,11 @@
 'use client';
 
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+
 import {
+  timeComparisonStatus,
   UseChipStateTypes,
-  useTimeComparison,
-} from '@/entities/mypage/model/hooks/useTimeComparison';
+} from '@/entities/mypage/model/lib/utils';
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import CanceledGatheringButton from '@/entities/mypage/ui/card/CanceledGatheringButton';
 import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
@@ -22,7 +23,7 @@ export default function MypageCardContentBottomButtonContainer({
   dateTime,
 }: Pick<MyGathering, 'dateTime' | 'id'>) {
   const { currentSubPage } = useCommonSearchParams();
-  const status = useTimeComparison(dateTime);
+  const status = timeComparisonStatus(dateTime);
 
   if (currentSubPage === 'my-gatherings') {
     return statusComponentMap[status](id);

@@ -1,9 +1,10 @@
+import handlers from '@/shared/mocks/handlers';
 import type { Meta, StoryObj } from '@storybook/react';
-import TabSection from './index';
+import SubPage from './index';
 
-const meta: Meta<typeof TabSection> = {
-  title: 'Features/Mypage/ui/TabSection',
-  component: TabSection,
+const meta: Meta<typeof SubPage> = {
+  title: 'Features/Mypage/ui/SubPage',
+  component: SubPage,
   parameters: {
     layout: 'centered',
   },
@@ -17,7 +18,7 @@ const meta: Meta<typeof TabSection> = {
 
 export default meta;
 
-type Story = StoryObj<typeof TabSection>;
+type Story = StoryObj<typeof SubPage>;
 
 export const Default: Story = {
   parameters: {
@@ -27,9 +28,12 @@ export const Default: Story = {
         query: { subPage: 'my-gatherings' },
       },
     },
+    msw: {
+      handlers,
+    },
   },
   render: function Render() {
-    return <TabSection />;
+    return <SubPage />;
   },
 };
 
@@ -41,9 +45,12 @@ export const MyWrittenReviewInSubPage: Story = {
         query: { subPage: 'my-reviews', filter: 'written' },
       },
     },
+    msw: {
+      handlers,
+    },
   },
   render: function Render() {
-    return <TabSection />;
+    return <SubPage />;
   },
 };
 
@@ -55,9 +62,12 @@ export const MyPendingReviewInSubPage: Story = {
         query: { subPage: 'my-reviews', filter: 'pending' },
       },
     },
+    msw: {
+      handlers,
+    },
   },
   render: function Render() {
-    return <TabSection />;
+    return <SubPage />;
   },
 };
 
@@ -69,8 +79,11 @@ export const MyHostedGatheringsInSubPage: Story = {
         query: { subPage: 'my-hosted-gatherings' },
       },
     },
+    msw: {
+      handlers,
+    },
   },
   render: function Render() {
-    return <TabSection />;
+    return <SubPage />;
   },
 };

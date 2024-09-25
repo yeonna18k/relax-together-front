@@ -1,6 +1,6 @@
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import { MAX_CAPACITY } from '@/shared/lib/constants';
-import { Response } from '@/shared/model/response';
+import { Response } from '@/shared/model';
 
 export const myGatheringsContents: Array<MyGathering> = Array.from({
   length: 100,
