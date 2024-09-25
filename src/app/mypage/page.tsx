@@ -3,7 +3,7 @@
 import { useUserData } from '@/entities/mypage/model/hooks/useUserData';
 import PageTitle from '@/entities/mypage/ui/main/PageTitle';
 import Profile from '@/entities/mypage/ui/profile';
-import ProfileUpdateModal from '@/entities/mypage/ui/profile-update-modal';
+import ProfileUpdateModal from '@/features/mypage/ui/profile-update-modal';
 import ReviewModal from '@/features/mypage/ui/review-modal';
 import SubPageContainer from '@/features/mypage/ui/sub-page';
 import TabSection from '@/features/mypage/ui/tab-section';

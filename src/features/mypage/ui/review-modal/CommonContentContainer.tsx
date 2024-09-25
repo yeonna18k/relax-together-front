@@ -1,6 +1,6 @@
 'use client';
 
-import ContentTitle from '@/features/mypage/ui/review-modal/ContentTitle';
+import ContentTitle from '@/entities/mypage/ui/common/ContentTitle';
 
 interface CommonContentContainerProps {
   title: string;
