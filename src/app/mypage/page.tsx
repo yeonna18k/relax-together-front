@@ -20,8 +20,8 @@ export default function Mypage() {
         <Profile user={user} />
         <Suspense fallback={null}>
           <TabSection />
+          <SubPageContainer />
         </Suspense>
-        <SubPageContainer />
         {modal.includes('writeReview') && <ReviewModal />}
         {modal.includes('profileUpdate') && <ProfileUpdateModal user={user} />}
       </div>
