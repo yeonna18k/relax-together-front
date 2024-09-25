@@ -8,6 +8,11 @@ type SignUpUser = {
   companyName: string;
 };
 
+type SigninUser = {
+  email: string;
+  password: string;
+};
+
 export default class ApiService {
   private instance: AxiosInstance = axios.create({
     withCredentials: true,
@@ -50,6 +55,15 @@ export default class ApiService {
     });
     return response;
   }
+
+  async signin({ email, password }: { email: string; password: string }) {
+    const response = await this.instance.post<SigninUser>('/api/auths/login', {
+      email,
+      password,
+    });
+    return response;
+  }
+
   async checkEmail(email: string) {
     const response = await this.instance.post('/api/auths/check-email', {
       email,

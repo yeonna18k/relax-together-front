@@ -5,6 +5,7 @@ import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useSignin } from '../api';
 import SigninFormField from './SigninFormField';
 
 const formSchema = z.object({
@@ -28,9 +29,11 @@ export default function SigninForm() {
   });
 
   const formValid = form.formState.isValid;
+  const { signin } = useSignin();
 
   async function onSubmit(values: SigninFormType) {
-    console.log(values);
+    const res = await signin(values);
+    console.log(res);
   }
 
   return (
