@@ -28,7 +28,7 @@ export default function TabItem({ tab, setPosition }: TabProps) {
       className={`relative px-2.5 pb-1.5 pt-2 ${activeTextColor} text-lg font-semibold`}
     >
       <Link
-        href={`/mypage?subPage=${subPage}${subPage === 'my-reviews' ? '&filter=completed' : ''}`}
+        href={`/mypage?subPage=${subPage}${subPage === 'my-reviews' ? '&filter=written' : ''}`}
       >
         {name}
       </Link>

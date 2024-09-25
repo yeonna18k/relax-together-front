@@ -1,6 +1,6 @@
-import { MyHostedGathering } from '@/entities/mypage/model/my-gatherings';
+import { MyHostedGathering } from '@/entities/mypage/model/';
 import { MAX_CAPACITY } from '@/shared/lib/constants';
-import { Response } from '@/shared/model/response';
+import { Response } from '@/shared/model';
 
 export const myHostedGatheringsContents: Array<MyHostedGathering> = Array.from({
   length: 100,

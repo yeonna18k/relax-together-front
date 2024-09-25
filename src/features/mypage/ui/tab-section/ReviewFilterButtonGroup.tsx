@@ -9,7 +9,7 @@ type Filter = {
 
 const filters: Array<Filter> = [
   { name: '작성 가능한 리뷰', filter: 'pending' },
-  { name: '작성한 리뷰', filter: 'completed' },
+  { name: '작성한 리뷰', filter: 'written' },
 ];
 export default function ReviewFilterButtonGroup() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
@@ -20,9 +20,12 @@ export default function ReviewFilterButtonGroup() {
         <Button
           key={filter}
           variant="filter"
-          className={`${isActive(filter) ? 'bg-gray-900 text-white hover:bg-gray-900' : ''}`}
+          className={`${isActive(filter) ? 'bg-gray-900 text-white hover:bg-gray-900' : ''} p-0`}
         >
-          <Link href={`/mypage?subPage=${currentSubPage}&filter=${filter}`}>
+          <Link
+            href={`/mypage?subPage=${currentSubPage}&filter=${filter}`}
+            className="rounded-xl px-4 py-2.5"
+          >
             {name}
           </Link>
         </Button>

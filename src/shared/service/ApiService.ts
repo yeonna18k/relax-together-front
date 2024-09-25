@@ -1,95 +1,51 @@
-import {
-  MyGathering,
-  MyHostedGathering,
-  UpdateUserRequest,
-  User,
-} from '@/entities/mypage/model';
-import { PaginationParams } from '@/entities/mypage/model/common';
-import { Response } from '@/shared/model/response';
-import axios, { AxiosInstance } from 'axios';
-
-type SignUpUser = {
-  email: string;
-  password: string;
-  name: string;
-  companyName: string;
-};
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export default class ApiService {
-  private instance: AxiosInstance = axios.create({
+  protected static instance: AxiosInstance = axios.create({
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  private accessToken = '';
+  private static accessToken = '';
 
-  setAccessToken(accessToken: string) {
+  static setAccessToken(accessToken: string) {
     if (accessToken === this.accessToken) {
       return;
     }
-
     const authorization = accessToken ? `Bearer ${accessToken}` : undefined;
-
     this.instance.defaults.headers.common['Authorization'] = authorization;
-
     this.accessToken = accessToken;
   }
 
-  //NOTE: api 사용 예제
-  async signup({
-    email,
-    password,
-    name,
-    companyName,
-  }: {
-    email: string;
-    password: string;
-    name: string;
-    companyName: string;
-  }) {
-    const response = await this.instance.post<SignUpUser>('/api/auths/signup', {
-      email,
-      password,
-      name,
-      companyName,
-    });
-    return response;
-  }
-  async checkEmail(email: string) {
-    const response = await this.instance.post('/api/auths/check-email', {
-      email,
-    });
-    return response;
-  }
-  // async logout(): Promise<AxiosResponse<null, any>> {
-  //   const response = await this.instance.post('/api/auth/logout');
-  //   return response;
-  // }
-
-  // MY PAGE
-  async getUser() {
-    const response = await this.instance.get<User>('/api/auths/user');
-    return response;
+  async get<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.get<T, R, D>(url, config);
   }
 
-  async getMyJoinedGatherings({ page, size }: PaginationParams) {
-    const response = await this.instance.get<Response<MyGathering>>(
-      `/api/gatherings/joined?page=${page}&size=${size}`,
-    );
-    return response;
+  async post<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.post<T, R, D>(url, data, config);
   }
-  async getMyHostedGatherings({ page, size }: PaginationParams) {
-    const response = await this.instance.get<Response<MyHostedGathering>>(
-      `/api/gatherings/my-hosted?page=${page}&size=${size}`,
-    );
-    return response;
+
+  async put<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    data?: D,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.put<T, R, D>(url, data, config);
   }
-  async updateUser(data: UpdateUserRequest) {
-    const response = await this.instance.put('/api/auths/user', data);
-    return response;
+
+  async delete<T = any, R = AxiosResponse<T>, D = any>(
+    url: string,
+    config?: AxiosRequestConfig<D>,
+  ) {
+    return ApiService.instance.delete<T, R, D>(url, config);
   }
 }
-
-export const apiService = new ApiService();

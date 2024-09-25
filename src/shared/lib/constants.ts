@@ -11,3 +11,9 @@ export const MAX_SCORE = 5;
 export const REVIEWS_PER_PAGE = 4;
 
 export const LIMIT = 10;
+
+export const Page = {
+  MYPAGE: 'MYPAGE',
+  GATHERING_DETAIL: 'GATHERING_DETAIL',
+  ALL_REVIEWS: 'ALL_REVIEWS',
+} as const;

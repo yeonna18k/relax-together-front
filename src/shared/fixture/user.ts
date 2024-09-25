@@ -1,4 +1,4 @@
-import { User } from '@/entities/mypage/model/user';
+import { User } from '@/entities/mypage/model';
 
 export const dummyUser: User = {
   id: 1,

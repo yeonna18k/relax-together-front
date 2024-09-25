@@ -7,10 +7,12 @@ import ProfileUpdateModal from '@/features/mypage/ui/profile-update-modal';
 import ReviewModal from '@/features/mypage/ui/review-modal';
 import SubPageContainer from '@/features/mypage/ui/sub-page';
 import TabSection from '@/features/mypage/ui/tab-section';
+import { useModal } from '@/shared/hooks/useModal';
 import { Suspense } from 'react';
 
 export default function Mypage() {
   const { user } = useUserData();
+  const { modal } = useModal();
   return (
     <div className="flex h-[calc(100vh-60px)] w-full justify-center lg:h-[calc(100vh-75px)]">
       <div className="w-full px-4 pt-6 md:px-6 md:pt-[22px] xl:max-w-[1200px] xl:px-[102px]">
@@ -20,8 +22,8 @@ export default function Mypage() {
           <TabSection />
         </Suspense>
         <SubPageContainer />
-        <ReviewModal />
-        <ProfileUpdateModal user={user} />
+        {modal.includes('writeReview') && <ReviewModal />}
+        {modal.includes('profileUpdate') && <ProfileUpdateModal user={user} />}
       </div>
     </div>
   );

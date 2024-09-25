@@ -1,4 +1,4 @@
-import { Response } from '@/shared/model/response';
+import { Response } from '@/shared/model';
 import {
   QueryKey,
   useInfiniteQuery,

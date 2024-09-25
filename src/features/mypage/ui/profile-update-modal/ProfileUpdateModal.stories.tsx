@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ProfileUpdateModal from './index';
 
 const meta: Meta<typeof ProfileUpdateModal> = {
-  title: 'Entities/Mypage/ui/ProfileUpdateModal',
+  title: 'Features/Mypage/ui/ProfileUpdateModal',
   component: ProfileUpdateModal,
   parameters: {
     layout: 'centered',

@@ -24,6 +24,16 @@ export const formatTime = (stringDate: string): string => {
   }).format(date);
 };
 
+// 년원일 포맷팅 (ex. 2024.09.24)
+export const formatFullDate = (stringDate: string): string => {
+  const date = new Date(stringDate);
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date);
+};
+
 export const getISOTimeWithOffset = (hourOffset: number) => {
   // 현재 날짜와 시간 가져오기
   const currentDate = new Date();

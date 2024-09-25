@@ -1,4 +1,4 @@
-import { Response } from '@/shared/model/response';
+import { Response } from '@/shared/model';
 
 export default function mockInfiniteResponse<T>(
   contents: Array<T>,
