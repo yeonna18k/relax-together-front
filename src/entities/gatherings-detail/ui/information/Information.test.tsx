@@ -1,13 +1,16 @@
+import {
+  dummyGatheringsInfo,
+  dummyParticipantList,
+} from '@/shared/fixture/information';
 import { render, screen } from '@testing-library/react';
 import Information from '.';
-import { gatheringsInfo, participantList } from './dummy';
 
 describe('Information Component', () => {
   test('화면에 올바르게 렌더링 된다.', () => {
     render(
       <Information
-        gatheringsInfo={gatheringsInfo}
-        participantList={participantList}
+        gatheringsInfo={dummyGatheringsInfo}
+        participantList={dummyParticipantList}
       />,
     );
 
@@ -22,8 +25,8 @@ describe('Information Component', () => {
   test('참여 유저 목록이 올바르게 렌더링 된다.', () => {
     render(
       <Information
-        gatheringsInfo={gatheringsInfo}
-        participantList={participantList}
+        gatheringsInfo={dummyGatheringsInfo}
+        participantList={dummyParticipantList}
       />,
     );
 
@@ -34,8 +37,8 @@ describe('Information Component', () => {
   test('참여자 수가 5명 이상일 때 OpenBadge(개설확정)가 렌더링 된다.', () => {
     render(
       <Information
-        gatheringsInfo={gatheringsInfo}
-        participantList={participantList}
+        gatheringsInfo={dummyGatheringsInfo}
+        participantList={dummyParticipantList}
       />,
     );
 
@@ -44,14 +47,14 @@ describe('Information Component', () => {
 
   test('참여자 수가 20명일 때 텍스트 색이 주황색이 된다.', () => {
     const fullgatheringsInfo = {
-      ...gatheringsInfo,
+      ...dummyGatheringsInfo,
       participantCount: 20,
     };
 
     render(
       <Information
         gatheringsInfo={fullgatheringsInfo}
-        participantList={participantList}
+        participantList={dummyParticipantList}
       />,
     );
 
