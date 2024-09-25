@@ -1,6 +1,7 @@
 'use client';
 
 import TagClock from '@/shared/common/ui/tag-clock';
+import { Skeleton } from '@/shared/ui/skeleton';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getParticipantList } from '../../api';
@@ -9,6 +10,7 @@ import {
   ParticipantListTypes,
 } from '../../model/information';
 import Information from '../information';
+import InformationSkeleton from './InformationSkeleton';
 
 interface GatheringTopProps {
   id: string;
@@ -46,7 +48,7 @@ export default function GatheringTop({
             className="h-full w-full object-cover"
           />
         ) : (
-          <div className="bg-sky-300">skeleton</div>
+          <Skeleton className="h-[180px] w-full rounded-xl border-2 border-gray-200 sm:h-60 md:h-[270px]" />
         )}
         <div className="absolute right-0 top-0">
           <TagClock message="오늘 21시 마감" variant="rounded" />
@@ -60,7 +62,7 @@ export default function GatheringTop({
             participantList={participantList}
           />
         ) : (
-          <div className="bg-sky-300">skeleton</div>
+          <InformationSkeleton />
         )}
       </div>
     </div>
