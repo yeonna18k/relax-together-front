@@ -2,8 +2,9 @@
 
 import PageTitle from '@/entities/mypage/ui/main/PageTitle';
 import Profile from '@/entities/mypage/ui/profile';
-import SubPageContainer from '@/entities/mypage/ui/sub-page';
-import TabSection from '@/entities/mypage/ui/tab-section';
+import ReviewModal from '@/features/mypage/ui/review-modal';
+import SubPageContainer from '@/features/mypage/ui/sub-page';
+import TabSection from '@/features/mypage/ui/tab-section';
 import { Suspense } from 'react';
 
 export default function Mypage() {
@@ -16,6 +17,7 @@ export default function Mypage() {
           <TabSection />
         </Suspense>
         <SubPageContainer />
+        <ReviewModal />
       </div>
     </div>
   );

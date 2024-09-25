@@ -23,38 +23,38 @@ describe('TabSection Component', () => {
     render(<TabSection />);
     const myGatherings = screen.getAllByRole('listitem')[0];
     const myReviews = screen.getAllByRole('listitem')[1];
-    const myCreatedGatherings = screen.getAllByRole('listitem')[2];
+    const myHostedGatherings = screen.getAllByRole('listitem')[2];
 
     expect(myGatherings).toHaveClass(activeColor);
     expect(myReviews).toHaveClass(inactiveColor);
-    expect(myCreatedGatherings).toHaveClass(inactiveColor);
+    expect(myHostedGatherings).toHaveClass(inactiveColor);
   });
   test('현재 주소가 /mypage?subPage=my-reviews이면 나의 리뷰가 활성화 되고, ReviewFilterButtonGroup이 활성화 된다..', () => {
     mockUseSearchParams('?subPage=my-reviews&filter=completed');
     render(<TabSection />);
     const myGatherings = screen.getAllByRole('listitem')[0];
     const myReviews = screen.getAllByRole('listitem')[1];
-    const myCreatedGatherings = screen.getAllByRole('listitem')[2];
+    const myHostedGatherings = screen.getAllByRole('listitem')[2];
 
     const pendingButton = screen.getByText('작성 가능한 리뷰');
     const completedButton = screen.getByText('작성한 리뷰');
 
     expect(myGatherings).toHaveClass(inactiveColor);
     expect(myReviews).toHaveClass(activeColor);
-    expect(myCreatedGatherings).toHaveClass(inactiveColor);
+    expect(myHostedGatherings).toHaveClass(inactiveColor);
 
     expect(pendingButton).toBeInTheDocument();
     expect(completedButton).toBeInTheDocument();
   });
-  test('현재 주소가 /mypage?subPage=my-created-gatherings이면 내가 만든 모임이 활성화 된다.', () => {
-    mockUseSearchParams('?subPage=my-created-gatherings');
+  test('현재 주소가 /mypage?subPage=my-hosted-gatherings이면 내가 만든 모임이 활성화 된다.', () => {
+    mockUseSearchParams('?subPage=my-hosted-gatherings');
     render(<TabSection />);
     const myGatherings = screen.getAllByRole('listitem')[0];
     const myReviews = screen.getAllByRole('listitem')[1];
-    const myCreatedGatherings = screen.getAllByRole('listitem')[2];
+    const myHostedGatherings = screen.getAllByRole('listitem')[2];
 
     expect(myGatherings).toHaveClass(inactiveColor);
     expect(myReviews).toHaveClass(inactiveColor);
-    expect(myCreatedGatherings).toHaveClass(activeColor);
+    expect(myHostedGatherings).toHaveClass(activeColor);
   });
 });

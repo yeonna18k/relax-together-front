@@ -86,12 +86,12 @@ export const MyReviewsWithButtonActive: Story = {
   },
 };
 
-export const MyCreatedGatherings: Story = {
+export const MyHostedGatherings: Story = {
   parameters: {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { subPage: 'my-created-gatherings' },
+        query: { subPage: 'my-hosted-gatherings' },
       },
     },
   },

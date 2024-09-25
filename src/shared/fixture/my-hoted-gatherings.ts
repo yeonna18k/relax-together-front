@@ -1,8 +1,8 @@
-import { MyGathering } from '@/entities/mypage/model/my-gatherings';
+import { MyHostedGathering } from '@/entities/mypage/model/my-gatherings';
 import { MAX_CAPACITY } from '@/shared/lib/constants';
 import { Response } from '@/shared/model/response';
 
-export const myGatheringsContents: Array<MyGathering> = Array.from({
+export const myHostedGatheringsContents: Array<MyHostedGathering> = Array.from({
   length: 100,
 }).map((_, index) => {
   const condition = index % 3;
@@ -23,12 +23,10 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
     capacity: MAX_CAPACITY,
     imageUrl: `/assets/sample${condition + 1}.png`,
     hostUser: 0,
-    status: condition === 2 ? 'CANCELLED' : 'ONGOING',
-    completed: true,
   };
 });
-export const myGatheringsDummyData: Response<MyGathering> = {
-  content: myGatheringsContents,
+export const myHostedGatheringsDummyData: Response<MyHostedGathering> = {
+  content: myHostedGatheringsContents,
   hasNext: true,
   totalElements: 0,
 };

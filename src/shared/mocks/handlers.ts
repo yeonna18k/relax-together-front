@@ -1,8 +1,9 @@
-import { MyGathering } from '@/entities/mypage/model/my-gatherings';
-import { contents } from '@/shared/fixture/my-gatherings';
+import { MyGathering, MyHostedGathering } from '@/entities/mypage/model';
+import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
+import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
 import { dummyUser } from '@/shared/fixture/user';
 import { LIMIT } from '@/shared/lib/constants';
-import { Response } from '@/shared/model/response';
+import mockInfiniteResponse from '@/shared/mocks/mockInfiniteResponse';
 import { rest } from 'msw';
 
 const handlers = [
@@ -15,22 +16,25 @@ const handlers = [
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
 
-    // 페이지네이션 처리
-    const startIndex = page * size;
-    const endIndex = startIndex + size;
+    const mockResponse = mockInfiniteResponse<MyGathering>(
+      myGatheringsContents,
+      page,
+      size,
+    );
 
-    // 해당 페이지의 데이터를 추출
-    const pageData = contents.slice(startIndex, endIndex);
+    // 응답 반환
+    return res(ctx.status(200), ctx.json(mockResponse));
+  }),
+  rest.get('/api/gatherings/my-hosted', (req, res, ctx) => {
+    // 쿼리 파라미터 가져오기
+    const page = parseInt(req.url.searchParams.get('page') || '0');
+    const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
 
-    // 다음 페이지가 있는지 확인
-    const hasNext = endIndex < contents.length;
-
-    // Mock response 생성
-    const mockResponse: Response<MyGathering> = {
-      content: pageData,
-      hasNext,
-      totalElements: contents.length,
-    };
+    const mockResponse = mockInfiniteResponse<MyHostedGathering>(
+      myHostedGatheringsContents,
+      page,
+      size,
+    );
 
     // 응답 반환
     return res(ctx.status(200), ctx.json(mockResponse));

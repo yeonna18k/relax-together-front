@@ -1,4 +1,4 @@
-import { Position } from '@/entities/mypage/ui/tab-section/SlideTabs';
+import { Position } from '@/features/mypage/ui/tab-section/SlideTabs';
 import { useEffect } from 'react';
 
 interface useTabPositionProps {

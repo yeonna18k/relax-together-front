@@ -47,12 +47,12 @@ export const MyReviewInSubPage: Story = {
   },
 };
 
-export const MyCreatedGatheringsInSubPage: Story = {
+export const MyHostedGatheringsInSubPage: Story = {
   parameters: {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { subPage: 'my-created-gatherings' },
+        query: { subPage: 'my-hosted-gatherings' },
       },
     },
   },

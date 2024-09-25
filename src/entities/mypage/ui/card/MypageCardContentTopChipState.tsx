@@ -1,14 +1,14 @@
-import { MyGathering } from '@/entities/mypage/model/my-gatherings';
-import ChipState from '@/shared/common/ui/chip-state';
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import {
   OpenChipStateTypes,
   useParticipantStatus,
-} from '@/shared/hooks/useParticipantStatus';
+} from '@/entities/mypage/model/hooks/useParticipantStatus';
 import {
   UseChipStateTypes,
   useTimeComparison,
-} from '@/shared/hooks/useTimeComparison';
+} from '@/entities/mypage/model/hooks/useTimeComparison';
+import { MyGathering } from '@/entities/mypage/model/my-gatherings';
+import ChipState from '@/shared/common/ui/chip-state';
 
 const useChipStateMap: Record<
   UseChipStateTypes,

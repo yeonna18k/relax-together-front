@@ -1,4 +1,4 @@
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
 

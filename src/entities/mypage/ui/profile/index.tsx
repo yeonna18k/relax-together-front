@@ -1,6 +1,7 @@
 'use client';
 
-import { useUserData, useUserInfoList } from '@/entities/mypage/api';
+import { useUserData } from '@/entities/mypage/api/queries';
+import { useUserInfoList } from '@/entities/mypage/model/hooks/useUserInfoList';
 import EditProfileButton from '@/entities/mypage/ui/profile/EditProfileButton';
 import UserInfoContainer from '@/entities/mypage/ui/profile/UserInfoContainer';
 import { Skeleton } from '@/shared/ui/skeleton';

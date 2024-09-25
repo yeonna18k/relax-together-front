@@ -10,7 +10,7 @@ import { formatDate, formatTime } from '@/shared/lib/utils';
 export default function MypageCardContent(
   props: Omit<MyGathering, 'imageUrl'>,
 ) {
-  const { type, location, dateTime, participantCount, status, id } = props;
+  const { type, location, dateTime, participantCount, id } = props;
   return (
     <div className="flex h-[156px] w-full flex-col justify-between px-0 xs:w-[calc(100%-280px)] md:px-4 lg:flex-row lg:items-center lg:px-5">
       <div>
