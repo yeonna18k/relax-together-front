@@ -1,4 +1,5 @@
 'use client';
+import GenericFormField from '@/entities/auth/ui/GenericFormField';
 import TogglePage from '@/entities/auth/ui/TogglePage';
 import useAccessToken from '@/shared/hooks/useAccessToken';
 import { Button } from '@/shared/ui/button';
@@ -8,7 +9,6 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignin } from '../api';
-import SigninFormField from './SigninFormField';
 
 const formSchema = z.object({
   email: z
@@ -50,8 +50,18 @@ export default function SigninForm() {
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <SigninFormField form={form} name="email" />
-          <SigninFormField form={form} name="password" />
+          <GenericFormField
+            form={form}
+            name="email"
+            label="아이디"
+            placeholder="이메일을 입력해주세요"
+          />
+          <GenericFormField
+            form={form}
+            name="password"
+            label="비밀번호"
+            placeholder="비밀번호를 입력해주세요"
+          />
           <div className="!mt-10 flex flex-col gap-6">
             <Button
               disabled={!formValid}

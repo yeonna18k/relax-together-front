@@ -7,40 +7,25 @@ import {
   FormMessage,
 } from '@/shared/ui/form';
 import { Input, InputPassword } from '@/shared/ui/input';
-import { UseFormReturn } from 'react-hook-form';
-import { SigninFormType } from './SigninForm';
+import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 
-interface SigninFormFieldProps {
-  form: UseFormReturn<SigninFormType>;
-  name: keyof SigninFormType;
+interface FormFieldProps<TFormType extends FieldValues> {
+  form: UseFormReturn<TFormType>;
+  name: Path<TFormType>;
+  label: string;
+  placeholder: string;
 }
-
-type SigninFormFieldPropsMap = {
-  [K in keyof SigninFormType]: {
-    label: string;
-    placeholder: string;
-    type?: string;
-  };
-};
-
-const signinFormData: SigninFormFieldPropsMap = {
-  email: {
-    label: '아이디',
-    placeholder: '이메일을 입력해주세요',
-  },
-  password: {
-    label: '비밀번호',
-    placeholder: '비밀번호를 입력해주세요',
-    type: 'password',
-  },
-};
-
-export default function SigninFormField({ form, name }: SigninFormFieldProps) {
-  const isPasswordField = name === 'password';
+export default function GenericFormField<TFormType extends FieldValues>({
+  form,
+  name,
+  label,
+  placeholder,
+}: FormFieldProps<TFormType>) {
+  const isPasswordField = name === 'password' || name === 'passwordCheck';
   const error = form.formState.errors[name];
 
   const commonInputProps = {
-    placeholder: signinFormData[name].placeholder,
+    placeholder,
     className: cn(
       'text-gray h-10 !w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
       error ? 'border border-error' : '',
@@ -54,7 +39,7 @@ export default function SigninFormField({ form, name }: SigninFormFieldProps) {
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-sm font-semibold text-gray-900">
-            {signinFormData[name].label}
+            {label}
           </FormLabel>
           <FormControl className="mt-2">
             {isPasswordField ? (

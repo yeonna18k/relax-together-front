@@ -30,16 +30,14 @@ export async function useCheckEmail(
   const handleCheckEmail = async () => {
     try {
       const response = await apiService.checkEmail(debouncedValue);
-      // TODO: 중복된 이메일일 경우 에러로 처리
-      // if (response.data) {
-      //   form.setError('email', {
-      //     message: '중복된 이메일입니다.',
-      //   });
-      // }
       return response.data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
-        if (e.response?.status === 403) {
+        if (e.response?.status === 409) {
+          form.setError('email', {
+            message: '중복된 이메일입니다.',
+          });
+        } else {
           form.setError('email', {
             message: '이메일 확인 중 오류가 발생했습니다.',
           });
