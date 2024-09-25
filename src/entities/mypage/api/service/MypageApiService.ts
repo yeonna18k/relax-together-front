@@ -2,11 +2,12 @@ import {
   MyGathering,
   MyHostedGathering,
   PaginationParams,
+  WriteReviewRequest,
 } from '@/entities/mypage/model';
 
 import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
+import ApiService from '@/shared/api/service/ApiService';
 import { Response, Review } from '@/shared/model';
-import ApiService from '@/shared/service/ApiService';
 
 class MypageApiService extends ApiService {
   async getUser() {
@@ -37,6 +38,11 @@ class MypageApiService extends ApiService {
 
   async updateUser(data: UpdateUserRequest) {
     const response = await this.put('/api/auths/user', data);
+    return response;
+  }
+
+  async writeReview(data: WriteReviewRequest) {
+    const response = await this.post(`api/reviews`, data);
     return response;
   }
 }

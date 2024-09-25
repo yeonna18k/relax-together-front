@@ -1,17 +1,12 @@
 'use client';
-import { useReviewStore } from '@/entities/mypage/model/store/useReviewStore';
+import { useWriteReview } from '@/entities/mypage/model/hooks/useWriteReview';
 import ModalContent from '@/features/mypage/ui/review-modal/ModalContent';
 import Modal from '@/shared/common/ui/modal';
-import { useState } from 'react';
 
 export default function ReviewModal() {
-  const { gatheringId } = useReviewStore();
-  const [score, setScore] = useState(0);
-  const [comment, setComment] = useState('');
+  const { score, comment, setScore, setComment, handleSubmit } =
+    useWriteReview();
 
-  const handleSubmit = async () => {
-    //TODO: 리뷰 등록 API 연동 작업
-  };
   return (
     <Modal
       title="리뷰 쓰기"

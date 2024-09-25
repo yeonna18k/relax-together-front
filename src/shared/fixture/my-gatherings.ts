@@ -1,5 +1,6 @@
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import { MAX_CAPACITY } from '@/shared/lib/constants';
+import { getISOTimeWithOffset } from '@/shared/lib/utils';
 import { Response } from '@/shared/model';
 
 export const myGatheringsContents: Array<MyGathering> = Array.from({
@@ -16,7 +17,7 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
           : '워케이션',
     name: null,
     dateTime:
-      condition === 0 ? '2024-09-23T07:30:24.329Z' : '2024-09-25T07:30:24.329Z',
+      condition === 0 ? '2024-09-23T07:30:24.329Z' : getISOTimeWithOffset(4),
     registrationEnd: '2024-09-23T07:30:24.330Z',
     location: '건대입구',
     participantCount: condition === 0 ? 4 : condition === 1 ? 10 : 20,

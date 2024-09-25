@@ -14,7 +14,7 @@ const statusComponentMap: Record<
   UseChipStateTypes,
   (id: number) => React.ReactNode
 > = {
-  scheduled: _ => <CanceledGatheringButton />,
+  scheduled: id => <CanceledGatheringButton id={id} />,
   completed: id => <WriteReviewButton id={id} />,
 };
 

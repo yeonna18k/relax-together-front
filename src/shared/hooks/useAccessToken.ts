@@ -1,6 +1,6 @@
 'use client';
 
-import ApiService from '@/shared/service/ApiService';
+import ApiService from '@/shared/api/service/ApiService';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
