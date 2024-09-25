@@ -25,7 +25,7 @@ export default function InformationBottom({
       500,
     );
     return () => clearTimeout(timer);
-  }, []);
+  }, [gatheringsInfo.participantCount]);
 
   return (
     <div className="border-t-2 border-dashed border-gray-200 p-6 pt-3 md:pt-6">

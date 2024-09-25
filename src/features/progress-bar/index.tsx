@@ -16,7 +16,7 @@ export default function ProgressBar({ value }: ProgressBarProps) {
   useEffect(() => {
     const timer = setTimeout(() => setProgress(value), 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [value]);
 
   const isClosed = value === 20;
 

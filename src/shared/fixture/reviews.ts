@@ -1,4 +1,4 @@
-import { Reviews } from '@/features/pagination-reviews/model/pagination';
+import { Reviews } from '@/features/pagination-reviews/model/reviews';
 
 export const dummyReviews: Reviews = {
   content: [
