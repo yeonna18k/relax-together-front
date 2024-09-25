@@ -32,7 +32,7 @@ export default function SigninForm() {
 
   const router = useRouter();
   const formValid = form.formState.isValid;
-  const { signin } = useSignin();
+  const { signin } = useSignin(form);
   const { setAccessToken } = useAccessToken();
 
   async function onSubmit(values: SigninFormType) {
