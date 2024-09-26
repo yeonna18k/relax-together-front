@@ -26,6 +26,7 @@ const nextConfig = {
         pathname: '/v0/b/relax-together.appspot.com/o/**',
       },
     ],
+    domains: ['firebasestorage.googleapis.com'],
   },
   webpack(config) {
     config.module.rules.push({
