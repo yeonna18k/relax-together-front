@@ -1,5 +1,6 @@
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { Position } from '@/shared/common/ui/tab-section/SlideTabs';
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
+
 import useTabPosition from '@/shared/hooks/useTabPosition';
 
 import Link from 'next/link';

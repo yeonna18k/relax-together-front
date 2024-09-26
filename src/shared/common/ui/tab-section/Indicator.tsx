@@ -1,5 +1,5 @@
-import { Position } from '@/entities/mypage/ui/tab-section/SlideTabs';
 import { motion } from 'framer-motion';
+import { Position } from './SlideTabs';
 
 interface IndicatorProps {
   position: Position;

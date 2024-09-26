@@ -1,8 +1,8 @@
-import Indicator from '@/entities/mypage/ui/tab-section/Indicator';
 import { TabSectionProps } from '@/shared/common/ui/tab-section';
 import TabItem from '@/shared/common/ui/tab-section/TabItem';
 
 import { useState } from 'react';
+import Indicator from './Indicator';
 
 export type Position = {
   width: number;

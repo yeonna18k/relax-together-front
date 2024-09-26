@@ -19,7 +19,7 @@ export default function GatheringSearch() {
             <div className="-ml-5 text-sm font-medium text-green-800 md:-ml-20 xl:ml-0 2xl:text-xl">
               즐거운 모임을 찾고 계신가요?
             </div>
-            <div className="font-semibold text-gray-900 max-xs:text-lg sm:text-2xl xl:mt-4 xl:text-3xl">
+            <div className="font-semibold text-gray-900 sm:text-2xl xl:mt-4 xl:text-3xl">
               지금 모임에 참여해보세요!
             </div>
           </div>
