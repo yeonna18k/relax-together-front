@@ -27,7 +27,7 @@ export default function GenericFormField<TFormType extends FieldValues>({
   const commonInputProps = {
     placeholder,
     className: cn(
-      'text-gray h-10 !w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
+      'text-gray h-10 text-sm font-medium text-gray-800 placeholder:text-gray-400',
       error ? 'border border-error' : '',
     ),
   };

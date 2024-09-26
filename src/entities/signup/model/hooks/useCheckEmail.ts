@@ -37,6 +37,7 @@ export async function useCheckEmail(
     if (debouncedValue.length > 0 && error.email === undefined) {
       handleCheckEmail();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
 
   useEffect(() => {
@@ -45,5 +46,6 @@ export async function useCheckEmail(
         setValue(value.email);
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setValue]);
 }
