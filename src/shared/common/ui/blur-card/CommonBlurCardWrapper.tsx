@@ -1,3 +1,4 @@
+import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import CommonBlurCard from '@/shared/common/ui/blur-card';
 
 interface CommonBlurCardWrapperProps {
@@ -5,10 +6,12 @@ interface CommonBlurCardWrapperProps {
 }
 export default function CommonBlurCardWrapper({
   children,
-}: CommonBlurCardWrapperProps) {
+  id,
+  status,
+}: CommonBlurCardWrapperProps & Pick<MyGathering, 'id' | 'status'>) {
   return (
     <div className="relative">
-      <CommonBlurCard />
+      {status === 'CANCELLED' && <CommonBlurCard id={id} />}
       {children}
     </div>
   );

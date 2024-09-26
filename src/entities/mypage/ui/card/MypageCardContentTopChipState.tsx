@@ -1,13 +1,13 @@
-import ChipState from '@/shared/common/ui/chip-state';
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+
 import {
   OpenChipStateTypes,
-  useParticipantStatus,
-} from '@/shared/hooks/useParticipantStatus';
-import {
+  participantComparisonStatus,
+  timeComparisonStatus,
   UseChipStateTypes,
-  useTimeComparison,
-} from '@/shared/hooks/useTimeComparison';
+} from '@/entities/mypage/model/lib/utils';
+import { MyGathering } from '@/entities/mypage/model/my-gatherings';
+import ChipState from '@/shared/common/ui/chip-state';
 
 const useChipStateMap: Record<
   UseChipStateTypes,
@@ -27,17 +27,13 @@ const useChipStateMap: Record<
   ),
 };
 
-interface MypageCardContentTopChipStateProps {
-  participantCount: number;
-  startGatheringTime: string;
-}
 export default function MypageCardContentTopChipState({
   participantCount,
-  startGatheringTime,
-}: MypageCardContentTopChipStateProps) {
+  dateTime,
+}: Pick<MyGathering, 'participantCount' | 'dateTime'>) {
   const { currentSubPage } = useCommonSearchParams();
-  const participantStatus = useParticipantStatus(participantCount);
-  const timeStatus = useTimeComparison(startGatheringTime);
+  const participantStatus = participantComparisonStatus(participantCount);
+  const timeStatus = timeComparisonStatus(dateTime);
 
   if (currentSubPage !== 'my-gatherings') {
     return <></>;

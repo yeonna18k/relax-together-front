@@ -2,5 +2,7 @@ interface PageTitleProps {
   title: string;
 }
 export default function PageTitle({ title }: PageTitleProps) {
-  return <h2 className="text-2xl font-semibold text-gray-950">{title}</h2>;
+  return (
+    <h2 className="text-lg font-semibold text-gray-950 md:text-2xl">{title}</h2>
+  );
 }

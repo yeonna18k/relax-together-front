@@ -1,8 +1,8 @@
-import GatheringsCard from '@/entities/gatherings/ui/card';
+import GatheringCard from '@/entities/gatherings/ui/card';
 
 export default function GatheringsCardList() {
   return (
-    <GatheringsCard
+    <GatheringCard
       image="https://example.com/image.jpg"
       message="모임에 오세요!"
       title="정기 모임"

@@ -18,7 +18,7 @@ export const Default: Story = {
   render: function Render() {
     return (
       <div className="h-[156px] max-h-[156px] w-[996px] max-w-[996px]">
-        <BlurCard />
+        <BlurCard id={1} />
       </div>
     );
   },

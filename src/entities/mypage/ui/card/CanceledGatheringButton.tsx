@@ -1,10 +1,14 @@
 'use client';
+import { MyGathering } from '@/entities/mypage/model';
+import useLeaveGatheringsById from '@/shared/hooks/useLeaveGatheringsById';
 import { Button } from '@/shared/ui/button';
 
-export default function CanceledGatheringButton() {
-  // TODO: 예약 취소하기 버튼 클릭 시 예약 취소 API 호출
+export default function CanceledGatheringButton({
+  id,
+}: Pick<MyGathering, 'id'>) {
+  const { handleSubmit } = useLeaveGatheringsById(id);
   return (
-    <Button variant="outline" size="sm">
+    <Button variant="outline" size="sm" onClick={handleSubmit}>
       예약 취소하기
     </Button>
   );

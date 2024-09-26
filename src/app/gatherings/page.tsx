@@ -1,7 +1,7 @@
 'use client';
 
 import { fetchGatherings } from '@/entities/gatherings/api';
-import GatheringsCard from '@/entities/gatherings/ui/card';
+import GatheringCard from '@/entities/gatherings/ui/card';
 import Banner from '@/entities/gatherings/ui/main/Banner';
 import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
 import GatheringCreateModal from '@/entities/gatherings/ui/main/GatheringCreateModal';
@@ -65,7 +65,7 @@ export default function Gatherings() {
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {gatherings.map(gathering => (
-                <GatheringsCard
+                <GatheringCard
                   key={gathering.id}
                   image={gathering.imageUrl}
                   message={`${gathering.participantCount}/${gathering.capacity} 명 참여 중`}

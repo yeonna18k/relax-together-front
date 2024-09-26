@@ -2,25 +2,33 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
 type ModalState = {
-  isOpen: boolean;
+  modal: string[];
 };
 
 type ModalAction = {
-  closeModal: () => void;
-  setOpen: (isOpen: boolean) => void;
+  openModal: (modalType: string) => void;
+  closeModal: (modalType: string) => void;
+  resetModal: () => void;
 };
 
 export const useModal = create(
   immer<ModalState & ModalAction>(set => ({
-    isOpen: false,
-    closeModal: () => {
+    modal: [],
+    openModal: modalType => {
       set(state => {
-        state.isOpen = false;
+        if (!state.modal.includes(modalType)) {
+          state.modal.push(modalType);
+        }
       });
     },
-    setOpen: isOpen => {
+    closeModal: modalType => {
       set(state => {
-        state.isOpen = isOpen;
+        state.modal = state.modal.filter(type => type !== modalType);
+      });
+    },
+    resetModal: () => {
+      set(state => {
+        state.modal = [];
       });
     },
   })),
