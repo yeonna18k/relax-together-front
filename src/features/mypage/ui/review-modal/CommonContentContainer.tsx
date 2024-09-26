@@ -1,6 +1,7 @@
 'use client';
 
 import ContentTitle from '@/entities/mypage/ui/common/ContentTitle';
+
 interface CommonContentContainerProps {
   title: string;
   children: React.ReactNode;
