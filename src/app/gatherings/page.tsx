@@ -1,20 +1,20 @@
 'use client';
 
-import { fetchGatherings } from '@/entities/gatherings/api';
 import GatheringCard from '@/entities/gatherings/ui/card';
 import Banner from '@/entities/gatherings/ui/main/Banner';
 import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
 import GatheringCreateModal from '@/entities/gatherings/ui/main/GatheringCreateModal';
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import SearchFilter from '@/entities/gatherings/ui/main/SearchFilter';
-import { useEffect, useState } from 'react';
+import { GatheringLocation, GatheringType } from '@/shared/model';
+import { useState } from 'react';
 interface Gathering {
   id: number;
-  type: string;
-  name: string;
+  type: GatheringType;
+  name: string | null;
   dateTime: string;
   registrationEnd: string;
-  location: string;
+  location: GatheringLocation;
   participantCount: number;
   capacity: number;
   imageUrl: string;
@@ -26,22 +26,21 @@ export default function Gatherings() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 모임 목록 데이터 가져오기
-  useEffect(() => {
-    const getGatherings = async () => {
-      setLoading(true);
-      try {
-        const data = await fetchGatherings();
-        setGatherings(data.content);
-      } catch (err: any) {
-        setError('모임 목록을 불러오는 데 실패했습니다.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const getGatherings = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const data = await fetchGatherings();
+  //       setGatherings(data.content);
+  //     } catch (err: any) {
+  //       setError('모임 목록을 불러오는 데 실패했습니다.');
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    getGatherings();
-  }, []);
+  //   getGatherings();
+  // }, []);
 
   return (
     <div className="relative flex w-full flex-col justify-center px-6">
@@ -69,7 +68,7 @@ export default function Gatherings() {
                   key={gathering.id}
                   image={gathering.imageUrl}
                   message={`${gathering.participantCount}/${gathering.capacity} 명 참여 중`}
-                  title={gathering.name}
+                  type={gathering.type}
                   location={gathering.location}
                   date={new Date(gathering.dateTime).toLocaleDateString()}
                   time={new Date(gathering.dateTime).toLocaleTimeString()}
