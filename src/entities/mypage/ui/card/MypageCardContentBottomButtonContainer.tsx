@@ -12,24 +12,27 @@ import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
 
 const statusComponentMap: Record<
   UseChipStateTypes,
-  (id: number) => React.ReactNode
+  ({ id, reviewed }: Pick<MyGathering, 'id' | 'reviewed'>) => React.ReactNode
 > = {
-  scheduled: id => <CanceledGatheringButton id={id} />,
-  completed: id => <WriteReviewButton id={id} />,
+  scheduled: ({ id, reviewed }) => <CanceledGatheringButton id={id} />,
+  completed: ({ id, reviewed }) => (
+    <WriteReviewButton id={id} reviewed={reviewed} />
+  ),
 };
 
 export default function MypageCardContentBottomButtonContainer({
   id,
   dateTime,
-}: Pick<MyGathering, 'dateTime' | 'id'>) {
+  reviewed,
+}: Pick<MyGathering, 'dateTime' | 'id' | 'reviewed'>) {
   const { currentSubPage } = useCommonSearchParams();
   const status = timeComparisonStatus(dateTime);
 
   if (currentSubPage === 'my-gatherings') {
-    return statusComponentMap[status](id);
+    return statusComponentMap[status]({ id, reviewed });
   }
   if (currentSubPage === 'my-reviews') {
-    return <WriteReviewButton id={id} />;
+    return <WriteReviewButton id={id} reviewed={reviewed} />;
   }
   return <></>;
 }
