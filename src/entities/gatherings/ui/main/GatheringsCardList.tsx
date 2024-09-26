@@ -1,12 +1,12 @@
-import GatheringsCard from '@/entities/gatherings/ui/card';
+import GatheringCard from '@/entities/gatherings/ui/card';
 
 export default function GatheringsCardList() {
   return (
-    <GatheringsCard
-      image="https://example.com/image.jpg"
+    <GatheringCard
+      image="/assets/sample1.png"
       message="모임에 오세요!"
-      title="정기 모임"
-      location="서울, 강남구"
+      type="마인드풀니스"
+      location="을지로3가"
       date="2024-09-18"
       time="오후 7시"
       value={18}

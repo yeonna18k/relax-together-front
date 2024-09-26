@@ -1,9 +1,8 @@
+import { PickMyGathering } from '@/entities/gatherings/ui/card';
 import ProgressBar from '@/features/progress-bar';
 import CardTitle from '@/shared/common/ui/card-title';
 import ChipInfo from '@/shared/common/ui/chip-info';
 import LikeButton from '@/shared/common/ui/like-button';
-import { PickMyGathering } from '.';
-
 interface GatheringCardContentSectionProps extends PickMyGathering {
   date: string;
   time: string;

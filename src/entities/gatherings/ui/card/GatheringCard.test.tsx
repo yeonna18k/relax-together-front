@@ -1,6 +1,8 @@
+import GatheringCard, {
+  GatheringCardProps,
+} from '@/entities/gatherings/ui/card';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import GatheringCard, { GatheringCardProps } from './index';
 
 describe('CardList Component', () => {
   const mockProps: GatheringCardProps = {

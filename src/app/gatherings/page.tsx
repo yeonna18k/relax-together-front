@@ -1,6 +1,6 @@
 'use client';
 
-import GatheringsCard from '@/entities/gatherings/ui/card';
+import GatheringCard from '@/entities/gatherings/ui/card';
 import Banner from '@/entities/gatherings/ui/main/Banner';
 import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
 import GatheringCreateModal from '@/entities/gatherings/ui/main/GatheringCreateModal';
@@ -8,10 +8,11 @@ import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import SearchFilter from '@/entities/gatherings/ui/main/SearchFilter';
 import { GatheringLocation, GatheringType } from '@/shared/model';
 import { useState } from 'react';
+
 interface Gathering {
   id: number;
   type: GatheringType;
-  name: string;
+  name: string | null;
   dateTime: string;
   registrationEnd: string;
   location: GatheringLocation;
@@ -48,7 +49,7 @@ export default function Gatherings() {
           ) : (
             <div className="md:[996px] w-[343px] flex-col items-center justify-center sm:w-[695px] xl:w-[996px]">
               {gatherings.map(gathering => (
-                <GatheringsCard
+                <GatheringCard
                   key={gathering.id}
                   image={gathering.imageUrl}
                   message={`${gathering.participantCount}/${gathering.capacity} 명 참여 중`}

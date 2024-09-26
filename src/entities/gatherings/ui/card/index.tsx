@@ -3,7 +3,7 @@ import GatheringCardContentSection from './GatheringCardContentSection';
 import GatheringCardImageSection from './GatheringCardImageSection';
 
 export type PickMyGathering = Pick<MyGathering, 'type' | 'location'>;
-interface GatheringCardProps extends PickMyGathering {
+export interface GatheringCardProps extends PickMyGathering {
   image: string;
   message: string;
   date: string;
@@ -12,7 +12,7 @@ interface GatheringCardProps extends PickMyGathering {
   gatheringId: string;
 }
 
-export default function GatheringsCard({
+export default function GatheringCard({
   image,
   message,
   type,
