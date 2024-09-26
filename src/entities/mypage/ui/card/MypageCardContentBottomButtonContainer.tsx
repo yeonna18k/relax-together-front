@@ -1,34 +1,38 @@
 'use client';
 
+import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+
+import {
+  timeComparisonStatus,
+  UseChipStateTypes,
+} from '@/entities/mypage/model/lib/utils';
+import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import CanceledGatheringButton from '@/entities/mypage/ui/card/CanceledGatheringButton';
 import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
-import useCommonSearchParams from '@/shared/hooks/useCommonSearchParams';
-import {
-  UseChipStateTypes,
-  useTimeComparison,
-} from '@/shared/hooks/useTimeComparison';
 
-const statusComponentMap: Record<UseChipStateTypes, React.ReactNode> = {
-  scheduled: <CanceledGatheringButton />,
-  completed: <WriteReviewButton />,
+const statusComponentMap: Record<
+  UseChipStateTypes,
+  ({ id, reviewed }: Pick<MyGathering, 'id' | 'reviewed'>) => React.ReactNode
+> = {
+  scheduled: ({ id, reviewed }) => <CanceledGatheringButton id={id} />,
+  completed: ({ id, reviewed }) => (
+    <WriteReviewButton id={id} reviewed={reviewed} />
+  ),
 };
 
-interface MypageCardContentBottomButtonContainerProps {
-  startGatheringTime: string;
-}
 export default function MypageCardContentBottomButtonContainer({
-  startGatheringTime,
-}: MypageCardContentBottomButtonContainerProps) {
+  id,
+  dateTime,
+  reviewed,
+}: Pick<MyGathering, 'dateTime' | 'id' | 'reviewed'>) {
   const { currentSubPage } = useCommonSearchParams();
-  const status = useTimeComparison(startGatheringTime);
-  // 마이페이지에서 나의 모임, 나의 리뷰, 내가 만든 모임을 페이지 searchParams로 구분하여 렌더링
-  // 나의 모임(my-gatherings), 나의 리뷰(my-reviews), 내가 만든 모임(my-created-gatherings)
+  const status = timeComparisonStatus(dateTime);
 
   if (currentSubPage === 'my-gatherings') {
-    return statusComponentMap[status];
+    return statusComponentMap[status]({ id, reviewed });
   }
   if (currentSubPage === 'my-reviews') {
-    return <WriteReviewButton />;
+    return <WriteReviewButton id={id} reviewed={reviewed} />;
   }
   return <></>;
 }

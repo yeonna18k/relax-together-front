@@ -8,10 +8,10 @@ const queryClient = new QueryClient();
 
 export default function Provider({ children }: { children: React.ReactNode }) {
   useMswApiMock(); //TODO: api 연동이 완료되면 해당 부분 삭제
-  const { isOpen, closeModal } = useModal();
+  const { modal, resetModal } = useModal();
   return (
     <QueryClientProvider client={queryClient}>
-      <AlertDialog open={isOpen} onOpenChange={closeModal}>
+      <AlertDialog open={modal.length > 0} onOpenChange={resetModal}>
         {children}
       </AlertDialog>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -45,7 +45,7 @@ export default function Modal({
   actionBtnName = '확인',
   handleAction,
 }: ModalProps) {
-  const { closeModal } = useModal();
+  const { resetModal } = useModal();
   const isNonSingleVariant = variant !== 'single';
   return (
     <AlertDialogContent>
@@ -58,7 +58,7 @@ export default function Modal({
             variant="ghost"
             size="icon"
             className="p-0"
-            onClick={closeModal}
+            onClick={resetModal}
           >
             <Xmark className="stroke-gray-500 stroke-2 hover:stroke-gray-700" />
           </Button>
