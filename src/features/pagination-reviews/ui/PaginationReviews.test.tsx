@@ -1,29 +1,29 @@
+import { dummyReviews } from '@/shared/fixture/reviews';
 import { REVIEWS_PER_PAGE } from '@/shared/lib/constants';
 import { fireEvent, render, screen } from '@testing-library/react';
-import PaginationComponent, { PaginationComponentProps } from '.';
-import { reviews } from './dummy';
+import PaginationReviews, { PaginationReviewsProps } from '.';
 
 describe('Pagination Component', () => {
-  let mockProps: PaginationComponentProps;
+  let mockProps: PaginationReviewsProps;
 
   beforeEach(() => {
     mockProps = {
-      reviewList: reviews,
+      reviewList: dummyReviews,
       currentPage: 1,
       setCurrentPage: jest.fn(),
-      totalPages: Math.ceil(reviews.length / REVIEWS_PER_PAGE),
+      totalPages: Math.ceil(dummyReviews.totalElements / REVIEWS_PER_PAGE),
       getReviewData: jest.fn(),
     };
   });
 
   test('화면에 렌더링 된다.', () => {
-    render(<PaginationComponent {...mockProps} />);
+    render(<PaginationReviews {...mockProps} />);
 
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
   });
 
   test('페이지 버튼의 수가 올바르게 렌더링 된다.', () => {
-    render(<PaginationComponent {...mockProps} />);
+    render(<PaginationReviews {...mockProps} />);
 
     const totalPages = mockProps.totalPages;
     const pageButtons = screen.getAllByRole('button');
@@ -36,7 +36,7 @@ describe('Pagination Component', () => {
   });
 
   test('첫 페이지에서 이전 버튼이 비활성화된다.', () => {
-    render(<PaginationComponent {...mockProps} />);
+    render(<PaginationReviews {...mockProps} />);
 
     const prevButton = screen.getByRole('button', { name: 'prev' });
     expect(prevButton).toBeDisabled();
@@ -44,7 +44,7 @@ describe('Pagination Component', () => {
 
   test('마지막 페이지에서 다음 버튼이 비활성화된다.', () => {
     render(
-      <PaginationComponent {...mockProps} currentPage={mockProps.totalPages} />,
+      <PaginationReviews {...mockProps} currentPage={mockProps.totalPages} />,
     );
 
     const nextButton = screen.getByRole('button', { name: 'next' });
@@ -52,7 +52,7 @@ describe('Pagination Component', () => {
   });
 
   test('페이지 버튼 클릭 시 setCurrentPage와 getReviewData가 호출된다.', () => {
-    render(<PaginationComponent {...mockProps} />);
+    render(<PaginationReviews {...mockProps} />);
 
     const pageButton = screen.getByRole('button', { name: '2' });
     fireEvent.click(pageButton);
@@ -61,7 +61,7 @@ describe('Pagination Component', () => {
   });
 
   test('이전, 다음 버튼 클릭 시 setCurrentPage와 getReviewData가 호출된다.', () => {
-    render(<PaginationComponent {...mockProps} />);
+    render(<PaginationReviews {...mockProps} />);
 
     const nextButton = screen.getByRole('button', { name: 'next' });
     fireEvent.click(nextButton);

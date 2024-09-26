@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import Pagination, { PaginationComponentProps } from './index';
+import Pagination, { PaginationReviewsProps } from './index';
 
 const meta = {
   title: 'Features/ui/Pagination',
@@ -19,7 +19,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const Template = (args: PaginationComponentProps) => {
+const Template = (args: PaginationReviewsProps) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   return (
@@ -36,7 +36,12 @@ const Template = (args: PaginationComponentProps) => {
 export const Default: Story = {
   render: args => <Template {...args} />,
   args: {
-    reviewList: [],
+    reviewList: {
+      content: [], // 빈 배열로 기본값 설정
+      currentPage: 1,
+      totalPages: 0,
+      totalElements: 0,
+    },
     currentPage: 1,
     setCurrentPage: () => {},
     totalPages: 9,

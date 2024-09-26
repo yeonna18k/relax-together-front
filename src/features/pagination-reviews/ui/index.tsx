@@ -11,9 +11,9 @@ import {
 } from '@nextui-org/pagination';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Review, Reviews } from '../model/pagination';
+import { Review, Reviews } from '../model/reviews';
 
-export interface PaginationComponentProps {
+export interface PaginationReviewsProps {
   reviewList: Reviews;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
@@ -21,13 +21,13 @@ export interface PaginationComponentProps {
   getReviewData: (page: number) => void;
 }
 
-export default function PaginationComponent({
+export default function PaginationReviews({
   reviewList,
   currentPage,
   setCurrentPage,
   totalPages,
   getReviewData,
-}: PaginationComponentProps) {
+}: PaginationReviewsProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
