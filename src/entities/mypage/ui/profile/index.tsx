@@ -1,13 +1,8 @@
 'use client';
-<<<<<<< HEAD
-import { useUserInfoList } from '@/entities/mypage/api';
+
+import { useUserInfoList } from '@/entities/mypage/model/hooks/useUserInfoList';
 import { User } from '@/entities/mypage/model/user';
 import MypageImage from '@/entities/mypage/ui/common/MypageImage';
-=======
-
-import { useUserData } from '@/entities/mypage/model/hooks/useUserData';
-import { useUserInfoList } from '@/entities/mypage/model/hooks/useUserInfoList';
->>>>>>> aa93372 (chore: fsd 폴더 구조에 맞게 mypage 기능 단위 features로 이동)
 import EditProfileButton from '@/entities/mypage/ui/profile/EditProfileButton';
 import UserInfoContainer from '@/entities/mypage/ui/profile/UserInfoContainer';
 import { Skeleton } from '@/shared/ui/skeleton';
