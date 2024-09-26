@@ -8,7 +8,7 @@ import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
 import { myWrittenReviewsContents } from '@/shared/fixture/my-written-reviews';
 import { dummyUser } from '@/shared/fixture/user';
-import { LIMIT } from '@/shared/lib/constants';
+import { BASE_URL, LIMIT } from '@/shared/lib/constants';
 import mockInfiniteResponse from '@/shared/mocks/mockInfiniteResponse';
 import { Gathering } from '@/shared/model';
 import { Review } from '@/shared/model/review';
@@ -89,7 +89,7 @@ const handlers = [
       return res(ctx.status(400), ctx.json({ error: 'Invalid review data' }));
     }
   }),
-  rest.get(`http://localhost:3000/api/gatherings`, (req, res, ctx) => {
+  rest.get(`${BASE_URL}/api/gatherings`, (req, res, ctx) => {
     // 쿼리 파라미터 가져오기
     console.log('🚀 ~ rest.get ~ req:', req);
     const page = parseInt(req.url.searchParams.get('page') || '0');
