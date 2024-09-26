@@ -1,13 +1,13 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import GatheringCardList from './index';
+import GatheringCardList, { GatheringCardProps } from './index';
 
 describe('CardList Component', () => {
-  const mockProps = {
+  const mockProps: GatheringCardProps = {
     image: '/assets/mind-full-ness.svg',
     message: '오늘 21시 마감',
-    title: '달램핏 마인드풀니스',
-    location: '을지로 3가',
+    type: '마인드풀니스',
+    location: '을지로3가',
     date: '1월 7일',
     time: '17:30',
     value: 20,
@@ -23,7 +23,7 @@ describe('CardList Component', () => {
   it('displays the correct location', () => {
     render(<GatheringCardList {...mockProps} />);
 
-    expect(screen.getByText('을지로 3가')).toBeInTheDocument();
+    expect(screen.getByText('을지로3가')).toBeInTheDocument();
   });
 
   it('shows the correct date and time', () => {

@@ -33,7 +33,7 @@ export const MyGatheringsWithButtonActive: Story = {
     return <MypageCard {...args} />;
   },
   args: {
-    image: '/assets/review-sample.png',
+    imageUrl: '/assets/review-sample.png',
     alt: '리뷰 샘플 이미지',
     name: '달램핏 오피스 스트래칭',
     location: '을지로3가',
@@ -55,7 +55,7 @@ export const MyGatheringsWithButtonActiveAndCompleted: Story = {
     return <MypageCard {...args} />;
   },
   args: {
-    image: '/assets/review-sample.png',
+    imageUrl: '/assets/review-sample.png',
     alt: '리뷰 샘플 이미지',
     name: '달램핏 오피스 스트래칭',
     location: '을지로3가',
@@ -77,7 +77,7 @@ export const MyReviewsWithButtonActive: Story = {
     return <MypageCard {...args} />;
   },
   args: {
-    image: '/assets/review-sample.png',
+    imageUrl: '/assets/review-sample.png',
     alt: '리뷰 샘플 이미지',
     name: '달램핏 오피스 스트래칭',
     location: '을지로3가',
@@ -86,12 +86,12 @@ export const MyReviewsWithButtonActive: Story = {
   },
 };
 
-export const MyCreatedGatherings: Story = {
+export const MyHostedGatherings: Story = {
   parameters: {
     nextjs: {
       navigation: {
         pathname: '/mypage',
-        query: { subPage: 'my-created-gatherings' },
+        query: { subPage: 'my-hosted-gatherings' },
       },
     },
   },
@@ -99,7 +99,7 @@ export const MyCreatedGatherings: Story = {
     return <MypageCard {...args} />;
   },
   args: {
-    image: '/assets/review-sample.png',
+    imageUrl: '/assets/review-sample.png',
     alt: '리뷰 샘플 이미지',
     name: '달램핏 오피스 스트래칭',
     location: '을지로3가',

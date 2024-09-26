@@ -1,5 +1,6 @@
 'use client';
-import { useUserInfoList } from '@/entities/mypage/api';
+
+import { useUserInfoList } from '@/entities/mypage/model/hooks/useUserInfoList';
 import { User } from '@/entities/mypage/model/user';
 import MypageImage from '@/entities/mypage/ui/common/MypageImage';
 import EditProfileButton from '@/entities/mypage/ui/profile/EditProfileButton';
