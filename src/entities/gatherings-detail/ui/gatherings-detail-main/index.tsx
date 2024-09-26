@@ -1,5 +1,3 @@
-'use client';
-
 import BottomFloatingBar from '@/features/bottom-floating-bar';
 import { GatheringsInfoTypes } from '../../model/information';
 import GatheringTop from '../gathering-top';

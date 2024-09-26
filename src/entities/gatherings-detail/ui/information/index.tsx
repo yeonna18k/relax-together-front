@@ -14,7 +14,6 @@ export default async function Information({
 }: InformationProps) {
   const participantResponse = await apiService.getParticipantList(id);
 
-  console.log('🚀 ~ GatheringsDetail ~ response:', participantResponse.data);
   return (
     <>
       <div className="w-full rounded-xl border-2 border-gray-200 bg-white">

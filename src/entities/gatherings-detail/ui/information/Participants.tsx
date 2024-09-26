@@ -3,10 +3,11 @@ import {
   GatheringsInfoTypes,
   ParticipantListTypes,
 } from '../../model/information';
+import UserProfileImage from './UserProfileImage';
 
 interface ParticipantsProps {
   gatheringsInfo: GatheringsInfoTypes;
-  participantList: ParticipantListTypes[];
+  participantList: ParticipantListTypes;
 }
 
 export default function Participants({
@@ -22,10 +23,10 @@ export default function Participants({
             {gatheringsInfo.participantCount}명
           </span>
         </div>
-        {/* <UserProfileImage
+        <UserProfileImage
           gatheringsInfo={gatheringsInfo}
           participantList={participantList}
-        /> */}
+        />
       </div>
       {gatheringsInfo.participantCount >= 5 ? (
         <OpenBadge value={gatheringsInfo.participantCount} />

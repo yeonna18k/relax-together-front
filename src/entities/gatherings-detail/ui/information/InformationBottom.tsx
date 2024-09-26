@@ -1,4 +1,5 @@
 'use client';
+
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
@@ -10,7 +11,7 @@ import Participants from './Participants';
 
 interface InformationBottomProps {
   gatheringsInfo: GatheringsInfoTypes;
-  participantList: ParticipantListTypes[];
+  participantList: ParticipantListTypes;
 }
 
 export default function InformationBottom({

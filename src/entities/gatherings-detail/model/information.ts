@@ -1,28 +1,30 @@
 export type GatheringsInfoTypes = {
-  teamId: number;
   id: number;
-  type: string;
+  hostUser: number;
   name: string;
+  location: string;
+  type: string;
+  capacity: number;
+  imageUrl: string;
+  participantCount: number;
   dateTime: string;
   registrationEnd: string;
-  location: string;
-  participantCount: number;
-  capacity: number;
-  image: string;
-  createdBy: number;
-  canceledAt: string;
+  status: string;
+};
+
+type Participants = {
+  userId: number;
+  name: string;
+  email: string;
+  companyName: string;
+  profileImage: string;
+  joinedAt: string;
 };
 
 export type ParticipantListTypes = {
-  teamId: number;
-  userId: number;
   gatheringId: number;
-  joinedAt: string;
-  User: {
-    id: number;
-    email: string;
-    name: string;
-    companyName: string;
-    image: string;
-  };
+  participants: Participants[];
+  currentPage: number;
+  totalPages: number;
+  totalElements: number;
 };

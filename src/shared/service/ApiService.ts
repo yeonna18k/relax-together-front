@@ -83,7 +83,7 @@ export default class ApiService {
   }
 
   async getParticipantList(id: string) {
-    const response = await this.instance.get<ParticipantListTypes[]>(
+    const response = await this.instance.get<ParticipantListTypes>(
       `http://localhost:3000/api/gatherings/${id}/participants`,
     );
     return response;
