@@ -14,10 +14,6 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public'],
-  env: config => ({
-    ...config,
-    STORYBOOK_API_URL: process.env.STORYBOOK_API_URL || '/api',
-  }),
   webpackFinal: async config => {
     if (!config.module || !config.module.rules) {
       return config;

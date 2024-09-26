@@ -8,11 +8,7 @@ import { Calendar } from '@/shared/ui/calendar';
 import { useState } from 'react';
 import FileUpload from './FileUpLoad';
 
-export default function GatheringModalContent({
-  onSubmit,
-}: {
-  onSubmit: (data: any) => void;
-}) {
+export default function GatheringModalContent() {
   const [selectedFilter, setSelectedFilter] = useState<string>('ALL');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [inputValue, setInputValue] = useState('');
@@ -50,7 +46,6 @@ export default function GatheringModalContent({
       date: selectedDate,
       input: inputValue,
     };
-    onSubmit(formData);
   };
 
   return (

@@ -16,6 +16,7 @@ type Story = StoryObj<typeof ByeButton>;
 
 export const Default: Story = {
   render: function Render() {
-    return <ByeButton />;
+    const handleClick = () => {};
+    return <ByeButton onClick={handleClick} />;
   },
 };

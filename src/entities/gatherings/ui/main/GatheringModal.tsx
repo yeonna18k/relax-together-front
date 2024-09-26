@@ -26,7 +26,7 @@ export default function GatheringCreateModal() {
       disabled={!isFormValid}
       handleAction={handleSubmit}
     >
-      <GatheringModalContent onSubmit={handleFormSubmit} />
+      <GatheringModalContent />
     </Modal>
   );
 }

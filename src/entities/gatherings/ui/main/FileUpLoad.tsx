@@ -2,8 +2,7 @@ import useFileUpload from '@/shared/hooks/useFileUpload';
 import { useRef, useState } from 'react';
 
 const FileUpload = () => {
-  const { handleFileChange, handleUpload, uploadProgress, downloadURL, error } =
-    useFileUpload();
+  const { handleFileChange, downloadURL } = useFileUpload();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [filePath, setFilePath] = useState<string>('');
 
@@ -43,13 +42,6 @@ const FileUpload = () => {
       >
         파일 찾기
       </button>
-
-      <button onClick={handleUpload} className="mt-2">
-        업로드
-      </button>
-
-      {uploadProgress > 0 && <p>업로드 진행률: {uploadProgress}%</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {downloadURL && (
         <div>

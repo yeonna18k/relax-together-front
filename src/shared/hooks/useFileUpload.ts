@@ -1,6 +1,6 @@
 import { storage } from '@/app/firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useFileUpload() {
   const [file, setFile] = useState<File | null>(null);
@@ -15,7 +15,7 @@ export default function useFileUpload() {
     }
   };
 
-  const handleUpload = () => {
+  useEffect(() => {
     if (!file) return;
 
     const storageRef = ref(storage, `images/${file.name}`);
@@ -40,7 +40,7 @@ export default function useFileUpload() {
         });
       },
     );
-  };
+  }, [file]);
 
-  return { handleFileChange, handleUpload, uploadProgress, downloadURL, error }; // error 반환
+  return { handleFileChange, uploadProgress, downloadURL };
 }
