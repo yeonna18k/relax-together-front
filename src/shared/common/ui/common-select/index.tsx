@@ -8,20 +8,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/ui/select';
+import { cva, VariantProps } from 'class-variance-authority';
 type FilterIconType = 'default' | 'sort';
 
-export type CommonSelectItem = {
-  value: string;
-  label: string;
-};
-
-interface SelectProps {
-  filterIconType: FilterIconType;
-  placeholder: string;
-  onValueChange?: (value: string) => void;
-  selectedValue?: string;
-  menuItems: Array<CommonSelectItem>;
-}
+const triggerVariants = cva('w-full', {
+  variants: {
+    variant: {
+      default: 'w-[120px]',
+      modal: 'bg-gray-50 text-base',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
 const getTriggerStyles = ({
   selectedValue,
@@ -38,6 +38,20 @@ const getTriggerStyles = ({
     : 'bg-gray-900 text-white';
 };
 
+export type CommonSelectItem = {
+  value: string;
+  label: string;
+};
+
+interface SelectProps {
+  variant?: VariantProps<typeof triggerVariants>['variant'];
+  filterIconType: FilterIconType;
+  placeholder: string;
+  onValueChange?: (value: string) => void;
+  selectedValue?: string;
+  menuItems: Array<CommonSelectItem>;
+}
+
 /**
  * @description 공용 셀렉트 컴포넌트
  * @author Charles
@@ -50,6 +64,7 @@ const getTriggerStyles = ({
  * }
  */
 export default function CommonSelect({
+  variant,
   filterIconType,
   placeholder,
   onValueChange,
@@ -74,8 +89,8 @@ export default function CommonSelect({
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          'w-[120px]',
           `${getTriggerStyles({ selectedValue, filterIconType })}`,
+          triggerVariants({ variant }),
         )}
         icon={filterIconMap[filterIconType]}
       >
