@@ -23,7 +23,7 @@ export default function GatheringsCard({
   gatheringId,
 }: GatheringCardProps) {
   return (
-    <div className="shadow-l flex w-full flex-col gap-3 overflow-hidden rounded-3xl border-2 border-gray-100 xs:flex-row">
+    <div className="shadow-l flex w-full flex-col gap-3 overflow-hidden rounded-3xl border-2 border-gray-100 xs:flex-row xl:w-[996px]">
       <GatheringCardImageSection image={image} message={message} />
       <GatheringCardContentSection
         title={title}

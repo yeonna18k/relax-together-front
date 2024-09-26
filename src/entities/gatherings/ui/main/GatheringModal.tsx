@@ -1,22 +1,32 @@
 'use client';
 import Modal from '@/shared/common/ui/modal';
+import { useState } from 'react';
 import GatheringModalContent from './GatheringModalContent';
 
 export default function GatheringCreateModal() {
-  // TODO: 모임 만들기에 필요한 상태값 정의
-  const handleSubmit = async () => {
-    //TODO: 모임 등록 API 연동 작업
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [formData, setFormData] = useState({});
+
+  const handleFormSubmit = (data: any) => {
+    setFormData(data);
+    setIsFormValid(true);
   };
+
+  const handleSubmit = async () => {
+    console.log('Submitting data:', formData);
+    // TODO: 실제로 API 호출
+  };
+
   return (
     <Modal
       title="모임 만들기"
       variant="single"
       size="lg"
       actionBtnName="확인"
-      disabled={true}
+      disabled={!isFormValid}
       handleAction={handleSubmit}
     >
-      <GatheringModalContent />
+      <GatheringModalContent onSubmit={handleFormSubmit} />
     </Modal>
   );
 }

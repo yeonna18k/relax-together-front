@@ -52,7 +52,7 @@ export default function Gatherings() {
         <SearchFilter />
 
         {/* 모임 목록 보여주기 */}
-        <div className="mt-8 w-full">
+        <div className="flex w-full justify-center">
           {loading ? (
             <p>로딩 중...</p>
           ) : error ? (
@@ -63,7 +63,7 @@ export default function Gatherings() {
               <p>지금 바로 모임을 만들어보세요</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="md:[996px] w-[343px] flex-col items-center justify-center sm:w-[695px] xl:w-[996px]">
               {gatherings.map(gathering => (
                 <GatheringsCard
                   key={gathering.id}

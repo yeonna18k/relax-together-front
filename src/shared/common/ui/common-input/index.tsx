@@ -1,7 +1,7 @@
 import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
 import { cn } from '@/shared/lib/utils';
 import { Input } from '@/shared/ui/input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type InputIconType = 'default' | 'dropdown';
 
@@ -11,7 +11,9 @@ interface CommonInputProps {
   selectedValue?: string;
   iconType?: InputIconType;
   type?: 'text';
-  size?: 'xsmall' | 'small' | 'medium' | 'large'; // size 추가
+  size?: 'xsmall' | 'small' | 'medium' | 'large';
+  value?: string;
+  className?: string;
 }
 
 const getInputStyles = ({
@@ -32,15 +34,15 @@ const getInputStyles = ({
 const getSizeStyles = (size: 'xsmall' | 'small' | 'medium' | 'large') => {
   switch (size) {
     case 'xsmall':
-      return 'h-[32px] text-xs w-[311px]'; // xsmall
+      return 'h-[32px] text-xs w-[311px]';
     case 'small':
-      return 'h-[40px] text-sm w-[343px]'; // small
+      return 'h-[40px] text-sm w-[343px]';
     case 'medium':
-      return 'h-[44px] text-base w-[360px]'; // medium
+      return 'h-[44px] text-base w-[360px]';
     case 'large':
-      return 'h-[48px] text-lg w-[472px]'; // large
+      return 'h-[48px] text-lg w-[472px]';
     default:
-      return 'h-8 text-base w-[343px]'; // 기본값 medium
+      return 'h-8 text-base w-[343px]';
   }
 };
 
@@ -57,28 +59,35 @@ const getDropdownSizeStyles = (
     case 'large':
       return 'w-[472px]';
     default:
-      return 'w-[343px]'; // 기본값 medium
+      return 'w-[343px]';
   }
 };
+
 export default function CommonInput({
   placeholder,
   onValueChange,
   selectedValue,
+  value = '',
   iconType = 'default',
-  size = 'medium', // 기본 사이즈 medium
+  size = 'medium',
+  className = '',
 }: CommonInputProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(selectedValue || ''); // 인풋 필드에 표시될 값
+  const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   const handleDropdownClick = () => {
-    setIsDropdownOpen(!isDropdownOpen); // 드롭다운 상태 토글
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleItemClick = (item: string) => {
-    setInputValue(item); // 드롭다운에서 선택된 값 인풋에 반영
-    setIsDropdownOpen(false); // 드롭다운 닫기
+    setInputValue(item);
+    setIsDropdownOpen(false);
     if (onValueChange) {
-      onValueChange(item); // 외부로 선택된 값 전달
+      onValueChange(item);
     }
   };
 
@@ -91,7 +100,7 @@ export default function CommonInput({
     default: null,
     dropdown: (
       <ArrowDropdown
-        onClick={handleDropdownClick} // 트리거 버튼 역할
+        onClick={handleDropdownClick}
         className={`h-6 w-6 transform cursor-pointer transition-all ${
           isDropdownOpen ? 'rotate-180' : ''
         } ${getIconFillColor}`}
@@ -101,46 +110,43 @@ export default function CommonInput({
 
   return (
     <div className="relative flex items-center">
-      {/* Input field */}
       <Input
         placeholder={placeholder || '입력해주세요'}
+        value={inputValue}
         className={cn(
-          'pr-10', // 오른쪽에 여유 공간 추가
+          'pr-10',
           getInputStyles({ selectedValue, iconType }),
-          getSizeStyles(size), // 사이즈 스타일 적용
+          getSizeStyles(size),
         )}
         onChange={e => {
-          setInputValue(e.target.value); // 인풋에서 직접 입력 시에도 값 업데이트
+          setInputValue(e.target.value);
           if (onValueChange) {
-            onValueChange(e.target.value); // 외부로 값 전달
+            onValueChange(e.target.value);
           }
         }}
       />
 
-      {/* 오른쪽 아이콘 */}
       {iconType !== 'default' && (
         <div className="absolute right-2">{iconMap[iconType]}</div>
       )}
 
-      {/* 드롭다운 메뉴 (withSize에 맞게 동적 너비 적용) */}
       {isDropdownOpen && (
         <div
           className={cn(
             'absolute right-0 top-12 z-30 rounded border bg-white shadow-lg',
-            getDropdownSizeStyles(size), // 드롭다운 사이즈 적용
+            getDropdownSizeStyles(size),
           )}
         >
-          {/* 드롭다운 항목 */}
           {['건대입구', '을지로 3가', '신림', '홍대입구'].map(item => (
             <p
               key={item}
               className={cn(
                 'cursor-pointer p-2 transition-all',
                 inputValue === item
-                  ? 'bg-black text-white' // 선택된 항목 스타일
+                  ? 'bg-black text-white'
                   : 'bg-white text-black',
               )}
-              onClick={() => handleItemClick(item)} // 항목 클릭 처리
+              onClick={() => handleItemClick(item)}
             >
               {item}
             </p>
