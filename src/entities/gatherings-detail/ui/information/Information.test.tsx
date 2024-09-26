@@ -54,3 +54,10 @@
 //     expect(screen.getByTestId('maxCapacity')).toHaveClass('text-orange-400');
 //   });
 // });
+import { render } from '@testing-library/react';
+
+describe('', () => {
+  test('', () => {
+    render(<></>);
+  });
+});
