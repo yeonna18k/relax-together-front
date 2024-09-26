@@ -3,6 +3,8 @@
 import Check from '@/shared/common/ui/check';
 import ChipTime, { ChipTimeProps } from '@/shared/common/ui/chip-time';
 import CommonInput from '@/shared/common/ui/common-input';
+import CommonSelect from '@/shared/common/ui/common-select';
+import { commonSelectItems } from '@/shared/fixture/select-items';
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
 import { useState } from 'react';
@@ -11,6 +13,7 @@ import FileUpload from './FileUpLoad';
 export default function GatheringModalContent() {
   const [selectedFilter, setSelectedFilter] = useState<string>('ALL');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedValue, setSelectedValue] = useState<string>('ALL');
   const [inputValue, setInputValue] = useState('');
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
@@ -49,10 +52,10 @@ export default function GatheringModalContent() {
   };
 
   return (
-    <div className="h-auto max-h-[80vh] space-y-6 overflow-y-auto">
-      <div className="flex gap-3">
+    <div className="h-auto max-h-[80vh] w-full space-y-6 overflow-y-auto">
+      <div className="flex w-full gap-3">
         <Button
-          className={`h-[48px] w-[165.5px] rounded-md md:w-[230px] ${selectedFilter === 'STRETCHING' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`h-[48px] w-full rounded-md ${selectedFilter === 'STRETCHING' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
           size="sm"
           onClick={() => setSelectedFilter('STRETCHING')}
           variant="ghost"
@@ -60,7 +63,7 @@ export default function GatheringModalContent() {
           달램핏
         </Button>
         <Button
-          className={`h-[48px] w-[165.5px] rounded-md md:w-[230px] ${selectedFilter === 'MINDFULNESS' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`h-[48px] w-full rounded-md ${selectedFilter === 'MINDFULNESS' ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}`}
           onClick={() => setSelectedFilter('MINDFULNESS')}
           size="sm"
           variant="ghost"
@@ -86,22 +89,19 @@ export default function GatheringModalContent() {
       <p className="mb-3 mt-6 text-sm font-semibold text-gray-800 md:text-2xl">
         장소
       </p>
-      <CommonInput
-        className="h-[40px] w-[343px] text-sm"
-        iconType="dropdown"
+      <CommonSelect
+        size="lg"
+        filterIconType="default"
+        menuItems={commonSelectItems}
+        onValueChange={value => setSelectedValue(value)}
         placeholder="장소를 선택해주세요"
-        size="large"
-        value={inputValue}
-        onValueChange={value => {
-          setInputValue(value);
-          validateForm();
-        }}
+        selectedValue="ALL"
       />
 
       <p className="mb-3 mt-6 text-sm font-semibold text-gray-800 md:text-2xl">
         이미지
       </p>
-      <div className="flex w-full gap-2 md:w-[360px]">
+      <div className="flex w-full gap-2">
         <FileUpload />
       </div>
 

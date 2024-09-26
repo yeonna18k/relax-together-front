@@ -1,4 +1,6 @@
 import useFileUpload from '@/shared/hooks/useFileUpload';
+import { Input } from '@/shared/ui/input';
+import { Label } from '@/shared/ui/label';
 import { useRef, useState } from 'react';
 
 const FileUpload = () => {
@@ -21,36 +23,27 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="flex gap-2">
-      <input
+    <div className="flex w-full gap-2">
+      <Input
         type="file"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        onChange={handleFileSelect}
+        onChange={handleFileChange}
+        className="hidden"
+        id="image-uploader"
       />
-      <input
+      <Input
         type="text"
-        value={filePath}
+        value={downloadURL}
         placeholder="이미지를 첨부해주세요"
         readOnly
-        className="h-[40px] w-full rounded-md border border-gray-300 p-2 text-sm font-medium"
+        disabled
+        className="h-[40px] w-full rounded-md border border-gray-300 p-2 text-sm font-medium text-black"
       />
-
-      <button
-        onClick={handleButtonClick}
-        className="box-border flex h-[40px] w-[80px] flex-none flex-grow-0 flex-row items-center justify-center rounded-[6px] border border-green-500 bg-white text-sm text-green-500 hover:bg-green-800 hover:text-green-800"
+      <Label
+        htmlFor="image-uploader"
+        className="min-w-[90px] rounded-[6px] border border-green-500 bg-white px-4 py-2.5 text-sm text-green-500 hover:bg-green-800 hover:text-white"
       >
         파일 찾기
-      </button>
-
-      {downloadURL && (
-        <div>
-          <p>파일 다운로드 URL:</p>
-          <a href={downloadURL} target="_blank" rel="noopener noreferrer">
-            {downloadURL}
-          </a>
-        </div>
-      )}
+      </Label>
     </div>
   );
 };

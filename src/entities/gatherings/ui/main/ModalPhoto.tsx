@@ -41,7 +41,7 @@ export default function PhotoUpload() {
         />
       )}
 
-      <button className="rounded-md bg-blue-500 px-4 py-2 text-white">
+      <button className="rounded-md px-4 py-2 text-gray-300">
         이미지 업로드
       </button>
     </div>

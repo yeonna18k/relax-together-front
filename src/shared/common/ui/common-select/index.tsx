@@ -21,6 +21,7 @@ interface SelectProps {
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
+  size?: 'sm' | 'lg';
 }
 
 const getTriggerStyles = ({
@@ -55,6 +56,7 @@ export default function CommonSelect({
   onValueChange,
   selectedValue,
   menuItems,
+  size = 'sm',
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
@@ -74,7 +76,7 @@ export default function CommonSelect({
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          'h-9 w-[120px] lg:h-10',
+          `h-9 ${size === 'sm' ? 'w-[120px]' : 'w-full'} lg:h-10`,
           `${getTriggerStyles({ selectedValue, filterIconType })}`,
         )}
         icon={filterIconMap[filterIconType]}
