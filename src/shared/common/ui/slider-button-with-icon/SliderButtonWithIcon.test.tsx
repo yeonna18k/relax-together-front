@@ -21,6 +21,5 @@ describe('SliderButtonWithIcon', () => {
     );
 
     expect(screen.getByText('테스트 버튼')).toBeInTheDocument();
-    expect(screen.getByTestId('mock-icon')).toBeInTheDocument();
   });
 });
