@@ -13,6 +13,7 @@ export interface MyGathering {
   capacity: number;
   imageUrl: string;
   hostUser: number;
+  reviewed?: boolean;
   status?: MyGatheringStatus;
   completed?: boolean;
 }

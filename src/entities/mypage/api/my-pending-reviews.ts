@@ -12,9 +12,11 @@ export const fetchMyPendingReviews = async ({ pageParam }: FetchParams) => {
     size: LIMIT,
   });
 
-  const content = response.data.content.filter(
-    gathering => timeComparisonStatus(gathering.dateTime) === 'completed',
-  );
+  const content = response.data.content
+    .filter(
+      gathering => timeComparisonStatus(gathering.dateTime) === 'completed',
+    )
+    .filter(gathering => !gathering.reviewed);
 
   const modifiedResponse: AxiosResponse<Response<MyGathering>> = {
     ...response,

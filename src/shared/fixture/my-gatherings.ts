@@ -17,7 +17,11 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
           : '워케이션',
     name: null,
     dateTime:
-      condition === 0 ? '2024-09-23T07:30:24.329Z' : getISOTimeWithOffset(4),
+      condition === 0
+        ? '2024-09-23T07:30:24.329Z'
+        : condition === 1
+          ? getISOTimeWithOffset(-4)
+          : getISOTimeWithOffset(4),
     registrationEnd: '2024-09-23T07:30:24.330Z',
     location: '건대입구',
     participantCount: condition === 0 ? 4 : condition === 1 ? 10 : 20,
@@ -25,6 +29,7 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
     imageUrl: `/assets/sample${condition + 1}.png`,
     hostUser: 0,
     status: condition === 2 ? 'CANCELLED' : 'ONGOING',
+    reviewed: condition === 0 ? true : false,
     completed: true,
   };
 });
