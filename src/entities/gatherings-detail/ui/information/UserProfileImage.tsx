@@ -13,6 +13,7 @@ export default function UserProfileImage({
   gatheringsInfo,
   participantList,
 }: UserProfileImageProps) {
+  console.log('🚀 ~ participantList:', participantList);
   return (
     <div>
       <ul className="flex">
