@@ -19,7 +19,6 @@ export default function GatheringCardImageSection({
         alt="Card Image"
         width={280}
         height={156}
-        layout="responsive"
       />
       {/* TagClock을 이미지의 오른쪽 상단에 고정 */}
       <div className="absolute right-0 top-0">

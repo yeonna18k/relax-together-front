@@ -16,7 +16,7 @@ const buttonVariants = cva(
         ghost: 'bg-transparent',
         disabled: ' bg-gray-400 h-10 rounded-md',
         enabled: 'bg-green-500 h-10 rounded-md',
-        filter: 'bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-xl',
+        filter: 'bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-md',
       },
       size: {
         default: 'py-2.5 px-4 text-sm',
