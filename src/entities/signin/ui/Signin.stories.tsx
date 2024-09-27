@@ -72,3 +72,18 @@ export const SigninWithValidInputs: Story = {
     expect(button).not.toBeDisabled();
   },
 };
+
+export const SigninError: Story = {
+  args: {},
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const emailInput = canvas.getByLabelText('아이디');
+    const passwordInput = canvas.getByLabelText('비밀번호');
+    const button = canvas.getByRole('button', { name: '로그인' });
+
+    await userEvent.type(emailInput, 'test@test.com');
+    await userEvent.type(passwordInput, '12345678');
+    await userEvent.click(button);
+  },
+};
