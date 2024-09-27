@@ -1,12 +1,15 @@
+import AuthHeader from '@/entities/auth/ui/AuthHeader';
 import AuthImage from '@/entities/auth/ui/AuthImage';
 import SignupForm from '@/entities/signup/ui/SignupForm';
-import SignupHeader from '@/entities/signup/ui/SignupHeader';
 
 export default function Signup() {
   return (
     <>
       <div>
-        <SignupHeader />
+        <AuthHeader
+          title="회원가입"
+          content={`지금 가입하고, 당신의 휴식과 즐거움을 위한\n특별한 모임을 탐색하고 참여해보세요.`}
+        />
         <AuthImage />
       </div>
       <SignupForm />
