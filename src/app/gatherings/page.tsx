@@ -6,6 +6,7 @@ import GatheringCreateModal from '@/entities/gatherings/ui/main/GatheringCreateM
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import CommonSearchFilter from '@/shared/common/ui/common-search-filter';
 import { gatheringsSortItems } from '@/shared/fixture/select-items';
+import { Suspense } from 'react';
 
 if (process.env.NODE_ENV === 'development') {
   const { server } = require('../../shared/mocks/node');
@@ -17,10 +18,14 @@ export default async function Gatherings() {
   return (
     <div className="relative flex w-full flex-col justify-center bg-white px-4 md:px-6 xl:bg-transparent xl:px-0">
       <div className="absolute left-0 top-0 z-20 hidden h-[635px] w-full bg-[url('/assets/gathering-no-bg.png')] bg-contain bg-center bg-no-repeat xl:block" />
-      <Banner />
+      <Suspense fallback={null}>
+        <Banner />
+      </Suspense>
       <div className="z-10 flex h-screen w-full flex-col items-center bg-white">
-        <GatheringSearch />
-        <CommonSearchFilter sortItems={gatheringsSortItems} />
+        <Suspense fallback={null}>
+          <GatheringSearch />
+          <CommonSearchFilter sortItems={gatheringsSortItems} />
+        </Suspense>
 
         {/* 모임 목록 보여주기 */}
         <div className="flex w-full justify-center">
