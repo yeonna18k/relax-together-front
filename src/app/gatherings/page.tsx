@@ -38,12 +38,12 @@ export default async function Gatherings() {
         <Suspense fallback={null}>
           <GatheringSearch />
           <CommonSearchFilter sortItems={gatheringsSortItems} />
-        </Suspense>
 
-        {/* 모임 목록 보여주기 */}
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <GatheringCardListSection />
-        </HydrationBoundary>
+          {/* 모임 목록 보여주기 */}
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <GatheringCardListSection />
+          </HydrationBoundary>
+        </Suspense>
       </div>
       <CreateButton />
       <GatheringCreateModal />

@@ -21,7 +21,12 @@ export const gatheringsContents: Array<Gathering> = Array.from({
         : condition === 1
           ? getISOTimeWithOffset(-4)
           : getISOTimeWithOffset(4),
-    registrationEnd: '2024-09-23T07:30:24.330Z',
+    registrationEnd:
+      condition === 0
+        ? '2024-09-23T07:30:24.329Z'
+        : condition === 1
+          ? '2024-09-30T07:30:24.329Z'
+          : getISOTimeWithOffset(4),
     location: '건대입구',
     participantCount: condition === 0 ? 4 : condition === 1 ? 10 : 20,
     capacity: MAX_CAPACITY,

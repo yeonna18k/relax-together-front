@@ -1,3 +1,5 @@
+import { gatheringsContents } from '@/shared/fixture/gatherings';
+import { getTimeUntilDeadline } from '@/shared/lib/utils';
 import { Meta, StoryObj } from '@storybook/react';
 import GatheringCard from './index';
 
@@ -48,13 +50,9 @@ const Template: StoryObj<typeof GatheringCard> = {
 export const Default: StoryObj<typeof GatheringCard> = {
   ...Template,
   args: {
-    image: '/assets/mind-full-ness.svg',
-    message: '오늘 21시 마감',
-    type: '마인드풀니스',
-    location: '을지로3가',
-    date: '1월 7일',
-    time: '17:30',
-    value: 18,
-    gatheringId: '1',
+    ...gatheringsContents[2],
+    message: getTimeUntilDeadline(
+      new Date(gatheringsContents[2].registrationEnd),
+    ),
   },
 };

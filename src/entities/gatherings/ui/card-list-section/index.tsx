@@ -7,6 +7,7 @@ import ContentEmptySection from '@/features/mypage/ui/sub-page/ContentEmptySecti
 import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
+import { getTimeUntilDeadline } from '@/shared/lib/utils';
 
 import { GatheringType } from '@/shared/model';
 import { format } from 'date-fns';
@@ -61,7 +62,9 @@ export default function GatheringCardListSection() {
               className="border-b-2 border-dashed border-gray-300 py-6 first:pt-0"
             >
               <GatheringCard
-                message={`${gathering.participantCount}/${gathering.capacity} 명 참여 중`}
+                message={getTimeUntilDeadline(
+                  new Date(gathering.registrationEnd),
+                )}
                 {...gathering}
               />
             </li>
