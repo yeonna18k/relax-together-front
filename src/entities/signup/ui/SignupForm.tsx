@@ -1,4 +1,6 @@
 'use client';
+import GenericFormField from '@/entities/auth/ui/GenericFormField';
+import TogglePage from '@/entities/auth/ui/TogglePage';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,9 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignup } from '../api';
-import GoToSignin from './GoToSignin';
 import SignupEmailFormField from './SignupEmailFormField';
-import SignupFormField from './SignupFormField';
 
 const formSchema = z
   .object({
@@ -70,14 +70,34 @@ export default function SignupForm({
     }
   }
   return (
-    <div className="w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:w-[536px] md:px-16 md:py-8 xl:mx-0">
+    <div className="mt-5 w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:mt-[30px] md:w-[536px] md:px-16 md:py-8 xl:mx-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <SignupFormField form={form} name="name" />
+          <GenericFormField
+            form={form}
+            name="name"
+            label="이름"
+            placeholder="이름을 입력해주세요"
+          />
           <SignupEmailFormField form={form} />
-          <SignupFormField form={form} name="companyName" />
-          <SignupFormField form={form} name="password" />
-          <SignupFormField form={form} name="passwordCheck" />
+          <GenericFormField
+            form={form}
+            name="companyName"
+            label="회사명"
+            placeholder="회사명을 입력해주세요"
+          />
+          <GenericFormField
+            form={form}
+            name="password"
+            label="비밀번호"
+            placeholder="비밀번호를 입력해주세요"
+          />
+          <GenericFormField
+            form={form}
+            name="passwordCheck"
+            label="비밀번호 확인"
+            placeholder="비밀번호를 입력해주세요"
+          />
           <div className="!mt-10 flex flex-col gap-6">
             <Button
               disabled={!formValid}
@@ -86,7 +106,7 @@ export default function SignupForm({
             >
               확인
             </Button>
-            <GoToSignin />
+            <TogglePage page="signup" />
           </div>
         </form>
       </Form>
