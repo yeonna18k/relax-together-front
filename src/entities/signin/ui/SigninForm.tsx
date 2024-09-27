@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSignin } from '../api';
@@ -34,12 +35,16 @@ export default function SigninForm() {
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
   const { setAccessToken } = useAccessToken();
+  const [loginError, setLoginError] = useState(false);
 
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
     if (res) {
+      setLoginError(false);
       res.token && setAccessToken(res.token);
       router.push('/gatherings');
+    } else {
+      setLoginError(true);
     }
   }
 
@@ -63,14 +68,25 @@ export default function SigninForm() {
             placeholder="비밀번호를 입력해주세요"
           />
           <div className="!mt-10 flex flex-col gap-6">
-            <Button
-              disabled={!formValid}
-              variant={`${formValid ? 'enabled' : 'disabled'}`}
-              size="full"
-              className="md:h-11 md:text-base"
-            >
-              로그인
-            </Button>
+            <div className="flex flex-col gap-3">
+              {loginError ? (
+                <div className="text-center text-sm font-semibold text-error">
+                  아이디 또는 비밀번호가 잘못 되었습니다.
+                  <br />
+                  아이디와 비밀번호를 정확히 입력해 주세요.
+                </div>
+              ) : (
+                <></>
+              )}
+              <Button
+                disabled={!formValid}
+                variant={`${formValid ? 'enabled' : 'disabled'}`}
+                size="full"
+                className="md:h-11 md:text-base"
+              >
+                로그인
+              </Button>
+            </div>
             <TogglePage page="signin" />
           </div>
         </form>

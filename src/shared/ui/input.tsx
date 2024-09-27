@@ -42,8 +42,8 @@ const InputPassword = React.forwardRef<
         ref={ref}
         type={toggled ? 'text' : 'password'}
         className={cn(
-          'h-[44px] w-[460px] rounded-md bg-[#f9fafb] px-[16px] py-[10px] text-[#1f2937] hover:ring-2 hover:ring-green-300 focus:outline-none focus:ring-2 focus:ring-green-600',
-          'md:w-[350px] lg:w-[472px]',
+          'h-[44px] w-full rounded-md bg-[#f9fafb] px-[16px] py-[10px] text-[#1f2937] hover:ring-2 hover:ring-green-300 focus:outline-none focus:ring-2 focus:ring-green-600',
+
           className,
         )}
         {...props}

@@ -10,12 +10,9 @@ export function useSignin(form: UseFormReturn<SigninFormType>) {
       return response.data;
     } catch (e) {
       console.error(e);
-      form.setError('email', {
-        message: '아이디 또는 비밀번호를 확인해주세요.',
-      });
-      form.setError('password', {
-        message: '아이디 또는 비밀번호를 확인해주세요.',
-      });
+      form.setError('email', {});
+      form.setError('password', {});
+      form.setValue('password', '');
     }
   };
   return { signin };
