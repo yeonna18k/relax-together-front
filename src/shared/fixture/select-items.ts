@@ -22,10 +22,24 @@ export const commonSelectItems: Array<CommonSelectItem> = [
     label: '홍대입구',
   },
 ];
-export const commonSortItems: Array<CommonSelectItem> = [
+export const gatheringsSortItems: Array<CommonSelectItem> = [
   {
     value: 'DUE_DATE',
     label: '마감 임박',
+  },
+  {
+    value: 'PARTICIPANTS',
+    label: '참여 인원 순',
+  },
+];
+export const reviewsSortItems: Array<CommonSelectItem> = [
+  {
+    value: 'RECENT',
+    label: '최신순',
+  },
+  {
+    value: 'RATING',
+    label: '평점 높은 순',
   },
   {
     value: 'PARTICIPANTS',

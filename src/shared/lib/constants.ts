@@ -18,6 +18,13 @@ export const Page = {
   ALL_REVIEWS: 'ALL_REVIEWS',
 } as const;
 
+export const Path = {
+  mypage: 'mypage',
+  gatherings: 'gatherings',
+  reviews: 'reviews',
+  'like-gatherings': 'like-gatherings',
+} as const;
+
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'

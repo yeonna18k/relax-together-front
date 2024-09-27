@@ -37,7 +37,7 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
       <PopoverTrigger asChild>
         <Button
           className={cn(
-            'group flex h-9 w-[120px] items-center justify-between rounded-md border-2 border-gray-200 px-3 py-2 text-sm lg:h-10',
+            'group flex h-10 w-[120px] items-center justify-between rounded-md border-2 border-gray-200 px-3 py-2 text-sm',
             triggerStyles,
           )}
         >

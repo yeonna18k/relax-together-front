@@ -1,12 +1,14 @@
 import BannerText from '@/entities/gatherings/ui/main/BannerText';
-import SliderButtonContainer from '@/shared/common/ui/slider-button-container';
+import SlideTabs from '@/shared/common/ui/common-slide-tabs/SlideTabs';
+import { commonTabs } from '@/shared/fixture/tabs';
+import { Path } from '@/shared/lib/constants';
 import Image from 'next/image';
 
 export default function Banner() {
   return (
     <div className="z-30 hidden h-[549.5px] w-full xl:block">
       <div className="mt-[103.5px] flex h-[356px] w-full items-center justify-center">
-        <div className="flex w-full flex-col items-center">
+        <div className="relative flex w-full flex-col items-center">
           <Image
             src="/assets/gathering-logo.svg"
             alt="로고 이미지"
@@ -15,7 +17,11 @@ export default function Banner() {
           />
           <BannerText />
 
-          <SliderButtonContainer />
+          <SlideTabs
+            tabs={commonTabs}
+            path={Path.gatherings}
+            variant={Path.gatherings}
+          />
         </div>
       </div>
     </div>

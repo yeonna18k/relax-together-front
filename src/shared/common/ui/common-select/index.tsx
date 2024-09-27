@@ -76,7 +76,7 @@ export default function CommonSelect({
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          `h-9 ${size === 'sm' ? 'w-[120px]' : 'w-full'} lg:h-10`,
+          `${size === 'sm' ? 'w-[120px]' : 'w-full'} h-10`,
           `${getTriggerStyles({ selectedValue, filterIconType })}`,
         )}
         icon={filterIconMap[filterIconType]}
