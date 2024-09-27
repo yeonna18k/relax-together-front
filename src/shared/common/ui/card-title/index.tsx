@@ -1,9 +1,9 @@
-import { MyGathering } from '@/entities/mypage/model/my-gatherings';
+import { Gathering } from '@/shared/model';
 
 export default function CardTitle({
   type,
   location,
-}: Pick<MyGathering, 'type' | 'location'>) {
+}: Pick<Gathering, 'type' | 'location'>) {
   return (
     <div className="mb-1.5 mt-3 flex items-center justify-start gap-2">
       <h2 className="text-xl font-semibold text-gray-800">

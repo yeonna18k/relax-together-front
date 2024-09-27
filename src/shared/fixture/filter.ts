@@ -10,6 +10,6 @@ export const mypageFilters: Array<Filter> = [
 
 export const commonFilters: Array<Filter> = [
   { name: '전체', filter: 'all' },
-  { name: '오피스 스트레칭', filter: 'office-stretching' },
+  { name: '오피스 스트레칭', filter: 'office_stretching' },
   { name: '마인드풀니스', filter: 'mindfulness' },
 ];

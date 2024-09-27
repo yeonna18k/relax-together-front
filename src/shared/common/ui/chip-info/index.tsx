@@ -7,7 +7,7 @@ interface ChipInfoProps {
 }
 const ChipInfoMatch = {
   date: 'text-white',
-  time: '!text-orange-600',
+  time: 'text-green-600',
 };
 
 export default function ChipInfo({ type, children }: ChipInfoProps) {

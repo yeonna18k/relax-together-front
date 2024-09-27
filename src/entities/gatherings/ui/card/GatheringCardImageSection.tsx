@@ -11,7 +11,7 @@ export default function GatheringCardImageSection({
   message,
 }: GatheringCardImageSectionProps) {
   return (
-    <div className="relative flex h-[156px] w-full justify-start xs:w-[280px]">
+    <div className="relative flex h-[156px] w-full justify-start sm:w-[280px]">
       <Image
         className="h-full w-full rounded-bl-lg rounded-tl-lg object-cover"
         priority

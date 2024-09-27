@@ -1,10 +1,13 @@
 import CommonSection from '@/features/mypage/ui/sub-page/CommonSection';
 import { forwardRef, PropsWithChildren } from 'react';
 
-const ScrollSection = forwardRef<HTMLDivElement, PropsWithChildren>(
-  ({ children }, ref) => {
+interface ScrollSectionProps extends PropsWithChildren {
+  className?: string;
+}
+const ScrollSection = forwardRef<HTMLDivElement, ScrollSectionProps>(
+  ({ children, className }, ref) => {
     return (
-      <CommonSection>
+      <CommonSection className={className}>
         {children}
         <div ref={ref} />
       </CommonSection>

@@ -25,6 +25,7 @@ export default function FilterButtonGroup({
             <Link
               href={`/${path}?subPage=${currentSubPage}&filter=${filter}`}
               className="rounded-md px-4 py-2.5"
+              scroll={false}
             >
               {name}
             </Link>

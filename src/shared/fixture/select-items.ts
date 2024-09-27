@@ -24,25 +24,25 @@ export const commonSelectItems: Array<CommonSelectItem> = [
 ];
 export const gatheringsSortItems: Array<CommonSelectItem> = [
   {
-    value: 'DUE_DATE',
+    value: 'registrationEnd',
     label: '마감 임박',
   },
   {
-    value: 'PARTICIPANTS',
+    value: 'participantCount',
     label: '참여 인원 순',
   },
 ];
 export const reviewsSortItems: Array<CommonSelectItem> = [
   {
-    value: 'RECENT',
+    value: 'createdDate',
     label: '최신순',
   },
   {
-    value: 'RATING',
+    value: 'score',
     label: '평점 높은 순',
   },
   {
-    value: 'PARTICIPANTS',
+    value: 'participantCount',
     label: '참여 인원 순',
   },
 ];
