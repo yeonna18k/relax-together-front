@@ -24,6 +24,7 @@ const triggerVariants = cva('w-full', {
     variant: {
       default: 'w-[120px]',
       modal: 'bg-gray-50 text-base',
+      sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5',
     },
   },
   defaultVariants: {
@@ -38,9 +39,6 @@ const getTriggerStyles = ({
   selectedValue?: string;
   filterIconType: FilterIconType;
 }) => {
-  if (filterIconType === 'sort') {
-    return 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5';
-  }
   return selectedValue === 'ALL' || selectedValue === undefined
     ? 'bg-white text-gray-900'
     : 'bg-gray-900 text-white';

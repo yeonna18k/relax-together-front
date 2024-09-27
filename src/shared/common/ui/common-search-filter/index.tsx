@@ -38,6 +38,7 @@ export default function CommonSearchFilter({
           />
         </div>
         <CommonSelect
+          variant="sort"
           filterIconType="sort"
           menuItems={sortItems}
           onValueChange={selectedSortValue =>
