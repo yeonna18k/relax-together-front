@@ -1,4 +1,4 @@
-import Signin from '@/app/signin/page';
+import Signin from '@/app/(auth)/signin/page';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 
