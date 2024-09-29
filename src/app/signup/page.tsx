@@ -1,4 +1,4 @@
-import AuthImage from '@/entities/signup/ui/AuthImage';
+import AuthImage from '@/entities/auth/ui/AuthImage';
 import SignupForm from '@/entities/signup/ui/SignupForm';
 import SignupHeader from '@/entities/signup/ui/SignupHeader';
 

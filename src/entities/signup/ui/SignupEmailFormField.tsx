@@ -8,7 +8,7 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { UseFormReturn } from 'react-hook-form';
-import { useCheckEmail } from '../api';
+import { useCheckEmail } from '../model/hooks/useCheckEmail';
 import { SignupFormType } from './SignupForm';
 
 interface SignupFormFieldProps {
@@ -36,7 +36,7 @@ export default function SignupEmailFormField({ form }: SignupFormFieldProps) {
           <FormLabel className="text-sm font-semibold text-gray-900">
             아이디
           </FormLabel>
-          <FormControl className="mb-1.5 mt-2">
+          <FormControl className="mt-2">
             <Input
               {...commonInputProps}
               {...field}
