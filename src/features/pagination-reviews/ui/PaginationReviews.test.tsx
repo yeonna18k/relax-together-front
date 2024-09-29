@@ -12,7 +12,6 @@ describe('Pagination Component', () => {
       currentPage: 1,
       setCurrentPage: jest.fn(),
       totalPages: Math.ceil(dummyReviews.totalElements / REVIEWS_PER_PAGE),
-      getReviewData: jest.fn(),
     };
   });
 
@@ -51,21 +50,19 @@ describe('Pagination Component', () => {
     expect(nextButton).toBeDisabled();
   });
 
-  test('페이지 버튼 클릭 시 setCurrentPage와 getReviewData가 호출된다.', () => {
+  test('페이지 버튼 클릭 시 setCurrentPage가 호출된다.', () => {
     render(<PaginationReviews {...mockProps} />);
 
     const pageButton = screen.getByRole('button', { name: '2' });
     fireEvent.click(pageButton);
     expect(mockProps.setCurrentPage).toHaveBeenCalledWith(2);
-    expect(mockProps.getReviewData).toHaveBeenCalledWith(2);
   });
 
-  test('이전, 다음 버튼 클릭 시 setCurrentPage와 getReviewData가 호출된다.', () => {
+  test('이전, 다음 버튼 클릭 시 setCurrentPage가 호출된다.', () => {
     render(<PaginationReviews {...mockProps} />);
 
     const nextButton = screen.getByRole('button', { name: 'next' });
     fireEvent.click(nextButton);
     expect(mockProps.setCurrentPage).toHaveBeenCalledWith(2);
-    expect(mockProps.getReviewData).toHaveBeenCalledWith(2);
   });
 });
