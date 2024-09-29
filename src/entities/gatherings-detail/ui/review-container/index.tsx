@@ -17,6 +17,7 @@ export default function ReviewContainer({ id }: ReviewContainerProps) {
     queryKey: ['review', id, currentPage],
     queryFn: () =>
       gatheringsDetailApiService.getReviewList({ id, currentPage }),
+    placeholderData: previousData => previousData,
   });
 
   const totalReviews = data?.totalElements;
