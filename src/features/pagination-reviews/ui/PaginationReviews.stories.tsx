@@ -37,7 +37,7 @@ export const Default: Story = {
   render: args => <Template {...args} />,
   args: {
     reviewList: {
-      content: [], // 빈 배열로 기본값 설정
+      reviews: [],
       currentPage: 1,
       totalPages: 0,
       totalElements: 0,
@@ -45,6 +45,5 @@ export const Default: Story = {
     currentPage: 1,
     setCurrentPage: () => {},
     totalPages: 9,
-    getReviewData: (page: number) => {},
   },
 };
