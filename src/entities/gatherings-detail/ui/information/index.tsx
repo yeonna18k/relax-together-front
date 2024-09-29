@@ -1,5 +1,8 @@
+'use client';
+
 import { GatheringsInfoTypes } from '@/entities/gatherings-detail/model/information';
-import { apiService } from '@/shared/service/ApiService';
+import { useQuery } from '@tanstack/react-query';
+import { gatheringsDetailApiService } from '../../api/service/GatheringsDetailApiService';
 import InformationBottom from './InformationBottom';
 import InformationTop from './InformationTop';
 
@@ -8,20 +11,22 @@ interface InformationProps {
   gatheringsInfo: GatheringsInfoTypes;
 }
 
-export default async function Information({
-  id,
-  gatheringsInfo,
-}: InformationProps) {
-  const participantResponse = await apiService.getParticipantList(id);
+export default function Information({ id, gatheringsInfo }: InformationProps) {
+  const { data } = useQuery({
+    queryKey: ['participants', id],
+    queryFn: () => gatheringsDetailApiService.getParticipantList(id),
+  });
 
   return (
     <>
       <div className="w-full rounded-xl border-2 border-gray-200 bg-white">
         <InformationTop gatheringsInfo={gatheringsInfo} />
-        <InformationBottom
-          gatheringsInfo={gatheringsInfo}
-          participantList={participantResponse.data}
-        />
+        {data && (
+          <InformationBottom
+            gatheringsInfo={gatheringsInfo}
+            participantList={data}
+          />
+        )}
       </div>
     </>
   );

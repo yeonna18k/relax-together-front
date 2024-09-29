@@ -12,7 +12,7 @@ export type GatheringsInfoTypes = {
   status: string;
 };
 
-type Participants = {
+export type Participants = {
   userId: number;
   name: string;
   email: string;

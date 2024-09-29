@@ -1,5 +1,10 @@
+import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import GatheringsDetailMain from '@/entities/gatherings-detail/ui/gatherings-detail-main';
-import { apiService } from '@/shared/service/ApiService';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
 interface GatheringsDetail {
   params: {
@@ -10,9 +15,24 @@ interface GatheringsDetail {
 export default async function GatheringsDetail({ params }: GatheringsDetail) {
   const { id } = params;
 
-  const infoResponse = await apiService.getGatheringsInfo(id);
+  const queryClient = new QueryClient();
 
-  console.log('🚀 ~ GatheringsDetail ~ response:', infoResponse.data);
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ['gathering', id],
+      queryFn: () => gatheringsDetailApiService.getGatheringsInfo(id),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ['participants', id],
+      queryFn: () => gatheringsDetailApiService.getParticipantList(id),
+    }),
+  ]);
 
-  return <GatheringsDetailMain id={id} gatheringsInfo={infoResponse.data} />;
+  const dehydratedState = dehydrate(queryClient);
+
+  return (
+    <HydrationBoundary state={dehydratedState}>
+      <GatheringsDetailMain id={id} />
+    </HydrationBoundary>
+  );
 }
