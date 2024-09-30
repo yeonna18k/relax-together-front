@@ -1,16 +1,15 @@
+import useSelectLocation from '@/entities/gatherings/model/hook/useSelectLocation';
 import CreateGatheringFormLabel from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
 import { CreateGatheringCommonProps } from '@/entities/gatherings/ui/main/GatheringCreateModal';
 import CommonSelect from '@/shared/common/ui/common-select';
-import { commonSelectItems } from '@/shared/fixture/select-items';
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
-import { useState } from 'react';
 
 export default function CreateGatheringLocationFormFiled({
   control,
+  selectedFilter,
 }: CreateGatheringCommonProps) {
-  const [_, setSelectedValue] = useState<string>('건대입구');
-  const modalMenuItems = commonSelectItems.filter(item => item.value !== 'ALL');
-  const defaultValue = modalMenuItems[0].value;
+  const { selectedValue, setSelectedValue, modalMenuItems } =
+    useSelectLocation(selectedFilter);
   return (
     <FormField
       control={control}
@@ -24,7 +23,7 @@ export default function CreateGatheringLocationFormFiled({
               size="lg"
               filterIconType="default"
               menuItems={modalMenuItems}
-              defaultValue={defaultValue}
+              selectedValue={selectedValue}
               onValueChange={value => {
                 setSelectedValue(value);
                 field.onChange(value);

@@ -1,18 +1,31 @@
+import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import useFileUpload from '@/shared/hooks/useFileUpload';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
 import { useEffect } from 'react';
 
 interface FileUploadProps {
+  imageUrl: string;
   onChange: (...event: any[]) => void;
+  selectedFilter?: SwitchFiler;
 }
-export default function FileUpload({ onChange }: FileUploadProps) {
+export default function FileUpload({
+  imageUrl,
+  onChange,
+  selectedFilter,
+}: FileUploadProps) {
   const { handleFileChange, downloadURL } = useFileUpload();
 
   useEffect(() => {
-    downloadURL ? onChange(downloadURL) : onChange('');
+    if (downloadURL) {
+      onChange(downloadURL);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [downloadURL]);
+
+  useEffect(() => {
+    onChange('');
+  }, [selectedFilter]);
   return (
     <div className="flex w-full gap-2">
       <Input
@@ -23,7 +36,7 @@ export default function FileUpload({ onChange }: FileUploadProps) {
       />
       <Input
         type="text"
-        value={downloadURL}
+        value={imageUrl}
         placeholder="이미지를 첨부해주세요"
         readOnly
         disabled

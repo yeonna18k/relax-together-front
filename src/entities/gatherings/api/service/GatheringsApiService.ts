@@ -1,4 +1,5 @@
 import { FilterParams } from '@/entities/gatherings/model/params';
+import { CreateGathering } from '@/entities/gatherings/ui/main/GatheringCreateModal';
 import { FetchParams } from '@/entities/mypage/api/queries';
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL, LIMIT } from '@/shared/lib/constants';
@@ -14,7 +15,14 @@ class GatheringsApiService extends ApiService {
     sortBy,
   }: FetchParams & Partial<FilterParams>) {
     const response = await this.get<Response<Gathering>>(
-      `${BASE_URL}/api/gatherings?type=${type}&location=${location}&date=${date}&page=${pageParam}&size=${size}&sortBy=${sortBy}`,
+      `${BASE_URL}/api/gatherings?type=${type}${location ? `&location=${location}` : ''}${date ? `&date=${date}` : ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}`,
+    );
+    return response;
+  }
+  async createGathering(data: CreateGathering) {
+    const response = await this.post<Response<Gathering>>(
+      `${BASE_URL}/api/gatherings`,
+      data,
     );
     return response;
   }

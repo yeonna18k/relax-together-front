@@ -1,6 +1,6 @@
 import { ChipTimeCommonProps } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
 import { NOW, NOW_BASE_CREATE_HOUR } from '@/shared/lib/constants';
-import { addHours } from 'date-fns';
+import { setHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns';
 
 export const checkButtonAvailabilityByTime = (
   selectedDate: Date,
@@ -17,5 +17,14 @@ export const checkButtonAvailabilityByTime = (
 };
 
 export const getAddHoursDateISOString = (date: Date, hours: string) => {
-  return addHours(date, Number(hours)).toISOString();
+  // 시간을 숫자로 변환
+  const hoursNum = Number(hours);
+
+  // 날짜에 시간을 설정하고, 분, 초, 밀리초를 0으로 설정
+  const newDate = setMilliseconds(
+    setSeconds(setMinutes(setHours(date, hoursNum), 0), 0),
+    0,
+  );
+
+  return newDate.toISOString();
 };

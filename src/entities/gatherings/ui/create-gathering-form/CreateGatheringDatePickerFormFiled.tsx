@@ -5,6 +5,7 @@ import {
 } from '@/entities/gatherings/model/lib/utils';
 import CreateGatheringDateTimeSelector from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringDateTimeSelector';
 import CreateGatheringFormLabel from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
+import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import { CreateGathering } from '@/entities/gatherings/ui/main/GatheringCreateModal';
 import { ChipTimeProps } from '@/shared/common/ui/chip-time';
 import { Calendar } from '@/shared/ui/calendar';
@@ -32,12 +33,14 @@ const PMTimes: Array<ChipTimeCommonProps> = [
 
 interface CreateGatheringDateTimeFormFiledProps {
   form: UseFormReturn<CreateGathering>;
+  selectedFilter: SwitchFiler;
 }
 export default function CreateGatheringDateTimeFormFiled({
   form,
+  selectedFilter,
 }: CreateGatheringDateTimeFormFiledProps) {
   const { selectedDate, setSelectedDate, selectedTime, setSelectedTime } =
-    useSelectDateTime();
+    useSelectDateTime(selectedFilter);
 
   useEffect(() => {
     form.setValue(

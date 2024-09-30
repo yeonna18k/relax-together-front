@@ -37,7 +37,7 @@ export default function CommonSearchFilter({
               setSelectedValue(selectedValue as SelectedValue)
             }
             placeholder="지역 전체"
-            selectedValue="ALL"
+            selectedValue={searchFilterValues.selectedValue}
           />
           <DatePicker date={searchFilterValues.date} setDate={setDate} />
         </div>
@@ -49,7 +49,7 @@ export default function CommonSearchFilter({
             setSelectedSortValue(selectedSortValue as SortBy)
           }
           placeholder={sortItems[0].label}
-          selectedValue={sortItems[0].value}
+          selectedValue={searchFilterValues.selectedSortValue}
         />
       </div>
       {currentSubPage === 'dalaemfit' && (

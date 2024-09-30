@@ -1,3 +1,4 @@
+import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import {
   FUTURE_CREATE_DATE,
   FUTURE_CREATE_HOUR,
@@ -7,7 +8,7 @@ import {
 } from '@/shared/lib/constants';
 import { useEffect, useState } from 'react';
 
-export default function useSelectDateTime() {
+export default function useSelectDateTime(filter: SwitchFiler) {
   const [selectedDate, setSelectedDate] = useState<Date>(NOW);
   // TODO: 현재 날짜와 선택된 날짜를 비교해서 미래의 날짜가 선택되었을 경우 9시를 활성화, 아닐 경우 현재 시간의 3시간 이후의 시간부터 활성화
   const [selectedTime, setSelectedTime] = useState<string>(
@@ -19,12 +20,7 @@ export default function useSelectDateTime() {
       setSelectedDate(FUTURE_CREATE_DATE);
       setSelectedTime(String(FUTURE_CREATE_HOUR));
     }
-  }, []);
-
-  useEffect(() => {
-    const time = selectedDate > NOW ? FUTURE_CREATE_HOUR : NOW_BASE_CREATE_HOUR;
-    setSelectedTime(String(time));
-  }, [selectedDate]);
+  }, [filter]);
 
   return { selectedDate, setSelectedDate, selectedTime, setSelectedTime };
 }

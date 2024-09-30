@@ -1,4 +1,5 @@
 'use client';
+import useCreateGathering from '@/entities/gatherings/model/hook/useCreateGathering';
 import useSelectDateTime from '@/entities/gatherings/model/hook/useSelectDateTime';
 import { getAddHoursDateISOString } from '@/entities/gatherings/model/lib/utils';
 import CreateGatheringCapacityFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringCapacityFormFiled';
@@ -12,10 +13,9 @@ import CreateGatheringSwitchButtonGroup, {
 import CreateGatheringTypeFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
-import { FUTURE_CREATE_DATE, FUTURE_CREATE_HOUR } from '@/shared/lib/constants';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Control, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -42,15 +42,16 @@ export type CreateGathering = z.infer<typeof formSchema>;
 
 export interface CreateGatheringCommonProps {
   control: Control<CreateGathering>;
+  selectedFilter?: SwitchFiler;
 }
 
 export default function GatheringCreateModal() {
   const { closeModal } = useModal();
   const [selectedFilter, setSelectedFilter] = useState<SwitchFiler>('달램핏');
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  const { selectedDate, selectedTime, setSelectedDate, setSelectedTime } =
-    useSelectDateTime();
-  // TODO: 모임 만들기에 필요한 상태값 정의
+  const { selectedDate, selectedTime } = useSelectDateTime(selectedFilter);
+  const { onSubmit } = useCreateGathering();
+
   const form = useForm<CreateGathering>({
     resolver: zodResolver(formSchema),
     mode: 'all',
@@ -65,49 +66,13 @@ export default function GatheringCreateModal() {
     },
   });
 
-  const resetForm = useCallback(() => {
-    const baseValues: Partial<CreateGathering> = {
-      location: '건대입구',
-      imageUrl: '',
-      capacity: 5,
-    };
-
-    const currentDateTime = getAddHoursDateISOString(
-      FUTURE_CREATE_DATE,
-      String(FUTURE_CREATE_HOUR),
-    );
-
-    if (selectedFilter === '워케이션') {
-      form.reset({
-        ...baseValues,
-        type: '워케이션',
-        name: '',
-        dateTime: currentDateTime,
-        registrationEnd: currentDateTime,
-      });
-    } else {
-      form.reset({
-        ...baseValues,
-        type: '오피스 스트레칭',
-        name: null,
-        dateTime: currentDateTime,
-        registrationEnd: currentDateTime,
-      });
-    }
-    setSelectedDate(FUTURE_CREATE_DATE);
-    setSelectedTime(String(FUTURE_CREATE_HOUR));
-  }, [selectedFilter, selectedDate, selectedTime, form]);
-
-  useEffect(() => {
-    resetForm();
-  }, [resetForm]);
-
   useEffect(() => {
     if (selectedFilter === '워케이션') {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
+    form.reset();
   }, [selectedFilter]);
 
   useEffect(() => {
@@ -117,15 +82,6 @@ export default function GatheringCreateModal() {
       }
     });
   }, [form]);
-
-  async function onSubmit(values: CreateGathering) {
-    if (selectedFilter === '워케이션' && !values.name) {
-      form.setError('name', { message: '모임 이름을 입력해주세요' });
-      return;
-    }
-    console.log('🚀 ~ onSubmit ~ values:', values);
-    // closeModal('createGathering');
-  }
 
   return (
     <Modal
@@ -149,9 +105,15 @@ export default function GatheringCreateModal() {
             ) : (
               <CreateGatheringTypeFormFiled control={form.control} />
             )}
-            <CreateGatheringLocationFormFiled control={form.control} />
+            <CreateGatheringLocationFormFiled
+              control={form.control}
+              selectedFilter={selectedFilter}
+            />
             <CreateGatheringImageUploadFormFiled control={form.control} />
-            <CreateGatheringDateTimeFormFiled form={form} />
+            <CreateGatheringDateTimeFormFiled
+              form={form}
+              selectedFilter={selectedFilter}
+            />
             <CreateGatheringCapacityFormFiled control={form.control} />
           </form>
         </Form>

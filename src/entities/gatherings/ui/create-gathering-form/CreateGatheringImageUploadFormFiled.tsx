@@ -5,6 +5,7 @@ import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 
 export default function CreateGatheringImageUploadFormFiled({
   control,
+  selectedFilter,
 }: CreateGatheringCommonProps) {
   return (
     <FormField
@@ -14,7 +15,11 @@ export default function CreateGatheringImageUploadFormFiled({
         <FormItem>
           <CreateGatheringFormLabel label="이미지" />
           <FormControl>
-            <FileUpload onChange={field.onChange} />
+            <FileUpload
+              onChange={field.onChange}
+              imageUrl={field.value ?? ''}
+              selectedFilter={selectedFilter}
+            />
           </FormControl>
         </FormItem>
       )}

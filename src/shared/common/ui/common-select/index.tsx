@@ -19,11 +19,11 @@ interface SelectProps {
   menuItems: Array<CommonSelectItem>;
   size?: 'sm' | 'lg';
 }
-const triggerVariants = cva('w-full', {
+const triggerVariants = cva('w-full rounded-md', {
   variants: {
     variant: {
       default: 'w-[120px]',
-      modal: 'bg-gray-50 text-base rounded-md border-none',
+      modal: 'text-base border-none',
       sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5',
     },
   },
@@ -32,13 +32,7 @@ const triggerVariants = cva('w-full', {
   },
 });
 
-const getTriggerStyles = ({
-  selectedValue,
-  filterIconType,
-}: {
-  selectedValue?: string;
-  filterIconType: FilterIconType;
-}) => {
+const getTriggerStyles = ({ selectedValue }: { selectedValue?: string }) => {
   return selectedValue === 'ALL' || selectedValue === undefined
     ? 'bg-white text-gray-900'
     : 'bg-gray-900 text-white';
@@ -56,7 +50,6 @@ interface SelectProps {
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
-  defaultValue?: string;
 }
 
 /**
@@ -78,7 +71,6 @@ export default function CommonSelect({
   selectedValue,
   menuItems,
   size = 'sm',
-  defaultValue,
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
@@ -94,12 +86,12 @@ export default function CommonSelect({
     sort: <SortArrow className="h-6 w-6" />,
   };
   return (
-    <Select onValueChange={onValueChange} defaultValue={defaultValue}>
+    <Select onValueChange={onValueChange} value={selectedValue}>
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
           `${size === 'sm' ? 'w-[120px]' : 'w-full'} h-10`,
-          `${getTriggerStyles({ selectedValue, filterIconType })}`,
+          `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}
         icon={filterIconMap[filterIconType]}
