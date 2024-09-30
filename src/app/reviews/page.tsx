@@ -6,12 +6,14 @@ import ReviewScore from '@/features/reviews/ui/review-score';
 
 export default function Reviews() {
   return (
-    <div>
+    <div className="bg-gray-50">
       <ReviewBanner />
-      <CategoryTab />
-      <ReviewScore />
-      <ReviewFilter />
-      <ReviewList />
+      <div className="px-4 md:px-6">
+        <CategoryTab />
+        <ReviewScore />
+        <ReviewFilter />
+        <ReviewList />
+      </div>
     </div>
   );
 }
