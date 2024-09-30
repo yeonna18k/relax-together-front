@@ -1,8 +1,8 @@
 'use client';
 
-import ReviewCard from '@/features/review-card';
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-pagination.svg';
 import ArrowRightIcon from '@/shared/assets/icons/arrow-right-pagination.svg';
+import ReviewCard from '@/shared/common/ui/review-card';
 import { cn } from '@/shared/lib/utils';
 import {
   Pagination,
@@ -168,14 +168,14 @@ export default function PaginationReviews({
           return (
             <li key={index}>
               <ReviewCard
-                page="search"
+                page="GATHERING_DETAIL"
                 score={review.score}
-                user_name={review.userName}
-                user_image={review.userProfileImage}
-                content={review.comment}
-                place=""
-                address=""
-                date={review.createdDate}
+                userName={review.userName}
+                userProfileImage={review.userProfileImage}
+                comment={review.comment}
+                gatheringLocation="건대입구"
+                gatheringType="달램핏"
+                createdDate={review.createdDate}
               />
             </li>
           );
