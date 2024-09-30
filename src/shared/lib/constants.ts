@@ -1,3 +1,5 @@
+import { addDays, addHours } from 'date-fns';
+
 export const Device = {
   mobile: 430,
   tablet: 744,
@@ -11,6 +13,12 @@ export const MAX_SCORE = 5;
 export const REVIEWS_PER_PAGE = 4;
 
 export const LIMIT = 10;
+
+export const NOW = new Date();
+export const NOW_BASE_CREATE_DATE = addHours(NOW, 3);
+export const NOW_BASE_CREATE_HOUR = NOW_BASE_CREATE_DATE.getHours();
+export const FUTURE_CREATE_DATE = addDays(NOW, 1);
+export const FUTURE_CREATE_HOUR = 9;
 
 export const Page = {
   MYPAGE: 'MYPAGE',

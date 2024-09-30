@@ -8,9 +8,8 @@ import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
 import { Input } from '@/shared/ui/input';
 import { useState } from 'react';
-import FileUpload from './FileUpLoad';
 
-export default function GatheringModalContent() {
+export default function GatheringModalContent({}) {
   const [selectedFilter, setSelectedFilter] = useState<string>('STRETCHING');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedValue, setSelectedValue] = useState<string>('ALL');
@@ -101,9 +100,9 @@ export default function GatheringModalContent() {
       <p className="mb-3 mt-6 text-sm font-semibold text-gray-800 md:text-2xl">
         이미지
       </p>
-      <div className="flex w-full gap-2">
+      {/* <div className="flex w-full gap-2">
         <FileUpload />
-      </div>
+      </div> */}
 
       <p className="mb-3 mt-6 text-sm font-semibold text-gray-800 md:text-2xl">
         날짜

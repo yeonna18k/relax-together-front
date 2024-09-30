@@ -10,8 +10,8 @@ export const commonSelectItems: Array<CommonSelectItem> = [
     label: '건대입구',
   },
   {
-    value: '을지로 3가',
-    label: '을지로 3가',
+    value: '을지로3가',
+    label: '을지로3가',
   },
   {
     value: '신림',

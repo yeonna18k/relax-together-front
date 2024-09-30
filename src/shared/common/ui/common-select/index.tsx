@@ -23,7 +23,7 @@ const triggerVariants = cva('w-full', {
   variants: {
     variant: {
       default: 'w-[120px]',
-      modal: 'bg-gray-50 text-base',
+      modal: 'bg-gray-50 text-base rounded-md border-none',
       sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5',
     },
   },
@@ -56,6 +56,7 @@ interface SelectProps {
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
+  defaultValue?: string;
 }
 
 /**
@@ -77,6 +78,7 @@ export default function CommonSelect({
   selectedValue,
   menuItems,
   size = 'sm',
+  defaultValue,
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
@@ -92,7 +94,7 @@ export default function CommonSelect({
     sort: <SortArrow className="h-6 w-6" />,
   };
   return (
-    <Select onValueChange={onValueChange}>
+    <Select onValueChange={onValueChange} defaultValue={defaultValue}>
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(

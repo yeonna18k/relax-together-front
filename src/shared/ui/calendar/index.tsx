@@ -78,11 +78,12 @@ function Calendar({
         ),
         day_range_end: 'day-range-end',
         day_selected:
-          'bg-green-500 text-white hover:bg-green-500 hover:text-white focus:bg-green-500 focus:text-white',
-        day_today: 'bg-green-500 text-green-500 bg-white',
+          'bg-white text-green-500 hover:bg-green-500 hover:text-white focus:bg-green-500 focus:text-white aria-selected:bg-green-500 aria-selected:text-white',
+        day_today:
+          'bg-white text-green-500 aria-selected:bg-green-500 aria-selected:text-white',
         day_outside:
           'day-outside text-muted-foreground opacity-50 aria-selected:bg-green-500 aria-selected:text-white aria-selected:opacity-30',
-        day_disabled: 'text-white opacity-50',
+        day_disabled: 'text-gray-400 opacity-50',
         day_range_middle: 'aria-selected:bg-green-500 aria-selected:text-white',
         day_hidden: 'invisible',
         ...classNames,
