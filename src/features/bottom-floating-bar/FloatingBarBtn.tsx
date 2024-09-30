@@ -3,16 +3,20 @@ import CancleBtn from './CancleBtn';
 import JoinBtn from './JoinBtn';
 import ShareBtn from './ShareBtn';
 
-export default function FloatingBarBtn({ isHost }: BottomFloatingBarProps) {
+export default function FloatingBarBtn({
+  id,
+  isHost,
+  participantList,
+}: BottomFloatingBarProps) {
   return (
     <>
       {isHost ? (
         <div className="mt-[10px] flex gap-2 sm:mt-0">
-          <CancleBtn />
+          <CancleBtn id={id} />
           <ShareBtn />
         </div>
       ) : (
-        <JoinBtn />
+        <JoinBtn id={id} participantList={participantList} />
       )}
     </>
   );

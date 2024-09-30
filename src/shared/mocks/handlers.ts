@@ -117,6 +117,15 @@ const handlers = [
       }),
     );
   }),
+
+  rest.post('/api/gatherings/:id/join', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: '모임에 참여했습니다',
+      }),
+    );
+  }),
 ];
 
 export default handlers;

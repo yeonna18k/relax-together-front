@@ -40,6 +40,14 @@ class GatheringsDetailApiService extends ApiService {
     );
     return response.data;
   }
+
+  async joinGathering(id: string) {
+    const response = await this.post<string>(
+      `/api/gatherings/${id}/join`, // msw
+      // `http://localhost:3000/api/gatherings/${id}/join`,
+    );
+    return response.data;
+  }
 }
 
 export const gatheringsDetailApiService = new GatheringsDetailApiService();
