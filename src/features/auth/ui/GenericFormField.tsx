@@ -28,7 +28,7 @@ export default function GenericFormField<TFormType extends FieldValues>({
     placeholder,
     className: cn(
       'text-gray h-10 text-sm font-medium text-gray-800 placeholder:text-gray-400',
-      error ? 'border border-error' : '',
+      error ? 'border border-error hover:ring-error focus:ring-error' : '',
     ),
   };
 
