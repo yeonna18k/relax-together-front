@@ -1,16 +1,19 @@
 import TagClock from '@/shared/common/ui/tag-clock';
 import Image from 'next/image';
-import { GatheringsInfoTypes } from '../../model/information';
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '../../model/information';
 import Information from '../information';
 
 interface GatheringTopProps {
-  id: string;
   gatheringsInfo: GatheringsInfoTypes;
+  participantList: ParticipantListTypes;
 }
 
 export default function GatheringTop({
-  id,
   gatheringsInfo,
+  participantList,
 }: GatheringTopProps) {
   return (
     <div className="gap-6 sm:flex">
@@ -27,7 +30,10 @@ export default function GatheringTop({
         </div>
       </div>
       <div className="mt-4 sm:mt-0 sm:w-1/2">
-        <Information id={id} gatheringsInfo={gatheringsInfo} />
+        <Information
+          gatheringsInfo={gatheringsInfo}
+          participantList={participantList}
+        />
       </div>
     </div>
   );
