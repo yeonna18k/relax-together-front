@@ -48,6 +48,14 @@ class GatheringsDetailApiService extends ApiService {
     );
     return response.data;
   }
+
+  async leaveGathering(id: string) {
+    const response = await this.delete<string>(
+      `/api/gatherings/${id}/leave`, // msw
+      // `http://localhost:3000/api/gatherings/${id}/join`,
+    );
+    return response.data;
+  }
 }
 
 export const gatheringsDetailApiService = new GatheringsDetailApiService();
