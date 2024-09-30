@@ -1,9 +1,37 @@
 import BottomFloatingBar from '@/features/bottom-floating-bar';
+import { dummyParticipantList } from '@/shared/fixture/information';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
+
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+  useParams: () => ({
+    id: '1',
+  }),
+}));
+
+jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
+  useQueryClient: () => ({
+    invalidateQueries: jest.fn(),
+  }),
+}));
+
+const queryClient = new QueryClient();
 
 describe('BottomFloatingBar Component', () => {
   test('화면에 렌더링 된다.', () => {
-    render(<BottomFloatingBar isHost={false} />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <BottomFloatingBar
+          id="1"
+          isHost={false}
+          participantList={dummyParticipantList}
+        />
+      </QueryClientProvider>,
+    );
 
     expect(
       screen.getByText(/더 건강한 나와 팀을 위한 프로그램/i),
@@ -20,7 +48,15 @@ describe('BottomFloatingBar Component', () => {
   });
 
   test('주최자일 경우, 공유 독려 텍스트와 취소/공유하기 버튼이 렌더링 된다.', () => {
-    render(<BottomFloatingBar isHost={true} />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <BottomFloatingBar
+          id="1"
+          isHost={true}
+          participantList={dummyParticipantList}
+        />
+      </QueryClientProvider>,
+    );
 
     expect(
       screen.getByText(
