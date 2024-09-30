@@ -1,6 +1,7 @@
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import { ParticipantListTypes } from '@/entities/gatherings-detail/model/information';
 import CommonButton from '@/shared/common/ui/common-button';
+import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -37,8 +38,24 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
     },
   });
 
+  const handleOnClick = () => {
+    // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트
+    router.push('/signin');
+
+    // TODO: 로그인 후 기존 페이지로 리다이렉트
+  };
+
   const handleJoinBtnClick = () => {
-    joinMutation(id);
+    // TODO: 로그인 상태 확인 로직 추가
+    const isLoggedIn = false;
+
+    if (!isLoggedIn) {
+      // 비로그인 시 로그인이 필요하다는 팝업
+      openModal('LoginRequiredModal');
+    } else {
+      // 참여
+      joinMutation(id);
+    }
   };
 
   return (
@@ -61,6 +78,13 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
         >
           참여하기
         </CommonButton>
+      )}
+      {modal.includes('LoginRequiredModal') && (
+        <Modal variant="single" size="sm" handleAction={handleOnClick}>
+          <p className="text-center text-base font-medium text-[#111827]">
+            로그인이 필요해요
+          </p>
+        </Modal>
       )}
     </>
   );
