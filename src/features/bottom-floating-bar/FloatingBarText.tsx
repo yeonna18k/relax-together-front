@@ -1,6 +1,4 @@
-import { BottomFloatingBarProps } from '.';
-
-export default function FloatingBarText({ isHost }: BottomFloatingBarProps) {
+export default function FloatingBarText({ isHost }: { isHost: boolean }) {
   return (
     <div className="flex flex-col gap-1">
       <h3 className="text-sm font-semibold text-gray-900 sm:text-base">
