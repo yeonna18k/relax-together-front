@@ -56,6 +56,14 @@ class GatheringsDetailApiService extends ApiService {
     );
     return response.data;
   }
+
+  async cancelGathering(id: string) {
+    const response = await this.put<string>(
+      `/api/gatherings/${id}/cancel`, // msw
+      // `http://localhost:3000/api/gatherings/${id}/join`,
+    );
+    return response.data;
+  }
 }
 
 export const gatheringsDetailApiService = new GatheringsDetailApiService();

@@ -138,6 +138,14 @@ const handlers = [
       }),
     );
   }),
+  rest.put('/api/gatherings/:id/cancel', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: '모임을 취소했습니다',
+      }),
+    );
+  }),
 ];
 
 export default handlers;
