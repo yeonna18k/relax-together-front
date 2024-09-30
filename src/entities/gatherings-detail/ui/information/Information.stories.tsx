@@ -8,10 +8,8 @@ import InformationBottom from './InformationBottom';
 import InformationTop from './InformationTop';
 
 function MockInformation({
-  id,
   gatheringsInfo,
 }: {
-  id: string;
   gatheringsInfo: typeof dummyGatheringsInfo;
 }) {
   const mockParticipantList = dummyParticipantList;
@@ -42,7 +40,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    id: '1',
     gatheringsInfo: dummyGatheringsInfo,
   },
 };
