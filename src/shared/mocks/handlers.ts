@@ -126,6 +126,14 @@ const handlers = [
       }),
     );
   }),
+  rest.delete('/api/gatherings/:id/leave', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: '모임 참여를 취소했습니다',
+      }),
+    );
+  }),
 ];
 
 export default handlers;

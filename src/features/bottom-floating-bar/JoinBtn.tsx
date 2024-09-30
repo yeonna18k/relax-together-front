@@ -38,6 +38,19 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
     },
   });
 
+  const { mutate: leaveMutation } = useMutation({
+    mutationFn: (id: string) => {
+      return gatheringsDetailApiService.leaveGathering(id);
+    },
+    onSuccess: data => {
+      console.log('성공적으로 참여 취소했습니다:', data);
+      queryClient.invalidateQueries({ queryKey: ['participants'] });
+    },
+    onError: error => {
+      console.error('참여 취소하기 요청 실패:', error);
+    },
+  });
+
   const handleOnClick = () => {
     // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트
     router.push('/signin');
@@ -58,6 +71,10 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
     }
   };
 
+  const handleLeaveBtnClick = () => {
+    leaveMutation(id);
+  };
+
   return (
     <>
       {isJoined ? (
@@ -65,7 +82,7 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
           variant="outline"
           size="lg"
           className="h-11 w-[115px]"
-          // onClick={handleLeaveBtnClick}
+          onClick={handleLeaveBtnClick}
         >
           참여 취소하기
         </CommonButton>
