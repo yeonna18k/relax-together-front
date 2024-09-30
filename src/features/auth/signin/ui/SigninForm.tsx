@@ -1,6 +1,6 @@
 'use client';
-import GenericFormField from '@/entities/auth/ui/GenericFormField';
-import TogglePage from '@/entities/auth/ui/TogglePage';
+
+import { useSignin } from '@/entities/auth/api';
 import useAccessToken from '@/shared/hooks/useAccessToken';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
@@ -9,7 +9,8 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useSignin } from '../api';
+import GenericFormField from '../../ui/GenericFormField';
+import TogglePage from '../../ui/TogglePage';
 
 const formSchema = z.object({
   email: z

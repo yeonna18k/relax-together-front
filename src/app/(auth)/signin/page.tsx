@@ -1,6 +1,6 @@
 import AuthHeader from '@/entities/auth/ui/AuthHeader';
 import AuthImage from '@/entities/auth/ui/AuthImage';
-import SigninForm from '@/entities/signin/ui/SigninForm';
+import SigninForm from '@/features/auth/signin/ui/SigninForm';
 
 export default function Signin() {
   return (

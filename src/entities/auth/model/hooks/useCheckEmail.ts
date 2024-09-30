@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { FieldErrors, UseFormReturn } from 'react-hook-form';
 import { useDebounceValue } from 'usehooks-ts';
-import { signupApiService } from '../../api/service/SignupApiService';
-import { SignupFormType } from '../../ui/SignupForm';
+import { SignupFormType } from '../../../../features/auth/signup/ui/SignupForm';
+import { signupApiService } from '../../api/service/AuthApiService';
 
 export async function useCheckEmail(
   form: UseFormReturn<SignupFormType>,
