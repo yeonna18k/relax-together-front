@@ -11,11 +11,20 @@ import {
 import { cva, VariantProps } from 'class-variance-authority';
 type FilterIconType = 'default' | 'sort';
 
-const triggerVariants = cva('w-full', {
+interface SelectProps {
+  filterIconType: FilterIconType;
+  placeholder: string;
+  onValueChange?: (value: string) => void;
+  selectedValue?: string;
+  menuItems: Array<CommonSelectItem>;
+  size?: 'sm' | 'lg';
+}
+const triggerVariants = cva('w-full rounded-md', {
   variants: {
     variant: {
       default: 'w-[120px]',
-      modal: 'bg-gray-50 text-base',
+      modal: 'text-base border-none',
+      sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5',
     },
   },
   defaultVariants: {
@@ -23,16 +32,7 @@ const triggerVariants = cva('w-full', {
   },
 });
 
-const getTriggerStyles = ({
-  selectedValue,
-  filterIconType,
-}: {
-  selectedValue?: string;
-  filterIconType: FilterIconType;
-}) => {
-  if (filterIconType === 'sort') {
-    return 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:md:block w-9 p-[6px] md:w-[120px]';
-  }
+const getTriggerStyles = ({ selectedValue }: { selectedValue?: string }) => {
   return selectedValue === 'ALL' || selectedValue === undefined
     ? 'bg-white text-gray-900'
     : 'bg-gray-900 text-white';
@@ -70,6 +70,7 @@ export default function CommonSelect({
   onValueChange,
   selectedValue,
   menuItems,
+  size = 'sm',
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
@@ -82,14 +83,15 @@ export default function CommonSelect({
         className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
       />
     ),
-    sort: <SortArrow />,
+    sort: <SortArrow className="h-6 w-6" />,
   };
   return (
-    <Select onValueChange={onValueChange}>
+    <Select onValueChange={onValueChange} value={selectedValue}>
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          `${getTriggerStyles({ selectedValue, filterIconType })}`,
+          `${size === 'sm' ? 'w-[120px]' : 'w-full'} h-10`,
+          `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}
         icon={filterIconMap[filterIconType]}

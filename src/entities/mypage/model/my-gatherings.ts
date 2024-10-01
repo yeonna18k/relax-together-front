@@ -1,18 +1,8 @@
-import { GatheringLocation, GatheringType } from '@/shared/model';
+import { Gathering } from '@/shared/model';
 
 export type MyGatheringStatus = 'ONGOING' | 'CANCELLED';
 
-export interface MyGathering {
-  id: number;
-  type: GatheringType;
-  name: string | null;
-  dateTime: string;
-  registrationEnd: string;
-  location: GatheringLocation;
-  participantCount: number;
-  capacity: number;
-  imageUrl: string;
-  hostUser: number;
+export interface MyGathering extends Gathering {
   reviewed?: boolean;
   status?: MyGatheringStatus;
   completed?: boolean;

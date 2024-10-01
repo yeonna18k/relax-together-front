@@ -10,8 +10,8 @@ export const commonSelectItems: Array<CommonSelectItem> = [
     label: '건대입구',
   },
   {
-    value: '을지로 3가',
-    label: '을지로 3가',
+    value: '을지로3가',
+    label: '을지로3가',
   },
   {
     value: '신림',
@@ -22,13 +22,27 @@ export const commonSelectItems: Array<CommonSelectItem> = [
     label: '홍대입구',
   },
 ];
-export const commonSortItems: Array<CommonSelectItem> = [
+export const gatheringsSortItems: Array<CommonSelectItem> = [
   {
-    value: 'DUE_DATE',
-    label: '마감임박',
+    value: 'registrationEnd',
+    label: '마감 임박',
   },
   {
-    value: 'PARTICIPANTS',
+    value: 'participantCount',
+    label: '참여 인원 순',
+  },
+];
+export const reviewsSortItems: Array<CommonSelectItem> = [
+  {
+    value: 'createdDate',
+    label: '최신순',
+  },
+  {
+    value: 'score',
+    label: '평점 높은 순',
+  },
+  {
+    value: 'participantCount',
     label: '참여 인원 순',
   },
 ];

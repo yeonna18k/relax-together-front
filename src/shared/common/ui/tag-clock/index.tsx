@@ -13,7 +13,7 @@ export default function TagClock({
     <div>
       <div
         data-testid="tag-clock"
-        className={`top-[25px] flex min-h-[32px] w-auto items-center gap-2 bg-orange-600 p-[4px_10px_4px_8px] ${variant === 'rounded' ? 'rounded-bl-[12px] rounded-tr-3xl shadow-md' : 'rounded-bl-[12px]'}`}
+        className={`top-[25px] flex min-h-[32px] w-auto items-center gap-2 bg-black bg-opacity-70 p-[4px_10px_4px_8px] ${variant === 'rounded' ? 'rounded-bl-[12px] rounded-tr-3xl shadow-md' : 'rounded-bl-[12px]'}`}
       >
         <Image
           priority

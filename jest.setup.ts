@@ -12,3 +12,10 @@ afterEach(() => {
 afterAll(() => {
   server.close();
 });
+
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+  usePathname: jest.fn(),
+  useParams: jest.fn(),
+}));
