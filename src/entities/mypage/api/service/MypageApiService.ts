@@ -7,6 +7,7 @@ import {
 
 import { UpdateUserRequest, User } from '@/entities/mypage/model/user';
 import ApiService from '@/shared/api/service/ApiService';
+import { BASE_URL } from '@/shared/lib/constants';
 import { Response, Review } from '@/shared/model';
 
 class MypageApiService extends ApiService {
@@ -17,32 +18,32 @@ class MypageApiService extends ApiService {
 
   async getMyJoinedGatherings({ page, size }: PaginationParams) {
     const response = await this.get<Response<MyGathering>>(
-      `/api/gatherings/joined?page=${page}&size=${size}`,
+      `${BASE_URL}/api/gatherings/joined?page=${page}&size=${size}`,
     );
     return response;
   }
 
   async getMyWrittenReviews({ page, size }: PaginationParams) {
     const response = await this.get<Response<Review>>(
-      `/api/reviews/me?page=${page}&size=${size}`,
+      `${BASE_URL}/api/reviews/me?page=${page}&size=${size}`,
     );
     return response;
   }
 
   async getMyHostedGatherings({ page, size }: PaginationParams) {
     const response = await this.get<Response<MyHostedGathering>>(
-      `/api/gatherings/my-hosted?page=${page}&size=${size}`,
+      `${BASE_URL}/api/gatherings/my-hosted?page=${page}&size=${size}`,
     );
     return response;
   }
 
   async updateUser(data: UpdateUserRequest) {
-    const response = await this.put('/api/auths/user', data);
+    const response = await this.put(`${BASE_URL}/api/auths/user`, data);
     return response;
   }
 
   async writeReview(data: WriteReviewRequest) {
-    const response = await this.post(`/api/reviews`, data);
+    const response = await this.post(`${BASE_URL}/api/reviews`, data);
     return response;
   }
 }
