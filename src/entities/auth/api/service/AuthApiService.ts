@@ -1,5 +1,5 @@
 import ApiService from '@/shared/api/service/ApiService';
-import { signinUser, signupUser } from '../../model/user';
+import { SigninUser, SignupUser } from '../../model/user';
 
 class SignupApiService extends ApiService {
   async signup({
@@ -13,7 +13,7 @@ class SignupApiService extends ApiService {
     name: string;
     companyName: string;
   }) {
-    const response = await this.post<signupUser>('/api/auths/signup', {
+    const response = await this.post<SignupUser>('/api/auths/signup', {
       email,
       password,
       name,
@@ -31,10 +31,10 @@ class SignupApiService extends ApiService {
 
 export const signupApiService = new SignupApiService();
 
-type SigninRequest = Omit<signinUser, 'token'>;
+export type Tokens = { AccessToken: string; RefreshToken: string };
 class SigninApiService extends ApiService {
-  async signin({ email, password }: SigninRequest) {
-    const response = await this.post<signinUser>('/api/auths/login', {
+  async signin({ email, password }: SigninUser) {
+    const response = await this.post<Tokens>('/api/auths/login', {
       email,
       password,
     });

@@ -1,12 +1,11 @@
-export interface signupUser {
+export interface SignupUser {
   email: string;
   password: string;
   name: string;
   companyName: string;
 }
 
-export interface signinUser {
+export interface SigninUser {
   email: string;
   password: string;
-  token?: string;
 }

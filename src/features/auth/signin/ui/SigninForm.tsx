@@ -41,8 +41,11 @@ export default function SigninForm() {
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
     if (res) {
+      // const tokens = JSON.parse(JSON.stringify(res.data)) as Tokens;
+      // console.log(tokens.AccessToken);
+      // console.log(res.AccessToken);
       setLoginError(false);
-      res.token && setAccessToken(res.token);
+      // res.AccessToken && setAccessToken(res.AccessToken);
       router.push('/gatherings');
     } else {
       setLoginError(true);
