@@ -37,11 +37,9 @@ export default function InformationBottom({
       />
       <Progress
         className="mt-3"
-        value={gatheringsInfo.participantCount}
+        value={progress}
         capacity={gatheringsInfo.capacity}
-        isClosed={false}
       />
-      <Progress className="mt-3" value={progress} />
       <Capacity gatheringsInfo={gatheringsInfo} />
     </div>
   );
