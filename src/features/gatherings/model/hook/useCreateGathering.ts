@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 export default function useCreateGathering() {
   const { closeModal } = useModal();
   const queryClient = useQueryClient();
-  const { mutate, isSuccess } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (data: CreateGathering) => {
       return gatheringsApiService.createGathering(data);
     },
@@ -19,11 +19,8 @@ export default function useCreateGathering() {
     },
   });
   async function onSubmit(values: CreateGathering) {
-    console.log('🚀 ~ onSubmit ~ values:', values);
-    // mutate(values);
-    // if (isSuccess) {
-    //   closeModal('createGathering');
-    // }
+    mutate(values);
+    closeModal('createGathering');
   }
   return { onSubmit };
 }

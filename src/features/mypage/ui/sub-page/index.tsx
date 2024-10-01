@@ -4,7 +4,7 @@ import MyGatheringsSection from '@/features/mypage/ui/sub-page/MyGatheringsSecti
 import MyHostedGatheringsSection from '@/features/mypage/ui/sub-page/MyHostedGatheringsSection';
 import MyPendingReviewSection from '@/features/mypage/ui/sub-page/MyPedingReviewSection';
 import MyWrittenReviewSection from '@/features/mypage/ui/sub-page/MyWrittenReviewSection';
-import { AnimatePresence, motion } from 'framer-motion';
+import AnimationContainer from '@/shared/common/ui/animation-container';
 import { useEffect, useState } from 'react';
 
 const subPageTargetMap: Record<string, React.ReactNode> = {
@@ -12,27 +12,6 @@ const subPageTargetMap: Record<string, React.ReactNode> = {
   'pending-my-reviews': <MyPendingReviewSection />,
   'written-my-reviews': <MyWrittenReviewSection />,
   'my-hosted-gatherings': <MyHostedGatheringsSection />,
-};
-
-const pageVariants = {
-  initial: {
-    opacity: 0,
-    x: -30,
-  },
-  in: {
-    opacity: 1,
-    x: 0,
-  },
-  out: {
-    opacity: 0,
-    x: 30,
-  },
-};
-
-const pageTransition = {
-  type: 'tween',
-  ease: 'anticipate',
-  duration: 0.5,
 };
 
 export default function SubPageContainer() {
@@ -44,17 +23,8 @@ export default function SubPageContainer() {
   }, [currentSubPage, currentFilter]);
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={subPage}
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}
-      >
-        {subPage ? <>{subPageTargetMap[subPage]}</> : <LoadingSkeletonList />}
-      </motion.div>
-    </AnimatePresence>
+    <AnimationContainer>
+      {subPage ? <>{subPageTargetMap[subPage]}</> : <LoadingSkeletonList />}
+    </AnimationContainer>
   );
 }

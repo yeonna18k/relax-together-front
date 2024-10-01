@@ -10,9 +10,8 @@ interface LoginUserProps {
   name: string;
 }
 export default function LoginUser({ image, name }: LoginUserProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  // const accessToken = localStorage.getItem('accessToken') as string;
+  const [isOpen, setIsOpen] = useState(false);
   const { accessToken, setAccessToken } = useAccessToken();
   const { signout } = useSignout({ accessToken });
   const clearUser = useUserDataStore(state => state.clearUser);

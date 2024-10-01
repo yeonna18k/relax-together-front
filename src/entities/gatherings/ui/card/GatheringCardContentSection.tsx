@@ -27,7 +27,11 @@ export default function GatheringCardContentSection(
       </div>
 
       {/* Progress Bar */}
-      <ProgressBar participantCount={participantCount} capacity={capacity} />
+      <ProgressBar
+        participantCount={participantCount}
+        capacity={capacity}
+        id={id}
+      />
     </div>
   );
 }

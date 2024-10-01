@@ -12,7 +12,7 @@ import { Response, Review } from '@/shared/model';
 
 class MypageApiService extends ApiService {
   async getUser() {
-    const response = await this.get<User>('/api/auths/user');
+    const response = await this.get<User>('/api/auths/me');
     return response;
   }
 
@@ -38,7 +38,7 @@ class MypageApiService extends ApiService {
   }
 
   async updateUser(data: UpdateUserRequest) {
-    const response = await this.put(`${BASE_URL}/api/auths/user`, data);
+    const response = await this.put(`${BASE_URL}/api/auths/me`, data);
     return response;
   }
 

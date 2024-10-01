@@ -68,13 +68,23 @@ export function getTimeUntilDeadline(registrationEnd: Date) {
 
   // 오늘 마감 (같은 날일 경우)
   if (now.toDateString() === registrationEnd.toDateString()) {
-    const endHour = registrationEnd.getHours();
-    return `오늘 ${endHour}시 마감`;
+    const remainingHours = Math.floor(diffInHours);
+    return remainingHours > 0
+      ? `오늘 ${remainingHours}시간 후 마감`
+      : `오늘 곧 마감`;
   }
-  const leftDays = rtf.format(Math.floor(diffInDays), 'day');
+
+  // 몇 시간 안 남았지만 날짜가 다른 경우 (24시간 이내일 때)
+  if (diffInHours <= 24 && diffInHours > 0) {
+    const remainingHours = Math.floor(diffInHours);
+    return remainingHours > 1 ? `${remainingHours}시간 후 마감` : `곧 마감`;
+  }
+
+  // 마감일이 지나면
+  if (diffInMilliseconds < 0) {
+    return '마감되었습니다';
+  }
+
   // 며칠 후 마감
-  if (diffInDays >= 1) {
-    return `${leftDays} 마감`;
-  }
-  return '마감되었습니다';
+  return rtf.format(Math.floor(diffInDays), 'day') + ' 마감';
 }

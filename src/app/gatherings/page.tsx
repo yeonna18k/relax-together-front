@@ -1,7 +1,6 @@
 import { fetchGatherings } from '@/entities/gatherings/api/gatherings';
 import { additionalParams } from '@/entities/gatherings/api/queries/gatherings';
 import Banner from '@/entities/gatherings/ui/main/Banner';
-import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
 
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import GatheringCardListSection from '@/features/gatherings/ui/card-list-section';
@@ -14,7 +13,14 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+const CreateButton = dynamic(
+  () => import('@/entities/gatherings/ui/main/CreateButton'),
+  {
+    ssr: false,
+  },
+);
 
 export default async function Gatherings() {
   const queryClient = new QueryClient();
