@@ -18,7 +18,6 @@ export interface PaginationReviewsProps {
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   totalPages: number;
-  getReviewData: (page: number) => void;
 }
 
 export default function PaginationReviews({
@@ -26,7 +25,6 @@ export default function PaginationReviews({
   currentPage,
   setCurrentPage,
   totalPages,
-  getReviewData,
 }: PaginationReviewsProps) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -46,7 +44,6 @@ export default function PaginationReviews({
     if (page < 1 || page > totalPages) return;
 
     setCurrentPage(page);
-    getReviewData(page);
   };
 
   const renderItem = ({
@@ -78,7 +75,6 @@ export default function PaginationReviews({
     };
 
     const handlePageBtnClick = (value: number) => {
-      setPage(value);
       handlePageChange(value);
     };
 
@@ -163,16 +159,18 @@ export default function PaginationReviews({
   return (
     <>
       <ul>
-        {/* 임시 key값 index */}
-        {reviewList.content.map((review: Review, index) => {
+        {/* TODO: key값 필요, ReviewCard */}
+        {reviewList?.reviews?.map((review: Review, index) => {
           return (
             <li key={index}>
               <ReviewCard
                 page="GATHERING_DETAIL"
                 score={review.score}
                 userName={review.userName}
-                userProfileImage={review.userProfileImage}
+                userProfileImage={review.userProfileImage} // X
                 comment={review.comment}
+                // gatheringLocation={review.gatheringLocation} // X
+                // gatheringType={review.gatheringType} // X
                 gatheringLocation="건대입구"
                 gatheringType="달램핏"
                 createdDate={review.createdDate}
@@ -187,12 +185,13 @@ export default function PaginationReviews({
           disableCursorAnimation
           showControls
           total={totalPages}
-          initialPage={1}
+          page={currentPage}
           className="gap-2"
           radius="full"
           renderItem={renderItem}
           variant="light"
           siblings={isMobile ? 0 : 1}
+          onChange={handlePageChange}
         />
       </div>
     </>

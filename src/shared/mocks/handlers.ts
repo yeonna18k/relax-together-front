@@ -8,7 +8,7 @@ import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
 import { myWrittenReviewsContents } from '@/shared/fixture/my-written-reviews';
 import { dummyUser } from '@/shared/fixture/user';
-import { BASE_URL, LIMIT } from '@/shared/lib/constants';
+import { BASE_URL, LIMIT, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
 import mockInfiniteResponse from '@/shared/mocks/mockInfiniteResponse';
 import { Gathering } from '@/shared/model';
 import { Review } from '@/shared/model/review';
@@ -17,6 +17,7 @@ import {
   dummyGatheringsInfo,
   dummyParticipantList,
 } from '../fixture/information';
+import { dummyReviews } from '../fixture/reviews';
 
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
@@ -98,6 +99,23 @@ const handlers = [
   }),
   rest.get(`/api/gatherings/:id/participants`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(dummyParticipantList));
+  }),
+
+  rest.get(`/api/gatherings/:id/reviews`, (req, res, ctx) => {
+    const page = Number(req.url.searchParams.get('page')) || 1;
+    const size = Number(req.url.searchParams.get('size')) || REVIEWS_PER_PAGE;
+
+    const startIndex = (page - 1) * size;
+    const endIndex = startIndex + size;
+    const paginatedReviews = dummyReviews.reviews.slice(startIndex, endIndex);
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        reviews: paginatedReviews,
+        totalElements: dummyReviews.totalElements,
+      }),
+    );
   }),
 
   rest.get(`${BASE_URL}/api/gatherings`, (req, res, ctx) => {

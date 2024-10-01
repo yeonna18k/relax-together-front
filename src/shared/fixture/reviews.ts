@@ -1,11 +1,11 @@
 import { Reviews } from '@/features/pagination-reviews/model/reviews';
 
 export const dummyReviews: Reviews = {
-  content: [
+  reviews: [
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -13,9 +13,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -23,9 +23,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -33,9 +33,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -43,9 +43,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -53,9 +53,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -63,9 +63,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -73,9 +73,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -83,9 +83,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -93,9 +93,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -103,9 +103,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -113,9 +113,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -123,9 +123,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -133,9 +133,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -143,9 +143,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -153,9 +153,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -163,9 +163,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -173,9 +173,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -183,9 +183,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -193,9 +193,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -203,9 +203,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -213,9 +213,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -223,9 +223,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -233,9 +233,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -243,9 +243,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -253,9 +253,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -263,9 +263,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -273,9 +273,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -283,9 +283,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:
@@ -293,9 +293,9 @@ export const dummyReviews: Reviews = {
       createdDate: '2024.01.25',
     },
     {
-      gatheringType: 'string',
-      gatheringLocation: 'string',
-      userProfileImage: 'string',
+      gatheringType: '달램핏',
+      gatheringLocation: '건대입구',
+      userProfileImage: '/assets/logo-icon.svg',
       userName: '럽윈즈올',
       score: 4,
       comment:

@@ -9,7 +9,7 @@ export type Review = {
 };
 
 export type Reviews = {
-  content: Review[];
+  reviews: Review[];
   currentPage: number;
   totalPages: number;
   totalElements: number;

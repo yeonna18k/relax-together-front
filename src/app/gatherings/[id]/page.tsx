@@ -26,6 +26,11 @@ export default async function GatheringsDetail({ params }: GatheringsDetail) {
       queryKey: ['participants', id],
       queryFn: () => gatheringsDetailApiService.getParticipantList(id),
     }),
+    queryClient.prefetchQuery({
+      queryKey: ['review', id, 1],
+      queryFn: () =>
+        gatheringsDetailApiService.getReviewList({ id, currentPage: 1 }),
+    }),
   ]);
 
   const dehydratedState = dehydrate(queryClient);
