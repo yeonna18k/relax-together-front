@@ -118,6 +118,31 @@ const handlers = [
     );
   }),
 
+  rest.post('/api/gatherings/:id/join', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: '모임에 참여했습니다',
+      }),
+    );
+  }),
+  rest.delete('/api/gatherings/:id/leave', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: '모임 참여를 취소했습니다',
+      }),
+    );
+  }),
+  rest.put('/api/gatherings/:id/cancel', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: '모임을 취소했습니다',
+      }),
+    );
+  }),
+
   rest.get(`${BASE_URL}/api/gatherings`, (req, res, ctx) => {
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
