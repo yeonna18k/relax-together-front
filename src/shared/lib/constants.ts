@@ -35,5 +35,5 @@ export const Path = {
 
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'https://dev.relax-together.shop'
-    : 'https://dev.relax-together.shop';
+    ? 'http://localhost:3000'
+    : process.env.NEXT_PUBLIC_API_URL;

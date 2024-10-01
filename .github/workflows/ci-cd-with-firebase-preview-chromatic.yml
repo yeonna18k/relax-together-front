@@ -42,6 +42,8 @@ jobs:
       # 빌드 실행
       - name: Build the project
         run: yarn build
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
       # Chromatic 실행
       - name: Publish to Chromatic
@@ -68,3 +70,4 @@ jobs:
           projectId: relax-together
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
