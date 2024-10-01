@@ -47,6 +47,7 @@ export default function SigninForm() {
       res.accessToken && setAccessToken(res.accessToken);
       const userData = await signinUserData();
       if (userData) {
+        console.log(userData);
         setUser(userData.data);
       }
       setLoginError(false);
