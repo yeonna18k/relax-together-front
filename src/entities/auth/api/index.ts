@@ -29,3 +29,15 @@ export function useSignin(form: UseFormReturn<SigninFormType>) {
   };
   return { signin };
 }
+
+export function useSigninUserData() {
+  const signinUserData = async () => {
+    try {
+      const response = await signinApiService.signinUserData();
+      return response;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  return { signinUserData };
+}

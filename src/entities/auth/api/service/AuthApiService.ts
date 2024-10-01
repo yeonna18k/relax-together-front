@@ -1,3 +1,4 @@
+import { User } from '@/entities/mypage/model';
 import ApiService from '@/shared/api/service/ApiService';
 import { SigninUser, SignupUser } from '../../model/user';
 
@@ -31,13 +32,17 @@ class SignupApiService extends ApiService {
 
 export const signupApiService = new SignupApiService();
 
-export type Tokens = { AccessToken: string; RefreshToken: string };
+export type Tokens = { accessToken: string };
 class SigninApiService extends ApiService {
   async signin({ email, password }: SigninUser) {
     const response = await this.post<Tokens>('/api/auths/login', {
       email,
       password,
     });
+    return response;
+  }
+  async signinUserData() {
+    const response = await this.get<User>('/api/auths/me');
     return response;
   }
 }

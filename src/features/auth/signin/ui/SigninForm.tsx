@@ -1,7 +1,8 @@
 'use client';
 
-import { useSignin } from '@/entities/auth/api';
+import { useSignin, useSigninUserData } from '@/entities/auth/api';
 import useAccessToken from '@/shared/hooks/useAccessToken';
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,17 +36,20 @@ export default function SigninForm() {
   const router = useRouter();
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
+  const { signinUserData } = useSigninUserData();
   const { setAccessToken } = useAccessToken();
+  const setUser = useUserDataStore(state => state.setUser);
   const [loginError, setLoginError] = useState(false);
 
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
     if (res) {
-      // const tokens = JSON.parse(JSON.stringify(res.data)) as Tokens;
-      // console.log(tokens.AccessToken);
-      // console.log(res.AccessToken);
+      res.accessToken && setAccessToken(res.accessToken);
+      const userData = await signinUserData();
+      if (userData) {
+        setUser(userData.data);
+      }
       setLoginError(false);
-      // res.AccessToken && setAccessToken(res.AccessToken);
       router.push('/gatherings');
     } else {
       setLoginError(true);
