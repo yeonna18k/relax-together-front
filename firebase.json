@@ -11,6 +11,16 @@
     },
     "predeploy": [
       "echo \"NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL\" > .env.production"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "nextjsFunc"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
