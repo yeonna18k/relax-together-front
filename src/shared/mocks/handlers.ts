@@ -13,6 +13,10 @@ import mockInfiniteResponse from '@/shared/mocks/mockInfiniteResponse';
 import { Gathering } from '@/shared/model';
 import { Review } from '@/shared/model/review';
 import { rest } from 'msw';
+import {
+  dummyGatheringsInfo,
+  dummyParticipantList,
+} from '../fixture/information';
 
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
@@ -88,6 +92,14 @@ const handlers = [
       return res(ctx.status(400), ctx.json({ error: 'Invalid review data' }));
     }
   }),
+
+  rest.get(`/api/gatherings/:id`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dummyGatheringsInfo));
+  }),
+  rest.get(`/api/gatherings/:id/participants`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dummyParticipantList));
+  }),
+
   rest.get(`${BASE_URL}/api/gatherings`, (req, res, ctx) => {
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());

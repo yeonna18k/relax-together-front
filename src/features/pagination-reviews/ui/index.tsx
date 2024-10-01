@@ -1,5 +1,8 @@
 'use client';
 
+import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-pagination.svg';
+import ArrowRightIcon from '@/shared/assets/icons/arrow-right-pagination.svg';
+import ReviewCard from '@/shared/common/ui/review-card';
 import { cn } from '@/shared/lib/utils';
 import {
   Pagination,
@@ -7,26 +10,37 @@ import {
   PaginationItemType,
 } from '@nextui-org/pagination';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
-import ArrowLeftIcon from '../../shared/assets/icons/arrow-left-pagination.svg';
-import ArrowRightIcon from '../../shared/assets/icons/arrow-right-pagination.svg';
-import { Review } from './types';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Review, Reviews } from '../model/reviews';
 
-export interface PaginationComponentProps {
-  reviewList: Review[];
+export interface PaginationReviewsProps {
+  reviewList: Reviews;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   totalPages: number;
   getReviewData: (page: number) => void;
 }
 
-export default function PaginationComponent({
+export default function PaginationReviews({
   reviewList,
   currentPage,
   setCurrentPage,
   totalPages,
   getReviewData,
-}: PaginationComponentProps) {
+}: PaginationReviewsProps) {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const handlePageChange = (page: number) => {
     // 유효한 페이지 내에서만 작동하도록 설정
     if (page < 1 || page > totalPages) return;
@@ -76,13 +90,13 @@ export default function PaginationComponent({
           key={key}
           className={cn(
             className,
-            'ml-[6px] h-12 w-12 min-w-12 rounded-lg bg-white',
+            'ml-[6px] h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
           )}
           onClick={handleNextBtnClick}
           disabled={isNextDisabled}
         >
           <ArrowRightIcon
-            className={isNextDisabled ? 'fill-[#E5E7EB]' : 'fill-[#1f2937]'}
+            className={isNextDisabled ? 'fill-[#E5E7EB]' : 'fill-gray-800'}
           />
         </button>
       );
@@ -96,13 +110,13 @@ export default function PaginationComponent({
           key={key}
           className={cn(
             className,
-            'mr-[6px] h-12 w-12 min-w-12 rounded-lg bg-white',
+            'mr-[6px] h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
           )}
           onClick={handlePrevBtnClick}
           disabled={isPrevDisabled}
         >
           <ArrowLeftIcon
-            className={isPrevDisabled ? 'fill-[#E5E7EB]' : 'fill-[#1f2937]'}
+            className={isPrevDisabled ? 'fill-[#E5E7EB]' : 'fill-gray-800'}
           />
         </button>
       );
@@ -112,10 +126,13 @@ export default function PaginationComponent({
       return (
         <button
           key={key}
-          className={cn(className, 'h-12 w-12 min-w-12 rounded-lg bg-white')}
+          className={cn(
+            className,
+            'h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
+          )}
         >
           <Image
-            src="./assets/ellipsis.svg"
+            src="/assets/ellipsis.svg"
             alt="생략 아이콘 이미지"
             width={13}
             height={3}
@@ -132,8 +149,9 @@ export default function PaginationComponent({
         ref={ref}
         className={cn(
           className,
-          'h-12 w-12 min-w-12 rounded-lg bg-white text-[#C4C4C4]',
-          isActive && 'font-semibold text-[#1F1F1F]',
+          'h-[34px] w-[34px] rounded-lg bg-white text-sm text-gray-300 md:h-12 md:w-12 md:text-base',
+
+          isActive && 'font-semibold text-green-800',
         )}
         onClick={() => handlePageBtnClick(value)}
       >
@@ -146,34 +164,37 @@ export default function PaginationComponent({
     <>
       <ul>
         {/* 임시 key값 index */}
-        {reviewList?.map((review: Review, index) => {
+        {reviewList.content.map((review: Review, index) => {
           return (
             <li key={index}>
-              {/* <ReviewCard
-                page="search"
+              <ReviewCard
+                page="GATHERING_DETAIL"
                 score={review.score}
-                user_name={review.User.name}
-                user_image={review.User.image}
-                content={review.comment}
-                place=""
-                address=""
-                date={review.createdAt}
-              /> */}
+                userName={review.userName}
+                userProfileImage={review.userProfileImage}
+                comment={review.comment}
+                gatheringLocation="건대입구"
+                gatheringType="달램핏"
+                createdDate={review.createdDate}
+              />
             </li>
           );
         })}
       </ul>
-      <Pagination
-        data-testid="pagination"
-        disableCursorAnimation
-        showControls
-        total={totalPages}
-        initialPage={1}
-        className="gap-2"
-        radius="full"
-        renderItem={renderItem}
-        variant="light"
-      />
+      <div className="mx-auto mt-6 w-fit">
+        <Pagination
+          data-testid="pagination"
+          disableCursorAnimation
+          showControls
+          total={totalPages}
+          initialPage={1}
+          className="gap-2"
+          radius="full"
+          renderItem={renderItem}
+          variant="light"
+          siblings={isMobile ? 0 : 1}
+        />
+      </div>
     </>
   );
 }

@@ -1,13 +1,13 @@
+import OpenBadge from '@/shared/common/ui/open-badge';
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
-} from '@/entities/model/information';
-import OpenBadge from '@/shared/common/ui/open-badge';
+} from '../../model/information';
 import UserProfileImage from './UserProfileImage';
 
 interface ParticipantsProps {
   gatheringsInfo: GatheringsInfoTypes;
-  participantList: ParticipantListTypes[];
+  participantList: ParticipantListTypes;
 }
 
 export default function Participants({
@@ -16,7 +16,7 @@ export default function Participants({
 }: ParticipantsProps) {
   return (
     <div className="flex justify-between">
-      <div className="flex gap-3 text-sm font-semibold text-gray-900">
+      <div className="flex items-center gap-3 text-sm font-semibold text-gray-900">
         <div>
           <span>모집 정원</span>
           <span data-testid="participantCount" className="ml-[6px]">

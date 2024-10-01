@@ -31,6 +31,7 @@ const nextConfig = {
         pathname: '/b0/b/**',
       },
     ],
+    domains: ['firebasestorage.googleapis.com'],
   },
   webpack(config) {
     config.module.rules.push({

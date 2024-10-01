@@ -1,14 +1,30 @@
+'use client';
+
 import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
 import OpenBadge from '@/shared/common/ui/open-badge';
 import ParticipantCounter, {
   GatheringCapacityInfo,
 } from '@/shared/common/ui/participant-counter';
 import { Progress } from '@/shared/ui/progress';
+import { useEffect, useState } from 'react';
+
+// interface ProgressBarProps {
+//   value: number;
+// }
 
 export default function ProgressBar({
   participantCount,
   capacity,
 }: GatheringCapacityInfo) {
+  const [progress, setProgress] = useState<number>(0);
+
+  // progress bar 애니메이션
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(participantCount), 500);
+    return () => clearTimeout(timer);
+  }, [participantCount]);
+
+  // const isClosed = value === 20;
   const isClosed = participantCount === capacity;
 
   const iconColor = isClosed ? 'fill-green-400' : 'fill-gray-700';
@@ -33,9 +49,10 @@ export default function ProgressBar({
           ) : null}
         </div>
         <Progress
-          value={participantCount}
+          // value={participantCount}
+          value={progress}
           capacity={capacity}
-          isClosed={isClosed}
+          // isClosed={isClosed}
         />
       </div>
       <div className="flex items-center gap-2">

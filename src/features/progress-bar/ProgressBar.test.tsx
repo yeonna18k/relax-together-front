@@ -26,15 +26,15 @@ describe('ProgressBar Component', () => {
 
 describe('Progress Component', () => {
   test('화면에 렌더링이 된다.', () => {
-    render(<Progress value={0} capacity={MAX_CAPACITY} isClosed={false} />);
+    render(<Progress value={0} capacity={MAX_CAPACITY} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
     expect(screen.getByTestId('indicator')).toHaveClass(
-      'h-full w-full flex-1 transition-all bg-green-600',
+      'h-full w-full flex-1 transition-all bg-green-500',
     );
   });
 
   test('참여자 수에 따른 프로그레스 바 퍼센티지 계산 테스트', () => {
-    render(<Progress value={10} capacity={MAX_CAPACITY} isClosed={false} />);
+    render(<Progress value={10} capacity={MAX_CAPACITY} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
     expect(screen.getByTestId('indicator')).toHaveStyle(
       `transform: translateX(-50%)`,
@@ -42,7 +42,7 @@ describe('Progress Component', () => {
   });
 
   test('"Closed" 상태일 때 indicator가 연한 주황색으로 변경된다.', () => {
-    render(<Progress value={20} capacity={MAX_CAPACITY} isClosed={true} />);
+    render(<Progress value={20} capacity={MAX_CAPACITY} />);
     expect(screen.getByTestId('indicator')).toBeInTheDocument();
     expect(screen.getByTestId('indicator')).toHaveClass(
       'h-full w-full flex-1 transition-all bg-green-400',

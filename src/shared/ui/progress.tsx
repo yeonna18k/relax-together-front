@@ -9,10 +9,11 @@ const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
     capacity: number;
-    isClosed: boolean;
+    // isClosed: boolean;
   }
->(({ className, value, capacity, isClosed, ...props }, ref) => {
-  const bgColor = isClosed ? 'bg-green-400' : 'bg-green-600';
+>(({ className, value, capacity, ...props }, ref) => {
+  const isClosed = value === 20;
+  const bgColor = isClosed ? 'bg-green-400' : 'bg-green-500';
 
   const currentParticipants = value || 0;
   const progressPercentage = (currentParticipants / capacity) * 100;
