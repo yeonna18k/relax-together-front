@@ -42,7 +42,7 @@ class MypageApiService extends ApiService {
   }
 
   async writeReview(data: WriteReviewRequest) {
-    const response = await this.post(`api/reviews`, data);
+    const response = await this.post(`/api/reviews`, data);
     return response;
   }
 }

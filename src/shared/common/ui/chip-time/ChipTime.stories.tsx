@@ -19,5 +19,24 @@ export const Default: Story = {
     state: 'enabled',
     hour: 15,
     minute: 0,
+    isSelected: false,
+  },
+};
+
+export const Selected: Story = {
+  args: {
+    state: 'enabled',
+    hour: 15,
+    minute: 0,
+    isSelected: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    state: 'disabled',
+    hour: 15,
+    minute: 0,
+    isSelected: false,
   },
 };

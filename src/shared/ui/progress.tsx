@@ -7,15 +7,16 @@ import { cn } from '@/shared/lib/utils';
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
+    capacity: number;
+    // isClosed: boolean;
+  }
+>(({ className, value, capacity, ...props }, ref) => {
   const isClosed = value === 20;
-
   const bgColor = isClosed ? 'bg-green-400' : 'bg-green-500';
 
-  const maxCapacity = 20;
   const currentParticipants = value || 0;
-  const progressPercentage = (currentParticipants / maxCapacity) * 100;
+  const progressPercentage = (currentParticipants / capacity) * 100;
 
   return (
     <ProgressPrimitive.Root

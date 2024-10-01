@@ -7,8 +7,13 @@ export function middleware(req: NextRequest) {
     url.searchParams.set('subPage', 'my-gatherings');
     return NextResponse.redirect(url);
   }
+  if (url.pathname === '/gatherings' && !url.searchParams.has('subPage')) {
+    url.searchParams.set('subPage', 'dalaemfit');
+    url.searchParams.set('filter', 'all');
+    return NextResponse.redirect(url);
+  }
 }
 
 export const config = {
-  matcher: '/mypage',
+  matcher: ['/gatherings', '/mypage'],
 };
