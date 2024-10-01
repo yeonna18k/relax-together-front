@@ -8,7 +8,7 @@ import {
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { UseFormReturn } from 'react-hook-form';
-import { useCheckEmail } from '../model/hooks/useCheckEmail';
+import { useCheckEmail } from '../../../../entities/auth/model/hooks/useCheckEmail';
 import { SignupFormType } from './SignupForm';
 
 interface SignupFormFieldProps {
@@ -23,7 +23,9 @@ export default function SignupEmailFormField({ form }: SignupFormFieldProps) {
     placeholder: '이메일을 입력해주세요',
     className: cn(
       'text-gray h-10 !w-full text-sm font-medium text-gray-800 placeholder:text-gray-400',
-      error.email ? 'border border-error' : '',
+      error.email
+        ? 'border border-error hover:ring-error focus:ring-error'
+        : '',
     ),
   };
 
