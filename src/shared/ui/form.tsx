@@ -150,10 +150,6 @@ const FormMessage = React.forwardRef<
   const { error, formMessageId } = useFormField();
   const body = error ? String(error?.message) : children;
 
-  if (!body || body === 'undefined') {
-    return null;
-  }
-
   return (
     <p
       ref={ref}
@@ -161,7 +157,7 @@ const FormMessage = React.forwardRef<
       className={cn('pt-2 text-sm font-medium text-destructive', className)}
       {...props}
     >
-      {body}
+      {body || '\u00A0'}
     </p>
   );
 });

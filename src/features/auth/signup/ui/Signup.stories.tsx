@@ -1,4 +1,4 @@
-import Signup from '@/app/signup/page';
+import Signup from '@/app/(auth)/signup/page';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 

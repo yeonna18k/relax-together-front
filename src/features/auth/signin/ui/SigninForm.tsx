@@ -1,15 +1,17 @@
 'use client';
-import GenericFormField from '@/entities/auth/ui/GenericFormField';
-import TogglePage from '@/entities/auth/ui/TogglePage';
+
+import { useSignin, useSigninUserData } from '@/entities/auth/api';
 import useAccessToken from '@/shared/hooks/useAccessToken';
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useSignin } from '../api';
+import GenericFormField from '../../ui/GenericFormField';
+import TogglePage from '../../ui/TogglePage';
 
 const formSchema = z.object({
   email: z
@@ -34,20 +36,32 @@ export default function SigninForm() {
   const router = useRouter();
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
-  const { setAccessToken } = useAccessToken();
+  const { signinUserData } = useSigninUserData();
+  const { accessToken, setAccessToken } = useAccessToken();
+  const setUser = useUserDataStore(state => state.setUser);
   const [loginError, setLoginError] = useState(false);
 
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
     if (res) {
+      res.accessToken && setAccessToken(res.accessToken);
+
       setLoginError(false);
-      res.token && setAccessToken(res.token);
       router.push('/gatherings');
     } else {
       setLoginError(true);
     }
   }
-
+  useEffect(() => {
+    const userData = async () => {
+      const response = await signinUserData();
+      console.log(response);
+      if (response) {
+        setUser(response.data);
+      }
+    };
+    userData();
+  }, [accessToken]);
   return (
     <div className="mt-[15px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px]">
       <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
