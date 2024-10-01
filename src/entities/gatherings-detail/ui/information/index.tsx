@@ -1,30 +1,29 @@
 'use client';
 
-import { GatheringsInfoTypes } from '@/entities/gatherings-detail/model/information';
-import { useQuery } from '@tanstack/react-query';
-import { gatheringsDetailApiService } from '../../api/service/GatheringsDetailApiService';
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/gatherings-detail/model/information';
 import InformationBottom from './InformationBottom';
 import InformationTop from './InformationTop';
 
 interface InformationProps {
-  id: string;
   gatheringsInfo: GatheringsInfoTypes;
+  participantList: ParticipantListTypes;
 }
 
-export default function Information({ id, gatheringsInfo }: InformationProps) {
-  const { data } = useQuery({
-    queryKey: ['participants', id],
-    queryFn: () => gatheringsDetailApiService.getParticipantList(id),
-  });
-
+export default function Information({
+  gatheringsInfo,
+  participantList,
+}: InformationProps) {
   return (
     <>
       <div className="w-full rounded-xl border-2 border-gray-200 bg-white">
         <InformationTop gatheringsInfo={gatheringsInfo} />
-        {data && (
+        {participantList && (
           <InformationBottom
             gatheringsInfo={gatheringsInfo}
-            participantList={data}
+            participantList={participantList}
           />
         )}
       </div>
