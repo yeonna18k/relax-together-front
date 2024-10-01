@@ -1,4 +1,4 @@
-import { Score } from '@/features/reviews/model/score';
+import { Score } from '@/entities/reviews/model/score';
 
 export const dummyScore: Score = {
   fivePoints: 27,
