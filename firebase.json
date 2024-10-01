@@ -8,6 +8,9 @@
     ],
     "frameworksBackend": {
       "region": "asia-east1"
-    }
+    },
+    "predeploy": [
+      "echo \"NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL\" > .env.production"
+    ]
   }
 }
