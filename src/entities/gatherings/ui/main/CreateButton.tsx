@@ -1,10 +1,12 @@
 'use client';
+import useAccessToken from '@/shared/hooks/useAccessToken';
 import { useModal } from '@/shared/hooks/useModal';
 import Image from 'next/image';
 
 export default function CreateButton() {
   const { openModal } = useModal();
-  return (
+  const { accessToken } = useAccessToken();
+  return accessToken ? (
     <div className="fixed bottom-[26px] left-[5px] z-40 lg:bottom-[45px] lg:left-[50px] xl:bottom-[68px] xl:left-[100px]">
       <button
         className="flex h-[52px] w-[158px] items-center justify-center gap-2 rounded-full bg-[#FF3D61] text-lg font-semibold text-white transition-all duration-300 hover:bg-[#e63255] lg:h-[72px] lg:w-[222px] lg:text-2xl xl:h-[92px] xl:w-[282px] xl:text-[32px]"
@@ -20,5 +22,7 @@ export default function CreateButton() {
         />
       </button>
     </div>
+  ) : (
+    <></>
   );
 }
