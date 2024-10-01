@@ -1,13 +1,17 @@
 import PersonIcon from '@/shared/assets/icons/person-icon.svg';
-import { MAX_CAPACITY } from '@/shared/lib/constants';
+import { Gathering } from '@/shared/model';
 
-interface ParticipantCounterProps {
-  participantCount: number;
+export type GatheringCapacityInfo = Pick<
+  Gathering,
+  'participantCount' | 'capacity'
+>;
+interface ParticipantCounterProps extends GatheringCapacityInfo {
   iconColor: string;
   valueColor: string;
 }
 export default function ParticipantCounter({
   participantCount,
+  capacity,
   iconColor,
   valueColor,
 }: ParticipantCounterProps) {
@@ -15,7 +19,7 @@ export default function ParticipantCounter({
     <div className="flex items-center gap-[2px]">
       <PersonIcon className={`${iconColor}`} data-testid="person-icon" />
       <span className={`text-sm font-medium ${valueColor}`}>
-        {participantCount}/{MAX_CAPACITY}
+        {participantCount}/{capacity}
       </span>
     </div>
   );

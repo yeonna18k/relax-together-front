@@ -37,11 +37,15 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
       <PopoverTrigger asChild>
         <Button
           className={cn(
-            'group flex w-[120px] items-center justify-between rounded-xl border-2 border-gray-100 px-3 py-2 text-sm',
+            'group flex h-10 w-[120px] items-center justify-between rounded-md border-2 border-gray-200 px-3 py-2 text-sm',
             triggerStyles,
           )}
         >
-          {date ? format(date, 'yy/MM/dd') : <span>날짜 선택</span>}
+          {date ? (
+            format(date, 'yy/MM/dd')
+          ) : (
+            <span className="font-normal">날짜 선택</span>
+          )}
           <ArrowDropdown
             className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
           />

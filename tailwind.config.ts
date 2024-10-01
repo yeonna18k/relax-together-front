@@ -97,6 +97,9 @@ const config: Config = {
         },
         error: '#DC2626',
       },
+      fontFamily: {
+        paperlogy: ['var(--font-paperlogy-extrabold)'],
+      },
       keyframes: {
         slideIn: {
           '0%': { transform: 'translateX(-100%)', opacity: '0' },
@@ -155,6 +158,7 @@ const config: Config = {
       },
     },
   },
+
   plugins: [
     require('tailwindcss-animate'),
     function ({ addUtilities }: any) {

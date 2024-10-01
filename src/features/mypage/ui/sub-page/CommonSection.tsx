@@ -1,8 +1,20 @@
+import { cn } from '@/shared/lib/utils';
 import { PropsWithChildren } from 'react';
 
-export default function CommonSection({ children }: PropsWithChildren) {
+interface CommonSectionProps extends PropsWithChildren {
+  className?: string;
+}
+export default function CommonSection({
+  children,
+  className,
+}: CommonSectionProps) {
   return (
-    <section className="mt-6 max-h-[calc(100vh-370px)] overflow-y-scroll lg:max-h-[calc(100vh-428px)]">
+    <section
+      className={cn(
+        'mt-6 max-h-[calc(100vh-370px)] overflow-y-scroll lg:max-h-[calc(100vh-428px)]',
+        className,
+      )}
+    >
       {children}
     </section>
   );

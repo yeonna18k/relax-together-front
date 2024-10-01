@@ -1,6 +1,7 @@
 import {
   commonSelectItems,
-  commonSortItems,
+  gatheringsSortItems,
+  reviewsSortItems,
 } from '@/shared/fixture/select-items';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
@@ -41,10 +42,11 @@ export const DefaultSelect: Story = {
     menuItems: commonSelectItems,
   },
 };
-export const SortSelect: Story = {
+export const ReviewsSortSelect: Story = {
   render: function Render(args) {
-    const [selectedSortValue, setSelectedSortValue] =
-      useState<string>('DUE_DATE');
+    const [selectedSortValue, setSelectedSortValue] = useState<string>(
+      args.menuItems[0].value,
+    );
 
     const handleSortValueChange = (value: string) => {
       setSelectedSortValue(value);
@@ -59,7 +61,31 @@ export const SortSelect: Story = {
   },
   args: {
     filterIconType: 'sort',
-    placeholder: '마감임박',
-    menuItems: commonSortItems,
+    placeholder: reviewsSortItems[0].label,
+    menuItems: reviewsSortItems,
+  },
+};
+
+export const GatheringsSortSelect: Story = {
+  render: function Render(args) {
+    const [selectedSortValue, setSelectedSortValue] = useState<string>(
+      args.menuItems[0].value,
+    );
+
+    const handleSortValueChange = (value: string) => {
+      setSelectedSortValue(value);
+    };
+    return (
+      <CommonSelect
+        {...args}
+        onValueChange={handleSortValueChange}
+        selectedValue={selectedSortValue}
+      />
+    );
+  },
+  args: {
+    filterIconType: 'sort',
+    placeholder: gatheringsSortItems[0].label,
+    menuItems: gatheringsSortItems,
   },
 };

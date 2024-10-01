@@ -3,13 +3,14 @@ import {
   MyHostedGathering,
   WriteReviewRequest,
 } from '@/entities/mypage/model';
-
+import { gatheringsContents } from '@/shared/fixture/gatherings';
 import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
 import { myWrittenReviewsContents } from '@/shared/fixture/my-written-reviews';
 import { dummyUser } from '@/shared/fixture/user';
-import { LIMIT, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
+import { BASE_URL, LIMIT, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
 import mockInfiniteResponse from '@/shared/mocks/mockInfiniteResponse';
+import { Gathering } from '@/shared/model';
 import { Review } from '@/shared/model/review';
 import { rest } from 'msw';
 import {
@@ -21,13 +22,12 @@ import { dummyReviews } from '../fixture/reviews';
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
   rest.put(`/api/auths/user`, (req, res, ctx) => {
-    console.log(req);
     return res(ctx.status(200));
   }),
   rest.post(`/api/auth/signup`, (req, res, ctx) =>
     res(ctx.status(201), ctx.json({ accessToken: 'Access-Token' })),
   ),
-  rest.get('/api/gatherings/joined', (req, res, ctx) => {
+  rest.get(`/api/gatherings/joined`, (req, res, ctx) => {
     // 쿼리 파라미터 가져오기
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
@@ -41,7 +41,7 @@ const handlers = [
     // 응답 반환
     return res(ctx.status(200), ctx.json(mockResponse));
   }),
-  rest.get('/api/reviews/me', (req, res, ctx) => {
+  rest.get(`/api/reviews/me`, (req, res, ctx) => {
     // 쿼리 파라미터 가져오기
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
@@ -55,7 +55,7 @@ const handlers = [
     // 응답 반환
     return res(ctx.status(200), ctx.json(mockResponse));
   }),
-  rest.get('/api/gatherings/my-hosted', (req, res, ctx) => {
+  rest.get(`/api/gatherings/my-hosted`, (req, res, ctx) => {
     // 쿼리 파라미터 가져오기
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
@@ -69,7 +69,7 @@ const handlers = [
     // 응답 반환
     return res(ctx.status(200), ctx.json(mockResponse));
   }),
-  rest.delete(`api/gatherings/:gatheringId/leave`, (req, res, ctx) => {
+  rest.delete(`/api/gatherings/:gatheringId/leave`, (req, res, ctx) => {
     const { gatheringId } = req.params;
     return res(
       ctx.status(200),
@@ -116,6 +116,19 @@ const handlers = [
         totalElements: dummyReviews.totalElements,
       }),
     );
+  }),
+
+  rest.get(`${BASE_URL}/api/gatherings`, (req, res, ctx) => {
+    const page = parseInt(req.url.searchParams.get('page') || '0');
+    const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
+
+    const mockResponse = mockInfiniteResponse<Gathering>(
+      gatheringsContents,
+      page,
+      size,
+    );
+
+    return res(ctx.status(200), ctx.json(mockResponse));
   }),
 ];
 

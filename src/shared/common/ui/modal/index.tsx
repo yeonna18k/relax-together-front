@@ -34,6 +34,7 @@ interface ModalProps {
   disabled?: boolean;
   actionBtnName?: string;
   handleAction?: () => void;
+  type?: 'submit' | 'button';
 }
 
 export default function Modal({
@@ -44,6 +45,7 @@ export default function Modal({
   disabled,
   actionBtnName = '확인',
   handleAction,
+  type = 'button',
 }: ModalProps) {
   const { resetModal } = useModal();
   const isNonSingleVariant = variant !== 'single';
@@ -73,6 +75,7 @@ export default function Modal({
           size={size}
           onClick={handleAction}
           disabled={disabled}
+          type={type}
         >
           {actionBtnName}
         </AlertDialogAction>
