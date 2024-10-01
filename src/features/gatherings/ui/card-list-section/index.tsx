@@ -33,7 +33,7 @@ export default function GatheringCardListSection() {
         ? undefined
         : searchFilterValues.selectedValue,
     date: searchFilterValues.date
-      ? format(searchFilterValues.date, 'yy-MM-dd')
+      ? format(searchFilterValues.date, 'yyyy-MM-dd')
       : undefined,
     sortBy: searchFilterValues.selectedSortValue,
   });

@@ -1,4 +1,4 @@
-import { ChipTimeCommonProps } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
+import { ChipTimeCommonProps } from '@/features/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
 import ChipTime from '@/shared/common/ui/chip-time';
 
 interface CreateGatheringDateTimeSelectorProps {

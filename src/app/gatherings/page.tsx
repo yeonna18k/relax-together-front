@@ -1,10 +1,11 @@
 import { fetchGatherings } from '@/entities/gatherings/api/gatherings';
 import { additionalParams } from '@/entities/gatherings/api/queries/gatherings';
-import GatheringCardListSection from '@/entities/gatherings/ui/card-list-section';
 import Banner from '@/entities/gatherings/ui/main/Banner';
 import CreateButton from '@/entities/gatherings/ui/main/CreateButton';
-import GatheringCreateModal from '@/entities/gatherings/ui/main/GatheringCreateModal';
+
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
+import GatheringCardListSection from '@/features/gatherings/ui/card-list-section';
+import GatheringCreateModal from '@/features/gatherings/ui/create-gathring-modal';
 import { prefetchCommonInfiniteData } from '@/shared/api/queries/prefetch';
 import CommonSearchFilter from '@/shared/common/ui/common-search-filter';
 import { gatheringsSortItems } from '@/shared/fixture/select-items';
@@ -15,10 +16,6 @@ import {
 } from '@tanstack/react-query';
 import { Suspense } from 'react';
 
-if (process.env.NODE_ENV === 'development') {
-  const { server } = require('../../shared/mocks/node');
-  server.listen();
-}
 export default async function Gatherings() {
   const queryClient = new QueryClient();
   await prefetchCommonInfiniteData(

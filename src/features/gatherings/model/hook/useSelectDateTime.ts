@@ -1,4 +1,4 @@
-import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
+import { SwitchFiler } from '@/features/gatherings/model/create-gathring';
 import {
   FUTURE_CREATE_DATE,
   FUTURE_CREATE_HOUR,

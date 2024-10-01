@@ -1,4 +1,4 @@
-import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
+import { SwitchFiler } from '@/features/gatherings/model/create-gathring';
 import useFileUpload from '@/shared/hooks/useFileUpload';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
@@ -25,6 +25,7 @@ export default function FileUpload({
 
   useEffect(() => {
     onChange('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilter]);
   return (
     <div className="flex w-full gap-2">

@@ -1,6 +1,6 @@
-import CreateGatheringFormLabel from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
-import CreateGatheringTypeCheckbox from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringTypeCheckbox';
-import { CreateGatheringCommonProps } from '@/entities/gatherings/ui/main/GatheringCreateModal';
+import { CreateGatheringCommonProps } from '@/features/gatherings/model/create-gathring';
+import CreateGatheringFormLabel from '@/features/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
+import CreateGatheringTypeCheckbox from '@/features/gatherings/ui/create-gathering-form/CreateGatheringTypeCheckbox';
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 
 export default function CreateGatheringTypeFormFiled({

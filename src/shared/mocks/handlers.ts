@@ -17,7 +17,6 @@ import { rest } from 'msw';
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
   rest.put(`/api/auths/user`, (req, res, ctx) => {
-    console.log(req);
     return res(ctx.status(200));
   }),
   rest.post(`/api/auth/signup`, (req, res, ctx) =>
@@ -90,8 +89,6 @@ const handlers = [
     }
   }),
   rest.get(`${BASE_URL}/api/gatherings`, (req, res, ctx) => {
-    // 쿼리 파라미터 가져오기
-    console.log('🚀 ~ rest.get ~ req:', req);
     const page = parseInt(req.url.searchParams.get('page') || '0');
     const size = parseInt(req.url.searchParams.get('size') || LIMIT.toString());
 
@@ -101,7 +98,6 @@ const handlers = [
       size,
     );
 
-    // 응답 반환
     return res(ctx.status(200), ctx.json(mockResponse));
   }),
 ];

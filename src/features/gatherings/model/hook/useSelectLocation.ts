@@ -1,4 +1,4 @@
-import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
+import { SwitchFiler } from '@/features/gatherings/model/create-gathring';
 import { commonSelectItems } from '@/shared/fixture/select-items';
 import { useEffect, useState } from 'react';
 
@@ -9,6 +9,7 @@ export default function useSelectLocation(filter?: SwitchFiler) {
 
   useEffect(() => {
     setSelectedValue(defaultValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
   return { selectedValue, setSelectedValue, modalMenuItems };

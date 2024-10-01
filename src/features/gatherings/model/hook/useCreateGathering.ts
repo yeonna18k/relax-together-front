@@ -1,6 +1,7 @@
 import { additionalParams } from '@/entities/gatherings/api/queries/gatherings';
 import { gatheringsApiService } from '@/entities/gatherings/api/service/GatheringsApiService';
-import { CreateGathering } from '@/entities/gatherings/ui/main/GatheringCreateModal';
+import { CreateGathering } from '@/features/gatherings/model/create-gathring';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export default function useCreateGathering() {

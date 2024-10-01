@@ -1,8 +1,12 @@
+import { SwitchFiler } from '@/features/gatherings/model/create-gathring';
 import { Button } from '@/shared/ui/button';
 
-export type SwitchFiler = '달램핏' | '워케이션';
+type SwitchButton = {
+  label: string;
+  value: SwitchFiler;
+};
 
-const switchButtons = [
+const switchButtons: Array<SwitchButton> = [
   { label: '달램핏', value: '달램핏' },
   { label: '워케이션', value: '워케이션' },
 ];

@@ -1,12 +1,14 @@
-import useSelectDateTime from '@/entities/gatherings/model/hook/useSelectDateTime';
+import {
+  CreateGathering,
+  SwitchFiler,
+} from '@/features/gatherings/model/create-gathring';
+import useSelectDateTime from '@/features/gatherings/model/hook/useSelectDateTime';
 import {
   checkButtonAvailabilityByTime,
   getAddHoursDateISOString,
-} from '@/entities/gatherings/model/lib/utils';
-import CreateGatheringDateTimeSelector from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringDateTimeSelector';
-import CreateGatheringFormLabel from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
-import { SwitchFiler } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
-import { CreateGathering } from '@/entities/gatherings/ui/main/GatheringCreateModal';
+} from '@/features/gatherings/model/lib/utils';
+import CreateGatheringDateTimeSelector from '@/features/gatherings/ui/create-gathering-form/CreateGatheringDateTimeSelector';
+import CreateGatheringFormLabel from '@/features/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
 import { ChipTimeProps } from '@/shared/common/ui/chip-time';
 import { Calendar } from '@/shared/ui/calendar';
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
@@ -51,6 +53,7 @@ export default function CreateGatheringDateTimeFormFiled({
       'registrationEnd',
       getAddHoursDateISOString(selectedDate, selectedTime),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate, selectedTime]);
   return (
     <FormField

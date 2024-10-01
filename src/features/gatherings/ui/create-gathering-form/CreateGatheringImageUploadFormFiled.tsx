@@ -1,6 +1,7 @@
-import CreateGatheringFormLabel from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
-import FileUpload from '@/entities/gatherings/ui/main/FileUpLoad';
-import { CreateGatheringCommonProps } from '@/entities/gatherings/ui/main/GatheringCreateModal';
+import { CreateGatheringCommonProps } from '@/features/gatherings/model/create-gathring';
+import CreateGatheringFormLabel from '@/features/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
+import FileUpload from '@/features/gatherings/ui/create-gathering-form/FileUpLoad';
+
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 
 export default function CreateGatheringImageUploadFormFiled({

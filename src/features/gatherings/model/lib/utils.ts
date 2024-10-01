@@ -1,4 +1,4 @@
-import { ChipTimeCommonProps } from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
+import { ChipTimeCommonProps } from '@/features/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
 import { NOW, NOW_BASE_CREATE_HOUR } from '@/shared/lib/constants';
 import { setHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns';
 

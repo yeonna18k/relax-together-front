@@ -1,6 +1,7 @@
-import useSelectLocation from '@/entities/gatherings/model/hook/useSelectLocation';
-import CreateGatheringFormLabel from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
-import { CreateGatheringCommonProps } from '@/entities/gatherings/ui/main/GatheringCreateModal';
+import { CreateGatheringCommonProps } from '@/features/gatherings/model/create-gathring';
+import useSelectLocation from '@/features/gatherings/model/hook/useSelectLocation';
+import CreateGatheringFormLabel from '@/features/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
+
 import CommonSelect from '@/shared/common/ui/common-select';
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 

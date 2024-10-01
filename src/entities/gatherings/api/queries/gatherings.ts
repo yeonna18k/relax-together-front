@@ -13,5 +13,7 @@ export function useGatheringsData(additionalParams: Partial<FilterParams>) {
 
 export const additionalParams: Partial<FilterParams> = {
   type: '달램핏',
+  location: undefined,
+  date: undefined,
   sortBy: 'registrationEnd',
 };

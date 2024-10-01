@@ -1,49 +1,25 @@
 'use client';
-import useCreateGathering from '@/entities/gatherings/model/hook/useCreateGathering';
-import useSelectDateTime from '@/entities/gatherings/model/hook/useSelectDateTime';
-import { getAddHoursDateISOString } from '@/entities/gatherings/model/lib/utils';
-import CreateGatheringCapacityFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringCapacityFormFiled';
-import CreateGatheringDateTimeFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
-import CreateGatheringImageUploadFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringImageUploadFormFiled';
-import CreateGatheringLocationFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringLocationFormFiled';
-import CreateGatheringNameFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringNameFormFiled';
-import CreateGatheringSwitchButtonGroup, {
+import {
+  CreateGathering,
+  createGatheringSchema,
   SwitchFiler,
-} from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
-import CreateGatheringTypeFormFiled from '@/entities/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
+} from '@/features/gatherings/model/create-gathring';
+import useCreateGathering from '@/features/gatherings/model/hook/useCreateGathering';
+import useSelectDateTime from '@/features/gatherings/model/hook/useSelectDateTime';
+import { getAddHoursDateISOString } from '@/features/gatherings/model/lib/utils';
+import CreateGatheringCapacityFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringCapacityFormFiled';
+import CreateGatheringDateTimeFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
+import CreateGatheringImageUploadFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringImageUploadFormFiled';
+import CreateGatheringLocationFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringLocationFormFiled';
+import CreateGatheringNameFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringNameFormFiled';
+import CreateGatheringSwitchButtonGroup from '@/features/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
+import CreateGatheringTypeFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
-import { Control, useForm } from 'react-hook-form';
-import { z } from 'zod';
-
-const formSchema = z.object({
-  name: z.string().nullable().optional(),
-  location: z.union([
-    z.literal('건대입구'),
-    z.literal('을지로3가'),
-    z.literal('신림'),
-    z.literal('홍대입구'),
-  ]),
-  imageUrl: z.string().optional(),
-  type: z.union([
-    z.literal('오피스 스트레칭'),
-    z.literal('마인드풀니스'),
-    z.literal('워케이션'),
-  ]),
-  dateTime: z.string(),
-  registrationEnd: z.string(),
-  capacity: z.number().gte(5),
-});
-
-export type CreateGathering = z.infer<typeof formSchema>;
-
-export interface CreateGatheringCommonProps {
-  control: Control<CreateGathering>;
-  selectedFilter?: SwitchFiler;
-}
+import { useForm } from 'react-hook-form';
 
 export default function GatheringCreateModal() {
   const { closeModal } = useModal();
@@ -53,7 +29,7 @@ export default function GatheringCreateModal() {
   const { onSubmit } = useCreateGathering();
 
   const form = useForm<CreateGathering>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(createGatheringSchema),
     mode: 'all',
     defaultValues: {
       name: null,
@@ -67,12 +43,9 @@ export default function GatheringCreateModal() {
   });
 
   useEffect(() => {
-    if (selectedFilter === '워케이션') {
-      setIsDisabled(true);
-    } else {
-      setIsDisabled(false);
-    }
+    selectedFilter === '워케이션' ? setIsDisabled(true) : setIsDisabled(false);
     form.reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilter]);
 
   useEffect(() => {
