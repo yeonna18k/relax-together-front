@@ -2,7 +2,7 @@ import { ParticipantListTypes } from '@/entities/gatherings-detail/model/informa
 import CommonButton from '@/shared/common/ui/common-button';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
-import useJoinGathering from './useJoinGathering';
+import useJoinGathering from '../model/hook/useJoinGathering';
 
 interface JoinBtnProps {
   id: string;

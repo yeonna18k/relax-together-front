@@ -1,4 +1,4 @@
-import BottomFloatingBar from '@/features/bottom-floating-bar';
+import BottomFloatingBar from '@/features/bottom-floating-bar/ui';
 import { dummyParticipantList } from '@/shared/fixture/information';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';

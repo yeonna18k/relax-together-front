@@ -1,6 +1,6 @@
 'use client';
 
-import BottomFloatingBar from '@/features/bottom-floating-bar';
+import BottomFloatingBar from '@/features/bottom-floating-bar/ui';
 import { useQuery } from '@tanstack/react-query';
 import { gatheringsDetailApiService } from '../../api/service/GatheringsDetailApiService';
 import GatheringTop from '../gathering-top';
