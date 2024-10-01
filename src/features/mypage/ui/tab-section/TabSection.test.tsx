@@ -2,13 +2,6 @@ import TabSection from '@/features/mypage/ui/tab-section';
 import { mockUseSearchParams } from '@/shared/mocks/mockUseSearchParams';
 import { render, screen } from '@testing-library/react';
 
-jest.mock('next/navigation', () => ({
-  useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
-  usePathname: jest.fn(),
-  useParams: jest.fn(),
-}));
-
 const activeColor =
   'relative px-2.5 pb-1.5 pt-2 text-gray-900 text-lg font-semibold';
 const inactiveColor =

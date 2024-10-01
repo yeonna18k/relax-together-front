@@ -56,3 +56,25 @@ export const copyToClipboard = async (text: string) => {
     console.error('클립보드 복사 실패:', err);
   }
 };
+
+export function getTimeUntilDeadline(registrationEnd: Date) {
+  const now = new Date();
+  const diffInMilliseconds = registrationEnd.getTime() - now.getTime();
+  const diffInMinutes = diffInMilliseconds / 1000 / 60;
+  const diffInHours = diffInMinutes / 60;
+  const diffInDays = diffInHours / 24;
+
+  const rtf = new Intl.RelativeTimeFormat('ko', { numeric: 'always' });
+
+  // 오늘 마감 (같은 날일 경우)
+  if (now.toDateString() === registrationEnd.toDateString()) {
+    const endHour = registrationEnd.getHours();
+    return `오늘 ${endHour}시 마감`;
+  }
+  const leftDays = rtf.format(Math.floor(diffInDays), 'day');
+  // 며칠 후 마감
+  if (diffInDays >= 1) {
+    return `${leftDays} 마감`;
+  }
+  return '마감되었습니다';
+}

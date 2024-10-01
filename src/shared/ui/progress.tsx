@@ -8,20 +8,20 @@ import { cn } from '@/shared/lib/utils';
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
+    capacity: number;
     isClosed: boolean;
   }
->(({ className, value, isClosed, ...props }, ref) => {
-  const bgColor = isClosed ? 'bg-orange-400' : 'bg-orange-600';
+>(({ className, value, capacity, isClosed, ...props }, ref) => {
+  const bgColor = isClosed ? 'bg-green-400' : 'bg-green-600';
 
-  const maxCapacity = 20;
   const currentParticipants = value || 0;
-  const progressPercentage = (currentParticipants / maxCapacity) * 100;
+  const progressPercentage = (currentParticipants / capacity) * 100;
 
   return (
     <ProgressPrimitive.Root
       ref={ref}
       className={cn(
-        'relative h-1 w-full overflow-hidden rounded-full bg-orange-50',
+        'relative h-1 w-full overflow-hidden rounded-full bg-green-50',
         className,
       )}
       {...props}

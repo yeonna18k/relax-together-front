@@ -1,3 +1,4 @@
+import { MAX_CAPACITY } from '@/shared/lib/constants';
 import type { Meta, StoryObj } from '@storybook/react';
 import ProgressBar from './index';
 
@@ -16,6 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    value: 0,
+    participantCount: 0,
+    capacity: MAX_CAPACITY,
   },
 };

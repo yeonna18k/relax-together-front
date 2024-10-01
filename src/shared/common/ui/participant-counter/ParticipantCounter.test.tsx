@@ -3,9 +3,10 @@ import { render, screen } from '@testing-library/react';
 
 describe('ParticipantCounter Component', () => {
   test('화면에 렌더링 된다.', () => {
-    const { debug } = render(
+    render(
       <ParticipantCounter
         participantCount={0}
+        capacity={20}
         iconColor="fill-gray-700"
         valueColor="text-gray-700"
       />,

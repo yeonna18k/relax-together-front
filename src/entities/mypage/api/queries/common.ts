@@ -1,3 +1,4 @@
+/* eslint-disable @tanstack/query/exhaustive-deps */
 import { Response } from '@/shared/model';
 import {
   QueryKey,
@@ -14,15 +15,24 @@ export interface FetchParams {
   pageParam: number;
 }
 
-type FetchFunction<T> = ({ pageParam }: FetchParams) => Promise<Response<T>>;
+export type FetchFunction<T, P = void> = (
+  params: FetchParams & Partial<P>,
+) => Promise<Response<T>>;
 
-export function useCommonInfiniteData<T>(
+export function useCommonInfiniteData<T, P = void>(
   queryKey: QueryKey,
-  fetchFunction: FetchFunction<T>,
+  fetchFunction: FetchFunction<T, P>,
+  additionalParams?: Partial<P>,
 ): UseInfiniteQueryResult<InfiniteQueryResponse<T>, Error> {
   return useInfiniteQuery({
-    queryKey,
-    queryFn: fetchFunction,
+    queryKey: additionalParams ? [...queryKey, additionalParams] : queryKey,
+    queryFn: ({ pageParam }) => {
+      const params = { pageParam } as FetchParams & Partial<P>;
+      if (additionalParams) {
+        Object.assign(params, additionalParams);
+      }
+      return fetchFunction(params);
+    },
     initialPageParam: 0,
     getNextPageParam: (lastPage, _, lastPageParam) =>
       lastPage.hasNext ? lastPageParam + 1 : undefined,
