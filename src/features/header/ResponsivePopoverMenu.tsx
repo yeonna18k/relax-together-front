@@ -22,7 +22,6 @@ export default function ResponsivePopoverMenu() {
         side="top"
         sideOffset={18}
       >
-        {/* TODO: 비회원, 로그인 회원 구분해서 화면 처리할 것 */}
         {user ? (
           <ResponsiveLoginUser name={user.name} />
         ) : (
