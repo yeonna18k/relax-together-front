@@ -1,3 +1,6 @@
+import { useSignout } from '@/entities/auth/api';
+import useAccessToken from '@/shared/hooks/useAccessToken';
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -9,9 +12,19 @@ interface LoginUserProps {
 export default function LoginUser({ image, name }: LoginUserProps) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  // const accessToken = localStorage.getItem('accessToken') as string;
+  const { accessToken, setAccessToken } = useAccessToken();
+  const { signout } = useSignout({ accessToken });
+  const clearUser = useUserDataStore(state => state.clearUser);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSignout = () => {
+    signout();
+    setAccessToken('');
+    clearUser();
   };
   return (
     <div
@@ -34,7 +47,7 @@ export default function LoginUser({ image, name }: LoginUserProps) {
           >
             마이페이지
           </div>
-          <div className="px-4 py-[10px]" onClick={() => {}}>
+          <div className="px-4 py-[10px]" onClick={handleSignout}>
             로그아웃
           </div>
         </div>
