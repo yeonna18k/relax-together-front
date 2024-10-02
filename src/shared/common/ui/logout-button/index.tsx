@@ -21,7 +21,7 @@ export default function LogoutButton({ className }: LogoutButtonProps) {
     <Button
       variant="ghost"
       className={cn(
-        'justify-start p-0 text-base font-medium text-gray-700 hover:text-green-500',
+        'justify-start p-0 text-base font-medium text-gray-400 underline underline-offset-2 hover:text-green-500',
         className,
       )}
       onClick={handleSignout}

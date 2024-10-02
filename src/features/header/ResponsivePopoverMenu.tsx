@@ -39,7 +39,9 @@ export default function ResponsivePopoverMenu() {
           />
         )}
         <NavList />
-        {user && <LogoutButton className="mt-2.5" />}
+        {user && (
+          <LogoutButton className="mt-2.5 rounded-none border-t border-gray-200 py-4 no-underline" />
+        )}
       </PopoverContent>
     </Popover>
   );

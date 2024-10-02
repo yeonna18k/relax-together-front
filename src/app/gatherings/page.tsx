@@ -4,7 +4,7 @@ import Banner from '@/entities/gatherings/ui/main/Banner';
 
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import GatheringCardListSection from '@/features/gatherings/ui/card-list-section';
-import GatheringCreateModal from '@/features/gatherings/ui/create-gathring-modal';
+import ModalContainer from '@/features/gatherings/ui/modal-container';
 import { prefetchCommonInfiniteData } from '@/shared/api/queries/prefetch';
 import CommonSearchFilter from '@/shared/common/ui/common-search-filter';
 import { gatheringsSortItems } from '@/shared/fixture/select-items';
@@ -49,7 +49,7 @@ export default async function Gatherings() {
         </Suspense>
       </div>
       <CreateButton />
-      <GatheringCreateModal />
+      <ModalContainer />
     </div>
   );
 }

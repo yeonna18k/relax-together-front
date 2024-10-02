@@ -42,9 +42,9 @@ export default function LoginUser({ image, name }: LoginUserProps) {
         <p className="font-bold text-green-700">{name}님</p>
       </PopoverTrigger>
       <PopoverContent
-        className="flex w-[142px] flex-col gap-4 rounded-xl bg-gray-50 text-base font-medium text-gray-700 shadow-lg"
-        sideOffset={15}
-        alignOffset={-40}
+        className="flex w-[142px] flex-col gap-4 rounded-xl bg-white text-base font-medium text-gray-700 shadow-lg"
+        sideOffset={25}
+        alignOffset={-15}
       >
         <Link
           href="/mypage"

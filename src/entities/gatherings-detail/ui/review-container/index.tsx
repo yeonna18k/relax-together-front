@@ -24,11 +24,11 @@ export default function ReviewContainer({ id }: ReviewContainerProps) {
   const totalPages = totalReviews && Math.ceil(totalReviews / REVIEWS_PER_PAGE);
 
   return (
-    <div className="mt-4 rounded-xl bg-white p-6 sm:mt-6">
+    <div className="mt-4 h-[calc(100vh-500px)] rounded-xl bg-white p-6 sm:mt-6">
       <h3 className="text-base font-semibold text-gray-900 sm:text-lg">
         이용자들은 이 프로그램을 이렇게 느꼈어요!
       </h3>
-      <div className="mt-4">
+      <div className="mt-4 flex min-h-full items-center justify-center">
         {data && totalPages ? (
           <PaginationReviews
             reviewList={data}

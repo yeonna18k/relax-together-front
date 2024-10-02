@@ -19,6 +19,7 @@ const footerVariants = cva('w-full', {
     variant: {
       default: 'flex justify-center gap-4',
       single: 'flex justify-center xs:justify-end',
+      notice: 'flex justify-center gap-4',
     },
   },
   defaultVariants: {
@@ -40,7 +41,7 @@ interface ModalProps {
 export default function Modal({
   title,
   children,
-  variant,
+  variant = 'default',
   size,
   disabled,
   actionBtnName = '확인',
@@ -48,7 +49,7 @@ export default function Modal({
   type = 'button',
 }: ModalProps) {
   const { resetModal } = useModal();
-  const isNonSingleVariant = variant !== 'single';
+  const isDefault = variant === 'default';
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -68,9 +69,7 @@ export default function Modal({
         <AlertDialogDescription asChild>{children}</AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter className={cn(footerVariants({ variant }))}>
-        {isNonSingleVariant && (
-          <AlertDialogCancel size={size}>취소</AlertDialogCancel>
-        )}
+        {isDefault && <AlertDialogCancel size={size}>취소</AlertDialogCancel>}
         <AlertDialogAction
           size={size}
           onClick={handleAction}
