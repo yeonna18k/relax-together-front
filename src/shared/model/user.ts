@@ -3,11 +3,7 @@ export interface User {
   email: string;
   name: string;
   companyName: string;
-  image: string;
-  /** @format date-time */
-  createdAt: string;
-  /** @format date-time */
-  updatedAt: string;
+  profileImage: string;
 }
 
 export type UserInfoItem = {

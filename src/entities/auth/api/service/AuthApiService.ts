@@ -1,6 +1,6 @@
-import { User } from '@/entities/mypage/model';
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
+import { User } from '@/shared/model/user';
 import { SigninUser, SignupUser } from '../../model/user';
 
 class SignupApiService extends ApiService {

@@ -1,4 +1,4 @@
-import { User } from '@/entities/mypage/model';
+import { User } from '@/shared/model/user';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 

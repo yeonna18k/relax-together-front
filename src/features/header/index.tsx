@@ -16,7 +16,7 @@ export default function Header() {
         <div className="hidden items-center justify-between lg:flex lg:w-full">
           <NavList />
           {user ? (
-            <LoginUser name={user.name} />
+            <LoginUser name={user.name} image={user.profileImage} />
           ) : (
             <TopTap path="/signin" name="로그인" />
           )}

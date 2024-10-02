@@ -32,13 +32,14 @@ export default class ApiService {
       async error => {
         const originalRequest = error.config;
         if (
+          !error.config.url.includes('/api/auths/logout') &&
           error.response &&
           error.response.status === 401 &&
           !originalRequest._retry
         ) {
           originalRequest._retry = true;
           try {
-            const refreshResponse = await ApiService.instance.post(
+            const refreshResponse = await ApiService.instance.get(
               `${BASE_URL}/api/auths/refresh-token`,
             );
             const newAccessToken = refreshResponse.data.accessToken;
@@ -56,7 +57,7 @@ export default class ApiService {
 
             await ApiService.instance.post(`${BASE_URL}/api/auths/logout`); // 로그아웃 요청
 
-            localStorage.clear(); // localStorage 초기화
+            localStorage.setItem('accessToken', ''); // localStorage 초기화
 
             ApiService.setAccessToken(''); // accessToken 제거
 

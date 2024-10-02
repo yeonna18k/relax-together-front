@@ -60,7 +60,7 @@ export default function SigninForm() {
         setUser(response.data);
       }
     };
-    userData();
+    accessToken && userData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
   return (

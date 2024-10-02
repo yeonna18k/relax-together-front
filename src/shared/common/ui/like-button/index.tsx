@@ -38,7 +38,7 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
   };
   return (
     <Button
-      className={`relative h-12 w-12 rounded-full border-2 p-3 ${liked ? 'border-pink-50 bg-pink-50 hover:bg-pink-50 active:bg-pink-50' : 'border-gray-200 bg-white hover:bg-white active:bg-white'}`}
+      className={`relative z-20 h-12 w-12 rounded-full border-2 p-3 ${liked ? 'border-pink-50 bg-pink-50 hover:bg-pink-50 active:bg-pink-50' : 'border-gray-200 bg-white hover:bg-white active:bg-white'}`}
       onClick={toggleLike}
     >
       <LikeHeartEmptyIcon
