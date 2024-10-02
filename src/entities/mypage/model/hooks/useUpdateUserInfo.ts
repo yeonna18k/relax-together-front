@@ -1,6 +1,6 @@
 import { mypageApiService } from '@/entities/mypage/api/service/MypageApiService';
-import { UpdateUserRequest, User } from '@/entities/mypage/model';
 import { queries } from '@/shared/api/queries';
+import { UpdateUserRequest, User } from '@/shared/model';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
@@ -30,7 +30,7 @@ export function useUpdateUserInfo({ user }: ProfileUpdateUser) {
     if (user) {
       setUpdateUser({
         companyName: user.data.companyName,
-        profileImage: user.data.image,
+        profileImage: user.data.profileImage,
       });
     }
   }, [user]);

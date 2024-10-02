@@ -4,7 +4,6 @@ import MyGatheringsSection from '@/features/mypage/ui/sub-page/MyGatheringsSecti
 import MyHostedGatheringsSection from '@/features/mypage/ui/sub-page/MyHostedGatheringsSection';
 import MyPendingReviewSection from '@/features/mypage/ui/sub-page/MyPedingReviewSection';
 import MyWrittenReviewSection from '@/features/mypage/ui/sub-page/MyWrittenReviewSection';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const subPageTargetMap: Record<string, React.ReactNode> = {
@@ -44,17 +43,6 @@ export default function SubPageContainer() {
   }, [currentSubPage, currentFilter]);
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={subPage}
-        initial="initial"
-        animate="in"
-        exit="out"
-        variants={pageVariants}
-        transition={pageTransition}
-      >
-        {subPage ? <>{subPageTargetMap[subPage]}</> : <LoadingSkeletonList />}
-      </motion.div>
-    </AnimatePresence>
+    <>{subPage ? <>{subPageTargetMap[subPage]}</> : <LoadingSkeletonList />}</>
   );
 }

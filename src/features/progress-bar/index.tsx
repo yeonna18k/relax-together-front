@@ -1,6 +1,6 @@
 'use client';
 
-import MoreInfoLink from '@/features/progress-bar/MoreInfoLink';
+import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
 import OpenBadge from '@/shared/common/ui/open-badge';
 import ParticipantCounter from '@/shared/common/ui/participant-counter';
 import { Gathering } from '@/shared/model';
@@ -30,6 +30,10 @@ export default function ProgressBar({
 
   const iconColor = isClosed ? 'fill-green-400' : 'fill-gray-700';
   const valueColor = isClosed ? 'text-green-400' : 'text-gray-700';
+  const textStyles = isClosed
+    ? 'text-green-400 w-full'
+    : 'text-green-500 min-w-[65px]';
+  const text = isClosed ? 'Closed' : 'join now';
 
   return (
     <div className="flex w-full items-end gap-6 px-6">
@@ -47,7 +51,10 @@ export default function ProgressBar({
         </div>
         <Progress value={progress} capacity={capacity} />
       </div>
-      <MoreInfoLink id={id} isClosed={isClosed} />
+      <div className="flex items-center gap-2">
+        <p className={`${textStyles} font-semibold`}>{text}</p>
+        {!isClosed && <ArrowRight className="stroke-green-500 stroke-2" />}
+      </div>
     </div>
   );
 }

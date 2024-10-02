@@ -1,6 +1,6 @@
-import { UserInfoList } from '@/entities/mypage/model/user';
 import UserInfoText from '@/entities/mypage/ui/profile/UserInfoText';
 import WelcomeMessage from '@/entities/mypage/ui/profile/WelcomeMessage';
+import { UserInfoList } from '@/shared/model';
 
 interface UserInfoContainerProps {
   name: string;

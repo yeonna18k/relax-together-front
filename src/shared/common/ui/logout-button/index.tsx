@@ -3,11 +3,13 @@ import useAccessToken from '@/shared/hooks/useAccessToken';
 import { cn } from '@/shared/lib/utils';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
+import { useRouter } from 'next/navigation';
 
 interface LogoutButtonProps {
   className?: string;
 }
 export default function LogoutButton({ className }: LogoutButtonProps) {
+  const router = useRouter();
   const { accessToken, setAccessToken } = useAccessToken();
   const { signout } = useSignout({ accessToken });
   const clearUser = useUserDataStore(state => state.clearUser);
@@ -16,6 +18,7 @@ export default function LogoutButton({ className }: LogoutButtonProps) {
     signout();
     setAccessToken('');
     clearUser();
+    router.push('/');
   };
   return (
     <Button
