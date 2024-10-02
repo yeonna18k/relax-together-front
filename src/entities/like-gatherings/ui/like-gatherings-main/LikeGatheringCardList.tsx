@@ -2,12 +2,11 @@
 
 import GatheringCard from '@/entities/gatherings/ui/card';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
-import ContentEmptySection from '@/features/mypage/ui/sub-page/ContentEmptySection';
 import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
+import ContentEmptySection from '@/shared/common/ui/content-empty-section';
 import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
-
 import { GatheringLocation, GatheringType } from '@/shared/model';
 import { format } from 'date-fns';
 import { useEffect } from 'react';
