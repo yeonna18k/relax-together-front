@@ -37,7 +37,7 @@ export default async function Gatherings() {
       <Suspense fallback={null}>
         <Banner />
       </Suspense>
-      <div className="z-10 flex h-screen w-full flex-col items-center bg-white">
+      <div className="z-10 flex min-h-[calc(100vh-58px)] w-full flex-col items-center bg-white lg:min-h-[calc(100vh-71px)] xl:min-h-[calc(100vh-625px)]">
         <Suspense fallback={null}>
           <GatheringSearch />
           <CommonSearchFilter sortItems={gatheringsSortItems} />

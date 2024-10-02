@@ -1,4 +1,4 @@
-import { UserInfoItem } from '@/entities/mypage/model/user';
+import { UserInfoItem } from '@/shared/model';
 
 export default function UserInfoText({ category, value }: UserInfoItem) {
   return (

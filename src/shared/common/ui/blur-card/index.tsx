@@ -1,8 +1,8 @@
-import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import ByeButton from '@/shared/common/ui/bye-button';
 import useLeaveGatheringsById from '@/shared/hooks/useLeaveGatheringsById';
+import { Gathering } from '@/shared/model';
 
-export default function CommonBlurCard({ id }: Pick<MyGathering, 'id'>) {
+export default function CommonBlurCard({ id }: Pick<Gathering, 'id'>) {
   const { handleSubmit } = useLeaveGatheringsById(id);
 
   return (

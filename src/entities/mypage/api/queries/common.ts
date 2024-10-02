@@ -6,7 +6,7 @@ import {
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 
-interface InfiniteQueryResponse<T> {
+export interface InfiniteQueryResponse<T> {
   pages: Response<T>[];
   pageParams: number[];
 }

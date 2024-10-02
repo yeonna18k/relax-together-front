@@ -8,6 +8,10 @@ class CommonApiService extends ApiService {
     );
     return response;
   }
+  async refreshToken() {
+    const response = await this.get(`${BASE_URL}/api/auths/refresh-token`);
+    return response;
+  }
 }
 
 export const commonApiService = new CommonApiService();

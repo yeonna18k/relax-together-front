@@ -1,6 +1,7 @@
 import { mypageApiService } from '@/entities/mypage/api/service/MypageApiService';
-import { User, WriteReviewRequest } from '@/entities/mypage/model';
+import { WriteReviewRequest } from '@/entities/mypage/model';
 import { useReviewStore } from '@/entities/mypage/model/store/useReviewStore';
+import { User } from '@/shared/model';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useState } from 'react';
