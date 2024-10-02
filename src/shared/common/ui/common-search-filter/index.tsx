@@ -10,13 +10,13 @@ import { commonFilters } from '@/shared/fixture/filter';
 import { commonSelectItems } from '@/shared/fixture/select-items';
 import { SelectedValue, useSearchFilter } from '@/shared/hooks/useSearchFilter';
 
-import { Path } from '@/shared/lib/constants';
-
 interface CommonSearchFilterProps {
   sortItems: Array<CommonSelectItem>;
+  path: string;
 }
 export default function CommonSearchFilter({
   sortItems,
+  path,
 }: CommonSearchFilterProps) {
   const { currentSubPage } = useCommonSearchParams();
   const {
@@ -54,7 +54,7 @@ export default function CommonSearchFilter({
       </div>
       {currentSubPage === 'dalaemfit' && (
         <div className="w-full border-b-2 border-gray-200 py-3 sm:w-auto sm:border-none md:py-0">
-          <FilterButtonGroup filters={commonFilters} path={Path.gatherings} />
+          <FilterButtonGroup filters={commonFilters} path={path} />
         </div>
       )}
     </div>

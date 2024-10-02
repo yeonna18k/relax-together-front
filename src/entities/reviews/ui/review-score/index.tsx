@@ -11,7 +11,7 @@ export default function ReviewScore() {
     }, 0) / scoreCount,
   );
   return (
-    <div className="flex h-[184px] w-full justify-center border-y-2 border-y-gray-200 bg-white py-8">
+    <div className="mt-[10px] flex h-[184px] w-full justify-center border-y-2 border-y-gray-200 bg-white py-8 md:mt-5 lg:mt-6">
       <div className="flex w-[294px] justify-between gap-6 md:w-[550px] md:gap-[120px] lg:w-[610px] lg:gap-[180px]">
         <div className="flex w-[128px] flex-col items-center justify-center gap-2">
           <div className="flex gap-[2px] text-xl font-semibold md:text-2xl">
@@ -34,8 +34,9 @@ export default function ReviewScore() {
                     {5 - index}점
                   </span>
                   <Progress
+                    capacity={scoreCount}
                     reviews={true}
-                    value={50}
+                    value={score}
                     className="w-full bg-gray-200"
                   />
                 </div>

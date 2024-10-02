@@ -9,14 +9,12 @@ const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
     capacity: number;
-    // isClosed?: boolean;
     reviews?: boolean;
   }
 >(({ className, value, capacity, reviews, ...props }, ref) => {
   const isClosed = value === capacity;
   const bgColor = isClosed ? 'bg-green-400' : 'bg-green-500';
 
-  const maxCapacity = reviews ? 100 : 20;
   const currentParticipants = value || 0;
   const progressPercentage = (currentParticipants / capacity) * 100;
 
@@ -31,7 +29,7 @@ const Progress = React.forwardRef<
     >
       <ProgressPrimitive.Indicator
         data-testid="indicator"
-        className={`h-full w-full flex-1 transition-all ${bgColor} ${reviews && 'rounded-md bg-gray-800'}`}
+        className={`h-full w-full flex-1 transition-all ${bgColor} ${reviews && 'rounded-md !bg-gray-800'}`}
         style={{
           transform: `translateX(-${100 - progressPercentage}%)`,
         }}

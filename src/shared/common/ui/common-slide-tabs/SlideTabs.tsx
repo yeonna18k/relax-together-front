@@ -21,7 +21,7 @@ export default function SlideTabs({ tabs, path, variant }: SlideTabsProps) {
     width: 0,
     left: 0,
   });
-  const gap = variant === 'gatherings' ? 'gap-6' : 'gap-3';
+  const gap = variant === 'gatherings' ? 'gap-4 md:gap-6' : 'gap-3';
   return (
     <ul className={`relative flex ${gap}`}>
       {tabs.map(tab => {
