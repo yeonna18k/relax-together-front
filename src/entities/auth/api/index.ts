@@ -1,4 +1,5 @@
 import { SigninFormType } from '@/features/auth/signin/ui/SigninForm';
+import { commonApiService } from '@/shared/api/service/CommonApiService';
 import { UseFormReturn } from 'react-hook-form';
 import { SigninUser, SignupUser } from '../model/user';
 import {
@@ -37,7 +38,7 @@ export function useSignin(form: UseFormReturn<SigninFormType>) {
 export function useSigninUserData() {
   const signinUserData = async () => {
     try {
-      const response = await signinApiService.signinUserData();
+      const response = await commonApiService.getUserInfo();
       return response;
     } catch (e) {
       console.error(e);

@@ -7,14 +7,9 @@ import {
 
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
-import { Response, Review, UpdateUserRequest, User } from '@/shared/model';
+import { Response, Review, UpdateUserRequest } from '@/shared/model';
 
 class MypageApiService extends ApiService {
-  async getUser() {
-    const response = await this.get<User>('/api/auths/me');
-    return response;
-  }
-
   async getMyJoinedGatherings({ page, size }: PaginationParams) {
     const response = await this.get<Response<MyGathering>>(
       `${BASE_URL}/api/gatherings/joined?page=${page}&size=${size}`,
