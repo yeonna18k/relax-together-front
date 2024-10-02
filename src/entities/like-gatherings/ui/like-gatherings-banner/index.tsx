@@ -10,9 +10,9 @@ export default function LikeGatheringsBanner() {
   const [deviceType, setDeviceType] = useState<string>('desktop');
 
   useEffect(() => {
-    if (window.innerWidth < 640) {
+    if (width < 640) {
       setDeviceType('mobile');
-    } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
+    } else if (width >= 640 && width < 1024) {
       setDeviceType('tablet');
     } else {
       setDeviceType('desktop');
