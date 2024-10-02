@@ -25,7 +25,13 @@ export default function LikeGatheringCardList() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
   const { searchFilterValues } = useSearchFilter();
 
-  const type = getCurrentTypeMap[`${currentSubPage}_${currentFilter}`];
+  const target =
+    currentSubPage === 'workation'
+      ? currentSubPage
+      : `${currentSubPage}_${currentFilter}`;
+
+  const type = getCurrentTypeMap[target];
+
   const { data, fetchNextPage, status } = useLikeGatheringsData({
     type,
     location:
