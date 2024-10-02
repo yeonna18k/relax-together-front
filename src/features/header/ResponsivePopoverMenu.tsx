@@ -19,6 +19,7 @@ export default function ResponsivePopoverMenu() {
   const { width } = useWindowSize();
   useEffect(() => {
     width > Device.tablet && setIsOpen(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width]);
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
