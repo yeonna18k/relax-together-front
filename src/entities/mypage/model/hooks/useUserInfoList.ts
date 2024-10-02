@@ -1,4 +1,4 @@
-import { User, UserInfoList } from '@/entities/mypage/model/user';
+import { User, UserInfoList } from '@/shared/model/user';
 import { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 

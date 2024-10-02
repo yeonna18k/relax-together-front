@@ -32,7 +32,6 @@ export default class ApiService {
       async error => {
         const originalRequest = error.config;
         if (
-          !error.config.url.includes('/api/auths/logout') &&
           error.response &&
           error.response.status === 401 &&
           !originalRequest._retry
