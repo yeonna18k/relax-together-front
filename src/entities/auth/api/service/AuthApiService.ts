@@ -1,6 +1,6 @@
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
-import { User } from '@/shared/model/user';
+import { User } from '@/shared/model';
 import { SigninUser, SignupUser } from '../../model/user';
 
 class SignupApiService extends ApiService {

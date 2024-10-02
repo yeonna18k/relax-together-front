@@ -1,4 +1,4 @@
-import { User, UserInfoList } from '@/shared/model/user';
+import { User, UserInfoList } from '@/shared/model';
 import { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 

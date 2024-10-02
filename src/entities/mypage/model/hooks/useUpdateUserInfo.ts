@@ -1,6 +1,6 @@
 import { mypageApiService } from '@/entities/mypage/api/service/MypageApiService';
 import { queries } from '@/shared/api/queries';
-import { UpdateUserRequest, User } from '@/shared/model/user';
+import { UpdateUserRequest, User } from '@/shared/model';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import { User } from '@/shared/model/user';
+import { User } from '@/shared/model';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 

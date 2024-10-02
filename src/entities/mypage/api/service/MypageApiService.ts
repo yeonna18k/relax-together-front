@@ -7,8 +7,7 @@ import {
 
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
-import { Response, Review } from '@/shared/model';
-import { UpdateUserRequest, User } from '@/shared/model/user';
+import { Response, Review, UpdateUserRequest, User } from '@/shared/model';
 
 class MypageApiService extends ApiService {
   async getUser() {

@@ -1,10 +1,10 @@
 'use client';
 
 import { useUserInfoList } from '@/entities/mypage/model/hooks/useUserInfoList';
-import { User } from '@/entities/mypage/model/user';
 import MypageImage from '@/entities/mypage/ui/common/MypageImage';
 import EditProfileButton from '@/entities/mypage/ui/profile/EditProfileButton';
 import UserInfoContainer from '@/entities/mypage/ui/profile/UserInfoContainer';
+import { User } from '@/shared/model';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { AxiosResponse } from 'axios';
 

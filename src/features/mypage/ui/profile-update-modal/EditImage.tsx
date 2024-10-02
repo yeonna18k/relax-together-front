@@ -1,8 +1,9 @@
 'use client';
-import { UpdateUserRequest } from '@/entities/mypage/model/user';
+
 import MypageImage from '@/entities/mypage/ui/common/MypageImage';
 import EditButton from '@/shared/assets/icons/edit-button.svg';
 import useFileUpload from '@/shared/hooks/useFileUpload';
+import { UpdateUserRequest } from '@/shared/model';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
 import { useEffect } from 'react';
