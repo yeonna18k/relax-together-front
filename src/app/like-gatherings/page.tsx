@@ -28,15 +28,15 @@ export default async function LikeGatherings() {
     <div className="mx-auto max-w-[996px]">
       <LikeGatheringsBanner />
       <div className="sm:px-6 lg:px-0">
-        <LikeGatheringsTitle />
-        <div className="px-4">
-          <CommonSearchFilter sortItems={gatheringsSortItems} />
-          <Suspense fallback={null}>
+        <Suspense fallback={null}>
+          <LikeGatheringsTitle />
+          <div className="px-4">
+            <CommonSearchFilter sortItems={gatheringsSortItems} />
             <HydrationBoundary state={dehydrate(queryClient)}>
               <LikeGatheringCardList />
             </HydrationBoundary>
-          </Suspense>
-        </div>
+          </div>
+        </Suspense>
       </div>
     </div>
   );
