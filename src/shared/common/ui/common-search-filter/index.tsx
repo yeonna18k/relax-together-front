@@ -54,10 +54,7 @@ export default function CommonSearchFilter({
       </div>
       {currentSubPage === 'dalaemfit' && (
         <div className="w-full border-b-2 border-gray-200 py-3 sm:w-auto sm:border-none md:py-0">
-          <FilterButtonGroup
-            filters={commonFilters}
-            path={Path['like-gatherings']}
-          />
+          <FilterButtonGroup filters={commonFilters} path={Path.gatherings} />
         </div>
       )}
     </div>
