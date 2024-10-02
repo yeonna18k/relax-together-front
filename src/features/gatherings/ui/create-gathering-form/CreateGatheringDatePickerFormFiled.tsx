@@ -43,7 +43,7 @@ export default function CreateGatheringDateTimeFormFiled({
 }: CreateGatheringDateTimeFormFiledProps) {
   const { selectedDate, setSelectedDate, selectedTime, setSelectedTime } =
     useSelectDateTime(selectedFilter);
-
+  useEffect(() => () => form.reset(), [form]);
   useEffect(() => {
     form.setValue(
       'dateTime',

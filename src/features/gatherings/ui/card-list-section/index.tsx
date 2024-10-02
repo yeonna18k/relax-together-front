@@ -24,9 +24,12 @@ const getCurrentTypeMap: Record<string, GatheringType> = {
 export default function GatheringCardListSection() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
   const { searchFilterValues } = useSearchFilter();
-
-  const type = getCurrentTypeMap[`${currentSubPage}_${currentFilter}`];
-  const { data, fetchNextPage, status } = useGatheringsData({
+  const target =
+    currentSubPage === 'workation'
+      ? currentSubPage
+      : `${currentSubPage}_${currentFilter}`;
+  const type = getCurrentTypeMap[target];
+  const { data, fetchNextPage, isFetching } = useGatheringsData({
     type,
     location:
       searchFilterValues.selectedValue === 'ALL'
@@ -46,10 +49,9 @@ export default function GatheringCardListSection() {
     }
   }, [fetchNextPage, inView]);
 
-  if (status === 'pending' || !data) {
-    return <LoadingSkeletonList />;
-  }
-  return data.pages[0].totalElements > 0 ? (
+  return isFetching || data === undefined ? (
+    <LoadingSkeletonList />
+  ) : data.pages[0].totalElements > 0 ? (
     <ScrollSection
       ref={ref}
       className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]"

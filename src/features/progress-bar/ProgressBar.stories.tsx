@@ -17,6 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    id: 1,
     participantCount: 0,
     capacity: MAX_CAPACITY,
   },

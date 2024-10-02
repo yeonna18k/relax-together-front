@@ -1,10 +1,11 @@
 'use client';
+
+import LoginUser from '@/features/header/LoginUser';
 import Logo from '@/features/header/logo';
 import NavList from '@/features/header/NavList';
 import ResponsivePopoverMenu from '@/features/header/ResponsivePopoverMenu';
 import TopTap from '@/features/header/top-tap';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
-import LoginUser from './LoginUser';
 
 export default function Header() {
   const user = useUserDataStore(state => state.user);

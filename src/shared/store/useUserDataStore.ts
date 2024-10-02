@@ -1,6 +1,6 @@
 import { User } from '@/entities/mypage/model';
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 type UserDataAction = {
   user: User | null;
@@ -17,7 +17,7 @@ export const useUserDataStore = create<UserDataAction>()(
     }),
     {
       name: 'signin-user-data',
-      getStorage: () => localStorage,
+      storage: createJSONStorage(() => localStorage),
     },
   ),
 );

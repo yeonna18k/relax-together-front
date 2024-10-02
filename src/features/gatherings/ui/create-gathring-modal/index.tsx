@@ -15,14 +15,12 @@ import CreateGatheringNameFormFiled from '@/features/gatherings/ui/create-gather
 import CreateGatheringSwitchButtonGroup from '@/features/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import CreateGatheringTypeFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
 import Modal from '@/shared/common/ui/modal';
-import { useModal } from '@/shared/hooks/useModal';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function GatheringCreateModal() {
-  const { closeModal } = useModal();
   const [selectedFilter, setSelectedFilter] = useState<SwitchFiler>('달램핏');
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const { selectedDate, selectedTime } = useSelectDateTime(selectedFilter);

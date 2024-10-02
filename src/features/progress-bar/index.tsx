@@ -1,20 +1,21 @@
 'use client';
 
-import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
+import MoreInfoLink from '@/features/progress-bar/MoreInfoLink';
 import OpenBadge from '@/shared/common/ui/open-badge';
-import ParticipantCounter, {
-  GatheringCapacityInfo,
-} from '@/shared/common/ui/participant-counter';
+import ParticipantCounter from '@/shared/common/ui/participant-counter';
+import { Gathering } from '@/shared/model';
 import { Progress } from '@/shared/ui/progress';
 import { useEffect, useState } from 'react';
 
-// interface ProgressBarProps {
-//   value: number;
-// }
+export type GatheringCapacityInfo = Pick<
+  Gathering,
+  'participantCount' | 'capacity' | 'id'
+>;
 
 export default function ProgressBar({
   participantCount,
   capacity,
+  id,
 }: GatheringCapacityInfo) {
   const [progress, setProgress] = useState<number>(0);
 
@@ -29,10 +30,6 @@ export default function ProgressBar({
 
   const iconColor = isClosed ? 'fill-green-400' : 'fill-gray-700';
   const valueColor = isClosed ? 'text-green-400' : 'text-gray-700';
-  const textStyles = isClosed
-    ? 'text-green-400 w-full'
-    : 'text-green-500 min-w-[65px]';
-  const text = isClosed ? 'Closed' : 'join now';
 
   return (
     <div className="flex w-full items-end gap-6 px-6">
@@ -48,17 +45,9 @@ export default function ProgressBar({
             <OpenBadge value={participantCount} />
           ) : null}
         </div>
-        <Progress
-          // value={participantCount}
-          value={progress}
-          capacity={capacity}
-          // isClosed={isClosed}
-        />
+        <Progress value={progress} capacity={capacity} />
       </div>
-      <div className="flex items-center gap-2">
-        <p className={`${textStyles} font-semibold`}>{text}</p>
-        {!isClosed && <ArrowRight className="stroke-green-500 stroke-2" />}
-      </div>
+      <MoreInfoLink id={id} isClosed={isClosed} />
     </div>
   );
 }

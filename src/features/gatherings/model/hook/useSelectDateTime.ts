@@ -16,7 +16,7 @@ export default function useSelectDateTime(filter: SwitchFiler) {
   );
 
   useEffect(() => {
-    if (NOW < NOW_BASE_CREATE_DATE) {
+    if (NOW > NOW_BASE_CREATE_DATE) {
       setSelectedDate(FUTURE_CREATE_DATE);
       setSelectedTime(String(FUTURE_CREATE_HOUR));
     }

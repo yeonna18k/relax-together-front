@@ -9,13 +9,66 @@ export default class ApiService {
   });
 
   private static accessToken = '';
+  constructor() {
+    this.setupInterceptors();
+  }
+
+  private setupInterceptors() {
+    // 요청 인터셉터
+    ApiService.instance.interceptors.request.use(
+      config => {
+        if (ApiService.accessToken) {
+          config.headers['Authorization'] = `Bearer ${ApiService.accessToken}`;
+        }
+        return config;
+      },
+      error => {
+        console.error('Request interceptor error:', error);
+        return Promise.reject(error);
+      },
+    );
+
+    // 응답 인터셉터
+    ApiService.instance.interceptors.response.use(
+      response => response,
+      async error => {
+        const originalRequest = error.config;
+        if (
+          error.response &&
+          error.response.status === 401 &&
+          !originalRequest._retry
+        ) {
+          originalRequest._retry = true;
+          try {
+            const refreshResponse =
+              await ApiService.instance.post('/refresh-token');
+            const newAccessToken = refreshResponse.data.accessToken;
+            // 새 accessToken을 localStorage에 저장
+            localStorage.setItem('accessToken', newAccessToken);
+            // 새 accessToken 저장
+            ApiService.setAccessToken(newAccessToken);
+
+            // 원래 요청의 헤더에 새 accessToken 설정
+            originalRequest.headers['Authorization'] =
+              `Bearer ${newAccessToken}`;
+
+            // 실패한 요청 재시도
+            return ApiService.instance(originalRequest);
+          } catch (refreshError) {
+            console.log('Refresh token expired, logging out...');
+            // 여기에 로그아웃 로직 구현
+
+            // localStorage.clear(); // localStorage 초기화
+            ApiService.setAccessToken(''); // accessToken 제거
+            return Promise.reject(refreshError);
+          }
+        }
+        return Promise.reject(error);
+      },
+    );
+  }
 
   static setAccessToken(accessToken: string) {
-    if (accessToken === this.accessToken) {
-      return;
-    }
-    const authorization = accessToken ? `Bearer ${accessToken}` : undefined;
-    this.instance.defaults.headers.common['Authorization'] = authorization;
     this.accessToken = accessToken;
   }
 

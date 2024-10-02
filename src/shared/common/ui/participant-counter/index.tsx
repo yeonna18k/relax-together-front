@@ -1,10 +1,7 @@
 import PersonIcon from '@/shared/assets/icons/person-icon.svg';
 import { Gathering } from '@/shared/model';
 
-export type GatheringCapacityInfo = Pick<
-  Gathering,
-  'participantCount' | 'capacity'
->;
+type GatheringCapacityInfo = Pick<Gathering, 'participantCount' | 'capacity'>;
 interface ParticipantCounterProps extends GatheringCapacityInfo {
   iconColor: string;
   valueColor: string;

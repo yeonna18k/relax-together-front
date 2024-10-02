@@ -21,7 +21,7 @@ export default function CreateGatheringCapacityFormFiled({
               value={field.value}
               type="number"
               min={5}
-              onChange={field.onChange}
+              onChange={e => field.onChange(parseInt(e.target.value, 10))}
             />
           </FormControl>
         </FormItem>

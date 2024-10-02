@@ -1,4 +1,5 @@
 import TagClock from '@/shared/common/ui/tag-clock';
+import { getTimeUntilDeadline } from '@/shared/lib/utils';
 import Image from 'next/image';
 import {
   GatheringsInfoTypes,
@@ -26,7 +27,12 @@ export default function GatheringTop({
           className="h-full w-full object-cover"
         />
         <div className="absolute right-0 top-0">
-          <TagClock message="오늘 21시 마감" variant="rounded" />
+          <TagClock
+            message={getTimeUntilDeadline(
+              new Date(gatheringsInfo.registrationEnd),
+            )}
+            variant="rounded"
+          />
         </div>
       </div>
       <div className="mt-4 sm:mt-0 sm:w-1/2">
