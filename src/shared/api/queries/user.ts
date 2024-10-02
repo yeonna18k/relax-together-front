@@ -1,9 +1,9 @@
-import { mypageApiService } from '@/entities/mypage/api/service/MypageApiService';
+import { commonApiService } from '@/shared/api/service/CommonApiService';
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 
 export const user = createQueryKeys('user', {
   userInfo: () => ({
     queryKey: ['userInfo'],
-    queryFn: () => mypageApiService.getUser(),
+    queryFn: () => commonApiService.getUserInfo(),
   }),
 });

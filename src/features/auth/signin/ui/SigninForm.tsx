@@ -55,7 +55,6 @@ export default function SigninForm() {
   useEffect(() => {
     const userData = async () => {
       const response = await signinUserData();
-      console.log(response);
       if (response) {
         setUser(response.data);
       }
