@@ -1,6 +1,5 @@
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
-import { User } from '@/shared/model';
 import { SigninUser, SignupUser } from '../../model/user';
 
 class SignupApiService extends ApiService {
@@ -43,10 +42,6 @@ class SigninApiService extends ApiService {
       email,
       password,
     });
-    return response;
-  }
-  async signinUserData() {
-    const response = await this.get<User>(`${BASE_URL}/api/auths/me`);
     return response;
   }
   async signout({ accessToken }: Tokens) {
