@@ -9,7 +9,7 @@ import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
 import { GatheringLocation, GatheringType } from '@/shared/model';
 import { format } from 'date-fns';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLikeGatheringsData } from '../../api/queries/like-gatherings';
 
@@ -23,6 +23,8 @@ const getCurrentTypeMap: Record<string, GatheringType> = {
 export default function LikeGatheringCardList() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
   const { searchFilterValues } = useSearchFilter();
+
+  const [parsedLikeIds, setParsedLikeIds] = useState<string[]>([]);
 
   const target =
     currentSubPage === 'workation'
@@ -43,13 +45,12 @@ export default function LikeGatheringCardList() {
     sortBy: searchFilterValues.selectedSortValue,
   });
 
-  let likeIds = '[]';
-
-  if (typeof window !== 'undefined') {
-    likeIds = localStorage.getItem('liked-gatherings-ids') || '[]';
-  }
-
-  const parsedLikeIds = JSON.parse(likeIds);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const likeIds = localStorage.getItem('liked-gatherings-ids') || '[]';
+      setParsedLikeIds(JSON.parse(likeIds));
+    }
+  }, []);
 
   const filteredData = data?.pages.map(page => {
     const filteredContent = page.content.filter(item =>
