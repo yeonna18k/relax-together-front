@@ -48,7 +48,15 @@ export default function MyGatheringsSection() {
           <div ref={ref} />
         </ScrollSection>
       ) : (
-        <ContentEmptySection description="신청한 모임이 아직 없어요" />
+        <ContentEmptySection
+          description={
+            <div className="text-center">
+              아직 모임이 없어요,
+              <br />
+              지금 바로 모임을 만들어보세요
+            </div>
+          }
+        />
       )}
     </AnimatePresence>
   );

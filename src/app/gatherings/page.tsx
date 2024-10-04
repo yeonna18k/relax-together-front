@@ -33,7 +33,10 @@ export default async function Gatherings() {
 
   return (
     <div className="relative flex w-full flex-col justify-center bg-white px-4 md:px-6 xl:bg-transparent xl:px-0">
-      <div className="absolute left-0 top-0 z-20 hidden h-[635px] w-full bg-[url('/assets/gathering-no-bg.png')] bg-contain bg-center bg-no-repeat xl:block" />
+      <div
+        draggable="false"
+        className="absolute left-0 top-0 z-20 hidden h-[635px] w-full bg-[url('/assets/gathering-no-bg.png')] bg-contain bg-center bg-no-repeat xl:block"
+      />
       <Suspense fallback={null}>
         <Banner />
       </Suspense>

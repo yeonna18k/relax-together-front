@@ -20,24 +20,23 @@ export default function GatheringCardListSection() {
 
   const { data, fetchNextPage, isFetching } =
     useGatheringsData(additionalParams);
+
   const { ref, inView } = useInView();
 
+  // 무한 스크롤: inView가 true일 때만 fetchNextPage를 호출
   useEffect(() => {
-    if (inView) {
+    if (inView && !isFetching) {
       fetchNextPage();
     }
-  }, [fetchNextPage, inView]);
+  }, [fetchNextPage, inView, isFetching]); // isFetching 추가하여 중복 호출 방지
 
-  if (isFetching) {
+  if (isFetching && !data) {
     return <LoadingSkeletonList />;
   }
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={Object.values(additionalParams).join('')}
-        className="w-full xl:w-[996px]"
-      >
+      <motion.div className="w-full xl:w-[996px]">
         {data && data.pages[0].totalElements > 0 ? (
           <ScrollSection
             ref={ref}

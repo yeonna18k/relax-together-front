@@ -1,4 +1,3 @@
-'use client';
 import {
   CreateGathering,
   createGatheringSchema,
@@ -32,7 +31,7 @@ export default function GatheringCreateModal() {
     defaultValues: {
       name: null,
       location: '건대입구',
-      type: '오피스 스트레칭',
+      type: selectedFilter === '달램핏' ? '오피스 스트레칭' : '워케이션',
       dateTime: getAddHoursDateISOString(selectedDate, selectedTime),
       registrationEnd: getAddHoursDateISOString(selectedDate, selectedTime),
       imageUrl: '',
@@ -40,19 +39,38 @@ export default function GatheringCreateModal() {
     },
   });
 
+  // 필터가 변경될 때 폼 일부만 리셋하고 워케이션일 때 이름 필수로 설정
+  // 필터가 변경될 때 폼 필드 리셋 및 type 값 설정
   useEffect(() => {
-    selectedFilter === '워케이션' ? setIsDisabled(true) : setIsDisabled(false);
-    form.reset();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFilter]);
+    if (selectedFilter === '워케이션') {
+      form.setValue('type', '워케이션'); // 워케이션으로 설정
+      form.setValue('name', ''); // 이름 필수로 설정
+      setIsDisabled(true); // 이름 입력 전까지는 버튼 비활성화
+    } else {
+      form.setValue('type', '오피스 스트레칭'); // 달램핏으로 기본값 설정
+      form.setValue('name', null); // 이름 필드 비활성화
+      setIsDisabled(false); // 버튼 활성화
+    }
+  }, [selectedFilter, form]);
 
+  // 이름 필드가 입력되었는지 체크하여 버튼 활성화/비활성화
   useEffect(() => {
-    form.watch(value => {
-      if (value.name !== null && value.name !== undefined) {
-        value.name.length > 0 ? setIsDisabled(false) : setIsDisabled(true);
+    const subscription = form.watch(value => {
+      if (selectedFilter === '워케이션') {
+        setIsDisabled(!(value.name && value.name.length > 0));
       }
     });
-  }, [form]);
+    return () => subscription.unsubscribe();
+  }, [form, selectedFilter]);
+  // 이름이 입력되지 않았을 때 버튼 비활성화
+  useEffect(() => {
+    const subscription = form.watch(value => {
+      if (selectedFilter === '워케이션') {
+        setIsDisabled(!(value.name && value.name.length > 0));
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [form, selectedFilter]);
 
   return (
     <Modal
@@ -71,10 +89,12 @@ export default function GatheringCreateModal() {
         />
         <Form {...form}>
           <form className="space-y-6">
-            {selectedFilter === '워케이션' ? (
-              <CreateGatheringNameFormFiled control={form.control} />
-            ) : (
+            {/* 달램핏 선택 시 유형 선택 필드 */}
+            {selectedFilter === '달램핏' ? (
               <CreateGatheringTypeFormFiled control={form.control} />
+            ) : (
+              // 워케이션 선택 시 모임 이름 필드
+              <CreateGatheringNameFormFiled control={form.control} />
             )}
             <CreateGatheringLocationFormFiled
               control={form.control}

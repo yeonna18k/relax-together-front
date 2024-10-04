@@ -12,6 +12,7 @@ export default function Logo() {
           alt="logo-icon"
           width={27}
           height={26}
+          draggable="false"
         />
         <Image
           className="h-5 w-[68px] lg:h-[26px] lg:w-[89px]"
@@ -20,6 +21,7 @@ export default function Logo() {
           alt="logo-text"
           width={89}
           height={26}
+          draggable="false"
         />
       </div>
     </Link>
