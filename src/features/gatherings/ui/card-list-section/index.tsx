@@ -3,9 +3,7 @@
 import { useGatheringsData } from '@/entities/gatherings/api/queries/gatherings';
 import GatheringCard from '@/entities/gatherings/ui/card';
 import useAdditionalParams from '@/features/gatherings/model/hook/useAdditionalParams';
-import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 
-import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
 import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonBlurCardWrapper';
 import MotionListItem from '@/shared/common/ui/motion-list-item';
@@ -18,7 +16,7 @@ import { useInView } from 'react-intersection-observer';
 export default function GatheringCardListSection() {
   const { additionalParams } = useAdditionalParams();
 
-  const { data, fetchNextPage, isFetching } =
+  const { data, fetchNextPage, isFetchingNextPage } =
     useGatheringsData(additionalParams);
   const { ref, inView } = useInView();
 
@@ -28,10 +26,6 @@ export default function GatheringCardListSection() {
     }
   }, [fetchNextPage, inView]);
 
-  if (isFetching) {
-    return <LoadingSkeletonList />;
-  }
-
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -39,12 +33,12 @@ export default function GatheringCardListSection() {
         className="w-full xl:w-[996px]"
       >
         {data && data.pages[0].totalElements > 0 ? (
-          <ScrollSection
-            ref={ref}
-            className="mt-2.5 w-full md:mt-0 xl:mb-10 xl:max-h-[calc(100vh-530px)]"
-          >
+          <>
             {data.pages.map((page, index) => (
-              <motion.ul key={`gatherings-${page}-${index}`}>
+              <motion.ul
+                key={`gatherings-${page}-${index}`}
+                className="mt-2.5 md:mt-0 xl:mb-10"
+              >
                 {page.content.map((gathering, idx) => (
                   <MotionListItem key={gathering.id} index={idx}>
                     <CommonMoreInfoWrapper id={gathering.id}>
@@ -60,7 +54,10 @@ export default function GatheringCardListSection() {
               </motion.ul>
             ))}
             <div ref={ref} />
-          </ScrollSection>
+            {isFetchingNextPage && (
+              <div className="py-4 text-center">Loading...</div>
+            )}
+          </>
         ) : (
           <ContentEmptySection
             description="신청한 모임이 아직 없어요"
