@@ -18,6 +18,7 @@ export default function GatheringCardListSection() {
 
   const { data, fetchNextPage, isFetchingNextPage } =
     useGatheringsData(additionalParams);
+  console.log(data);
   const { ref, inView } = useInView();
 
   useEffect(() => {
