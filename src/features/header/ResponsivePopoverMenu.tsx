@@ -16,6 +16,7 @@ import ResponsiveLoginUser from './ResponsiveLoginUser';
 export default function ResponsivePopoverMenu() {
   const { isOpen, setIsOpen } = useResponsiveGNBPopoverStore();
   const user = useUserDataStore(state => state.user);
+
   const { width } = useWindowSize();
   useEffect(() => {
     width > Device.tablet && setIsOpen(false);
