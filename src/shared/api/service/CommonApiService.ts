@@ -11,26 +11,10 @@ class CommonApiService extends ApiService {
   private setupInterceptors() {
     //   let refreshAttempts = 0;
     //   const MAX_REFRESH_ATTEMPTS = 10;
-
-    CommonApiService.instance.interceptors.request.use(
-      config => {
-        const token = CommonApiService.getAccessToken();
-        if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
-        }
-        return config;
-      },
-      error => {
-        console.error('Request interceptor error:', error);
-        return Promise.reject(error);
-      },
-    );
-
-    //   ApiService.instance.interceptors.response.use(
+    //   CommonApiService.instance.interceptors.response.use(
     //     response => response,
     //     async error => {
     //       const originalRequest = error.config;
-
     //       if (
     //         !(
     //           error.config.url === `${BASE_URL}/api/auths/login` ||
@@ -45,10 +29,8 @@ class CommonApiService extends ApiService {
     //           '🚀 ~ CommonApiService ~ setupInterceptors ~ error.config.url:',
     //           error.config.url,
     //         );
-
     //         originalRequest._retry = true;
     //         refreshAttempts++;
-
     //         try {
     //           const refreshResponse = await this.refreshToken();
     //           console.log(
@@ -70,7 +52,6 @@ class CommonApiService extends ApiService {
     //           // return Promise.reject(refreshError);
     //         }
     //       }
-
     //       // return Promise.reject(error);
     //     },
     //   );

@@ -7,7 +7,6 @@ import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
 import { myWrittenReviewsContents } from '@/shared/fixture/my-written-reviews';
 import { BASE_URL, LIMIT } from '@/shared/lib/constants';
-import { authMiddleware } from '@/shared/mocks/authMiddleware';
 import mockInfiniteResponse from '@/shared/mocks/mockInfiniteResponse';
 import { Review, UpdateUserRequest } from '@/shared/model';
 import { rest } from 'msw';
@@ -59,24 +58,18 @@ export const mypageHandler = [
     const { gatheringId, score, comment } = data;
 
     if (comment.length > 0 && score > 0 && gatheringId >= 0) {
-      console.log('Received valid review data:', data);
       return res(
         ctx.status(200),
         ctx.json({ message: 'Review submitted successfully', data }),
       );
     } else {
-      console.error('Invalid review data received:', data);
       return res(ctx.status(400), ctx.json({ error: 'Invalid review data' }));
     }
   }),
-  rest.put(
-    `${BASE_URL}/api/auths/me`,
-    authMiddleware(async (req, res, ctx) => {
-      const data = (await req.json()) as UpdateUserRequest;
-      const { companyName, profileImage } = data;
-      console.log('🚀 ~ authMiddleware ~ data:', { companyName, profileImage });
+  rest.put(`${BASE_URL}/api/auths/me`, async (req, res, ctx) => {
+    const data = (await req.json()) as UpdateUserRequest;
+    const { companyName, profileImage } = data;
 
-      return res(ctx.status(204));
-    }),
-  ),
+    return res(ctx.status(204));
+  }),
 ];
