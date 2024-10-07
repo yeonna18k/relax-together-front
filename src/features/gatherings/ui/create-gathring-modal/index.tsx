@@ -1,3 +1,5 @@
+'use client';
+
 import {
   CreateGathering,
   createGatheringSchema,
@@ -39,17 +41,14 @@ export default function GatheringCreateModal() {
     },
   });
 
-  // 필터가 변경될 때 폼 일부만 리셋하고 워케이션일 때 이름 필수로 설정
-  // 필터가 변경될 때 폼 필드 리셋 및 type 값 설정
   useEffect(() => {
     if (selectedFilter === '워케이션') {
-      form.setValue('type', '워케이션'); // 워케이션으로 설정
-      form.setValue('name', ''); // 이름 필수로 설정
-      setIsDisabled(true); // 이름 입력 전까지는 버튼 비활성화
+      form.setValue('type', '워케이션');
+      setIsDisabled(true);
     } else {
-      form.setValue('type', '오피스 스트레칭'); // 달램핏으로 기본값 설정
-      form.setValue('name', null); // 이름 필드 비활성화
-      setIsDisabled(false); // 버튼 활성화
+      form.setValue('type', '오피스 스트레칭');
+
+      setIsDisabled(false);
     }
   }, [selectedFilter, form]);
 
@@ -62,15 +61,11 @@ export default function GatheringCreateModal() {
     });
     return () => subscription.unsubscribe();
   }, [form, selectedFilter]);
-  // 이름이 입력되지 않았을 때 버튼 비활성화
-  useEffect(() => {
-    const subscription = form.watch(value => {
-      if (selectedFilter === '워케이션') {
-        setIsDisabled(!(value.name && value.name.length > 0));
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [form, selectedFilter]);
+
+  const handleFormSubmit = (values: CreateGathering) => {
+    console.log('제출 데이터:', values); // 폼 제출 시 데이터를 콘솔에 출력
+    onSubmit(values);
+  };
 
   return (
     <Modal
@@ -80,7 +75,7 @@ export default function GatheringCreateModal() {
       actionBtnName="확인"
       type="submit"
       disabled={isDisabled}
-      handleAction={form.handleSubmit(onSubmit)}
+      handleAction={form.handleSubmit(handleFormSubmit)}
     >
       <div className="h-auto max-h-[80vh] w-full space-y-6 overflow-y-auto p-1">
         <CreateGatheringSwitchButtonGroup

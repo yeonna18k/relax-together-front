@@ -4,18 +4,30 @@ import CardTitle from '@/shared/common/ui/card-title';
 import ChipInfo from '@/shared/common/ui/chip-info';
 import LikeButton from '@/shared/common/ui/like-button';
 import { formatDate, formatTime } from '@/shared/lib/utils';
-interface GatheringCardContentSectionProps
-  extends Omit<GatheringCardProps, 'imageUrl' | 'message'> {}
+type GatheringType = '워케이션' | '달램핏' | '오피스 스트레칭' | '마인드풀니스';
 
+interface GatheringCardContentSectionProps
+  extends Omit<GatheringCardProps, 'imageUrl' | 'message'> {
+  name: string | null;
+  type: GatheringType;
+}
+
+// displayType을 string | GatheringType 으로 처리
 export default function GatheringCardContentSection(
   props: GatheringCardContentSectionProps,
 ) {
-  const { id, type, location, dateTime, participantCount, capacity } = props;
+  const { id, type, location, dateTime, participantCount, capacity, name } =
+    props;
+
+  // 워케이션일 경우 type 대신 name을 사용하도록 처리
+  const displayType: string | GatheringType =
+    type === '워케이션' && name ? name : type;
+
   return (
     <div className="flex w-full flex-col justify-between gap-5 py-4 sm:w-[calc(100%-280px)]">
       <div className="flex justify-between pl-6 pr-4">
         <div>
-          <CardTitle type={type} location={location} />
+          <CardTitle type={displayType} location={location} />
           <div className="mt-2 flex items-start justify-start">
             <div className="items-start space-x-2">
               <ChipInfo type="date">{formatDate(dateTime)}</ChipInfo>

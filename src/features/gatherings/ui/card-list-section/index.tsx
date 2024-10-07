@@ -36,7 +36,7 @@ export default function GatheringCardListSection() {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div className="w-full xl:w-[996px]">
+      <motion.div className="w-full !bg-white xl:w-[996px]">
         {data && data.pages[0].totalElements > 0 ? (
           <ScrollSection
             ref={ref}
