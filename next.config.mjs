@@ -25,12 +25,9 @@ const nextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         pathname: '/v0/b/relax-together.appspot.com/o/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
-        pathname: '/b0/b/**',
-      },
     ],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   webpack(config) {
     config.module.rules.push({
