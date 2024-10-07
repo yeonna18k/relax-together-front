@@ -2,11 +2,7 @@ import { SigninFormType } from '@/features/auth/signin/ui/SigninForm';
 import { commonApiService } from '@/shared/api/service/CommonApiService';
 import { UseFormReturn } from 'react-hook-form';
 import { SigninUser, SignupUser } from '../model/user';
-import {
-  signinApiService,
-  signupApiService,
-  Tokens,
-} from './service/AuthApiService';
+import { signinApiService, signupApiService } from './service/AuthApiService';
 
 export function useSignup() {
   const signup = async (userData: SignupUser) => {
@@ -47,10 +43,10 @@ export function useSigninUserData() {
   return { signinUserData };
 }
 
-export function useSignout(accessToken: Tokens) {
+export function useSignout() {
   const signout = async () => {
     try {
-      const response = await signinApiService.signout(accessToken);
+      const response = await commonApiService.signout();
       return response;
     } catch (e) {
       console.error(e);

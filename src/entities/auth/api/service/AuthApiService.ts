@@ -44,11 +44,6 @@ class SigninApiService extends ApiService {
     });
     return response;
   }
-  async signout({ accessToken }: Tokens) {
-    const response = await this.post(`${BASE_URL}/api/auths/logout`);
-    console.log(response);
-    return response;
-  }
 }
 
 export const signinApiService = new SigninApiService();
