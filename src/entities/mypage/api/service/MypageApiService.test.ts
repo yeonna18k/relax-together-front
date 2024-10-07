@@ -1,36 +1,78 @@
-describe('', () => {
-  test('', () => {});
+import { mypageApiService } from '@/entities/mypage/api/service/MypageApiService';
+import ApiService from '@/shared/api/service/ApiService';
+import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
+import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
+import { myWrittenReviewsContents } from '@/shared/fixture/my-written-reviews';
+
+describe('MypageApiService', () => {
+  describe('getMyJoinedGatherings', () => {
+    it('나의 모임의 목록이 정상적으로 호출된다.', async () => {
+      const result = await mypageApiService.getMyJoinedGatherings({
+        page: 0,
+        size: 10,
+      });
+      expect(result.data.content).toHaveLength(10);
+      expect(result.data.content[0].location).toBe(
+        myGatheringsContents[0].location,
+      );
+    });
+  });
+
+  describe('getMyWrittenReviews', () => {
+    it('나의 리뷰의 목록이 정상적으로 호출된다.', async () => {
+      const result = await mypageApiService.getMyWrittenReviews({
+        page: 0,
+        size: 10,
+      });
+      expect(result.data.content).toHaveLength(10);
+      expect(result.data.content[0].gatheringLocation).toBe(
+        myWrittenReviewsContents[0].gatheringLocation,
+      );
+    });
+  });
+
+  describe('getMyHostedGatherings', () => {
+    it('내가 만든 모임의 목록이 정상적으로 호출된다.', async () => {
+      const result = await mypageApiService.getMyHostedGatherings({
+        page: 0,
+        size: 10,
+      });
+      expect(result.data.content).toHaveLength(10);
+      expect(result.data.content[0].location).toBe(
+        myHostedGatheringsContents[0].location,
+      );
+    });
+  });
+
+  describe('updateUser', () => {
+    it('회원 정보 수정이 정상적으로 된다.', async () => {
+      ApiService.setAccessToken('access-token');
+      const result = await mypageApiService.updateUser({
+        companyName: 'New Company',
+        profileImage: 'new-image.jpg',
+      });
+      expect(result.status).toBe(204);
+    });
+  });
+
+  describe('writeReview', () => {
+    it('리뷰 작성이 정상적으로 된다.', async () => {
+      const result = await mypageApiService.writeReview({
+        gatheringId: 1,
+        score: 5,
+        comment: 'Great gathering!',
+      });
+      expect(result.status).toBe(200);
+    });
+
+    it('리뷰 작성 조건을 충족하지 못하면 에러가 발생된다.', async () => {
+      await expect(
+        mypageApiService.writeReview({
+          gatheringId: 1,
+          score: 0,
+          comment: '',
+        }),
+      ).rejects.toThrow();
+    });
+  });
 });
-// describe('ApiService', () => {
-//   context('서버에 fetchCategories를 호출하면', () => {
-//     it('categories 데이터를 전달 받을 수 있다.', async () => {
-//       const categories = await apiService.fetchCategories();
-
-//       expect(categories).toEqual(fixtures.categories);
-//     });
-//   });
-//   context('서버에 fetchProducts에 categoryId 없이 호출하면', () => {
-//     it('products 전체 데이터를 전달 받을 수 있다.', async () => {
-//       const products = await apiService.fetchProducts();
-
-//       expect(products).toEqual(productSummaries);
-//     });
-//   });
-//   context('서버에 fetchProducts에 categoryId를 포함해서 호출하면', () => {
-//     it('products 해당 카테고리 데이터만 전달 받을 수 있다.', async () => {
-//       const categoryId = 'category-02';
-//       const products = await apiService.fetchProducts({ categoryId });
-
-//       expect(products).toEqual(productSummaries
-//         .filter((product) => product.category.id === categoryId));
-//     });
-//   });
-//   context('서버에 fetchProduct를 productId를 호출하면', () => {
-//     it('product 해당 카테고리 데이터만 전달 받을 수 있다.', async () => {
-//       const productId = 'product-01';
-//       const products = await apiService.fetchProduct({ productId });
-
-//       expect(products).toEqual(fixtures.products.find((i) => i.id === productId));
-//     });
-//   });
-// });
