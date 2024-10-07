@@ -27,6 +27,11 @@ export function middleware(req: NextRequest) {
     url.searchParams.set('filter', 'all');
     return NextResponse.redirect(url);
   }
+  if (url.pathname === '/like-gatherings' && !url.searchParams.has('subPage')) {
+    url.searchParams.set('subPage', 'dalaemfit');
+    url.searchParams.set('filter', 'all');
+    return NextResponse.redirect(url);
+  }
 }
 
 export const config = {
