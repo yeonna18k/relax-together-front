@@ -44,6 +44,13 @@ export default function CreateGatheringDateTimeFormFiled({
   const { selectedDate, setSelectedDate, selectedTime, setSelectedTime } =
     useSelectDateTime(selectedFilter);
   useEffect(() => () => form.reset(), [form]);
+
+  useEffect(() => {
+    if (selectedDate !== null && selectedTime !== null) {
+      form.reset();
+    }
+  }, [form, selectedDate, selectedTime]);
+
   useEffect(() => {
     form.setValue(
       'dateTime',
@@ -55,6 +62,24 @@ export default function CreateGatheringDateTimeFormFiled({
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate, selectedTime]);
+
+  useEffect(() => {
+    const newDateTime = getAddHoursDateISOString(selectedDate, selectedTime);
+
+    // 만약 현재 form의 값이 기존과 다를 때만 상태 업데이트를 수행
+    if (form.getValues('dateTime') !== newDateTime) {
+      form.setValue('dateTime', newDateTime);
+    }
+
+    const newRegistrationEnd = getAddHoursDateISOString(
+      selectedDate,
+      selectedTime,
+    );
+
+    if (form.getValues('registrationEnd') !== newRegistrationEnd) {
+      form.setValue('registrationEnd', newRegistrationEnd);
+    }
+  }, [selectedDate, selectedTime, form]);
   return (
     <FormField
       control={form.control}
