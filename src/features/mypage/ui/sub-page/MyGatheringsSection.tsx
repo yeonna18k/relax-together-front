@@ -45,7 +45,6 @@ export default function MyGatheringsSection() {
               ))}
             </ul>
           ))}
-          <div ref={ref} />
         </ScrollSection>
       ) : (
         <ContentEmptySection description="신청한 모임이 아직 없어요" />
