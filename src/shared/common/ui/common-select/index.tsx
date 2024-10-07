@@ -99,7 +99,7 @@ export default function CommonSelect({
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent data-testid="select-content">
-        {menuItems.map(menuItem => (
+        {menuItems?.map(menuItem => (
           <SelectItem key={menuItem.value} value={menuItem.value}>
             {menuItem.label}
           </SelectItem>
