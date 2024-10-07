@@ -29,14 +29,14 @@ export default async function Gatherings() {
   );
 
   return (
-    <GatheringsPageContainer>
-      <Suspense fallback={null}>
+    <Suspense fallback={null}>
+      <GatheringsPageContainer>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <GatheringCardListSection />
         </HydrationBoundary>
-      </Suspense>
-      <CreateButton />
-      <ModalContainer />
-    </GatheringsPageContainer>
+        <CreateButton />
+        <ModalContainer />
+      </GatheringsPageContainer>
+    </Suspense>
   );
 }
