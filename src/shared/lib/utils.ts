@@ -56,33 +56,35 @@ export const copyToClipboard = async (text: string) => {
     console.error('클립보드 복사 실패:', err);
   }
 };
-
 export function getTimeUntilDeadline(registrationEnd: Date) {
   const now = new Date();
   const diffInMilliseconds = registrationEnd.getTime() - now.getTime();
-  const diffInMinutes = diffInMilliseconds / 1000 / 60;
-  const diffInHours = diffInMinutes / 60;
+  const diffInHours = diffInMilliseconds / 1000 / 60 / 60;
   const diffInDays = diffInHours / 24;
 
   const rtf = new Intl.RelativeTimeFormat('ko', { numeric: 'always' });
 
+  // 마감일이 지나면
+  if (diffInMilliseconds < 0) {
+    return '마감되었습니다';
+  }
+
   // 오늘 마감 (같은 날일 경우)
   if (now.toDateString() === registrationEnd.toDateString()) {
     const remainingHours = Math.floor(diffInHours);
-    return remainingHours > 0
-      ? `오늘 ${remainingHours}시간 후 마감`
-      : `오늘 곧 마감`;
+
+    // 시간이 지났다면 마감으로 처리
+    if (remainingHours <= 0) {
+      return '마감되었습니다';
+    }
+
+    return `오늘 ${remainingHours}시간 후 마감`;
   }
 
   // 몇 시간 안 남았지만 날짜가 다른 경우 (24시간 이내일 때)
   if (diffInHours <= 24 && diffInHours > 0) {
     const remainingHours = Math.floor(diffInHours);
     return remainingHours > 1 ? `${remainingHours}시간 후 마감` : `곧 마감`;
-  }
-
-  // 마감일이 지나면
-  if (diffInMilliseconds < 0) {
-    return '마감되었습니다';
   }
 
   // 며칠 후 마감

@@ -9,7 +9,7 @@ describe('CardTitle Component', () => {
     const { getByText } = render(<CardTitle type={type} location={location} />);
 
     const headerElement = screen.getByRole('heading', { level: 2 });
-    expect(headerElement).toHaveTextContent('달램핏 오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
       normalizeWhitespace: true,
     });
     expect(getByText(location)).toBeInTheDocument();

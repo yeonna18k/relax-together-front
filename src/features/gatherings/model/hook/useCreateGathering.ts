@@ -10,7 +10,6 @@ export default function useCreateGathering() {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: (data: CreateGathering) => {
-      console.log('모임 생성 요청 데이터', data);
       return gatheringsApiService.createGathering(data);
     },
     onSuccess: () => {

@@ -63,7 +63,6 @@ export default function GatheringCreateModal() {
   }, [form, selectedFilter]);
 
   const handleFormSubmit = (values: CreateGathering) => {
-    console.log('제출 데이터:', values); // 폼 제출 시 데이터를 콘솔에 출력
     onSubmit(values);
   };
 
