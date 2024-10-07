@@ -1,4 +1,5 @@
 'use client';
+import Chevron from '@/shared/assets/icons/signin-chevron.svg';
 import CommonBadge from '@/shared/common/ui/badge';
 import { cn } from '@/shared/lib/utils';
 import { useResponsiveGNBPopoverStore } from '@/shared/store/useResponsiveGNBPopoverStore';
@@ -20,7 +21,7 @@ export default function TopTap({ path, name, className }: TopTapProps) {
     <Link
       href={path}
       className={cn(
-        `font-semibold text-gray-700 hover:text-green-500`,
+        `group flex w-full items-center justify-between font-semibold text-gray-700 hover:text-green-500`,
         className,
         `${currentPathName === path ? 'text-green-500' : ''}`,
       )}
@@ -29,6 +30,16 @@ export default function TopTap({ path, name, className }: TopTapProps) {
       <p>{name}</p>
       {value > 0 && path === '/like-gatherings' && (
         <CommonBadge count={value} />
+      )}
+      {path === '/signin' ? (
+        <Chevron
+          width="24"
+          height="24"
+          fill="#9F9F9F"
+          className="group-hover:fill-green-500"
+        />
+      ) : (
+        <></>
       )}
     </Link>
   );

@@ -31,6 +31,7 @@ export const Path = {
   gatherings: 'gatherings',
   reviews: 'reviews',
   'like-gatherings': 'like-gatherings',
+  signin: 'signin',
 } as const;
 
 export const BASE_URL =
