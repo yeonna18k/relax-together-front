@@ -34,7 +34,6 @@ export default function MyHostedGatheringsSection() {
               ))}
             </ul>
           ))}
-          <div ref={ref} />
         </ScrollSection>
       ) : (
         <ContentEmptySection description="아직 만든 모임이 없어요" />
