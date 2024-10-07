@@ -14,7 +14,7 @@ class ReviewsApiService extends ApiService {
     sortBy,
   }: FetchParams & Partial<FilterParams>) {
     const response = await this.get<Response<Review>>(
-      `${BASE_URL}/api/reviews?type=${type}&location=${location ?? ''}&date=${date ?? ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}`,
+      `${BASE_URL}/api/reviews?type=${type}${location ? `&location=${location}` : ``}${date ? `&date=${date}` : ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}`,
     );
     return response;
   }
