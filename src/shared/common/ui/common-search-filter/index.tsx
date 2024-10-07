@@ -9,6 +9,7 @@ import FilterButtonGroup from '@/shared/common/ui/filter-button-group';
 import { commonFilters } from '@/shared/fixture/filter';
 import { commonSelectItems } from '@/shared/fixture/select-items';
 import { SelectedValue, useSearchFilter } from '@/shared/hooks/useSearchFilter';
+import { useEffect } from 'react';
 
 interface CommonSearchFilterProps {
   sortItems: Array<CommonSelectItem>;
@@ -25,6 +26,11 @@ export default function CommonSearchFilter({
     setSelectedValue,
     setSelectedSortValue,
   } = useSearchFilter();
+
+  useEffect(() => {
+    path === 'reviews' && setSelectedSortValue('createdDate');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div
