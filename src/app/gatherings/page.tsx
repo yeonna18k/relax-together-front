@@ -11,7 +11,6 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 const CreateButton = dynamic(
   () => import('@/entities/gatherings/ui/main/CreateButton'),
   {
@@ -29,14 +28,14 @@ export default async function Gatherings() {
   );
 
   return (
-    <Suspense fallback={null}>
+    <>
       <GatheringsPageContainer>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <GatheringCardListSection />
         </HydrationBoundary>
-        <CreateButton />
-        <ModalContainer />
       </GatheringsPageContainer>
-    </Suspense>
+      <CreateButton />
+      <ModalContainer />
+    </>
   );
 }
