@@ -12,7 +12,7 @@ const tabVariants = cva('relative flex items-center font-semibold', {
   variants: {
     variant: {
       default: 'px-2.5 pb-1.5 pt-2 text-lg',
-      reviews: 'px-2.5 p-2 md:py-4',
+      reviews: 'px-2.5 p-2 md:py-4 text-base',
       gatherings: 'py-4 text-base font-medium xl:text-3xl lg:font-bold pr-1',
     },
   },

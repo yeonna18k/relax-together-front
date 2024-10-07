@@ -27,7 +27,9 @@ export default function CommonSearchFilter({
   } = useSearchFilter();
 
   return (
-    <div className="flex w-full flex-col-reverse items-start justify-between sm:flex-row sm:items-center md:py-5 xl:w-[996px] xl:pb-6 xl:pt-[30px]">
+    <div
+      className={`flex w-full flex-col-reverse items-start justify-between sm:flex-row sm:items-center md:py-5 ${path === 'reviews' ? '' : 'xl:w-[996px] xl:pb-6 xl:pt-[30px]'}`}
+    >
       <div className="flex w-full justify-between py-3 sm:w-min md:gap-2 md:py-0">
         <div className="flex justify-between gap-1.5 md:gap-2">
           <CommonSelect

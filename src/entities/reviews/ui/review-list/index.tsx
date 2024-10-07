@@ -8,7 +8,6 @@ import { useReviewsData } from '../../api/queries/reviews';
 export default function ReviewList() {
   const { additionalParams } = useAdditionalParams();
   const { data, fetchNextPage, isFetching } = useReviewsData(additionalParams);
-  console.log(data);
   const { ref, inView } = useInView();
 
   useEffect(() => {
