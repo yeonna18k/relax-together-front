@@ -24,7 +24,11 @@ describe('CardList Component', () => {
 
   it('renders the card title correctly', () => {
     render(<GatheringCard {...mockProps} />);
-    expect(screen.getByText(gatheringsContents[2].type)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        `${gatheringsContents[2].type} ${gatheringsContents[2].name}`,
+      ),
+    ).toBeInTheDocument();
   });
 
   it('displays the correct location', () => {

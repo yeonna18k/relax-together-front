@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
+import { toZonedTime } from 'date-fns-tz';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -56,37 +57,58 @@ export const copyToClipboard = async (text: string) => {
     console.error('클립보드 복사 실패:', err);
   }
 };
-export function getTimeUntilDeadline(registrationEnd: Date) {
-  const now = new Date();
-  const diffInMilliseconds = registrationEnd.getTime() - now.getTime();
-  const diffInHours = diffInMilliseconds / 1000 / 60 / 60;
-  const diffInDays = diffInHours / 24;
 
+export function getKoreaTime() {
+  const koreaTimeZone = 'Asia/Seoul';
+  const now = new Date();
+  const koreaTime = toZonedTime(now, koreaTimeZone);
+  return koreaTime;
+}
+
+// 같은 날 마감인지 확인하는 함수
+function isSameDayDeadline(now: Date, deadline: Date): boolean {
+  return now.toDateString() === deadline.toDateString();
+}
+
+// 24시간 이내 마감인지 확인하는 함수
+function isLessThan24Hours(diffInHours: number): boolean {
+  return diffInHours <= 24 && diffInHours > 0;
+}
+
+// 며칠 후 마감인지 포맷하는 함수
+function formatDaysUntilDeadline(diffInDays: number): string {
   const rtf = new Intl.RelativeTimeFormat('ko', { numeric: 'always' });
+  return rtf.format(Math.floor(diffInDays), 'day') + ' 마감';
+}
+
+function getRemainingHoursText(remainingHours: number): string {
+  return `${remainingHours}시간 후 마감`;
+}
+
+// 전체 마감 처리 로직
+export function getTimeUntilDeadline(registrationEnd: Date): string {
+  const now = getKoreaTime();
+  const diffInMilliseconds = registrationEnd.getTime() - now.getTime();
+  const diffInMinutes = diffInMilliseconds / 1000 / 60;
+  const diffInHours = diffInMinutes / 60;
+  const diffInDays = diffInHours / 24;
+  const remainingHours = Math.floor(diffInHours);
 
   // 마감일이 지나면
   if (diffInMilliseconds < 0) {
     return '마감되었습니다';
   }
 
-  // 오늘 마감 (같은 날일 경우)
-  if (now.toDateString() === registrationEnd.toDateString()) {
-    const remainingHours = Math.floor(diffInHours);
-
-    // 시간이 지났다면 마감으로 처리
-    if (remainingHours <= 0) {
-      return '마감되었습니다';
-    }
-
-    return `오늘 ${remainingHours}시간 후 마감`;
+  // 오늘 마감
+  if (isSameDayDeadline(now, registrationEnd)) {
+    return `오늘 ${remainingHours > 0 ? getRemainingHoursText(remainingHours) : '곧 마감'}`;
   }
 
-  // 몇 시간 안 남았지만 날짜가 다른 경우 (24시간 이내일 때)
-  if (diffInHours <= 24 && diffInHours > 0) {
-    const remainingHours = Math.floor(diffInHours);
-    return remainingHours > 1 ? `${remainingHours}시간 후 마감` : `곧 마감`;
+  // 24시간 이내지만 날짜가 다른 경우
+  if (isLessThan24Hours(diffInHours)) {
+    return getRemainingHoursText(remainingHours);
   }
 
   // 며칠 후 마감
-  return rtf.format(Math.floor(diffInDays), 'day') + ' 마감';
+  return formatDaysUntilDeadline(diffInDays);
 }
