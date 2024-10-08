@@ -3,44 +3,54 @@ import ApiService from '@/shared/api/service/ApiService';
 import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { myHostedGatheringsContents } from '@/shared/fixture/my-hoted-gatherings';
 import { myWrittenReviewsContents } from '@/shared/fixture/my-written-reviews';
+import { LIMIT } from '@/shared/lib/constants';
 
 describe('MypageApiService', () => {
-  describe('getMyJoinedGatherings', () => {
-    it('나의 모임의 목록이 정상적으로 호출된다.', async () => {
+  describe('getMyJoinedGatherings를 호출하면', () => {
+    it('나의 모임의 목록 데이터를 받을 수 있다.', async () => {
       const result = await mypageApiService.getMyJoinedGatherings({
         page: 0,
-        size: 10,
+        size: LIMIT,
       });
-      expect(result.data.content).toHaveLength(10);
-      expect(result.data.content[0].location).toBe(
-        myGatheringsContents[0].location,
-      );
+      const response = result.data.content[0];
+      const fixture = myGatheringsContents[0];
+      expect(result.data.content).toHaveLength(LIMIT);
+      expect(response.location).toBe(fixture.location);
+      expect(response.capacity).toBe(fixture.capacity);
+      expect(response.id).toBe(fixture.id);
+      expect(response.imageUrl).toBe(fixture.imageUrl);
     });
   });
 
-  describe('getMyWrittenReviews', () => {
-    it('나의 리뷰의 목록이 정상적으로 호출된다.', async () => {
+  describe('getMyWrittenReviews를 호출하면', () => {
+    it('나의 리뷰의 목록 데이터를 받을 수 있다.', async () => {
       const result = await mypageApiService.getMyWrittenReviews({
         page: 0,
-        size: 10,
+        size: LIMIT,
       });
-      expect(result.data.content).toHaveLength(10);
-      expect(result.data.content[0].gatheringLocation).toBe(
-        myWrittenReviewsContents[0].gatheringLocation,
-      );
+      const response = result.data.content[0];
+      const fixture = myWrittenReviewsContents[0];
+      expect(result.data.content).toHaveLength(LIMIT);
+      expect(response.gatheringLocation).toBe(fixture.gatheringLocation);
+      expect(response.comment).toBe(fixture.comment);
+      expect(response.gatheringType).toBe(fixture.gatheringType);
+      expect(response.score).toBe(fixture.score);
     });
   });
 
-  describe('getMyHostedGatherings', () => {
-    it('내가 만든 모임의 목록이 정상적으로 호출된다.', async () => {
+  describe('getMyHostedGatherings를 호출하면 ', () => {
+    it('내가 만든 모임의 목록 데이터를 받을 수 있다.', async () => {
       const result = await mypageApiService.getMyHostedGatherings({
         page: 0,
-        size: 10,
+        size: LIMIT,
       });
-      expect(result.data.content).toHaveLength(10);
-      expect(result.data.content[0].location).toBe(
-        myHostedGatheringsContents[0].location,
-      );
+      const response = result.data.content[0];
+      const fixture = myHostedGatheringsContents[0];
+      expect(result.data.content).toHaveLength(LIMIT);
+      expect(response.location).toBe(fixture.location);
+      expect(response.capacity).toBe(fixture.capacity);
+      expect(response.id).toBe(fixture.id);
+      expect(response.type).toBe(fixture.type);
     });
   });
 
