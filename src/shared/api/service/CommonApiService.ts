@@ -9,30 +9,12 @@ class CommonApiService extends ApiService {
   }
 
   private setupInterceptors() {
-    CommonApiService.instance.interceptors.request.use(
-      config => {
-        const token = CommonApiService.getAccessToken();
-        if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
-        }
-        return config;
-      },
-      error => {
-        console.error('Request interceptor error:', error);
-        return Promise.reject(error);
-      },
-    );
-
-    ApiService.instance.interceptors.response.use(
+    CommonApiService.instance.interceptors.response.use(
       response => response,
       async error => {
         const originalRequest = error.config;
 
         if (
-          !(
-            error.config.url === `${BASE_URL}/api/auths/login` ||
-            error.config.url === `${BASE_URL}/api/auths/logout`
-          ) &&
           error.response &&
           error.response.status === 401 &&
           !originalRequest._retry
