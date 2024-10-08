@@ -51,6 +51,7 @@ export default function useSelectDateTime(filter: SwitchFiler) {
         setSelectedTime(String(threeHoursLater));
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate, filter]);
 
   const isTodayDisabled = isAfter4PM();
