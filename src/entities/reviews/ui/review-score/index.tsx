@@ -1,8 +1,15 @@
+'use client';
+
+import useAdditionalParams from '@/features/gatherings/model/hook/useAdditionalParams';
 import ReviewHearts from '@/shared/common/ui/review-card/ReviewHearts';
 import { dummyScore } from '@/shared/fixture/score';
 import { Progress } from '@/shared/ui/progress';
 
 export default function ReviewScore() {
+  const { additionalParams } = useAdditionalParams();
+  const type = additionalParams.type;
+  const location = additionalParams.location;
+
   const scoreArray = Array.from(Object.values(dummyScore)).reverse();
   const scoreCount = scoreArray.reduce((sum, count) => sum + count, 0);
   const scoreAverage = Math.floor(
