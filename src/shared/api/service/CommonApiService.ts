@@ -15,6 +15,7 @@ class CommonApiService extends ApiService {
         const originalRequest = error.config;
 
         if (
+          error.config.url !== `${BASE_URL}/api/auths/logout` &&
           error.response &&
           error.response.status === 401 &&
           !originalRequest._retry
