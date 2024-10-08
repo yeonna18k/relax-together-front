@@ -45,7 +45,6 @@ export default function MyGatheringsSection() {
               ))}
             </ul>
           ))}
-          <div ref={ref} />
         </ScrollSection>
       ) : (
         <ContentEmptySection
