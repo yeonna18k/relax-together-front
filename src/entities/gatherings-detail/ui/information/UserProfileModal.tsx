@@ -37,7 +37,7 @@ export default function UserProfileModal({
               height={24}
             />
           </div>
-          {participantList.totalElements > 2 ? (
+          {participantList.totalElements >= 2 ? (
             <ul className="mt-5 flex flex-wrap gap-x-[30px] gap-y-[10px]">
               {participantList.participants
                 .slice(1)
