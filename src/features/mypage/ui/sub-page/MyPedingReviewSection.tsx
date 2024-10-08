@@ -34,7 +34,6 @@ export default function MyPendingReviewSection() {
               ))}
             </ul>
           ))}
-          <div ref={ref} />
         </ScrollSection>
       ) : (
         <ContentEmptySection description="아직 작성 가능한 리뷰가 없어요" />

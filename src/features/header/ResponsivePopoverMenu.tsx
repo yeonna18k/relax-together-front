@@ -37,7 +37,7 @@ export default function ResponsivePopoverMenu() {
           <TopTap
             path="/signin"
             name="로그인이 필요합니다."
-            className="py-4 text-gray-400"
+            className="group flex w-full items-center justify-between py-4 text-gray-400"
           />
         )}
         <NavList />

@@ -47,7 +47,7 @@ describe('MypageCard Component', () => {
 
     expect(upcomingChip).toBeInTheDocument();
     expect(completedChip).toBeInTheDocument();
-    expect(headerElement).toHaveTextContent('달램핏 오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
@@ -84,7 +84,7 @@ describe('MypageCard Component', () => {
 
     expect(upcomingChip).toBeInTheDocument();
     expect(scheduledChip).toBeInTheDocument();
-    expect(headerElement).toHaveTextContent('달램핏 오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
@@ -121,7 +121,7 @@ describe('MypageCard Component', () => {
 
     expect(upcomingChip).toBeInTheDocument();
     expect(completedChip).not.toBeInTheDocument();
-    expect(headerElement).toHaveTextContent('달램핏 오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
@@ -158,7 +158,7 @@ describe('MypageCard Component', () => {
 
     expect(upcomingChip).not.toBeInTheDocument();
     expect(completedChip).not.toBeInTheDocument();
-    expect(headerElement).toHaveTextContent('달램핏 오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
@@ -200,7 +200,7 @@ describe('MypageCard Component', () => {
     expect(writeReviewButton).not.toBeInTheDocument();
     expect(cancelReservationButton).not.toBeInTheDocument();
 
-    expect(headerElement).toHaveTextContent('달램핏 오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
