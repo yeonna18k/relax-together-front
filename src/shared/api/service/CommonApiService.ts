@@ -9,9 +9,6 @@ class CommonApiService extends ApiService {
   }
 
   private setupInterceptors() {
-    //   let refreshAttempts = 0;
-    //   const MAX_REFRESH_ATTEMPTS = 10;
-
     CommonApiService.instance.interceptors.request.use(
       config => {
         const token = CommonApiService.getAccessToken();
@@ -26,54 +23,51 @@ class CommonApiService extends ApiService {
       },
     );
 
-    //   ApiService.instance.interceptors.response.use(
-    //     response => response,
-    //     async error => {
-    //       const originalRequest = error.config;
+    ApiService.instance.interceptors.response.use(
+      response => response,
+      async error => {
+        const originalRequest = error.config;
 
-    //       if (
-    //         !(
-    //           error.config.url === `${BASE_URL}/api/auths/login` ||
-    //           error.config.url === `${BASE_URL}/api/auths/logout`
-    //         ) &&
-    //         error.response &&
-    //         error.response.status === 401 &&
-    //         !originalRequest._retry &&
-    //         refreshAttempts < MAX_REFRESH_ATTEMPTS
-    //       ) {
-    //         console.log(
-    //           '🚀 ~ CommonApiService ~ setupInterceptors ~ error.config.url:',
-    //           error.config.url,
-    //         );
+        if (
+          !(
+            error.config.url === `${BASE_URL}/api/auths/login` ||
+            error.config.url === `${BASE_URL}/api/auths/logout`
+          ) &&
+          error.response &&
+          error.response.status === 401 &&
+          !originalRequest._retry
+        ) {
+          console.log(
+            '🚀 ~ CommonApiService ~ setupInterceptors ~ error.config.url:',
+            error.config.url,
+          );
 
-    //         originalRequest._retry = true;
-    //         refreshAttempts++;
+          originalRequest._retry = true;
 
-    //         try {
-    //           const refreshResponse = await this.refreshToken();
-    //           console.log(
-    //             '🚀 ~ CommonApiService ~ setupInterceptors ~ refreshResponse:',
-    //             refreshResponse,
-    //           );
-    //           const newAccessToken = refreshResponse.data.accessToken;
-    //           localStorage.setItem('accessToken', newAccessToken);
-    //           CommonApiService.setAccessToken(newAccessToken);
-    //           originalRequest.headers['Authorization'] =
-    //             `Bearer ${newAccessToken}`;
-    //           originalRequest._retry = true;
-    //           // return ApiService.instance(originalRequest);
-    //         } catch (refreshError) {
-    //           console.log(
-    //             'Refresh token expired or max attempts reached, logging out...',
-    //           );
-    //           // await this.signout();
-    //           // return Promise.reject(refreshError);
-    //         }
-    //       }
+          try {
+            const refreshResponse = await this.refreshToken();
+            console.log(
+              '🚀 ~ CommonApiService ~ setupInterceptors ~ refreshResponse:',
+              refreshResponse,
+            );
+            const newAccessToken = refreshResponse.data.accessToken;
+            localStorage.setItem('accessToken', newAccessToken);
+            CommonApiService.setAccessToken(newAccessToken);
+            originalRequest.headers['Authorization'] =
+              `Bearer ${newAccessToken}`;
+            return ApiService.instance(originalRequest);
+          } catch (refreshError) {
+            console.log(
+              'Refresh token expired or max attempts reached, logging out...',
+            );
+            await this.signout();
+            return Promise.reject(refreshError);
+          }
+        }
 
-    //       // return Promise.reject(error);
-    //     },
-    //   );
+        return Promise.reject(error);
+      },
+    );
   }
 
   async signout() {
