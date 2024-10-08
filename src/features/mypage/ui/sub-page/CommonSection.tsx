@@ -11,7 +11,7 @@ export default function CommonSection({
   return (
     <section
       className={cn(
-        'mt-6 max-h-[calc(100vh-370px)] lg:max-h-[calc(100vh-428px)]',
+        'mt-6 max-h-[calc(100vh-370px)] overflow-y-scroll lg:max-h-[calc(100vh-428px)]',
         className,
       )}
     >
