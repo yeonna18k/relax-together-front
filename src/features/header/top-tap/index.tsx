@@ -21,7 +21,7 @@ export default function TopTap({ path, name, className }: TopTapProps) {
     <Link
       href={path}
       className={cn(
-        `group flex w-full items-center justify-between font-semibold text-gray-700 hover:text-green-500`,
+        `font-semibold text-gray-700 hover:text-green-500`,
         className,
         `${currentPathName === path ? 'text-green-500' : ''}`,
       )}
@@ -31,7 +31,7 @@ export default function TopTap({ path, name, className }: TopTapProps) {
       {value > 0 && path === '/like-gatherings' && (
         <CommonBadge count={value} />
       )}
-      {path === '/signin' ? (
+      {name === '로그인이 필요합니다.' ? (
         <Chevron
           width="24"
           height="24"

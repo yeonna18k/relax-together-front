@@ -14,7 +14,7 @@ export const gatheringsContents: Array<Gathering> = Array.from({
         : condition === 1
           ? '마인드풀니스'
           : '워케이션',
-    name: null,
+    name: condition === 0 || condition === 1 ? null : '테스트 모임',
     dateTime:
       condition === 0
         ? '2024-09-23T07:30:24.329Z'
