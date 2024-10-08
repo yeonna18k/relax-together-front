@@ -1,8 +1,12 @@
+import { Tokens } from '@/entities/auth/api/service/AuthApiService';
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
 import { User } from '@/shared/model';
 
 class CommonApiService extends ApiService {
+  private isRefreshing = false;
+  private refreshSubscribers: Array<(token: string) => void> = [];
+
   constructor() {
     super();
     this.setupInterceptors();
@@ -15,36 +19,50 @@ class CommonApiService extends ApiService {
         const originalRequest = error.config;
 
         if (
-          error.config.url !== `${BASE_URL}/api/auths/logout` &&
+          !(
+            error.config.url === `${BASE_URL}/api/auths/logout` ||
+            error.config.url === `${BASE_URL}/api/auths/login`
+          ) &&
           error.response &&
           error.response.status === 401 &&
+          !error.response.data.message.includes('토큰이 만료되었습니다') &&
           !originalRequest._retry
         ) {
-          console.log(
-            '🚀 ~ CommonApiService ~ setupInterceptors ~ error.config.url:',
-            error.config.url,
-          );
+          if (this.isRefreshing) {
+            return new Promise(resolve => {
+              this.refreshSubscribers.push((token: string) => {
+                originalRequest.headers['Authorization'] = 'Bearer ' + token;
+                resolve(CommonApiService.instance(originalRequest));
+              });
+            });
+          }
 
           originalRequest._retry = true;
+          this.isRefreshing = true;
 
           try {
             const refreshResponse = await this.refreshToken();
-            console.log(
-              '🚀 ~ CommonApiService ~ setupInterceptors ~ refreshResponse:',
-              refreshResponse,
-            );
             const newAccessToken = refreshResponse.data.accessToken;
+
             localStorage.setItem('accessToken', newAccessToken);
             CommonApiService.setAccessToken(newAccessToken);
+
+            this.refreshSubscribers.forEach(callback =>
+              callback(newAccessToken),
+            );
+            this.refreshSubscribers = [];
+
             originalRequest.headers['Authorization'] =
               `Bearer ${newAccessToken}`;
-            return ApiService.instance(originalRequest);
+            return CommonApiService.instance(originalRequest);
           } catch (refreshError) {
-            console.log(
-              'Refresh token expired or max attempts reached, logging out...',
-            );
-            await this.signout();
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('signin-user-data');
+            CommonApiService.setAccessToken('');
+            window.location.href = '/';
             return Promise.reject(refreshError);
+          } finally {
+            this.isRefreshing = false;
           }
         }
 
@@ -54,14 +72,8 @@ class CommonApiService extends ApiService {
   }
 
   async signout() {
-    try {
-      await this.post(`${BASE_URL}/api/auths/logout`);
-    } catch (error) {
-      console.error('Logout failed:', error);
-    } finally {
-      localStorage.removeItem('accessToken');
-      CommonApiService.setAccessToken('');
-    }
+    const response = await this.post(`${BASE_URL}/api/auths/logout`);
+    return response;
   }
 
   async leaveGatheringById(gatheringId: number) {
@@ -71,8 +83,14 @@ class CommonApiService extends ApiService {
     return response;
   }
   async refreshToken() {
-    const response = await this.get(`${BASE_URL}/api/auths/refresh-token`);
-    return response;
+    try {
+      const response = await this.get<Tokens>(
+        `${BASE_URL}/api/auths/refresh-token`,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
   }
   async getUserInfo() {
     const response = await this.get<User>(`${BASE_URL}/api/auths/me`);
