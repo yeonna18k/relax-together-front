@@ -1,3 +1,5 @@
+import { address } from '@/shared/fixture/address';
+import { GatheringLocation } from '@/shared/model';
 import { GatheringsInfoTypes } from '../../model/information';
 
 interface GatheringInfoProps {
@@ -11,7 +13,8 @@ export default function GatheringInfo({ gatheringsInfo }: GatheringInfoProps) {
         {gatheringsInfo.type}
       </h2>
       <p className="mt-[2px] text-sm font-medium text-gray-700">
-        {gatheringsInfo.location}
+        {gatheringsInfo.location}{' '}
+        {address[gatheringsInfo.location as GatheringLocation]}
       </p>
     </div>
   );
