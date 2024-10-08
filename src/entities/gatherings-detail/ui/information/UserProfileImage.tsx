@@ -1,10 +1,14 @@
+'use client';
+
 import { MIN_PARTICIPANT } from '@/shared/lib/constants';
 import Image from 'next/image';
+import { useState } from 'react';
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
   Participants,
 } from '../../model/information';
+import UserProfileModal from './UserProfileModal';
 
 interface UserProfileImageProps {
   gatheringsInfo: GatheringsInfoTypes;
@@ -15,6 +19,8 @@ export default function UserProfileImage({
   gatheringsInfo,
   participantList,
 }: UserProfileImageProps) {
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+
   const displayedParticipants =
     participantList.totalElements >= MIN_PARTICIPANT
       ? participantList.participants.slice(0, 4)
@@ -23,9 +29,20 @@ export default function UserProfileImage({
   const extraParticipantsCount =
     gatheringsInfo.participantCount - MIN_PARTICIPANT + 1;
 
+  const handleOnMouseEnter = () => {
+    setModalVisible(true);
+  };
+  const handleOnMouseLeave = () => {
+    setModalVisible(false);
+  };
+
   return (
     <div>
-      <ul className="flex">
+      <ul
+        className="flex"
+        onMouseEnter={handleOnMouseEnter}
+        onMouseLeave={handleOnMouseLeave}
+      >
         {displayedParticipants.map((participant: Participants) => {
           return (
             <li
@@ -51,6 +68,10 @@ export default function UserProfileImage({
           </li>
         ) : null}
       </ul>
+      <UserProfileModal
+        isModalVisible={isModalVisible}
+        participantList={participantList}
+      />
     </div>
   );
 }
