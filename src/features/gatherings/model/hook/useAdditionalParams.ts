@@ -13,21 +13,27 @@ const getCurrentTypeMap: Record<string, GatheringType> = {
 export default function useAdditionalParams() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
   const { searchFilterValues } = useSearchFilter();
+
+  // SubPage와 Filter 값을 결합하여 타입 결정
   const target =
     currentSubPage === 'workation'
       ? currentSubPage
       : `${currentSubPage}_${currentFilter}`;
-  const type = getCurrentTypeMap[target];
+
+  // 타입을 가져오거나 기본값을 설정
+  const type = getCurrentTypeMap[target] || '달램핏'; // 기본값을 '달램핏'으로 설정
+
   const additionalParams = {
     type,
     location:
       searchFilterValues.selectedValue === 'ALL'
         ? undefined
-        : searchFilterValues.selectedValue,
+        : searchFilterValues.selectedValue, // 선택된 장소가 'ALL'이면 undefined
     date: searchFilterValues.date
       ? endOfDay(searchFilterValues.date).toISOString()
-      : undefined,
-    sortBy: searchFilterValues.selectedSortValue,
+      : undefined, // 선택된 날짜가 있으면 ISO 형식으로 변환
+    sortBy: searchFilterValues.selectedSortValue, // 선택된 정렬 값
   };
+
   return { additionalParams };
 }

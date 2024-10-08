@@ -7,6 +7,7 @@ export type SortBy =
   | 'createdDate'
   | 'score';
 export type FilterParams = {
+  name: string;
   type: GatheringType;
   location?: GatheringLocation;
   date?: string;
