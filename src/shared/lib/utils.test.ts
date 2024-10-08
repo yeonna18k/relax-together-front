@@ -9,7 +9,7 @@ describe('utils', () => {
       const result = getTimeUntilDeadline(fiftyEightMinutesLater);
       expect(result).toBe('오늘 곧 마감');
     });
-    it('현재 시간보다 1시간 더한 시간을 넣으면 "오늘 5시간 후 마감"이 반환된다.', () => {
+    it('현재 시간보다 1시간 더한 시간을 넣으면 "오늘 1시간 후 마감"이 반환된다.', () => {
       const fiveHoursLater = addMinutes(addHours(getKoreaTime(), 1), 1);
       const result = getTimeUntilDeadline(fiveHoursLater);
       expect(result).toBe('오늘 1시간 후 마감');
