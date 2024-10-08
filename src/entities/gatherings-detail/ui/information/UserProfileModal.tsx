@@ -13,7 +13,7 @@ export default function UserProfileModal({
   return (
     <>
       {isModalVisible && (
-        <div className="absolute -bottom-[120px] right-1/2 w-[96%] translate-x-1/2 rounded-xl border border-gray-200 bg-white p-[30px] shadow-custom sm:-bottom-[130px] sm:right-0 sm:w-[477px] sm:translate-x-0">
+        <div className="absolute right-1/2 top-[256px] h-fit w-[96%] translate-x-1/2 rounded-xl border border-gray-200 bg-white p-[30px] shadow-custom sm:right-2 sm:top-[296px] sm:w-[477px] sm:translate-x-0">
           <div className="flex items-center">
             <p className="h-12 w-12 overflow-hidden rounded-full">
               <Image
