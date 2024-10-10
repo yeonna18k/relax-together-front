@@ -7,6 +7,9 @@ import { BASE_URL, LIMIT } from '@/shared/lib/constants';
 import { Gathering, Response } from '@/shared/model';
 
 class GatheringsApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async getGatherings({
     pageParam,
     type,
@@ -29,5 +32,4 @@ class GatheringsApiService extends ApiService {
   }
 }
 
-export const gatheringsApiService =
-  GatheringsApiService.getInstance() as GatheringsApiService;
+export const gatheringsApiService = new GatheringsApiService();

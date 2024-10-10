@@ -5,6 +5,9 @@ import { BASE_URL, LIMIT } from '@/shared/lib/constants';
 import { Gathering, Response } from '@/shared/model';
 
 class LikeGatheringsApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async getGatherings({
     pageParam,
     type,
@@ -20,5 +23,4 @@ class LikeGatheringsApiService extends ApiService {
   }
 }
 
-export const likeGatheringsApiService =
-  LikeGatheringsApiService.getInstance() as LikeGatheringsApiService;
+export const likeGatheringsApiService = new LikeGatheringsApiService();
