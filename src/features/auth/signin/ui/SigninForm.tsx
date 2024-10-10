@@ -63,7 +63,7 @@ export default function SigninForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
   return (
-    <div className="mt-[15px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px]">
+    <div className="mt-[15px] h-[468px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-[30px] xl:w-[510px]">
       <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
         로그인
       </div>
