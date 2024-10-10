@@ -1,8 +1,8 @@
-import ForgotPasswordForm from '@/features/auth/forget-password/ui/ForgetPassword';
+import ForgotPasswordForm from '@/features/auth/forget-password/ui/ForgotPassword';
 import AuthHeader from '@/features/auth/ui/AuthHeader';
 import AuthImage from '@/features/auth/ui/AuthImage';
 
-export default function Signin() {
+export default function ForgotPassword() {
   return (
     <>
       <div>

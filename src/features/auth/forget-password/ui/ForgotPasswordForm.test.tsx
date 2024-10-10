@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import axios from 'axios';
-import ForgotPasswordForm from './ForgetPassword';
+import ForgotPasswordForm from './ForgotPassword';
 
 jest.mock('axios');
 

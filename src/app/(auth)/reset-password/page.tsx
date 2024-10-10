@@ -22,7 +22,7 @@ const formSchema = z
     path: ['passwordCheck'],
   });
 
-export default function Signin() {
+export default function ResetPasswordForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const form = useForm({

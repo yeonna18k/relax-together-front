@@ -11,7 +11,7 @@ type TogglePagePropsMap = {
     href: string;
     link: string;
   };
-  forgetPassword: {
+  forgotPassword: {
     span: string;
     href: string;
     link: string;
@@ -34,9 +34,9 @@ export default function TogglePage({
       href: '/signup',
       link: '회원가입',
     },
-    forgetPassword: {
+    forgotPassword: {
       span: '비밀번호를 잊어버리셨나요?',
-      href: '/forget-password',
+      href: '/forgot-password',
       link: '비밀번호 찾기',
     },
   };
@@ -56,19 +56,19 @@ export default function TogglePage({
             </Link>
           </div>
           <div className="mt-10 flex">
-            <p className="text-gray-500">{PageMap.forgetPassword.span}</p>
+            <p className="text-gray-500">{PageMap.forgotPassword.span}</p>
             <Link
-              href={PageMap.forgetPassword.href}
+              href={PageMap.forgotPassword.href}
               className="ml-2 text-gray-500 underline"
             >
-              {PageMap.forgetPassword.link}
+              {PageMap.forgotPassword.link}
             </Link>
           </div>
         </>
       )}
 
       {/* 비밀번호 찾기 페이지에서는 회원가입 링크만 출력 */}
-      {page === 'forgetPassword' && (
+      {page === 'forgotPassword' && (
         <div className="relative top-[-30px] flex text-[15px] font-medium">
           <p className="text-gray-800">{PageMap.signin.span}</p>
           <Link

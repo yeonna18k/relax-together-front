@@ -1,6 +1,5 @@
 'use client';
 
-import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +8,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
 
@@ -84,7 +84,7 @@ export default function ForgotPasswordForm() {
                 메일 보내기
               </Button>
             </div>
-            <TogglePage page="forgetPassword" />
+            <TogglePage page="forgotPassword" />
           </div>
         </form>
       </Form>
