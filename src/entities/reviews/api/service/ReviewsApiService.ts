@@ -18,8 +18,9 @@ class ReviewsApiService extends ApiService {
     );
     return response;
   }
+
   async getReviewScore({ type }: Partial<FilterParams>) {
-    const response = await this.get<Response<ReviewScore>>(
+    const response = await this.get<ReviewScore>(
       `${BASE_URL}/api/reviews/scores?type=${type}`,
     );
     return response;

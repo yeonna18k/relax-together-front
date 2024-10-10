@@ -21,10 +21,7 @@ export const fetchReviews = async ({
   return response.data;
 };
 
-export const fetchReviewScore = async ({
-  type,
-  location,
-}: Partial<FilterParams>) => {
-  const response = await reviewsApiService.getReviewScore({ type, location });
+export const fetchReviewScore = async ({ type }: Partial<FilterParams>) => {
+  const response = await reviewsApiService.getReviewScore({ type });
   return response.data;
 };
