@@ -10,14 +10,41 @@ export default class ApiService {
 
   private static accessToken = '';
 
+  constructor() {
+    if (typeof window !== 'undefined') {
+      this.initializeAccessToken();
+    }
+    this.setupRequestInterceptors();
+  }
+
+  private setupRequestInterceptors() {
+    ApiService.instance.interceptors.request.use(
+      config => {
+        if (ApiService.accessToken) {
+          config.headers['Authorization'] = `Bearer ${ApiService.accessToken}`;
+        }
+        return config;
+      },
+      error => {
+        console.error('Request interceptor error:', error);
+        return Promise.reject(error);
+      },
+    );
+  }
+
+  private initializeAccessToken() {
+    const storedToken = localStorage.getItem('accessToken');
+    if (storedToken) {
+      ApiService.setAccessToken(storedToken);
+    }
+  }
+
   protected static getAccessToken(): string {
     return ApiService.accessToken;
   }
 
   static setAccessToken(accessToken: string) {
-    const authorization =
-      accessToken.length > 0 ? `Bearer ${accessToken}` : undefined;
-    this.instance.defaults.headers.common['Authorization'] = authorization;
+    this.accessToken = accessToken;
   }
 
   async get<T = any, R = AxiosResponse<T>, D = any>(
