@@ -159,7 +159,7 @@ export default function PaginationReviews({
 
   return (
     <>
-      <ul className="w-full">
+      <ul>
         {reviewList?.reviews?.map((review: Review, index) => {
           return (
             <li key={index}>
