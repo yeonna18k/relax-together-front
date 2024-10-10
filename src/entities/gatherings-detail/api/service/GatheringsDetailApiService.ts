@@ -7,6 +7,9 @@ import {
 } from '../../model/information';
 
 class GatheringsDetailApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async getGatheringsInfo(id: string) {
     const response = await this.get<GatheringsInfoTypes>(
       `${BASE_URL}/api/gatherings/${id}`,
@@ -62,5 +65,4 @@ class GatheringsDetailApiService extends ApiService {
   }
 }
 
-export const gatheringsDetailApiService =
-  GatheringsDetailApiService.getInstance() as GatheringsDetailApiService;
+export const gatheringsDetailApiService = new GatheringsDetailApiService();
