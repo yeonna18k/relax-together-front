@@ -1,7 +1,8 @@
+'use client';
+
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import { useModal } from '@/shared/hooks/useModal';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
