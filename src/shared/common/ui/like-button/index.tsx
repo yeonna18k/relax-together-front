@@ -2,7 +2,7 @@
 import LikeHeartEmptyIcon from '@/shared/assets/icons/like-heart-empty-icon.svg';
 import LikeHeartIcon from '@/shared/assets/icons/like-heart-icon.svg';
 import { Button } from '@/shared/ui/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
 interface LikeButtonProps {
@@ -22,9 +22,11 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
     'liked-gatherings-ids',
     [] as string[],
   );
-  const [liked, setLiked] = useState(
-    likedGatheringsIds.find(id => id === gatheringId) !== undefined,
-  );
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    setLiked(likedGatheringsIds.find(id => id === gatheringId) !== undefined);
+  }, [likedGatheringsIds, gatheringId]);
 
   const toggleLike = () => {
     if (liked) {
@@ -34,8 +36,8 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
       setLikedCount(prev => prev + 1);
       setLikedGatheringsIds(prev => [...prev, gatheringId]);
     }
-    setLiked(prev => !prev);
   };
+
   return (
     <Button
       className={`relative z-20 h-12 w-12 rounded-full border-2 p-3 ${liked ? 'border-pink-50 bg-pink-50 hover:bg-pink-50 active:bg-pink-50' : 'border-gray-200 bg-white hover:bg-white active:bg-white'}`}

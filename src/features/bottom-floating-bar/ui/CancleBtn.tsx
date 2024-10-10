@@ -1,8 +1,11 @@
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import CommonButton from '@/shared/common/ui/common-button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 export default function CancleBtn({ id }: { id: string }) {
+  const router = useRouter();
+
   const queryClient = useQueryClient();
 
   const { mutate: cancelMutation } = useMutation({
@@ -12,6 +15,9 @@ export default function CancleBtn({ id }: { id: string }) {
     onSuccess: data => {
       console.log('성공적으로 취소했습니다:', data);
       queryClient.invalidateQueries({ queryKey: ['gathering'] });
+
+      alert('모임을 취소했습니다.');
+      router.push('/');
     },
     onError: error => {
       console.error('취소하기 요청 실패:', error);

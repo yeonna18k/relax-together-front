@@ -9,3 +9,11 @@ export interface Review {
   comment: string;
   createdDate: string;
 }
+
+export interface ReviewScore {
+  fivePoints: number;
+  fourPoints: number;
+  threePoints: number;
+  twoPoints: number;
+  onePoints: number;
+}

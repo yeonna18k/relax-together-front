@@ -4,6 +4,7 @@ import {
   dummyParticipantList,
 } from '@/shared/fixture/information';
 import { dummyReviews } from '@/shared/fixture/reviews';
+import { dummyScore } from '@/shared/fixture/score';
 import { BASE_URL, LIMIT, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
 import { commonHandler } from '@/shared/mocks/handlers/common';
 import { mypageHandler } from '@/shared/mocks/handlers/mypage';
@@ -26,6 +27,10 @@ const handlers = [
         message: `${gatheringId}의 모임 참여를 취소합니다.`,
       }),
     );
+  }),
+
+  rest.get(`/api/reviews/scores`, async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dummyScore));
   }),
 
   rest.get(`/api/gatherings/:id`, (req, res, ctx) => {

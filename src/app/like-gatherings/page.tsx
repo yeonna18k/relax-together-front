@@ -7,6 +7,7 @@ import { prefetchCommonInfiniteData } from '@/shared/api/queries/prefetch';
 
 import CommonSearchFilter from '@/shared/common/ui/common-search-filter';
 import { gatheringsSortItems } from '@/shared/fixture/select-items';
+import { Path } from '@/shared/lib/constants';
 import {
   dehydrate,
   HydrationBoundary,
@@ -31,7 +32,10 @@ export default async function LikeGatherings() {
         <Suspense fallback={null}>
           <LikeGatheringsTitle />
           <div className="px-4">
-            <CommonSearchFilter sortItems={gatheringsSortItems} />
+            <CommonSearchFilter
+              sortItems={gatheringsSortItems}
+              path={Path['like-gatherings']}
+            />
             <HydrationBoundary state={dehydrate(queryClient)}>
               <LikeGatheringCardList />
             </HydrationBoundary>
