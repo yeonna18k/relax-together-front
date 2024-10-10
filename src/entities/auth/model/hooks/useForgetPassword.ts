@@ -11,11 +11,11 @@ export function useForgotPassword() {
       const response =
         await forgotPasswordApiService.sendForgotPasswordEmail(email);
 
-      // 응답에서 data를 통해 success를 확인
-      if (response.data && response.data.success) {
-        return { success: true, message: response.data.message };
+      // 응답에서 바로 success와 message를 확인
+      if (response.success) {
+        return { success: true, message: response.message };
       } else {
-        return { success: false, message: response.data.message };
+        return { success: false, message: response.message };
       }
     } catch (error) {
       return { success: false, message: '이메일 전송에 실패했습니다.' };

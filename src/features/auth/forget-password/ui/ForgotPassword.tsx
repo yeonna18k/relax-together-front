@@ -43,10 +43,15 @@ export default function ForgotPasswordForm() {
         setEmailSent(true); // 이메일 전송 성공
         setErrorMessage(null);
       } else {
-        setErrorMessage('해당 이메일은 등록되지 않았습니다.');
+        // 서버에서 반환하는 구체적인 오류 메시지를 사용
+        setErrorMessage(res.message || '해당 이메일은 등록되지 않았습니다.');
       }
-    } catch (error) {
-      setErrorMessage('이메일 전송에 실패했습니다. 다시 시도해주세요.');
+    } catch (error: any) {
+      // error.response가 있는 경우 서버 응답에서 구체적인 에러 메시지를 가져옵니다.
+      const message =
+        error.response?.data?.message ||
+        '이메일 전송에 실패했습니다. 다시 시도해주세요.';
+      setErrorMessage(message);
     }
   }
 
