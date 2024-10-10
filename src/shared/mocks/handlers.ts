@@ -18,6 +18,7 @@ import {
   dummyParticipantList,
 } from '../fixture/information';
 import { dummyReviews } from '../fixture/reviews';
+import { dummyScore } from '../fixture/score';
 
 const handlers = [
   rest.get(`/api/auths/user`, (req, res, ctx) => res(ctx.json(dummyUser))),
@@ -92,6 +93,10 @@ const handlers = [
       console.error('Invalid review data received:', data);
       return res(ctx.status(400), ctx.json({ error: 'Invalid review data' }));
     }
+  }),
+
+  rest.get(`/api/reviews/scores`, async (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(dummyScore));
   }),
 
   rest.get(`/api/gatherings/:id`, (req, res, ctx) => {
