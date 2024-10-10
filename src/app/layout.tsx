@@ -27,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${inter.className} ${paperLogyExtraBold.variable} bg-background`}
-      >
+      <body className={`${inter.className} ${paperLogyExtraBold.variable}`}>
         <Provider>
           <Header />
           <Container>{children}</Container>

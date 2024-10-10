@@ -9,14 +9,15 @@ import FilterButtonGroup from '@/shared/common/ui/filter-button-group';
 import { commonFilters } from '@/shared/fixture/filter';
 import { commonSelectItems } from '@/shared/fixture/select-items';
 import { SelectedValue, useSearchFilter } from '@/shared/hooks/useSearchFilter';
-
-import { Path } from '@/shared/lib/constants';
+import { useEffect } from 'react';
 
 interface CommonSearchFilterProps {
   sortItems: Array<CommonSelectItem>;
+  path: string;
 }
 export default function CommonSearchFilter({
   sortItems,
+  path,
 }: CommonSearchFilterProps) {
   const { currentSubPage } = useCommonSearchParams();
   const {
@@ -26,8 +27,15 @@ export default function CommonSearchFilter({
     setSelectedSortValue,
   } = useSearchFilter();
 
+  useEffect(() => {
+    path === 'reviews' && setSelectedSortValue('createdDate');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path]);
+
   return (
-    <div className="flex w-full flex-col-reverse items-start justify-between sm:flex-row sm:items-center md:py-5 xl:w-[996px] xl:pb-6 xl:pt-[30px]">
+    <div
+      className={`flex w-full flex-col-reverse items-start justify-between sm:flex-row sm:items-center md:py-5 ${path === 'reviews' ? '' : 'xl:w-[996px] xl:pb-6 xl:pt-[30px]'}`}
+    >
       <div className="flex w-full justify-between py-3 sm:w-min md:gap-2 md:py-0">
         <div className="flex justify-between gap-1.5 md:gap-2">
           <CommonSelect
@@ -54,7 +62,7 @@ export default function CommonSearchFilter({
       </div>
       {currentSubPage === 'dalaemfit' && (
         <div className="w-full border-b-2 border-gray-200 py-3 sm:w-auto sm:border-none md:py-0">
-          <FilterButtonGroup filters={commonFilters} path={Path.gatherings} />
+          <FilterButtonGroup filters={commonFilters} path={path} />
         </div>
       )}
     </div>
