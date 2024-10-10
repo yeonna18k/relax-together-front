@@ -3,6 +3,7 @@ import Banner from '@/entities/gatherings/ui/main/Banner';
 import GatheringSearch from '@/entities/gatherings/ui/main/GatheringSearch';
 import CommonSearchFilter from '@/shared/common/ui/common-search-filter';
 import { gatheringsSortItems } from '@/shared/fixture/select-items';
+import { Path } from '@/shared/lib/constants';
 import { PropsWithChildren, Suspense } from 'react';
 
 export default function GatheringsPageContainer({
@@ -15,7 +16,10 @@ export default function GatheringsPageContainer({
         <Banner />
         <div className="z-10 flex w-full flex-col items-center bg-white lg:min-h-[calc(100vh-71px)] xl:min-h-[calc(100vh-625px)]">
           <GatheringSearch />
-          <CommonSearchFilter sortItems={gatheringsSortItems} />
+          <CommonSearchFilter
+            sortItems={gatheringsSortItems}
+            path={Path.gatherings}
+          />
           {children}
         </div>
       </div>
