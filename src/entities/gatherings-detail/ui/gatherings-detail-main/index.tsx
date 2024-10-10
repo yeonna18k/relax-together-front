@@ -1,6 +1,7 @@
 'use client';
 
 import BottomFloatingBar from '@/features/bottom-floating-bar/ui';
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useQuery } from '@tanstack/react-query';
 import { gatheringsDetailApiService } from '../../api/service/GatheringsDetailApiService';
 import GatheringTop from '../gathering-top';
@@ -13,6 +14,8 @@ interface GatheringsDetailMainProps {
 export default function GatheringsDetailMain({
   id,
 }: GatheringsDetailMainProps) {
+  const user = useUserDataStore(state => state.user);
+
   const { data: gatheringsInfo } = useQuery({
     queryKey: ['gathering', id],
     queryFn: () => gatheringsDetailApiService.getGatheringsInfo(id),
@@ -24,8 +27,8 @@ export default function GatheringsDetailMain({
     queryFn: () => gatheringsDetailApiService.getParticipantList(id),
   });
 
-  // const isHost = gatheringsInfo.hostUser === userInfo.id;
-  const isHost = false;
+  // 유저가 해당 모임의 주최자인지 여부
+  const isHost = gatheringsInfo?.hostUser === user?.id;
 
   return (
     <>

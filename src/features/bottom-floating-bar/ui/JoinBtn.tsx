@@ -2,6 +2,7 @@ import { ParticipantListTypes } from '@/entities/gatherings-detail/model/informa
 import CommonButton from '@/shared/common/ui/common-button';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import useJoinGathering from '../model/hook/useJoinGathering';
 
 interface JoinBtnProps {
@@ -12,13 +13,14 @@ interface JoinBtnProps {
 export default function JoinBtn({ id, participantList }: JoinBtnProps) {
   const { modal } = useModal();
 
-  // TODO: user의 email 필요
-  // 유저가 해당 모임에 참여했는지 여부
-  const isJoined = false;
-  // const participants = participantList.participants;
-  // const isJoined = participants.some(
-  //   participant => participant.email === userInfo.email,
-  // );
+  const user = useUserDataStore(state => state.user);
+
+  const participants = participantList.participants;
+
+  // 유저가 해당 모임의 참여자인지 여부
+  const isJoined = participants.some(
+    participant => participant.userId === user?.id,
+  );
 
   const { handleOnClick, handleJoinBtnClick, handleLeaveBtnClick } =
     useJoinGathering(id);

@@ -1,12 +1,16 @@
+'use client';
+
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import { useModal } from '@/shared/hooks/useModal';
-
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 export default function useJoinGathering(id: string) {
   const router = useRouter();
   const { openModal } = useModal();
+
+  const user = useUserDataStore(state => state.user);
 
   const queryClient = useQueryClient();
 
@@ -44,10 +48,8 @@ export default function useJoinGathering(id: string) {
   };
 
   const handleJoinBtnClick = () => {
-    // TODO: 로그인 상태 확인 로직 추가
-    const isLoggedIn = false;
-
-    if (!isLoggedIn) {
+    // 로그인 상태 확인
+    if (!user) {
       // 비로그인 시 로그인이 필요하다는 팝업
       openModal('LoginRequiredModal');
     } else {

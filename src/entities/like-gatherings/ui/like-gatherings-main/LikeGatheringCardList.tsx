@@ -9,6 +9,7 @@ import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
 import { GatheringLocation, GatheringType } from '@/shared/model';
 import { format } from 'date-fns';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLikeGatheringsData } from '../../api/queries/like-gatherings';
@@ -75,10 +76,17 @@ export default function LikeGatheringCardList() {
       ref={ref}
       className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]"
     >
-      {filteredData?.map((page, index) => (
-        <ul key={`like-gatherings-${page}-${index}`} className="space-y-6">
-          {page.map(gathering => (
-            <li key={gathering.id}>
+      <ul className="space-y-6">
+        {filteredData?.map(page =>
+          page.map(gathering => (
+            <li
+              key={gathering.id}
+              className="relative rounded-xl hover:shadow-xl"
+            >
+              <Link
+                href={`/gatherings/${gathering.id}`}
+                className="absolute z-10 block h-full w-full"
+              />
               <GatheringCard
                 capacity={gathering.capacity}
                 dateTime={gathering.dateTime}
@@ -95,9 +103,9 @@ export default function LikeGatheringCardList() {
                 )}
               />
             </li>
-          ))}
-        </ul>
-      ))}
+          )),
+        )}
+      </ul>
       <div ref={ref} />
     </ScrollSection>
   ) : (
