@@ -11,7 +11,7 @@ interface ReviewContainerProps {
 }
 
 export default function ReviewContainer({ id }: ReviewContainerProps) {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const { data } = useQuery({
     queryKey: ['review', id, currentPage],
