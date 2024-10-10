@@ -47,7 +47,7 @@ export default function UserProfileModal({
                       key={participant.userId}
                       className="flex items-center gap-[10px]"
                     >
-                      <p className="flex h-12 w-12 items-center justify-center rounded-full border border-green-200">
+                      <p className="flex h-12 w-12 items-center justify-center rounded-full">
                         <Image
                           src={
                             participant.profileImage === null
@@ -55,8 +55,8 @@ export default function UserProfileModal({
                               : participant.profileImage
                           }
                           alt="참여 유저 프로필 이미지"
-                          width={24}
-                          height={24}
+                          width={48}
+                          height={48}
                         />
                       </p>
                       <span className="text-sm font-semibold text-gray-700">
