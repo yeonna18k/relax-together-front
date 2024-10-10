@@ -56,7 +56,8 @@ describe('MypageApiService', () => {
 
   describe('updateUser', () => {
     it('회원 정보 수정이 정상적으로 된다.', async () => {
-      ApiService.setAccessToken('access-token');
+      const instance = ApiService.getInstance();
+      instance.setAccessToken('access-token');
       const result = await mypageApiService.updateUser({
         companyName: 'New Company',
         profileImage: 'new-image.jpg',

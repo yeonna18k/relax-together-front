@@ -11,6 +11,9 @@ import { Response, Review, UpdateUserRequest } from '@/shared/model';
 import axios from 'axios';
 
 class MypageApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async getMyJoinedGatherings({ page, size }: PaginationParams) {
     const response = await this.get<Response<MyGathering>>(
       `${BASE_URL}/api/gatherings/joined?page=${page}&size=${size}`,

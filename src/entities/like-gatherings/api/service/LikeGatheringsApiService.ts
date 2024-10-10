@@ -20,4 +20,5 @@ class LikeGatheringsApiService extends ApiService {
   }
 }
 
-export const likeGatheringsApiService = new LikeGatheringsApiService();
+export const likeGatheringsApiService =
+  LikeGatheringsApiService.getInstance() as LikeGatheringsApiService;

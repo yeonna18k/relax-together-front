@@ -29,4 +29,5 @@ class GatheringsApiService extends ApiService {
   }
 }
 
-export const gatheringsApiService = new GatheringsApiService();
+export const gatheringsApiService =
+  GatheringsApiService.getInstance() as GatheringsApiService;
