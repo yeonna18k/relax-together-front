@@ -15,7 +15,9 @@ export default class ApiService {
   }
 
   static setAccessToken(accessToken: string) {
-    this.accessToken = accessToken;
+    const authorization =
+      accessToken.length > 0 ? `Bearer ${accessToken}` : undefined;
+    this.instance.defaults.headers.common['Authorization'] = authorization;
   }
 
   async get<T = any, R = AxiosResponse<T>, D = any>(
