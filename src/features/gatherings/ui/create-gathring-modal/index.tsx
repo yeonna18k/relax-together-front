@@ -1,4 +1,5 @@
 'use client';
+
 import {
   CreateGathering,
   createGatheringSchema,
@@ -32,7 +33,7 @@ export default function GatheringCreateModal() {
     defaultValues: {
       name: null,
       location: '건대입구',
-      type: '오피스 스트레칭',
+      type: selectedFilter === '달램핏' ? '오피스 스트레칭' : '워케이션',
       dateTime: getAddHoursDateISOString(selectedDate, selectedTime),
       registrationEnd: getAddHoursDateISOString(selectedDate, selectedTime),
       imageUrl: '',
@@ -41,18 +42,29 @@ export default function GatheringCreateModal() {
   });
 
   useEffect(() => {
-    selectedFilter === '워케이션' ? setIsDisabled(true) : setIsDisabled(false);
-    form.reset();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFilter]);
+    if (selectedFilter === '워케이션') {
+      form.setValue('type', '워케이션');
+      setIsDisabled(true);
+    } else {
+      form.setValue('type', '오피스 스트레칭');
 
+      setIsDisabled(false);
+    }
+  }, [selectedFilter, form]);
+
+  // 이름 필드가 입력되었는지 체크하여 버튼 활성화/비활성화
   useEffect(() => {
-    form.watch(value => {
-      if (value.name !== null && value.name !== undefined) {
-        value.name.length > 0 ? setIsDisabled(false) : setIsDisabled(true);
+    const subscription = form.watch(value => {
+      if (selectedFilter === '워케이션') {
+        setIsDisabled(!(value.name && value.name.length > 0));
       }
     });
-  }, [form]);
+    return () => subscription.unsubscribe();
+  }, [form, selectedFilter]);
+
+  const handleFormSubmit = (values: CreateGathering) => {
+    onSubmit(values);
+  };
 
   return (
     <Modal
@@ -62,7 +74,7 @@ export default function GatheringCreateModal() {
       actionBtnName="확인"
       type="submit"
       disabled={isDisabled}
-      handleAction={form.handleSubmit(onSubmit)}
+      handleAction={form.handleSubmit(handleFormSubmit)}
     >
       <div className="h-auto max-h-[80vh] w-full space-y-6 overflow-y-auto p-1">
         <CreateGatheringSwitchButtonGroup
@@ -71,10 +83,12 @@ export default function GatheringCreateModal() {
         />
         <Form {...form}>
           <form className="space-y-6">
-            {selectedFilter === '워케이션' ? (
-              <CreateGatheringNameFormFiled control={form.control} />
-            ) : (
+            {/* 달램핏 선택 시 유형 선택 필드 */}
+            {selectedFilter === '달램핏' ? (
               <CreateGatheringTypeFormFiled control={form.control} />
+            ) : (
+              // 워케이션 선택 시 모임 이름 필드
+              <CreateGatheringNameFormFiled control={form.control} />
             )}
             <CreateGatheringLocationFormFiled
               control={form.control}

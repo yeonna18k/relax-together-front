@@ -1,7 +1,7 @@
 import { cn } from '@/shared/lib/utils';
 
 interface ContentEmptySectionProps {
-  description: string;
+  description: React.ReactNode;
   className?: string;
 }
 export default function ContentEmptySection({

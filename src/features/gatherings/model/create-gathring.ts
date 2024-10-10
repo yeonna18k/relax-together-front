@@ -14,6 +14,7 @@ export const createGatheringSchema = z.object({
     z.literal('오피스 스트레칭'),
     z.literal('마인드풀니스'),
     z.literal('워케이션'),
+    z.literal('달램핏'),
   ]),
   dateTime: z.string(),
   registrationEnd: z.string(),

@@ -60,7 +60,13 @@ export default function GatheringCardListSection() {
           </>
         ) : (
           <ContentEmptySection
-            description="신청한 모임이 아직 없어요"
+            description={
+              <div className="text-center">
+                아직 모임이 없어요,
+                <br />
+                지금 바로 모임을 만들어보세요
+              </div>
+            }
             className="m-0 xl:min-h-[calc(100vh-880px)]"
           />
         )}
