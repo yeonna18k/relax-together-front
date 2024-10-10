@@ -9,9 +9,13 @@ export interface ReviewCardProps extends Review {
 
 export default function ReviewCard(props: ReviewCardProps) {
   return (
-    <div className="flex w-full flex-col gap-6 md:max-w-[648px] md:flex-row lg:max-w-[948px]">
-      {props.page !== Page.ALL_REVIEWS && props.page !== 'GATHERING_DETAIL' && (
-        <ImageCard src="/assets/review-sample.png" alt="review-sample" />
+    <div className="flex w-full flex-col gap-6 sm:flex-row lg:max-w-[948px]">
+      {props.page !== Page.GATHERING_DETAIL && (
+        <ImageCard
+          src="/assets/review-sample.png"
+          alt="review-sample"
+          className="xs:w-full sm:h-[156px] sm:w-[280px]"
+        />
       )}
       <ReviewContent {...props} />
     </div>
