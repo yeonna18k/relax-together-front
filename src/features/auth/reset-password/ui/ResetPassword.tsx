@@ -48,7 +48,7 @@ export default function ResetPasswordForm({
     passwordCheck: string;
   }) => {
     try {
-      await onSubmit(data); // 페이지에서 전달된 onSubmit 함수를 실행
+      await onSubmit(data);
       setErrorMessage(null);
     } catch (error) {
       setErrorMessage('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');

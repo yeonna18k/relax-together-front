@@ -1,6 +1,6 @@
 'use client';
 
-import ResetPasswordForm from '@/features/auth/reset-password/ui/ResetPassword'; // 폼 컴포넌트 import
+import ResetPasswordForm from '@/features/auth/reset-password/ui/ResetPassword';
 
 export default function ResetPasswordPage() {
   const handlePasswordChange = async (data: {
