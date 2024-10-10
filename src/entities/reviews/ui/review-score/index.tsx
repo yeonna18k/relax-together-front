@@ -22,7 +22,9 @@ export default function ReviewScore() {
       <div className="flex w-[294px] justify-between gap-6 md:w-[550px] md:gap-[120px] lg:w-[610px] lg:gap-[180px]">
         <div className="flex w-[128px] flex-col items-center justify-center gap-2">
           <div className="flex gap-0.5 text-xl font-semibold md:text-2xl">
-            <span className="text-gray-900">{scoreAverage.toFixed(1)}</span>
+            <span className="text-gray-900">
+              {Number.isNaN(scoreAverage) ? '0' : scoreAverage.toFixed(1)}
+            </span>
             <span className="text-gray-400">/5</span>
           </div>
           <div className="flex gap-0.5 text-xl font-semibold">
@@ -41,7 +43,7 @@ export default function ReviewScore() {
                     {scoreArray.length - index}점
                   </span>
                   <Progress
-                    capacity={scoreCount}
+                    capacity={Number.isNaN(scoreAverage) ? 100 : scoreCount}
                     reviews={true}
                     value={score}
                     className="w-full bg-gray-200"
