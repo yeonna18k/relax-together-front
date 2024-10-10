@@ -30,7 +30,7 @@ export default function CommonSearchFilter({
   useEffect(() => {
     path === 'reviews' && setSelectedSortValue('createdDate');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [path]);
 
   return (
     <div
