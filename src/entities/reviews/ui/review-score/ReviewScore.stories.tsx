@@ -18,21 +18,6 @@ export const Default: Story = {
   parameters: {
     msw: {
       handlers,
-      // : [
-      //   rest.get(`/api/reviews/scores`, (req, res, ctx) => {
-      //     const type = '달램핏';
-      //     return res(
-      //       ctx.json({
-      //         fivePoints: 27,
-      //         fourPoints: 19,
-      //         threePoints: 2,
-      //         twoPoints: 0,
-      //         onePoints: 0,
-      //         type,
-      //       }),
-      //     );
-      //   }),
-      // ],
     },
   },
   render: function Render() {
