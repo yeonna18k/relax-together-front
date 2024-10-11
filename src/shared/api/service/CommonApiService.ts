@@ -17,7 +17,6 @@ export default class CommonApiService extends ApiService {
     axiosInstance.interceptors.response.use(
       response => response,
       async error => {
-        console.log('Interceptor caught an error:', error);
         const originalRequest = error.config;
 
         if (
@@ -30,7 +29,6 @@ export default class CommonApiService extends ApiService {
           !error.response.data.message.includes('토큰이 만료되었습니다') &&
           !originalRequest._retry
         ) {
-          console.log('Handling token expiration...');
           if (this.isRefreshing) {
             return new Promise(resolve => {
               this.refreshSubscribers.push((token: string) => {
@@ -59,7 +57,6 @@ export default class CommonApiService extends ApiService {
               `Bearer ${newAccessToken}`;
             return axiosInstance(originalRequest);
           } catch (refreshError) {
-            console.error('Failed to refresh token:', refreshError);
             localStorage.removeItem('accessToken');
             localStorage.removeItem('signin-user-data');
             this.setAccessToken('');
