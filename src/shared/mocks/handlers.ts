@@ -95,7 +95,7 @@ const handlers = [
     }
   }),
 
-  rest.get(`/api/reviews/scores`, async (req, res, ctx) => {
+  rest.get(`${BASE_URL}/api/reviews/scores`, async (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(dummyScore));
   }),
 
