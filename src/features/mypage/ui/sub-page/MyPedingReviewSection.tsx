@@ -6,11 +6,13 @@ import MypageCard from '@/entities/mypage/ui/card';
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
 import MotionListItem from '@/shared/common/ui/motion-list-item';
+import useMswApiMock from '@/shared/hooks/useMswApiMock';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default function MyPendingReviewSection() {
+  useMswApiMock();
   const { data, fetchNextPage } = useMyPendingReviewsData();
 
   const { ref, inView } = useInView();
