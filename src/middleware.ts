@@ -1,9 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { verifyTokenApiService } from '@/entities/auth/api/service/VerifyTokenApiService';
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 
 const FALLBACK_URL = '/gatherings';
 const withAuthList = ['/mypage'];
 
-export function middleware(req: NextRequest) {
+const getEmail = async (token: string | null) => {
+  const response = await verifyTokenApiService.verifyToken(token);
+  return response.data.email;
+};
+
+export async function middleware(req: NextRequest, event: NextFetchEvent) {
   const { pathname } = req.nextUrl;
   const isLoginUser = req.cookies.get('isLoginUser')?.value;
 
@@ -19,6 +25,18 @@ export function middleware(req: NextRequest) {
     if (url.pathname === '/mypage' && !url.searchParams.has('subPage')) {
       url.searchParams.set('subPage', 'my-gatherings');
       return NextResponse.redirect(url);
+    }
+  }
+
+  if (url.pathname === '/reset-password') {
+    const token = url.searchParams.get('token');
+    try {
+      const email = await getEmail(token);
+      console.log('🚀 ~ middleware ~ email:', email);
+      url.searchParams.set('email', email);
+      // return NextResponse.redirect;
+    } catch (error) {
+      // return NextResponse.redirect('/signin');
     }
   }
 
@@ -44,5 +62,6 @@ export const config = {
     '/signup',
     '/reviews',
     '/like-gatherings',
+    '/reset-password',
   ],
 };

@@ -1,3 +1,4 @@
+import { VerifyTokenRequest } from '@/entities/auth/api/service/VerifyTokenApiService';
 import {
   MyGathering,
   MyHostedGathering,
@@ -170,6 +171,14 @@ const handlers = [
         message: '모임을 취소했습니다',
       }),
     );
+  }),
+  rest.post(`${BASE_URL}/api/verify-token`, async (req, res, ctx) => {
+    const data = (await req.json()) as VerifyTokenRequest;
+    const { token } = data;
+    if (!token) {
+      return res(ctx.status(400), ctx.json({ message: 'Token is required' }));
+    }
+    return res(ctx.status(200), ctx.json({ email: 'test@example.com' }));
   }),
 ];
 

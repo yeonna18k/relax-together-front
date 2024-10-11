@@ -3,13 +3,13 @@
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword';
 
+import { useModal } from '@/shared/hooks/useModal';
+import axios from 'axios';
 import CreateSuccessModal from '../../ui/ForgotSuccessModal';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
@@ -19,12 +19,13 @@ const formSchema = z.object({
     .string()
     .min(1, { message: '이메일을 입력해주세요.' })
     .email('이메일 형식을 입력해주세요.'),
+  serverError: z.string().optional(),
 });
 
-export type ForgotPasswordFormType = z.infer<typeof formSchema>;
+export type ForgotPassword = z.infer<typeof formSchema>;
 
 export default function ForgotPasswordForm() {
-  const form = useForm<ForgotPasswordFormType>({
+  const form = useForm<ForgotPassword>({
     resolver: zodResolver(formSchema),
     mode: 'all',
     defaultValues: {
@@ -32,36 +33,23 @@ export default function ForgotPasswordForm() {
     },
   });
 
-  const router = useRouter();
   const formValid = form.formState.isValid;
   const { sendForgotPasswordEmail } = useForgotPassword();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { openModal } = useModal();
 
   // 비밀번호 찾기 요청 함수
-  async function onSubmit(values: ForgotPasswordFormType) {
-    const token = localStorage.getItem('token') || undefined;
+  async function onSubmit(values: ForgotPassword) {
     try {
-      const res = await sendForgotPasswordEmail(values.email, token);
-      if (res && res.success) {
-        setEmailSent(true);
-        setErrorMessage(null);
-        setIsModalOpen(true);
-      } else {
-        setErrorMessage(res.message || '해당 이메일은 등록되지 않았습니다.');
+      const res = await sendForgotPasswordEmail(values.email);
+      console.log('🚀 ~ onSubmit ~ res:', res);
+      openModal('forgotPassword');
+    } catch (error: unknown) {
+      if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
+        if (error.response?.status === 400) {
+          form.setError('serverError', { message: '잘못된 요청입니다.' });
+        }
       }
-    } catch (error: any) {
-      const message =
-        error.response?.data?.message ||
-        '이메일 전송에 실패했습니다. 다시 시도해주세요.';
-      setErrorMessage(message);
     }
-  }
-
-  function closeModal() {
-    setIsModalOpen(false);
-    setEmailSent(false);
   }
 
   return (
@@ -80,15 +68,11 @@ export default function ForgotPasswordForm() {
 
           <div className="!mt-2 flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              {emailSent ? (
-                <div className="text-success text-center text-sm font-semibold">
-                  이메일이 전송되었습니다. 받은 편지함을 확인해주세요.
-                </div>
-              ) : errorMessage ? (
-                <div className="text-center text-sm font-semibold text-error">
-                  {errorMessage}
-                </div>
-              ) : null}
+              {form.formState.errors && (
+                <p className="text-red-500">
+                  {form.formState.errors.serverError?.message}
+                </p>
+              )}
               <Button
                 disabled={!formValid}
                 variant={`${formValid ? 'enabled' : 'disabled'}`}
@@ -103,8 +87,7 @@ export default function ForgotPasswordForm() {
         </form>
       </Form>
 
-      {/* 모달이 열릴 때만 렌더링 */}
-      {isModalOpen && <CreateSuccessModal closeModal={closeModal} />}
+      <CreateSuccessModal />
     </div>
   );
 }

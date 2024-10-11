@@ -5,6 +5,16 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
+if (process.env.NODE_ENV === 'development') {
+  if (typeof window === 'undefined') {
+    const { server } = require('../shared/mocks/node');
+    server.listen();
+  } else {
+    const { worker } = require('../shared/mocks/browser');
+    worker.start();
+  }
+}
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });

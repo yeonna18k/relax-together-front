@@ -5,6 +5,7 @@ import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -18,23 +19,19 @@ const formSchema = z
     passwordCheck: z
       .string()
       .min(1, { message: '비밀번호 확인을 위해 한 번 더 입력해주세요.' }),
+    serverError: z.string().optional(),
   })
   .refine(data => data.password === data.passwordCheck, {
     message: '비밀번호가 일치하지 않습니다.',
     path: ['passwordCheck'],
   });
 
-export default function ResetPasswordForm({
-  onSubmit,
-}: {
-  onSubmit: (data: {
-    password: string;
-    passwordCheck: string;
-  }) => Promise<void>;
-}) {
+export type ResetPassword = z.infer<typeof formSchema>;
+
+export default function ResetPasswordForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const form = useForm({
+  const form = useForm<ResetPassword>({
     resolver: zodResolver(formSchema),
     mode: 'all',
     defaultValues: {
@@ -44,17 +41,20 @@ export default function ResetPasswordForm({
   });
 
   const formValid = form.formState.isValid;
-  const { openModal, closeModal } = useModal();
-  const handleSubmit = async (data: {
-    password: string;
-    passwordCheck: string;
-  }) => {
+  const { modal, openModal, closeModal } = useModal();
+  const handleSubmit = async (data: ResetPassword) => {
     try {
-      await onSubmit(data);
       setErrorMessage(null);
       openModal('ResetSuccess');
-    } catch (error) {
-      setErrorMessage('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
+      // 실제 비밀번호 변경 API 요청을 여기에 추가하세요
+      console.log('비밀번호 변경 데이터:', data);
+      // 예시: await resetPasswordApiService.resetPassword(token, data.password);
+    } catch (error: unknown) {
+      if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
+        if (error.response?.status === 400) {
+          form.setError('serverError', { message: '잘못된 요청입니다.' });
+        }
+      }
     }
   };
 
@@ -78,7 +78,11 @@ export default function ResetPasswordForm({
               label="비밀번호 확인"
               placeholder="비밀번호를 입력해주세요"
             />
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            {form.formState.errors && (
+              <p className="text-red-500">
+                {form.formState.errors.serverError?.message}
+              </p>
+            )}
 
             <Button
               disabled={!formValid}
@@ -89,7 +93,7 @@ export default function ResetPasswordForm({
             </Button>
           </form>
         </Form>
-        <CreateSuccessModal />
+        {modal.includes('ResetSuccess') && <CreateSuccessModal />}
       </div>
     </div>
   );

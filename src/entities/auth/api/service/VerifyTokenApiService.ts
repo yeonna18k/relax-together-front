@@ -1,17 +1,18 @@
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
 
-export type VerifyTokenResponse = { success: boolean; message: string };
+export type VerifyTokenResponse = { email: string };
+export type VerifyTokenRequest = { token: string | null };
 
 class VerifyTokenApiService extends ApiService {
-  async verifyToken(token: string): Promise<VerifyTokenResponse> {
+  async verifyToken(token: string | null) {
     const response = await this.post<VerifyTokenResponse>(
       `${BASE_URL}/api/verify-token`,
       {
         token,
       },
     );
-    return response.data;
+    return response;
   }
 }
 
