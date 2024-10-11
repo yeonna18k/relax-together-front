@@ -15,9 +15,10 @@ class LikeGatheringsApiService extends ApiService {
     date,
     size = LIMIT,
     sortBy,
+    sortOrder,
   }: FetchParams & Partial<FilterParams>) {
     const response = await this.get<Response<Gathering>>(
-      `${BASE_URL}/api/gatherings?type=${type}&location=${location ?? ''}&date=${date ?? ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}`,
+      `${BASE_URL}/api/reviews?type=${type}${location ? `&location=${location}` : ''}${date ? `&date=${date}` : ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
     );
     return response;
   }

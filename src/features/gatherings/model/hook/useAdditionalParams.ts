@@ -1,3 +1,4 @@
+import { FilterParams } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
 import { GatheringType } from '@/shared/model';
@@ -23,7 +24,7 @@ export default function useAdditionalParams() {
   // 타입을 가져오거나 기본값을 설정
   const type = getCurrentTypeMap[target] || '달램핏'; // 기본값을 '달램핏'으로 설정
 
-  const additionalParams = {
+  const additionalParams: Partial<FilterParams> = {
     type,
     location:
       searchFilterValues.selectedValue === 'ALL'
@@ -33,6 +34,10 @@ export default function useAdditionalParams() {
       ? endOfDay(searchFilterValues.date).toISOString()
       : undefined, // 선택된 날짜가 있으면 ISO 형식으로 변환
     sortBy: searchFilterValues.selectedSortValue, // 선택된 정렬 값
+    sortOrder:
+      searchFilterValues.selectedSortValue !== 'participantCount'
+        ? 'ASC'
+        : 'DESC', // 정렬 값에 따라 정렬 순서 결정
   };
 
   return { additionalParams };
