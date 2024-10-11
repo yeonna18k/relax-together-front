@@ -1,7 +1,7 @@
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
 
-export default function CreateSuccessModal() {
+export default function ResetSuccessModal() {
   const { closeModal } = useModal();
   return (
     <Modal
