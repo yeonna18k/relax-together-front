@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { forgotPasswordApiService } from '../../api/service/ForgotpasswordApiService';
-// API 호출 서비스
 
 export function useForgotPassword() {
   const [loading, setLoading] = useState(false);
 
-  async function sendForgotPasswordEmail(email: string) {
+  async function sendForgotPasswordEmail(email: string, token?: string) {
     setLoading(true);
     try {
-      const response =
-        await forgotPasswordApiService.sendForgotPasswordEmail(email);
+      const response = await forgotPasswordApiService.sendForgotPasswordEmail(
+        email,
+        token,
+      );
 
-      // 응답에서 바로 success와 message를 확인
       if (response.success) {
         return { success: true, message: response.message };
       } else {

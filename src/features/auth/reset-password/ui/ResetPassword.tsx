@@ -1,12 +1,14 @@
 'use client';
 
 import GenericFormField from '@/features/auth/ui/GenericFormField';
+import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import CreateSuccessModal from '../../ui/ResetSuccessModal';
 
 const formSchema = z
   .object({
@@ -42,7 +44,7 @@ export default function ResetPasswordForm({
   });
 
   const formValid = form.formState.isValid;
-
+  const { openModal, closeModal } = useModal();
   const handleSubmit = async (data: {
     password: string;
     passwordCheck: string;
@@ -50,6 +52,7 @@ export default function ResetPasswordForm({
     try {
       await onSubmit(data);
       setErrorMessage(null);
+      openModal('ResetSuccess');
     } catch (error) {
       setErrorMessage('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
     }
@@ -86,6 +89,7 @@ export default function ResetPasswordForm({
             </Button>
           </form>
         </Form>
+        <CreateSuccessModal />
       </div>
     </div>
   );

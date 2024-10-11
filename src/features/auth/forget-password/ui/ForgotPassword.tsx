@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword';
+
+import CreateSuccessModal from '../../ui/ForgotSuccessModal';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
 
@@ -32,27 +34,34 @@ export default function ForgotPasswordForm() {
 
   const router = useRouter();
   const formValid = form.formState.isValid;
-  const { sendForgotPasswordEmail } = useForgotPassword(); // 비밀번호 찾기 API 요청 훅 사용
+  const { sendForgotPasswordEmail } = useForgotPassword();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // 비밀번호 찾기 요청 함수
   async function onSubmit(values: ForgotPasswordFormType) {
+    const token = localStorage.getItem('token') || undefined;
     try {
-      const res = await sendForgotPasswordEmail(values.email);
+      const res = await sendForgotPasswordEmail(values.email, token);
       if (res && res.success) {
-        setEmailSent(true); // 이메일 전송 성공
+        setEmailSent(true);
         setErrorMessage(null);
+        setIsModalOpen(true);
       } else {
-        // 서버에서 반환하는 구체적인 오류 메시지를 사용
         setErrorMessage(res.message || '해당 이메일은 등록되지 않았습니다.');
       }
     } catch (error: any) {
-      // error.response가 있는 경우 서버 응답에서 구체적인 에러 메시지를 가져옵니다.
       const message =
         error.response?.data?.message ||
         '이메일 전송에 실패했습니다. 다시 시도해주세요.';
       setErrorMessage(message);
     }
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+    setEmailSent(false);
   }
 
   return (
@@ -93,6 +102,9 @@ export default function ForgotPasswordForm() {
           </div>
         </form>
       </Form>
+
+      {/* 모달이 열릴 때만 렌더링 */}
+      {isModalOpen && <CreateSuccessModal closeModal={closeModal} />}
     </div>
   );
 }
