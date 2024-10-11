@@ -63,7 +63,7 @@ export default function SigninForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
   return (
-    <div className="mt-[15px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px]">
+    <div className="mt-[15px] w-[343px] rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px]">
       <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
         로그인
       </div>
@@ -81,8 +81,10 @@ export default function SigninForm() {
             label="비밀번호"
             placeholder="비밀번호를 입력해주세요"
           />
-          <div className="!mt-10 flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
+          <div
+            className={`${loginError ? '!mt-[18px]' : '!mt-10'} flex flex-col gap-6`}
+          >
+            <div className="relative flex flex-col gap-3">
               {loginError ? (
                 <div className="text-center text-sm font-semibold text-error">
                   아이디 또는 비밀번호가 잘못 되었습니다.
