@@ -5,6 +5,9 @@ import { BASE_URL, LIMIT } from '@/shared/lib/constants';
 import { Response, Review, ReviewScore } from '@/shared/model';
 
 class ReviewsApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async getReviews({
     pageParam,
     type,

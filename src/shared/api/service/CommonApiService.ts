@@ -3,7 +3,7 @@ import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
 import { User } from '@/shared/model';
 
-class CommonApiService extends ApiService {
+export default class CommonApiService extends ApiService {
   private isRefreshing = false;
   private refreshSubscribers: Array<(token: string) => void> = [];
 
@@ -13,7 +13,8 @@ class CommonApiService extends ApiService {
   }
 
   private setupInterceptors() {
-    CommonApiService.instance.interceptors.response.use(
+    const axiosInstance = this.axiosInstance;
+    axiosInstance.interceptors.response.use(
       response => response,
       async error => {
         const originalRequest = error.config;
@@ -32,7 +33,7 @@ class CommonApiService extends ApiService {
             return new Promise(resolve => {
               this.refreshSubscribers.push((token: string) => {
                 originalRequest.headers['Authorization'] = 'Bearer ' + token;
-                resolve(CommonApiService.instance(originalRequest));
+                resolve(axiosInstance(originalRequest));
               });
             });
           }
@@ -45,7 +46,7 @@ class CommonApiService extends ApiService {
             const newAccessToken = refreshResponse.data.accessToken;
 
             localStorage.setItem('accessToken', newAccessToken);
-            CommonApiService.setAccessToken(newAccessToken);
+            this.setAccessToken(newAccessToken);
 
             this.refreshSubscribers.forEach(callback =>
               callback(newAccessToken),
@@ -54,11 +55,11 @@ class CommonApiService extends ApiService {
 
             originalRequest.headers['Authorization'] =
               `Bearer ${newAccessToken}`;
-            return CommonApiService.instance(originalRequest);
+            return axiosInstance(originalRequest);
           } catch (refreshError) {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('signin-user-data');
-            CommonApiService.setAccessToken('');
+            this.setAccessToken('');
             window.location.href = '/';
             return Promise.reject(refreshError);
           } finally {
@@ -82,6 +83,7 @@ class CommonApiService extends ApiService {
     );
     return response;
   }
+
   async refreshToken() {
     try {
       const response = await this.get<Tokens>(
@@ -92,6 +94,7 @@ class CommonApiService extends ApiService {
       throw error;
     }
   }
+
   async getUserInfo() {
     const response = await this.get<User>(`${BASE_URL}/api/auths/me`);
     return response;
