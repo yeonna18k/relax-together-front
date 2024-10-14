@@ -6,7 +6,6 @@ import Image from 'next/image';
 export default function CreateButton() {
   const { openModal } = useModal();
   const { accessToken } = useAccessToken();
-  console.log('🚀 ~ CreateButton ~ accessToken:', accessToken);
 
   return accessToken ? (
     <div className="fixed bottom-[26px] left-[5px] z-40 lg:bottom-[45px] lg:left-[50px] xl:bottom-[68px] xl:left-[100px]">

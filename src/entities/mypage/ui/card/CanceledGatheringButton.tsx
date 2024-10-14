@@ -8,7 +8,12 @@ export default function CanceledGatheringButton({
 }: Pick<MyGathering, 'id'>) {
   const { handleSubmit } = useLeaveGatheringsById(id);
   return (
-    <Button variant="outline" size="sm" onClick={handleSubmit}>
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={handleSubmit}
+      className="z-20 hover:bg-green-500 hover:text-white"
+    >
       예약 취소하기
     </Button>
   );
