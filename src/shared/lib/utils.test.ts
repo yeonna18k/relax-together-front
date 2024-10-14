@@ -1,9 +1,10 @@
 import { getKoreaTime, getTimeUntilDeadline } from '@/shared/lib/utils';
 import { addDays, addHours, addMinutes } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
 const context = describe;
 describe('utils', () => {
-  const TEST_TIME = new Date('2024-10-14 14:00:00');
+  const TEST_TIME = toZonedTime(new Date('2024-10-14 14:00:00'), 'Asia/Seoul');
   context('getTimeUntilDeadline function', () => {
     it('현재 시간보다 58분 더한 시간을 넣으면 "오늘 곧 마감"이 반환된다.', () => {
       const fiftyEightMinutesLater = addMinutes(getKoreaTime(TEST_TIME), 58);
