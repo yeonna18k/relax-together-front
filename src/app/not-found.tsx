@@ -10,10 +10,13 @@ export default function NotFound() {
 
   const [deviceType, setDeviceType] = useState<string>('desktop');
 
+  const TABLET = 640;
+  const DESKTOP = 1024;
+
   useEffect(() => {
-    if (width < 640) {
+    if (width < TABLET) {
       setDeviceType('mobile');
-    } else if (width >= 640 && width < 1024) {
+    } else if (width >= TABLET && width < DESKTOP) {
       setDeviceType('tablet');
     } else {
       setDeviceType('desktop');
