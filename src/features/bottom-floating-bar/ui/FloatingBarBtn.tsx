@@ -13,7 +13,7 @@ export default function FloatingBarBtn({
     <>
       {isHost ? (
         <div className="mt-[10px] flex gap-2 sm:mt-0">
-          <CancleBtn id={id} gatheringsInfo={gatheringsInfo} />
+          <CancleBtn id={id} />
           <ShareBtn />
         </div>
       ) : (

@@ -1,16 +1,13 @@
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
-import { GatheringsInfoTypes } from '@/entities/gatherings-detail/model/information';
-import { getTimeUntilDeadline } from '@/shared/lib/utils';
+import Modal from '@/shared/common/ui/modal';
+import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-interface CancleBtnProps {
-  id: string;
-  gatheringsInfo: GatheringsInfoTypes;
-}
+export default function CancleBtn({ id }: { id: string }) {
+  const { modal, openModal, closeModal } = useModal();
 
-export default function CancleBtn({ id, gatheringsInfo }: CancleBtnProps) {
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -23,8 +20,7 @@ export default function CancleBtn({ id, gatheringsInfo }: CancleBtnProps) {
       console.log('성공적으로 취소했습니다:', data);
       queryClient.invalidateQueries({ queryKey: ['gathering'] });
 
-      alert('모임을 취소했습니다.');
-      router.push('/');
+      openModal('CancelConfirmModal');
     },
     onError: error => {
       console.error('취소하기 요청 실패:', error);
@@ -35,19 +31,28 @@ export default function CancleBtn({ id, gatheringsInfo }: CancleBtnProps) {
     cancelMutation(id);
   };
 
-  const isClosed =
-    getTimeUntilDeadline(new Date(gatheringsInfo.registrationEnd)) ===
-    '마감되었습니다';
+  const handleOnClick = () => {
+    closeModal('CancelConfirmModal');
+    router.push('/');
+  };
 
   return (
-    <Button
-      disabled={isClosed}
-      variant={isClosed ? 'disabled' : 'outline'}
-      size="lg"
-      className="h-11 w-1/2 sm:w-[115px]"
-      onClick={handleCancleBtnClick}
-    >
-      취소하기
-    </Button>
+    <>
+      <Button
+        variant="outline"
+        size="lg"
+        className="h-11 w-1/2 sm:w-[115px]"
+        onClick={handleCancleBtnClick}
+      >
+        취소하기
+      </Button>
+      {modal.includes('CancelConfirmModal') && (
+        <Modal variant="notice" size="sm" handleAction={handleOnClick}>
+          <p className="text-center text-base font-medium text-[#111827]">
+            모임을 취소했습니다.
+          </p>
+        </Modal>
+      )}
+    </>
   );
 }
