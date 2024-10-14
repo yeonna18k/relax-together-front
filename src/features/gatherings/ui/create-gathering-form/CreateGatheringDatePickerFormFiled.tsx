@@ -10,6 +10,7 @@ import {
 import CreateGatheringDateTimeSelector from '@/features/gatherings/ui/create-gathering-form/CreateGatheringDateTimeSelector';
 import CreateGatheringFormLabel from '@/features/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
 import { ChipTimeProps } from '@/shared/common/ui/chip-time';
+import { getKoreaTime } from '@/shared/lib/utils';
 import { Calendar } from '@/shared/ui/calendar';
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 import { useEffect } from 'react';
@@ -36,19 +37,28 @@ const PMTimes: Array<ChipTimeCommonProps> = [
 interface CreateGatheringDateTimeFormFiledProps {
   form: UseFormReturn<CreateGathering>;
   selectedFilter: SwitchFiler;
+  setIsDisabled: (value: boolean) => void;
 }
 export default function CreateGatheringDateTimeFormFiled({
   form,
   selectedFilter,
+  setIsDisabled,
 }: CreateGatheringDateTimeFormFiledProps) {
   const { selectedDate, setSelectedDate, selectedTime, setSelectedTime } =
     useSelectDateTime(selectedFilter);
+
   useEffect(() => () => form.reset(), [form]);
+
   useEffect(() => {
-    form.setValue(
-      'dateTime',
-      getAddHoursDateISOString(selectedDate, selectedTime),
-    );
+    const disabledItemsCount = checkButtonAvailabilityByTime(
+      selectedDate,
+      PMTimes,
+    ).filter(item => item.state === 'disabled').length;
+    setIsDisabled(disabledItemsCount === PMTimes.length);
+  }, [selectedDate, setIsDisabled, selectedFilter]);
+
+  useEffect(() => {
+    form.setValue('dateTime', getKoreaTime().toISOString());
     form.setValue(
       'registrationEnd',
       getAddHoursDateISOString(selectedDate, selectedTime),
@@ -67,9 +77,9 @@ export default function CreateGatheringDateTimeFormFiled({
               <div className="flex w-full justify-center rounded-md border border-gray-200 px-2.5 pb-4 pt-2.5">
                 <Calendar
                   mode="single"
-                  disabled={{ before: new Date() }}
+                  disabled={{ before: getKoreaTime() }}
                   selected={selectedDate}
-                  onSelect={date => setSelectedDate(date || selectedDate)}
+                  onSelect={date => setSelectedDate(date ?? selectedDate)}
                 />
               </div>
               <CreateGatheringDateTimeSelector
