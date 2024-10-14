@@ -9,6 +9,7 @@ export const fetchReviews = async ({
   date,
   pageParam,
   sortBy,
+  sortOrder,
 }: FetchParams & Partial<FilterParams>) => {
   const response = await reviewsApiService.getReviews({
     type,
@@ -17,6 +18,7 @@ export const fetchReviews = async ({
     pageParam,
     size: LIMIT,
     sortBy,
+    sortOrder,
   });
   return response.data;
 };

@@ -9,6 +9,7 @@ export const fetchLikeGatherings = async ({
   date,
   pageParam,
   sortBy,
+  sortOrder,
 }: FetchParams & Partial<FilterParams>) => {
   const response = await likeGatheringsApiService.getGatherings({
     type,
@@ -17,6 +18,7 @@ export const fetchLikeGatherings = async ({
     pageParam,
     size: LIMIT,
     sortBy,
+    sortOrder,
   });
   return response.data;
 };

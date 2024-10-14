@@ -15,7 +15,12 @@ export default function WriteReviewButton({
     setTargetGatheringId(id);
   };
   return (
-    <Button size="sm" onClick={handleClick} disabled={reviewed}>
+    <Button
+      size="sm"
+      onClick={handleClick}
+      disabled={reviewed}
+      className="z-20"
+    >
       {reviewed ? '리뷰 작성완료' : '리뷰 작성하기'}
     </Button>
   );
