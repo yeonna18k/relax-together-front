@@ -9,6 +9,7 @@ export const fetchGatherings = async ({
   date,
   pageParam,
   sortBy,
+  sortOrder,
 }: FetchParams & Partial<FilterParams>) => {
   const response = await gatheringsApiService.getGatherings({
     type,
@@ -17,6 +18,7 @@ export const fetchGatherings = async ({
     pageParam,
     size: LIMIT,
     sortBy,
+    sortOrder,
   });
   return response.data;
 };
