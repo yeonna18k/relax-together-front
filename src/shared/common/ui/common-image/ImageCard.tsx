@@ -14,7 +14,13 @@ export default function ImageCard({ src, alt, className }: ImageCardProps) {
       alt={alt}
       width={311}
       height={156}
-      className={cn('w-full rounded-md xs:w-[280px] md:rounded-xl', className)}
+      className={cn(
+        'h-auto w-full rounded-md xs:w-[280px] md:rounded-xl',
+        className,
+      )}
+      priority
+      placeholder="blur"
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
     />
   );
 }

@@ -9,6 +9,7 @@ export const Device = {
 export const MAX_CAPACITY = 20;
 export const MIN_PARTICIPANT = 5;
 export const MAX_SCORE = 5;
+export const MAX_REVIEW_TEXT_COUNT = 1000;
 
 export const REVIEWS_PER_PAGE = 4;
 

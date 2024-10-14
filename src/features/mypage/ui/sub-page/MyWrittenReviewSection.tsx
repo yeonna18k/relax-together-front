@@ -31,7 +31,7 @@ export default function MyWrittenReviewSection() {
               {page.content.map((review, i) => (
                 <MotionListItem
                   key={`${review.gatheringType}-${i}`}
-                  className="py-6 first:pt-0"
+                  className="border-none py-6 first:pt-0"
                   index={i}
                 >
                   <ReviewCard page={Page.MYPAGE} {...review} />

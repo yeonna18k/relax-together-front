@@ -32,7 +32,11 @@ export default class CommonApiService extends ApiService {
           if (this.isRefreshing) {
             return new Promise(resolve => {
               this.refreshSubscribers.push((token: string) => {
-                originalRequest.headers['Authorization'] = 'Bearer ' + token;
+                console.log(
+                  '🚀 ~ CommonApiService ~ this.refreshSubscribers.push ~ token:',
+                  token,
+                );
+                originalRequest.headers['Authorization'] = `Bearer ${token}`;
                 resolve(axiosInstance(originalRequest));
               });
             });
@@ -44,6 +48,10 @@ export default class CommonApiService extends ApiService {
           try {
             const refreshResponse = await this.refreshToken();
             const newAccessToken = refreshResponse.data.accessToken;
+            console.log(
+              '🚀 ~ CommonApiService ~ setupInterceptors ~ newAccessToken:',
+              newAccessToken,
+            );
 
             localStorage.setItem('accessToken', newAccessToken);
             this.setAccessToken(newAccessToken);
