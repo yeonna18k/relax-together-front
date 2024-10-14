@@ -1,5 +1,8 @@
 import BottomFloatingBar from '@/features/bottom-floating-bar/ui';
-import { dummyParticipantList } from '@/shared/fixture/information';
+import {
+  dummyGatheringsInfo,
+  dummyParticipantList,
+} from '@/shared/fixture/information';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 
@@ -28,6 +31,7 @@ describe('BottomFloatingBar Component', () => {
         <BottomFloatingBar
           id="1"
           isHost={false}
+          gatheringsInfo={dummyGatheringsInfo}
           participantList={dummyParticipantList}
         />
       </QueryClientProvider>,
@@ -53,6 +57,7 @@ describe('BottomFloatingBar Component', () => {
         <BottomFloatingBar
           id="1"
           isHost={true}
+          gatheringsInfo={dummyGatheringsInfo}
           participantList={dummyParticipantList}
         />
       </QueryClientProvider>,
