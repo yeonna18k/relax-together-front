@@ -16,4 +16,5 @@ export interface Gathering {
   capacity: number;
   imageUrl: string;
   hostUser: number;
+  ended: boolean;
 }

@@ -1,5 +1,5 @@
 import { ChipTimeCommonProps } from '@/features/gatherings/ui/create-gathering-form/CreateGatheringDatePickerFormFiled';
-import { NOW, NOW_BASE_CREATE_HOUR } from '@/shared/lib/constants';
+import { NOW, NOW_BASE_CREATE_HOURS } from '@/shared/lib/constants';
 import { setHours, setMilliseconds, setMinutes, setSeconds } from 'date-fns';
 
 export const checkButtonAvailabilityByTime = (
@@ -12,7 +12,7 @@ export const checkButtonAvailabilityByTime = (
   }
   // NOTE: 현재 시간보다 3시간 이상 미래인 시간만 활성화
   return times.map(time =>
-    time.hour < NOW_BASE_CREATE_HOUR ? { ...time, state: 'disabled' } : time,
+    time.hour <= NOW_BASE_CREATE_HOURS ? { ...time, state: 'disabled' } : time,
   );
 };
 

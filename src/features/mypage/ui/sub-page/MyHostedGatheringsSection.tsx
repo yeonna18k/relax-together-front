@@ -5,7 +5,8 @@ import MypageCard from '@/entities/mypage/ui/card';
 
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
-import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonBlurCardWrapper';
+import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
+
 import MotionListItem from '@/shared/common/ui/motion-list-item';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
@@ -30,10 +31,7 @@ export default function MyHostedGatheringsSection() {
             <ul key={`my-hosted-gatherings-${page}-${index}`}>
               {page.content.map((gathering, idx) => (
                 <MotionListItem key={gathering.id} index={idx}>
-                  <CommonMoreInfoWrapper
-                    id={gathering.id}
-                    className="hover:shadow-none"
-                  >
+                  <CommonMoreInfoWrapper id={gathering.id} status={false}>
                     <MypageCard alt="my-gatherings-image" {...gathering} />
                   </CommonMoreInfoWrapper>
                 </MotionListItem>
