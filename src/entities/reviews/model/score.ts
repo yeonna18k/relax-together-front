@@ -1,6 +1,4 @@
 export interface Score {
-  // gatheringId: number;
-  // type: string;
   fivePoints: number;
   fourPoints: number;
   threePoints: number;

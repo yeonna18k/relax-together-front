@@ -3,6 +3,9 @@ import { BASE_URL } from '@/shared/lib/constants';
 import { SigninUser, SignupUser } from '../../model/user';
 
 class SignupApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async signup({
     email,
     password,
@@ -37,6 +40,9 @@ export const signupApiService = new SignupApiService();
 
 export type Tokens = { accessToken: string };
 class SigninApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async signin({ email, password }: SigninUser) {
     const response = await this.post<Tokens>(`${BASE_URL}/api/auths/login`, {
       email,

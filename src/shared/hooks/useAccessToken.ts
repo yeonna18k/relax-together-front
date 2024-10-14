@@ -8,7 +8,8 @@ export default function useAccessToken() {
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
   useEffect(() => {
-    ApiService.setAccessToken(accessToken);
+    const instance = ApiService.getInstance();
+    instance.setAccessToken(accessToken);
   }, [accessToken]);
 
   return { accessToken, setAccessToken };

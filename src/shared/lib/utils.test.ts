@@ -14,10 +14,10 @@ describe('utils', () => {
       const result = getTimeUntilDeadline(fiveHoursLater);
       expect(result).toBe('오늘 1시간 후 마감');
     });
-    it('현재 시간보다 14시간 더한 시간을 넣으면 "14시간 후 마감"이 반환된다.', () => {
-      const fourTeenHoursLater = addMinutes(addHours(getKoreaTime(), 14), 1);
+    it('현재 시간보다 16시간 더한 시간을 넣으면 "16시간 후 마감"이 반환된다.', () => {
+      const fourTeenHoursLater = addMinutes(addHours(getKoreaTime(), 16), 1);
       const result = getTimeUntilDeadline(fourTeenHoursLater);
-      expect(result).toBe('14시간 후 마감');
+      expect(result).toBe('16시간 후 마감');
     });
     it('현재 시간보다 2일 더한 시간을 넣으면 "2일 후 마감"이 반환된다.', () => {
       const twoDaysLater = addDays(getKoreaTime(), 2);

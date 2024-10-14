@@ -72,7 +72,7 @@ export default function SignupForm({
     }
   }
   return (
-    <div className="mt-5 w-full rounded-xl bg-white px-4 py-5 md:mx-auto md:mt-[30px] md:w-[536px] md:px-16 md:py-8 lg:mx-0 lg:mt-0">
+    <div className="mt-5 w-[343px] rounded-xl bg-white px-4 py-5 md:mx-auto md:mt-[30px] md:w-[536px] md:px-16 md:py-8 lg:mx-0 lg:mt-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <GenericFormField
@@ -100,7 +100,7 @@ export default function SignupForm({
             label="비밀번호 확인"
             placeholder="비밀번호를 입력해주세요"
           />
-          <div className="!mt-10 flex flex-col gap-6">
+          <div className="!mt-[42px] flex flex-col gap-6">
             <Button
               disabled={!formValid}
               variant={`${formValid ? 'enabled' : 'disabled'}`}
