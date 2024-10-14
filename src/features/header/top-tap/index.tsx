@@ -18,14 +18,16 @@ export default function TopTap({ path, name, className }: TopTapProps) {
   const { resetPopover } = useResponsiveGNBPopoverStore();
 
   return (
-    <li
-      className={cn(
-        `font-semibold text-gray-700 hover:text-green-500`,
-        className,
-        `${currentPathName === path ? 'text-green-500' : ''}`,
-      )}
-    >
-      <Link href={path} onClick={() => resetPopover()}>
+    <li>
+      <Link
+        href={path}
+        className={cn(
+          `font-semibold text-gray-700 hover:text-green-500`,
+          className,
+          `${currentPathName === path ? 'text-green-500' : ''}`,
+        )}
+        onClick={() => resetPopover()}
+      >
         <p>{name}</p>
         {value > 0 && path === '/like-gatherings' && (
           <CommonBadge count={value} />
