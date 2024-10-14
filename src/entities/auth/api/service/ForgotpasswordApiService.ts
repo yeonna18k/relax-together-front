@@ -21,7 +21,7 @@ export class ForgotPasswordApiService extends ApiService {
 
   // 비밀번호 찾기 이메일 전송 API
   async sendForgotPasswordEmail(email: string) {
-    const response = await axios.post(`${BASE_URL}/api/send-email`, {
+    const response = await axios.post(`${BASE_URL}/api/email/password-change`, {
       email,
     });
     return response;
@@ -39,7 +39,7 @@ export class ForgotPasswordApiService extends ApiService {
     passwordCheck: string;
     token: string;
   }) {
-    const response = await axios.post(`${BASE_URL}/api/auths/reset-password`, {
+    const response = await axios.post(`${BASE_URL}/api/auths/change-password`, {
       email,
       newPassword,
       passwordCheck,

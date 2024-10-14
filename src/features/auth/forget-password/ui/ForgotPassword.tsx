@@ -52,7 +52,7 @@ export default function ForgotPasswordForm() {
       setIsSuccess(false);
       if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
         const errorMessage =
-          error.response?.data?.e?.message || '요청이 실패했습니다.';
+          error.response?.data?.e?.message || '존재하지 않는 아이디입니다.';
         form.setError('serverError', { message: errorMessage });
       }
     } finally {
@@ -74,7 +74,7 @@ export default function ForgotPasswordForm() {
             placeholder="이메일을 입력해주세요"
           />
 
-          <div className="!mt-2 flex flex-col gap-6">
+          <div className="!mt-0 flex flex-col gap-6 text-sm">
             <div className="flex flex-col gap-3">
               {form.formState.errors.serverError && (
                 <p className="text-red-500">

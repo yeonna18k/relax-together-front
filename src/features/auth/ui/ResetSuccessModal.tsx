@@ -1,21 +1,18 @@
-// ForgotSuccessModal.tsx
-import React from 'react';
+import Modal from '@/shared/common/ui/modal';
+import { useModal } from '@/shared/hooks/useModal';
 
-interface ForgotSuccessModalProps {
-  onConfirm: () => void; // onConfirm 속성을 Props로 정의
-}
-
-const ForgotSuccessModal: React.FC<ForgotSuccessModalProps> = ({
-  onConfirm,
-}) => {
+export default function ResetSuccessModal() {
+  const { closeModal } = useModal();
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>비밀번호 재설정 메일이 발송되었습니다.</h2>
-        <button onClick={onConfirm}>확인</button>
-      </div>
-    </div>
+    <Modal
+      variant="notice"
+      size="sm"
+      actionBtnName="확인"
+      handleAction={() => closeModal('createSuccess')}
+    >
+      <p className="w-full p-2 text-center text-base font-medium text-gray-900">
+        비밀번호를 성공적으로 변경했습니다!
+      </p>
+    </Modal>
   );
-};
-
-export default ForgotSuccessModal;
+}

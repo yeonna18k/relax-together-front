@@ -1,6 +1,6 @@
 'use client';
 
-import { ForgotPasswordApiService } from '@/entities/auth/api/service/ForgotPasswordApiService';
+import { ForgotPasswordApiService } from '@/entities/auth/api/service/ForgotpasswordApiService';
 import GenericFormField from '@/features/auth/ui/GenericFormField';
 import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/button';
@@ -17,10 +17,10 @@ const formSchema = z
   .object({
     newPassword: z
       .string()
-      .min(8, { message: '비밀번호가 8자 이상이 되도록 해 주세요.' }),
+      .min(1, { message: '비밀번호가 8자 이상이 되도록 해 주세요.' }),
     passwordCheck: z
       .string()
-      .min(8, { message: '비밀번호 확인을 위해 한 번 더 입력해주세요.' }),
+      .min(1, { message: '비밀번호 확인을 위해 한 번 더 입력해주세요.' }),
     serverError: z.string().optional(),
   })
   .refine(data => data.newPassword === data.passwordCheck, {
@@ -34,7 +34,6 @@ export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const email = searchParams.get('email');
-  const token = searchParams.get('token'); // token 값 가져오기
   const decodedEmail = decodeURIComponent(email || '');
   console.log('🚀 ~ ResetPasswordForm ~ decodedEmail:', decodedEmail);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -50,29 +49,26 @@ export default function ResetPasswordForm() {
 
   const formValid = form.formState.isValid;
   const { modal, openModal, closeModal } = useModal();
-
-  // onConfirm 함수 추가
-  const handleConfirm = () => {
-    closeModal('ResetSuccess'); // 모달을 닫는 함수
-    router.push('/login'); // 비밀번호 변경 성공 후 로그인 페이지로 리다이렉션
-  };
-
   const handleSubmit = async (data: ResetPassword) => {
+    // {
+    //   “email”: “String”,
+    //   “newPassword”: “String”,
+    //   “passwordCheck”: “String”
+    // }
+
     const { newPassword, passwordCheck } = data;
     try {
       setErrorMessage(null);
       openModal('ResetSuccess');
+      // 실제 비밀번호 변경 API 요청을 여기에 추가하세요
       console.log('비밀번호 변경 데이터:', data);
-
-      // 비밀번호 변경 API 요청
-      if (email && token) {
-        await ForgotPasswordApiService.resetPassword({
-          email,
-          newPassword,
-          passwordCheck,
-          token, // token 값 추가
-        });
-      }
+      email &&
+        (await ForgotPasswordApiService.resetPassword({
+          email: 'user@example.com',
+          newPassword: 'newPassword123',
+          passwordCheck: 'newPassword123',
+          token: 'tokenValue', // 비밀번호 재설정에 필요한 토큰
+        }));
     } catch (error: unknown) {
       if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
         if (error.response?.status === 400) {
@@ -89,7 +85,7 @@ export default function ResetPasswordForm() {
           비밀번호 변경
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="text-sm">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="">
             <GenericFormField
               form={form}
               name="newPassword"
@@ -117,9 +113,7 @@ export default function ResetPasswordForm() {
             </Button>
           </form>
         </Form>
-        {modal.includes('ResetSuccess') && (
-          <ResetSuccessModal onConfirm={handleConfirm} /> // onConfirm 속성 추가
-        )}
+        {modal.includes('ResetSuccess') && <ResetSuccessModal />}
       </div>
     </div>
   );
