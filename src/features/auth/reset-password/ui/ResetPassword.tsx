@@ -1,6 +1,6 @@
 'use client';
 
-import { forgotPasswordApiService } from '@/entities/auth/api/service/ForgotpasswordApiService';
+import { authApiService } from '@/entities/auth/api/service/ForgotPasswordApiService'; // 인스턴스를 가져옴
 import GenericFormField from '@/features/auth/ui/GenericFormField';
 import { useModal } from '@/shared/hooks/useModal';
 import { Button } from '@/shared/ui/button';
@@ -49,20 +49,17 @@ export default function ResetPasswordForm() {
 
   const formValid = form.formState.isValid;
   const { modal, openModal, closeModal } = useModal();
+
   const handleSubmit = async (data: ResetPassword) => {
-    // {
-    //   “email”: “String”,
-    //   “newPassword”: “String”,
-    //   “passwordCheck”: “String”
-    // }
     const { newPassword, passwordCheck } = data;
     try {
       setErrorMessage(null);
       openModal('ResetSuccess');
-      // 실제 비밀번호 변경 API 요청을 여기에 추가하세요
       console.log('비밀번호 변경 데이터:', data);
+
+      // 비밀번호 변경 API 요청
       email &&
-        (await forgotPasswordApiService.resetPassword({
+        (await authApiService.resetPassword({
           email,
           newPassword,
           passwordCheck,

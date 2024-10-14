@@ -1,11 +1,24 @@
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
 
+export type VerifyTokenResponse = { email: string };
+export type VerifyTokenRequest = { token: string | null };
 export type ForgotPasswordResponse = { success: boolean; message: string };
 export type ResetPasswordResponse = { success: boolean; message: string };
 
-class ForgotPasswordApiService extends ApiService {
-  // 비밀번호 찾기 이메일 전송 API (token을 옵션으로 추가 가능)
+export class ForgotPasswordApiService extends ApiService {
+  // 토큰 검증 API
+  async verifyToken(token: string | null) {
+    const response = await this.post<VerifyTokenResponse>(
+      `${BASE_URL}/api/verify-token`,
+      {
+        token,
+      },
+    );
+    return response;
+  }
+
+  // 비밀번호 찾기 이메일 전송 API
   async sendForgotPasswordEmail(email: string) {
     const response = await this.post(`${BASE_URL}/api/send-email`, {
       email,
@@ -23,7 +36,7 @@ class ForgotPasswordApiService extends ApiService {
     newPassword: string;
     passwordCheck: string;
   }) {
-    const response = await this.post(`${BASE_URL}/api/auths/reset-password`, {
+    const response = await this.post(`${BASE_URL}/api/auths/change-password`, {
       email,
       newPassword,
       passwordCheck,
@@ -32,4 +45,4 @@ class ForgotPasswordApiService extends ApiService {
   }
 }
 
-export const forgotPasswordApiService = new ForgotPasswordApiService();
+export const authApiService = new ForgotPasswordApiService();

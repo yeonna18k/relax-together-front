@@ -10,6 +10,7 @@ import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword
 
 import { useModal } from '@/shared/hooks/useModal';
 import axios from 'axios';
+import { useState } from 'react';
 import CreateSuccessModal from '../../ui/ForgotSuccessModal';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
@@ -36,19 +37,23 @@ export default function ForgotPasswordForm() {
   const formValid = form.formState.isValid;
   const { sendForgotPasswordEmail } = useForgotPassword();
   const { openModal } = useModal();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 비밀번호 찾기 요청 함수
   async function onSubmit(values: ForgotPassword) {
+    setIsSubmitting(true);
     try {
       const res = await sendForgotPasswordEmail(values.email);
       console.log('🚀 ~ onSubmit ~ res:', res);
       openModal('forgotPassword');
     } catch (error: unknown) {
       if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
-        if (error.response?.status === 400) {
-          form.setError('serverError', { message: '잘못된 요청입니다.' });
-        }
+        const errorMessage =
+          error.response?.data?.e?.message || '요청이 실패했습니다.';
+        form.setError('serverError', { message: errorMessage });
       }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -68,18 +73,18 @@ export default function ForgotPasswordForm() {
 
           <div className="!mt-2 flex flex-col gap-6">
             <div className="flex flex-col gap-3">
-              {form.formState.errors && (
+              {form.formState.errors.serverError && (
                 <p className="text-red-500">
-                  {form.formState.errors.serverError?.message}
+                  {form.formState.errors.serverError.message}
                 </p>
               )}
               <Button
-                disabled={!formValid}
-                variant={`${formValid ? 'enabled' : 'disabled'}`}
+                disabled={!formValid || isSubmitting}
+                variant={`${formValid && !isSubmitting ? 'enabled' : 'disabled'}`}
                 size="full"
                 className="md:h-11 md:text-base"
               >
-                메일 보내기
+                {isSubmitting ? '메일 보내는 중...' : '메일 보내기'}
               </Button>
             </div>
             <TogglePage page="forgotPassword" />
