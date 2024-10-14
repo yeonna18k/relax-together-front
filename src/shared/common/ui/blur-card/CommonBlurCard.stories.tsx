@@ -35,6 +35,7 @@ export const Default: Story = {
           hostUser={0}
           capacity={MAX_CAPACITY}
           name={null}
+          ended={false}
         />
       </CommonBlurCardWrapper>
     );
