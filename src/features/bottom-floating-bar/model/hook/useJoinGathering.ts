@@ -50,7 +50,7 @@ export default function useJoinGathering(id: string) {
   const handleJoinBtnClick = () => {
     // 로그인 상태 확인
     if (!user) {
-      // 비로그인 시 로그인이 필요하다는 팝업
+      // 비로그인 시 로그인 유도 모달
       openModal('LoginRequiredModal');
     } else {
       // 참여

@@ -47,7 +47,7 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
         </CommonButton>
       )}
       {modal.includes('LoginRequiredModal') && (
-        <Modal variant="single" size="sm" handleAction={handleOnClick}>
+        <Modal variant="notice" size="sm" handleAction={handleOnClick}>
           <p className="text-center text-base font-medium text-[#111827]">
             로그인이 필요해요
           </p>
