@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useSignup } from '@/entities/auth/api';
+import { useState } from 'react';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
 import SignupEmailFormField from './SignupEmailFormField';
@@ -44,6 +45,7 @@ export default function SignupForm({
 }: {
   defaultValues?: SignupFormType;
 }) {
+  const [emailAuthentication, setEmailAuthentication] = useState(false);
   const { signup } = useSignup();
   const form = useForm<SignupFormType>({
     resolver: zodResolver(formSchema),
@@ -56,8 +58,9 @@ export default function SignupForm({
       passwordCheck: '',
     },
   });
-  const formValid = form.formState.isValid;
+  const formValid = form.formState.isValid && emailAuthentication;
   const router = useRouter();
+  console.log(form.control._formValues.email);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const newUser = {
@@ -75,13 +78,18 @@ export default function SignupForm({
     <div className="mt-5 w-[343px] rounded-xl bg-white px-4 py-5 md:mx-auto md:mt-[30px] md:w-[536px] md:px-16 md:py-8 lg:mx-0 lg:mt-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <SignupEmailFormField
+            form={form}
+            emailAuthentication={emailAuthentication}
+            setEmailAuthentication={setEmailAuthentication}
+          />
           <GenericFormField
             form={form}
             name="name"
             label="이름"
             placeholder="이름을 입력해주세요"
           />
-          <SignupEmailFormField form={form} />
+
           <GenericFormField
             form={form}
             name="companyName"

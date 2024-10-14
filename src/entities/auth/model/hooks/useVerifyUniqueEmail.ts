@@ -5,7 +5,7 @@ import { useDebounceValue } from 'usehooks-ts';
 import { SignupFormType } from '../../../../features/auth/signup/ui/SignupForm';
 import { signupApiService } from '../../api/service/AuthApiService';
 
-export async function useCheckEmail(
+export async function useVerifyUniqueEmail(
   form: UseFormReturn<SignupFormType>,
   error: FieldErrors,
 ) {
