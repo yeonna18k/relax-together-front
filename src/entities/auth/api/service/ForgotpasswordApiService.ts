@@ -31,15 +31,18 @@ export class ForgotPasswordApiService extends ApiService {
     email,
     newPassword,
     passwordCheck,
+    token,
   }: {
     email: string;
     newPassword: string;
     passwordCheck: string;
+    token: string;
   }) {
-    const response = await this.post(`${BASE_URL}/api/auths/change-password`, {
+    const response = await this.post(`${BASE_URL}/api/auths/reset-password`, {
       email,
       newPassword,
       passwordCheck,
+      token,
     });
     return response;
   }
