@@ -16,6 +16,11 @@ export default meta;
 type Story = StoryObj<typeof ReviewScore>;
 export const Default: Story = {
   parameters: {
-    msw: handlers,
+    msw: {
+      handlers,
+    },
+  },
+  render: function Render() {
+    return <ReviewScore />;
   },
 };

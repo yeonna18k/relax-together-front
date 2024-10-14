@@ -23,8 +23,8 @@ export function useSignin(form: UseFormReturn<SigninFormType>) {
       return response.data;
     } catch (e) {
       console.error(e);
-      form.setError('email', {});
-      form.setError('password', {});
+      form.setError('email', { message: '' });
+      form.setError('password', { message: '' });
       form.setValue('password', '');
     }
   };
