@@ -38,9 +38,7 @@ export default function GenericFormField<TFormType extends FieldValues>({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-gray-900f font-semibold">
-            {label}
-          </FormLabel>
+          <FormLabel className="font-semibold text-gray-900">{label}</FormLabel>
           <FormControl className="mt-2 space-y-2 py-2">
             {isPasswordField ? (
               <InputPassword {...commonInputProps} {...field} />

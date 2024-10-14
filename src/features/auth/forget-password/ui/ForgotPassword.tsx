@@ -36,8 +36,9 @@ export default function ForgotPasswordForm() {
 
   const formValid = form.formState.isValid;
   const { sendForgotPasswordEmail } = useForgotPassword();
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   // 비밀번호 찾기 요청 함수
   async function onSubmit(values: ForgotPassword) {
@@ -45,8 +46,10 @@ export default function ForgotPasswordForm() {
     try {
       const res = await sendForgotPasswordEmail(values.email);
       console.log('🚀 ~ onSubmit ~ res:', res);
+      setIsSuccess(true);
       openModal('forgotPassword');
     } catch (error: unknown) {
+      setIsSuccess(false);
       if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
         const errorMessage =
           error.response?.data?.e?.message || '요청이 실패했습니다.';
@@ -59,7 +62,7 @@ export default function ForgotPasswordForm() {
 
   return (
     <div className="mt-8 h-[321px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-32 xl:w-[510px] xl:px-16 xl:py-8">
-      <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
+      <div className="mb-8 text-center text-xs font-semibold text-gray-800 md:text-2xl">
         비밀번호 찾기
       </div>
       <Form {...form}>
@@ -92,7 +95,7 @@ export default function ForgotPasswordForm() {
         </form>
       </Form>
 
-      <CreateSuccessModal />
+      {isSuccess && <CreateSuccessModal />}
     </div>
   );
 }

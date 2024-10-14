@@ -2,7 +2,7 @@ import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
 import { SigninUser, SignupUser } from '../../model/user';
 
-class SignupApiService extends ApiService {
+export class SignupApiService extends ApiService {
   async signup({
     email,
     password,

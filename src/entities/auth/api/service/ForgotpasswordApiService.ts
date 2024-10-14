@@ -1,5 +1,6 @@
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
+import axios from 'axios';
 
 export type VerifyTokenResponse = { email: string };
 export type VerifyTokenRequest = { token: string | null };
@@ -9,7 +10,7 @@ export type ResetPasswordResponse = { success: boolean; message: string };
 export class ForgotPasswordApiService extends ApiService {
   // 토큰 검증 API
   async verifyToken(token: string | null) {
-    const response = await this.post<VerifyTokenResponse>(
+    const response = await axios.post<VerifyTokenResponse>(
       `${BASE_URL}/api/verify-token`,
       {
         token,
@@ -20,14 +21,14 @@ export class ForgotPasswordApiService extends ApiService {
 
   // 비밀번호 찾기 이메일 전송 API
   async sendForgotPasswordEmail(email: string) {
-    const response = await this.post(`${BASE_URL}/api/send-email`, {
+    const response = await axios.post(`${BASE_URL}/api/send-email`, {
       email,
     });
     return response;
   }
 
   // 비밀번호 재설정 API
-  async resetPassword({
+  static async resetPassword({
     email,
     newPassword,
     passwordCheck,
@@ -38,7 +39,7 @@ export class ForgotPasswordApiService extends ApiService {
     passwordCheck: string;
     token: string;
   }) {
-    const response = await this.post(`${BASE_URL}/api/auths/reset-password`, {
+    const response = await axios.post(`${BASE_URL}/api/auths/reset-password`, {
       email,
       newPassword,
       passwordCheck,

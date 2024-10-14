@@ -1,9 +1,14 @@
-import { authApiService } from '../../api/service/ForgotPasswordApiService'; // 인스턴스를 가져옴
+import axios from 'axios';
 
 export function useForgotPassword() {
   async function sendForgotPasswordEmail(email: string) {
-    const response = await authApiService.sendForgotPasswordEmail(email); // 인스턴스 메서드 호출
-    return response;
+    try {
+      const response = await axios.post('/api/send-email', { email }); // 서버 API 호출
+      return response.data;
+    } catch (error) {
+      console.error('이메일 발송 실패:', error);
+      throw error;
+    }
   }
 
   return { sendForgotPasswordEmail };
