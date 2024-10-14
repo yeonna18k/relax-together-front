@@ -1,16 +1,19 @@
 'use client';
 
-import ApiService from '@/shared/api/service/ApiService';
-import { useEffect } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
+import { useEffect, useState } from 'react';
 
 export default function useAccessToken() {
-  const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
+  const [accessToken, setAccessTokenState] = useState('');
 
   useEffect(() => {
-    const instance = ApiService.getInstance();
-    instance.setAccessToken(accessToken);
-  }, [accessToken]);
+    const storedToken = localStorage.getItem('accessToken');
+    if (storedToken) setAccessTokenState(storedToken);
+  }, []);
+
+  const setAccessToken = (token: string) => {
+    localStorage.setItem('accessToken', token);
+    setAccessTokenState(token);
+  };
 
   return { accessToken, setAccessToken };
 }
