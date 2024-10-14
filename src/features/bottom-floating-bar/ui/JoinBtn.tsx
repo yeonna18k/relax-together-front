@@ -1,17 +1,30 @@
-import { ParticipantListTypes } from '@/entities/gatherings-detail/model/information';
-import CommonButton from '@/shared/common/ui/common-button';
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/gatherings-detail/model/information';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
+import { getTimeUntilDeadline } from '@/shared/lib/utils';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
+import { Button } from '@/shared/ui/button';
 import useJoinGathering from '../model/hook/useJoinGathering';
 
 interface JoinBtnProps {
   id: string;
+  gatheringsInfo: GatheringsInfoTypes;
   participantList: ParticipantListTypes;
 }
 
-export default function JoinBtn({ id, participantList }: JoinBtnProps) {
+export default function JoinBtn({
+  id,
+  gatheringsInfo,
+  participantList,
+}: JoinBtnProps) {
   const { modal } = useModal();
+
+  const isClosed =
+    getTimeUntilDeadline(new Date(gatheringsInfo.registrationEnd)) ===
+    '마감되었습니다';
 
   const user = useUserDataStore(state => state.user);
 
@@ -28,23 +41,25 @@ export default function JoinBtn({ id, participantList }: JoinBtnProps) {
   return (
     <>
       {isJoined ? (
-        <CommonButton
-          variant="outline"
+        <Button
+          disabled={isClosed}
+          variant={isClosed ? 'disabled' : 'outline'}
           size="lg"
           className="h-11 w-[115px]"
           onClick={handleLeaveBtnClick}
         >
           참여 취소하기
-        </CommonButton>
+        </Button>
       ) : (
-        <CommonButton
-          variant="default"
+        <Button
+          disabled={isClosed}
+          variant={isClosed ? 'disabled' : 'default'}
           size="lg"
           className="h-11 w-[115px]"
           onClick={handleJoinBtnClick}
         >
           참여하기
-        </CommonButton>
+        </Button>
       )}
       {modal.includes('LoginRequiredModal') && (
         <Modal variant="notice" size="sm" handleAction={handleOnClick}>

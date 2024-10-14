@@ -1,9 +1,16 @@
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
-import CommonButton from '@/shared/common/ui/common-button';
+import { GatheringsInfoTypes } from '@/entities/gatherings-detail/model/information';
+import { getTimeUntilDeadline } from '@/shared/lib/utils';
+import { Button } from '@/shared/ui/button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-export default function CancleBtn({ id }: { id: string }) {
+interface CancleBtnProps {
+  id: string;
+  gatheringsInfo: GatheringsInfoTypes;
+}
+
+export default function CancleBtn({ id, gatheringsInfo }: CancleBtnProps) {
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -28,14 +35,19 @@ export default function CancleBtn({ id }: { id: string }) {
     cancelMutation(id);
   };
 
+  const isClosed =
+    getTimeUntilDeadline(new Date(gatheringsInfo.registrationEnd)) ===
+    '마감되었습니다';
+
   return (
-    <CommonButton
-      variant="outline"
+    <Button
+      disabled={isClosed}
+      variant={isClosed ? 'disabled' : 'outline'}
       size="lg"
       className="h-11 w-1/2 sm:w-[115px]"
       onClick={handleCancleBtnClick}
     >
       취소하기
-    </CommonButton>
+    </Button>
   );
 }

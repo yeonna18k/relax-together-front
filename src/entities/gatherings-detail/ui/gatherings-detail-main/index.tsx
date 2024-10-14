@@ -53,6 +53,7 @@ export default function GatheringsDetailMain({
         <BottomFloatingBar
           id={id}
           isHost={isHost}
+          gatheringsInfo={gatheringsInfo}
           participantList={participantList}
         />
       )}
