@@ -5,7 +5,8 @@ import GatheringCard from '@/entities/gatherings/ui/card';
 import useAdditionalParams from '@/features/gatherings/model/hook/useAdditionalParams';
 
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
-import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonBlurCardWrapper';
+import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
+
 import MotionListItem from '@/shared/common/ui/motion-list-item';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
 
@@ -41,7 +42,10 @@ export default function GatheringCardListSection() {
               >
                 {page.content.map((gathering, idx) => (
                   <MotionListItem key={gathering.id} index={idx}>
-                    <CommonMoreInfoWrapper id={gathering.id}>
+                    <CommonMoreInfoWrapper
+                      id={gathering.id}
+                      status={gathering.ended}
+                    >
                       <GatheringCard
                         message={getTimeUntilDeadline(
                           new Date(gathering.registrationEnd),

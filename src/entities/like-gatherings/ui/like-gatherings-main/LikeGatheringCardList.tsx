@@ -1,15 +1,14 @@
 'use client';
 
 import GatheringCard from '@/entities/gatherings/ui/card';
-import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+import useAdditionalParams from '@/features/gatherings/model/hook/useAdditionalParams';
 import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
-import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
+import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
+import MotionListItem from '@/shared/common/ui/motion-list-item';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
-import { GatheringLocation, GatheringType } from '@/shared/model';
-import { format } from 'date-fns';
-import Link from 'next/link';
+import { GatheringType } from '@/shared/model';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLikeGatheringsData } from '../../api/queries/like-gatherings';
@@ -22,29 +21,12 @@ const getCurrentTypeMap: Record<string, GatheringType> = {
 };
 
 export default function LikeGatheringCardList() {
-  const { currentSubPage, currentFilter } = useCommonSearchParams();
-  const { searchFilterValues } = useSearchFilter();
+  const { additionalParams } = useAdditionalParams();
 
   const [parsedLikeIds, setParsedLikeIds] = useState<string[]>([]);
 
-  const target =
-    currentSubPage === 'workation'
-      ? currentSubPage
-      : `${currentSubPage}_${currentFilter}`;
-
-  const type = getCurrentTypeMap[target];
-
-  const { data, fetchNextPage, status } = useLikeGatheringsData({
-    type,
-    location:
-      searchFilterValues.selectedValue === 'ALL'
-        ? undefined
-        : searchFilterValues.selectedValue,
-    date: searchFilterValues.date
-      ? format(searchFilterValues.date, 'yyyy-MM-dd')
-      : undefined,
-    sortBy: searchFilterValues.selectedSortValue,
-  });
+  const { data, fetchNextPage, status } =
+    useLikeGatheringsData(additionalParams);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -76,33 +58,19 @@ export default function LikeGatheringCardList() {
       ref={ref}
       className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]"
     >
-      <ul className="space-y-6">
+      <ul className="mt-2.5 md:mt-0 xl:mb-10">
         {filteredData?.map(page =>
-          page.map(gathering => (
-            <li
-              key={gathering.id}
-              className="relative rounded-xl hover:shadow-xl"
-            >
-              <Link
-                href={`/gatherings/${gathering.id}`}
-                className="absolute z-10 block h-full w-full"
-              />
-              <GatheringCard
-                capacity={gathering.capacity}
-                dateTime={gathering.dateTime}
-                hostUser={gathering.hostUser}
-                id={gathering.id}
-                imageUrl={gathering.imageUrl}
-                location={gathering.location as GatheringLocation}
-                name={gathering.name}
-                participantCount={gathering.participantCount}
-                registrationEnd={gathering.registrationEnd}
-                type={gathering.type as GatheringType}
-                message={getTimeUntilDeadline(
-                  new Date(gathering.registrationEnd),
-                )}
-              />
-            </li>
+          page.map((gathering, idx) => (
+            <MotionListItem key={gathering.id} index={idx}>
+              <CommonMoreInfoWrapper id={gathering.id} status={gathering.ended}>
+                <GatheringCard
+                  message={getTimeUntilDeadline(
+                    new Date(gathering.registrationEnd),
+                  )}
+                  {...gathering}
+                />
+              </CommonMoreInfoWrapper>
+            </MotionListItem>
           )),
         )}
       </ul>
