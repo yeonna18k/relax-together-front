@@ -20,7 +20,7 @@ class GatheringsApiService extends ApiService {
     sortOrder,
   }: FetchParams & Partial<FilterParams>) {
     const response = await this.get<Response<Gathering>>(
-      `${BASE_URL}/api/reviews?type=${type}${location ? `&location=${location}` : ''}${date ? `&date=${date}` : ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
+      `${BASE_URL}/api/gatherings?type=${type}${location ? `&location=${location}` : ''}${date ? `&date=${date}` : ''}&page=${pageParam}&size=${size}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
     );
     return response;
   }
