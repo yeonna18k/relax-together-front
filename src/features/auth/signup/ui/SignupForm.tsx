@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useSignup } from '@/entities/auth/api';
+import { useModal } from '@/shared/hooks/useModal';
 import { useState } from 'react';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
@@ -47,6 +48,7 @@ export default function SignupForm({
 }) {
   const [emailAuthentication, setEmailAuthentication] = useState(false);
   const { signup } = useSignup();
+  const { modal, openModal } = useModal();
   const form = useForm<SignupFormType>({
     resolver: zodResolver(formSchema),
     mode: 'all',
@@ -83,6 +85,7 @@ export default function SignupForm({
             emailAuthentication={emailAuthentication}
             setEmailAuthentication={setEmailAuthentication}
           />
+
           <GenericFormField
             form={form}
             name="name"
