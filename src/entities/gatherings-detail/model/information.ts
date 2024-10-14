@@ -1,6 +1,6 @@
 import { Gathering } from '@/shared/model';
 
-export type GatheringsInfoTypes = Gathering & {
+export type GatheringsInfoTypes = Omit<Gathering, 'ended'> & {
   status: string;
 };
 
