@@ -20,7 +20,7 @@ export default function Participants({
         <div>
           <span>모집 정원</span>
           <span data-testid="participantCount" className="ml-[6px]">
-            {gatheringsInfo.participantCount}명
+            {participantList.totalElements}명
           </span>
         </div>
         <UserProfileImage
