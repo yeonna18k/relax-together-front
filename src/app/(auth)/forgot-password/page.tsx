@@ -1,3 +1,5 @@
+'use client';
+
 import ForgotPasswordForm from '@/features/auth/forget-password/ui/ForgotPassword';
 import AuthHeader from '@/features/auth/ui/AuthHeader';
 import AuthImage from '@/features/auth/ui/AuthImage';
