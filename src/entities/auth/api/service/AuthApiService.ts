@@ -28,9 +28,21 @@ class SignupApiService extends ApiService {
     );
     return response;
   }
-  async checkEmail(email: string) {
+  async VerifyUniqueEmail(email: string) {
     const response = await this.post(`${BASE_URL}/api/auths/check-email`, {
       email,
+    });
+    return response;
+  }
+  async EmailAuth(email: string) {
+    const response = await this.post(`${BASE_URL}/api/email/signup`, {
+      email,
+    });
+    return response;
+  }
+  async VerifyEmailAuthCode(code: string) {
+    const response = await this.post(`${BASE_URL}/api/verify-code`, {
+      code,
     });
     return response;
   }
