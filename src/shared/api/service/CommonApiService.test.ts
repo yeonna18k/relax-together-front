@@ -1,7 +1,9 @@
 import CommonApiService from '@/shared/api/service/CommonApiService';
 import { dummyUser } from '@/shared/fixture/user';
+import useAccessToken from '@/shared/hooks/useAccessToken';
 
 describe('CommonApiService', () => {
+  const { accessToken, setAccessToken } = useAccessToken();
   let apiService: CommonApiService;
 
   beforeEach(() => {
@@ -9,13 +11,13 @@ describe('CommonApiService', () => {
   });
 
   it('토큰이 만료되었을 때 토큰을 갱신해야 한다', async () => {
-    localStorage.setItem('accessToken', 'old-access-token');
+    setAccessToken('old-access-token');
     apiService.setAccessToken('old-access-token');
 
     const response = await apiService.getUserInfo();
 
     expect(response.data).toEqual(dummyUser); // 사용자 정보가 올바르게 반환되는지 확인
-    expect(localStorage.getItem('accessToken')).toBe('new-access-token'); // 새로운 액세스 토큰이 저장되었는지 확인
+    expect(accessToken).toBe('new-access-token'); // 새로운 액세스 토큰이 저장되었는지 확인
   });
 
   it('로그아웃 요청이 성공적으로 이루어져야 한다', async () => {
@@ -25,8 +27,7 @@ describe('CommonApiService', () => {
   });
 
   it('사용자 정보를 성공적으로 가져와야 한다', async () => {
-    localStorage.setItem('accessToken', 'access-token');
-    apiService.setAccessToken('access-token');
+    setAccessToken('access-token');
 
     const response = await apiService.getUserInfo();
 

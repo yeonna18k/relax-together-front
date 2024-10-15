@@ -1,3 +1,5 @@
+import { Modal } from '@/shared/lib/constants';
+import { ValueOf } from '@/shared/lib/utilityTypes';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
@@ -5,9 +7,11 @@ type ModalState = {
   modal: string[];
 };
 
+type ModalType = ValueOf<typeof Modal>;
+
 type ModalAction = {
-  openModal: (modalType: string) => void;
-  closeModal: (modalType: string) => void;
+  openModal: (modalType: ModalType) => void;
+  closeModal: (modalType: ModalType) => void;
   resetModal: () => void;
 };
 

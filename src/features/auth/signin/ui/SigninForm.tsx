@@ -1,7 +1,7 @@
 'use client';
 
 import { useSignin, useSigninUserData } from '@/entities/auth/api';
-import useAccessToken from '@/shared/hooks/useAccessToken';
+import useSetAccessToken from '@/shared/hooks/useAccessToken';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
@@ -37,7 +37,7 @@ export default function SigninForm() {
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
   const { signinUserData } = useSigninUserData();
-  const { accessToken, setAccessToken } = useAccessToken();
+  const { accessToken, setAccessToken } = useSetAccessToken();
   const setUser = useUserDataStore(state => state.setUser);
   const [loginError, setLoginError] = useState(false);
 

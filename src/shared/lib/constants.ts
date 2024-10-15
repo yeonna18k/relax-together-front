@@ -40,7 +40,17 @@ export const Path = {
   SIGNIN: 'signin',
 } as const;
 
+export const Modal = {
+  CREATE_GATHERING: 'createGathering',
+  CREATE_SUCCESS: 'createSuccess',
+  WRITE_REVIEW: 'writeReview',
+  PROFILE_UPDATE: 'profileUpdate',
+  LOGIN_REQUIRED: 'LoginRequired',
+} as const;
+
 export const BASE_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : process.env.NEXT_PUBLIC_API_URL;
+
+export const ACCESS_TOKEN_KEY = 'accessToken';

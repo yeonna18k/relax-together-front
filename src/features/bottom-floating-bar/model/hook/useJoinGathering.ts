@@ -2,6 +2,7 @@
 
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import { useModal } from '@/shared/hooks/useModal';
+import { Modal } from '@/shared/lib/constants';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -51,7 +52,7 @@ export default function useJoinGathering(id: string) {
     // 로그인 상태 확인
     if (!user) {
       // 비로그인 시 로그인이 필요하다는 팝업
-      openModal('LoginRequiredModal');
+      openModal(Modal.LOGIN_REQUIRED);
     } else {
       // 참여
       joinMutation(id);

@@ -1,6 +1,6 @@
 import { Tokens } from '@/entities/auth/api/service/AuthApiService';
 import ApiService from '@/shared/api/service/ApiService';
-import { BASE_URL } from '@/shared/lib/constants';
+import { ACCESS_TOKEN_KEY, BASE_URL } from '@/shared/lib/constants';
 import { User } from '@/shared/model';
 
 export default class CommonApiService extends ApiService {
@@ -45,7 +45,7 @@ export default class CommonApiService extends ApiService {
             const refreshResponse = await this.refreshToken();
             const newAccessToken = refreshResponse.data.accessToken;
 
-            localStorage.setItem('accessToken', newAccessToken);
+            localStorage.setItem(ACCESS_TOKEN_KEY, newAccessToken);
             this.setAccessToken(newAccessToken);
 
             this.refreshSubscribers.forEach(callback =>
@@ -57,7 +57,7 @@ export default class CommonApiService extends ApiService {
               `Bearer ${newAccessToken}`;
             return axiosInstance(originalRequest);
           } catch (refreshError) {
-            localStorage.removeItem('accessToken');
+            localStorage.removeItem(ACCESS_TOKEN_KEY);
             localStorage.removeItem('signin-user-data');
             this.setAccessToken('');
             window.location.href = '/';

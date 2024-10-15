@@ -2,6 +2,7 @@
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import { useReviewStore } from '@/entities/mypage/model/store/useReviewStore';
 import { useModal } from '@/shared/hooks/useModal';
+import { Modal } from '@/shared/lib/constants';
 import { Button } from '@/shared/ui/button';
 
 export default function WriteReviewButton({
@@ -11,7 +12,7 @@ export default function WriteReviewButton({
   const { openModal } = useModal();
   const { setTargetGatheringId } = useReviewStore();
   const handleClick = () => {
-    openModal('writeReview');
+    openModal(Modal.WRITE_REVIEW);
     setTargetGatheringId(id);
   };
   return (

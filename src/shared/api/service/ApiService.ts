@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN_KEY } from '@/shared/lib/constants';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export default class ApiService {
@@ -41,9 +42,9 @@ export default class ApiService {
   }
 
   private initializeAccessToken() {
-    const storedToken = localStorage.getItem('accessToken');
-    if (storedToken) {
-      this.setAccessToken(storedToken);
+    const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+    if (accessToken) {
+      this.setAccessToken(accessToken);
     }
   }
 
@@ -51,8 +52,8 @@ export default class ApiService {
     return this.accessToken;
   }
 
-  public setAccessToken(accessToken: string) {
-    this.accessToken = accessToken;
+  public setAccessToken(newAccessToken: string) {
+    this.accessToken = newAccessToken;
   }
 
   async get<T = any, R = AxiosResponse<T>, D = any>(
