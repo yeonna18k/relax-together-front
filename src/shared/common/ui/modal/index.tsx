@@ -50,6 +50,15 @@ export default function Modal({
 }: ModalProps) {
   const { resetModal } = useModal();
   const isDefault = variant === 'default';
+
+  const handleBtnClick = () => {
+    resetModal();
+
+    if (variant === 'notice' && handleAction) {
+      handleAction();
+    }
+  };
+
   return (
     <AlertDialogContent>
       <AlertDialogHeader>
@@ -61,7 +70,7 @@ export default function Modal({
             variant="ghost"
             size="icon"
             className="p-0"
-            onClick={resetModal}
+            onClick={handleBtnClick}
           >
             <Xmark className="stroke-gray-500 stroke-2 hover:stroke-gray-700" />
           </Button>

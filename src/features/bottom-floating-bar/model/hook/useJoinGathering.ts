@@ -4,11 +4,13 @@ import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/ser
 import { useModal } from '@/shared/hooks/useModal';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function useJoinGathering(id: string) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const user = useUserDataStore(state => state.user);
 
@@ -41,16 +43,17 @@ export default function useJoinGathering(id: string) {
   });
 
   const handleOnClick = () => {
-    // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트
-    router.push('/signin');
+    closeModal('LoginRequiredModal');
 
-    // TODO: 로그인 후 기존 페이지로 리다이렉트
+    // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트, 로그인 후 기존 페이지로 리다이렉트
+    const currentPath = `${pathname}?${searchParams.toString()}`;
+    router.push(`/signin?redirect=${currentPath}`);
   };
 
   const handleJoinBtnClick = () => {
     // 로그인 상태 확인
     if (!user) {
-      // 비로그인 시 로그인이 필요하다는 팝업
+      // 비로그인 시 로그인 유도 모달
       openModal('LoginRequiredModal');
     } else {
       // 참여

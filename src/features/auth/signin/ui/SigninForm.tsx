@@ -6,7 +6,7 @@ import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -34,6 +34,9 @@ export default function SigninForm() {
   });
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get('redirect') || '/gatherings'; // redirect 경로 (기본값: /gatherings)
+
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
   const { signinUserData } = useSigninUserData();
@@ -49,10 +52,8 @@ export default function SigninForm() {
       if (response) {
         setUser(response.data);
         setLoginError(false);
-        router.push('/gatherings');
+        router.push(redirectPath);
       }
-    } else {
-      setLoginError(true);
     }
   }
 

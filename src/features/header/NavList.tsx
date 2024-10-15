@@ -23,12 +23,13 @@ export default function NavList() {
   return (
     <ul className="flex flex-col gap-5 lg:flex-row lg:items-center">
       {navList.map(nav => (
-        <TopTap
-          key={nav.path}
-          path={nav.path}
-          name={nav.name}
-          className="flex items-center gap-[5px]"
-        />
+        <li key={nav.path}>
+          <TopTap
+            path={nav.path}
+            name={nav.name}
+            className="flex items-center gap-[5px]"
+          />
+        </li>
       ))}
     </ul>
   );
