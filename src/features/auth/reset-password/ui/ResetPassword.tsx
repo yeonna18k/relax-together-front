@@ -58,7 +58,7 @@ export default function ResetPasswordForm() {
       });
 
       openModal('ResetSuccess');
-      router.push('/signin'); // 성공 시 로그인 페이지로 리디렉션
+      router.push('/signin');
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
