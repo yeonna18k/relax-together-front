@@ -19,15 +19,21 @@ export default function EmailAuthModal({
       handleAction={() => handleVerifyCode(otp)}
     >
       <div className="flex flex-col items-center gap-2">
-        <p className="text-gray-800">
+        <p className="text-base text-gray-800">
           이메일로 전송된 인증번호 6자리를 입력해주세요
         </p>
-        <p className="text-center text-xs text-gray-600">
-          메일을 받지 못하신 경우 스팸 메일함을 확인해주세요
-          <br />이 창을 벗어나면 인증번호가 만료됩니다
-        </p>
+        <div className="text-center text-sm text-gray-600">
+          <div className="flex justify-center">
+            메일을 받지 못하신 경우&nbsp;
+            <p className="font-semibold text-gray-800">스팸 메일함</p>을
+            확인해주세요
+          </div>
+          <p>이 인증화면을 종료하면 인증번호를 다시 요청해야 합니다</p>
+        </div>
         <InputOTP maxLength={6} onChange={e => setOtp(e)}>
-          <InputOTPGroup className="my-4">
+          <InputOTPGroup
+            className={`my-4 ${otp.length >= 6 ? 'text-green-500' : 'text-gray-800'}`}
+          >
             <InputOTPSlot index={0} />
             <InputOTPSlot index={1} />
             <InputOTPSlot index={2} />
