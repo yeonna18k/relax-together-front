@@ -11,7 +11,6 @@ import {
   FormMessage,
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useVerifyUniqueEmail } from '../../../../entities/auth/model/hooks/useVerifyUniqueEmail';
 import EmailAuthModal from './EmailAuthModal';
@@ -28,7 +27,6 @@ export default function SignupEmailFormField({
   emailAuth,
   setEmailAuth,
 }: SignupFormFieldProps) {
-  const [otp, setOtp] = useState('');
   const error = form.formState.errors;
   const { modal, openModal } = useModal();
   const { handleVerifyCode } = useVerifyEmailAuthCode(form, setEmailAuth);
@@ -88,11 +86,7 @@ export default function SignupEmailFormField({
               {emailAuth ? '인증완료' : '인증하기'}
             </Button>
             {modal.includes('EmailAuthModal') && (
-              <EmailAuthModal
-                otp={otp}
-                setOtp={setOtp}
-                handleVerifyCode={handleVerifyCode}
-              />
+              <EmailAuthModal handleVerifyCode={handleVerifyCode} />
             )}
           </div>
           <FormMessage className="text-sm font-medium text-error" />
