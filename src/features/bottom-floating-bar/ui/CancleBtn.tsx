@@ -32,7 +32,6 @@ export default function CancleBtn({ id }: { id: string }) {
   };
 
   const handleOnClick = () => {
-    closeModal('CancelConfirmModal');
     router.push('/');
   };
 
