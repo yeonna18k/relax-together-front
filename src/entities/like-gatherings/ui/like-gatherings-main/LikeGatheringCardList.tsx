@@ -53,7 +53,8 @@ export default function LikeGatheringCardList() {
   if (status === 'pending' || !data) {
     return <LoadingSkeletonList />;
   }
-  return data.pages[0].totalElements > 0 ? (
+
+  return filteredData && filteredData[0].length > 0 ? (
     <ScrollSection
       ref={ref}
       className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]"
@@ -77,6 +78,6 @@ export default function LikeGatheringCardList() {
       <div ref={ref} />
     </ScrollSection>
   ) : (
-    <ContentEmptySection description="신청한 모임이 아직 없어요" />
+    <ContentEmptySection description="아직 찜한 모임이 없어요" />
   );
 }
