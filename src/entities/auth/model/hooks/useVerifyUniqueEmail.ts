@@ -14,9 +14,9 @@ export async function useVerifyUniqueEmail(
     500,
   );
 
-  const handleCheckEmail = async () => {
+  const handleVerifyUniqueEmail = async () => {
     try {
-      const response = await signupApiService.checkEmail(debouncedValue);
+      const response = await signupApiService.VerifyUniqueEmail(debouncedValue);
       return response.data;
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
@@ -35,7 +35,7 @@ export async function useVerifyUniqueEmail(
 
   useEffect(() => {
     if (debouncedValue.length > 0 && error.email === undefined) {
-      handleCheckEmail();
+      handleVerifyUniqueEmail();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);

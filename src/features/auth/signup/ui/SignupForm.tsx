@@ -46,7 +46,7 @@ export default function SignupForm({
 }: {
   defaultValues?: SignupFormType;
 }) {
-  const [emailAuthentication, setEmailAuthentication] = useState(false);
+  const [emailAuth, setEmailAuth] = useState(false);
   const { signup } = useSignup();
   const { modal, openModal } = useModal();
   const form = useForm<SignupFormType>({
@@ -60,9 +60,8 @@ export default function SignupForm({
       passwordCheck: '',
     },
   });
-  const formValid = form.formState.isValid && emailAuthentication;
+  const formValid = form.formState.isValid && emailAuth;
   const router = useRouter();
-  console.log(form.control._formValues.email);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const newUser = {
@@ -82,8 +81,8 @@ export default function SignupForm({
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <SignupEmailFormField
             form={form}
-            emailAuthentication={emailAuthentication}
-            setEmailAuthentication={setEmailAuthentication}
+            emailAuth={emailAuth}
+            setEmailAuth={setEmailAuth}
           />
 
           <GenericFormField

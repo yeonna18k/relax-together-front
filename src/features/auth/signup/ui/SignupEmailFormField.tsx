@@ -1,5 +1,5 @@
-import { useEmailAuthentication } from '@/entities/auth/model/hooks/useEmailAuthentication';
-import Modal from '@/shared/common/ui/modal';
+import { fetchEmailAuth } from '@/entities/auth/api';
+import { useVerifyEmailAuthCode } from '@/entities/auth/model/hooks/useVerifyEmailAuthCode';
 import { useModal } from '@/shared/hooks/useModal';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
@@ -11,28 +11,27 @@ import {
   FormMessage,
 } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/shared/ui/input-otp';
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 import { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useVerifyUniqueEmail } from '../../../../entities/auth/model/hooks/useVerifyUniqueEmail';
+import EmailAuthModal from './EmailAuthModal';
 import { SignupFormType } from './SignupForm';
 
 interface SignupFormFieldProps {
   form: UseFormReturn<SignupFormType>;
-  emailAuthentication: boolean;
-  setEmailAuthentication: React.Dispatch<React.SetStateAction<boolean>>;
+  emailAuth: boolean;
+  setEmailAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function SignupEmailFormField({
   form,
-  emailAuthentication,
-  setEmailAuthentication,
+  emailAuth,
+  setEmailAuth,
 }: SignupFormFieldProps) {
   const [otp, setOtp] = useState('');
   const error = form.formState.errors;
   const { modal, openModal } = useModal();
-  const { handleEmailAuthentication } = useEmailAuthentication();
+  const { handleVerifyCode } = useVerifyEmailAuthCode(form, setEmailAuth);
   useVerifyUniqueEmail(form, error);
 
   const commonInputProps = {
@@ -43,6 +42,12 @@ export default function SignupEmailFormField({
         ? 'border border-error hover:ring-error focus:ring-error'
         : '',
     ),
+  };
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    fetchEmailAuth(form.control._formValues.email);
+    openModal('EmailAuthModal');
   };
 
   return (
@@ -70,51 +75,24 @@ export default function SignupEmailFormField({
                   field.onChange(e);
                   form.setValue('email', e.target.value);
                 }}
-                disabled={emailAuthentication}
+                disabled={emailAuth}
               />
             </FormControl>
             <Button
-              variant={
-                error.email || emailAuthentication ? 'disabled' : 'outline'
-              }
+              variant={emailAuth || error.email ? 'disabled' : 'outline'}
               size="default"
-              className="h-10 w-[97px] px-6"
-              disabled={emailAuthentication || error.email !== undefined}
-              onClick={e => {
-                e.preventDefault();
-                openModal('EmailAuthenticationModal');
-              }}
+              className={`h-10 w-[97px] px-6 ${emailAuth && 'bg-green-500'}`}
+              disabled={emailAuth || error.email !== undefined}
+              onClick={handleButtonClick}
             >
-              {emailAuthentication ? '인증완료' : '인증하기'}
+              {emailAuth ? '인증완료' : '인증하기'}
             </Button>
-            {modal.includes('EmailAuthenticationModal') && (
-              <Modal
-                variant="single"
-                size="sm"
-                title="이메일 인증"
-                disabled={otp.length < 6}
-                handleAction={handleEmailAuthentication}
-              >
-                <div className="flex flex-col items-center gap-6">
-                  <p className="text-gray-800">
-                    이메일로 전송된 인증번호 6자리를 입력해주세요
-                  </p>
-                  <InputOTP
-                    maxLength={6}
-                    pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-                    onChange={e => setOtp(e)}
-                  >
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
-                    </InputOTPGroup>
-                  </InputOTP>
-                </div>
-              </Modal>
+            {modal.includes('EmailAuthModal') && (
+              <EmailAuthModal
+                otp={otp}
+                setOtp={setOtp}
+                handleVerifyCode={handleVerifyCode}
+              />
             )}
           </div>
           <FormMessage className="text-sm font-medium text-error" />
