@@ -16,6 +16,15 @@ export function useSignup() {
   return { signup };
 }
 
+export const fetchEmailAuth = async (email: string) => {
+  try {
+    const response = await signupApiService.EmailAuth(email);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export function useSignin(form: UseFormReturn<SigninFormType>) {
   const signin = async (userData: SigninUser) => {
     try {
