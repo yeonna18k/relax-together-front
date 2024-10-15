@@ -7,10 +7,12 @@ import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import ResetSuccessModal from '../../ui/ResetSuccessModal';
+import TokenExpiredModal from '../../ui/TokenExpiredModal';
 
 const formSchema = z
   .object({
@@ -31,8 +33,10 @@ export type ResetPassword = z.infer<typeof formSchema>;
 
 export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const encodeEmail = searchParams.get('email');
   const email = encodeEmail ? decodeURIComponent(encodeEmail) : '';
+  const isTokenExpired = searchParams.get('isTokenExpired');
 
   const form = useForm<ResetPassword>({
     resolver: zodResolver(formSchema),
@@ -44,7 +48,18 @@ export default function ResetPasswordForm() {
   });
 
   const formValid = form.formState.isValid;
-  const { modal, openModal, closeModal } = useModal();
+  const { modal, openModal } = useModal();
+
+  // useCallback으로 openModal 함수 최적화
+  const showModalIfTokenExpired = useCallback(() => {
+    if (isTokenExpired === 'true') {
+      openModal('TokenExpired');
+    }
+  }, [isTokenExpired, openModal]);
+
+  useEffect(() => {
+    showModalIfTokenExpired();
+  }, [showModalIfTokenExpired]);
 
   const handleSubmit = async (data: ResetPassword) => {
     const { newPassword, passwordCheck } = data;
@@ -58,13 +73,24 @@ export default function ResetPasswordForm() {
       });
 
       openModal('ResetSuccess');
-
-      // 성공 시 리디렉션 등 추가 동작이 필요하다면 여기에 추가
+      router.push('/signin'); // 성공 시 로그인 페이지로 리디렉션
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
-        const errorMessage =
-          error.response?.data.message || '잘못된 요청입니다.';
-        form.setError('serverError', { message: errorMessage });
+        const status = error.response?.status;
+
+        if (status === 200) {
+          openModal('TokenExpired');
+        } else {
+          const errorMessage =
+            error.response?.data?.message ||
+            '비밀번호 변경 요청에 실패했습니다.';
+          form.setError('serverError', { message: errorMessage });
+        }
+      } else {
+        console.error('알 수 없는 에러 발생:', error);
+        form.setError('serverError', {
+          message: '알 수 없는 에러가 발생했습니다.',
+        });
       }
     }
   };
@@ -105,6 +131,7 @@ export default function ResetPasswordForm() {
           </form>
         </Form>
         {modal.includes('ResetSuccess') && <ResetSuccessModal />}
+        {modal.includes('TokenExpired') && <TokenExpiredModal />}
       </div>
     </div>
   );
