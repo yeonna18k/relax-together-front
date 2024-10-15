@@ -12,9 +12,9 @@ export default function TabSection() {
 
   return (
     <section className="flex w-full flex-col gap-6 md:flex-row md:justify-between md:gap-0">
-      <SlideTabs tabs={mypageTabs} path={Path.mypage} />
+      <SlideTabs tabs={mypageTabs} path={Path.MYPAGE} />
       {currentSubPage === 'my-reviews' && (
-        <FilterButtonGroup filters={mypageFilters} path={Path.mypage} />
+        <FilterButtonGroup filters={mypageFilters} path={Path.MYPAGE} />
       )}
     </section>
   );

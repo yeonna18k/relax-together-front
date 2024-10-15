@@ -33,11 +33,11 @@ export const Page = {
 } as const;
 
 export const Path = {
-  mypage: 'mypage',
-  gatherings: 'gatherings',
-  reviews: 'reviews',
-  'like-gatherings': 'like-gatherings',
-  signin: 'signin',
+  MYPAGE: 'mypage',
+  GATHERINGS: 'gatherings',
+  REVIEWS: 'reviews',
+  LIKE_GATHERINGS: 'like-gatherings',
+  SIGNIN: 'signin',
 } as const;
 
 export const BASE_URL =

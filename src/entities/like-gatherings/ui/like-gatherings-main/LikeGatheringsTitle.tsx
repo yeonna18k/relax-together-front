@@ -9,7 +9,7 @@ export default function LikeGatheringsTitle() {
       {/* TODO: SlideTabs 패딩(py) 수정 필요 */}
       <SlideTabs
         tabs={commonTabs}
-        path={Path['like-gatherings']}
+        path={Path['LIKE_GATHERINGS']}
         variant="default"
       />
     </div>

@@ -32,8 +32,8 @@ export default function GatheringSearch() {
         <p className="text-[22px] font-bold">모임 찾기</p>
         <SlideTabs
           tabs={commonTabs}
-          path={Path.gatherings}
-          variant={Path.gatherings}
+          path={Path.GATHERINGS}
+          variant={Path.GATHERINGS}
         />
       </div>
       <div className="absolute bottom-0 z-10 w-full border-t border-gray-200 xl:max-w-[996px]" />

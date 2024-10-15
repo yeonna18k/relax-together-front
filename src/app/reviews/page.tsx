@@ -29,7 +29,7 @@ export default async function Reviews() {
           <ReviewScore />
           <CommonSearchFilter
             sortItems={reviewsSortItems}
-            path={Path.reviews}
+            path={Path.REVIEWS}
           />
           <ReviewList />
         </div>
