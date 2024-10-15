@@ -1,8 +1,7 @@
-'use client';
-
 import ForgotPasswordForm from '@/features/auth/forget-password/ui/ForgotPassword';
 import AuthHeader from '@/features/auth/ui/AuthHeader';
 import AuthImage from '@/features/auth/ui/AuthImage';
+import { Suspense } from 'react';
 
 export default function ForgotPassword() {
   return (
@@ -14,7 +13,9 @@ export default function ForgotPassword() {
         />
         <AuthImage />
       </div>
-      <ForgotPasswordForm />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ForgotPasswordForm />
+      </Suspense>
     </>
   );
 }
