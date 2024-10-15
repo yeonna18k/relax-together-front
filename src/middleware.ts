@@ -1,19 +1,22 @@
-import { BASE_URL } from '@/shared/lib/constants';
 import { NextRequest, NextResponse } from 'next/server';
 
 const FALLBACK_URL = '/gatherings';
+const FALLBACK_FORGOT_PASSWORD_URL = '/forgot-password';
 const withAuthList = ['/mypage'];
 
 const getEmail = async (token: string | null) => {
-  const response = await fetch(`${BASE_URL}/api/verify-token`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const response = await fetch(
+    `https://dev.relax-together.shop/api/verify-token`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token,
+      }),
     },
-    body: JSON.stringify({
-      token,
-    }),
-  });
+  );
   return response.json();
 };
 
@@ -37,20 +40,19 @@ export async function middleware(req: NextRequest) {
   }
   if (url.pathname === '/reset-password' && url.searchParams.has('token')) {
     const token = url.searchParams.get('token');
-    console.log('🚀 ~ middleware ~ token:', token);
 
     try {
-      const response = await getEmail(token);
-      console.log('🚀 ~ middleware ~ email:', response);
-
+      const { email } = await getEmail(token);
+      if (!email) {
+        throw new Error('토큰이 만료되었습니다.');
+      }
       url.searchParams.delete('token');
-      url.searchParams.set('email', response);
+      url.searchParams.set('email', email);
       return NextResponse.redirect(url);
     } catch (error) {
-      if (error instanceof Error) {
-        console.error('미들웨어 오류:', error.message);
-        return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
-      }
+      return NextResponse.redirect(
+        new URL(`${FALLBACK_FORGOT_PASSWORD_URL}?isTokenExpired=true`, req.url),
+      );
     }
   }
 

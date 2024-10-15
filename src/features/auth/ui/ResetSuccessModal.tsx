@@ -1,7 +1,10 @@
+'use client';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
+import { useRouter } from 'next/router';
 
 export default function ResetSuccessModal() {
+  const router = useRouter();
   const { closeModal } = useModal();
   return (
     <Modal

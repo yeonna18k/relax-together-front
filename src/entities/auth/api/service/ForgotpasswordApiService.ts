@@ -3,9 +3,6 @@ import { BASE_URL } from '@/shared/lib/constants';
 import axios from 'axios';
 
 export type VerifyTokenResponse = { email: string };
-export type VerifyTokenRequest = { token: string | null };
-export type ForgotPasswordResponse = { success: boolean; message: string };
-export type ResetPasswordResponse = { success: boolean; message: string };
 
 export class ForgotPasswordApiService extends ApiService {
   // 토큰 검증 API
@@ -32,18 +29,15 @@ export class ForgotPasswordApiService extends ApiService {
     email,
     newPassword,
     passwordCheck,
-    token,
   }: {
     email: string;
     newPassword: string;
     passwordCheck: string;
-    token: string;
   }) {
     const response = await axios.post(`${BASE_URL}/api/auths/change-password`, {
       email,
       newPassword,
       passwordCheck,
-      token,
     });
     return response;
   }

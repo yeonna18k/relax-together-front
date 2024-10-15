@@ -7,8 +7,7 @@ import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import ResetSuccessModal from '../../ui/ResetSuccessModal';
@@ -32,12 +31,8 @@ export type ResetPassword = z.infer<typeof formSchema>;
 
 export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const email = searchParams.get('email');
-  const token = searchParams.get('token'); // token 값도 URL에서 가져옴
-  const decodedEmail = email ? decodeURIComponent(email) : '';
-
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const encodeEmail = searchParams.get('email');
+  const email = encodeEmail ? decodeURIComponent(encodeEmail) : '';
 
   const form = useForm<ResetPassword>({
     resolver: zodResolver(formSchema),
@@ -54,30 +49,21 @@ export default function ResetPasswordForm() {
   const handleSubmit = async (data: ResetPassword) => {
     const { newPassword, passwordCheck } = data;
 
-    if (!decodedEmail || !token) {
-      setErrorMessage(
-        '잘못된 요청입니다. 이메일 또는 토큰이 제공되지 않았습니다.',
-      );
-      return;
-    }
-
     try {
-      setErrorMessage(null);
-      openModal('ResetSuccess');
-
       // 실제 비밀번호 변경 API 요청
       await ForgotPasswordApiService.resetPassword({
-        email: decodedEmail,
+        email,
         newPassword,
         passwordCheck,
-        token, // URL에서 가져온 token 사용
       });
+
+      openModal('ResetSuccess');
 
       // 성공 시 리디렉션 등 추가 동작이 필요하다면 여기에 추가
     } catch (error: unknown) {
-      if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
+      if (axios.isAxiosError(error)) {
         const errorMessage =
-          error.response?.data?.e?.message || '잘못된 요청입니다.';
+          error.response?.data.message || '잘못된 요청입니다.';
         form.setError('serverError', { message: errorMessage });
       }
     }
@@ -108,8 +94,6 @@ export default function ResetPasswordForm() {
                 {form.formState.errors.serverError?.message}
               </p>
             )}
-
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 
             <Button
               disabled={!formValid}
