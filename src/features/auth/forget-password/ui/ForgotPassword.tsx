@@ -10,10 +10,12 @@ import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword
 
 import { useModal } from '@/shared/hooks/useModal';
 import axios from 'axios';
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import CreateSuccessModal from '../../ui/ForgotSuccessModal';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
+import TokenExpiredModal from '../../ui/TokenExpiredModal';
 
 const formSchema = z.object({
   email: z
@@ -34,11 +36,20 @@ export default function ForgotPasswordForm() {
     },
   });
 
+  const searchParams = useSearchParams();
+  const isTokenExpired = searchParams.get('isTokenExpired');
   const formValid = form.formState.isValid;
   const { sendForgotPasswordEmail } = useForgotPassword();
   const { openModal, closeModal } = useModal();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { modal } = useModal();
+
+  useEffect(() => {
+    if (isTokenExpired === 'true') {
+      openModal('TokenExpired');
+    }
+  }, [isTokenExpired, openModal]);
 
   // 비밀번호 찾기 요청 함수
   async function onSubmit(values: ForgotPassword) {
@@ -96,6 +107,7 @@ export default function ForgotPasswordForm() {
       </Form>
 
       {isSuccess && <CreateSuccessModal />}
+      {modal.includes('TokenExpired') && <TokenExpiredModal />}
     </div>
   );
 }

@@ -8,11 +8,9 @@ import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import ResetSuccessModal from '../../ui/ResetSuccessModal';
-import TokenExpiredModal from '../../ui/TokenExpiredModal';
 
 const formSchema = z
   .object({
@@ -36,7 +34,6 @@ export default function ResetPasswordForm() {
   const router = useRouter();
   const encodeEmail = searchParams.get('email');
   const email = encodeEmail ? decodeURIComponent(encodeEmail) : '';
-  const isTokenExpired = searchParams.get('isTokenExpired');
 
   const form = useForm<ResetPassword>({
     resolver: zodResolver(formSchema),
@@ -50,22 +47,10 @@ export default function ResetPasswordForm() {
   const formValid = form.formState.isValid;
   const { modal, openModal } = useModal();
 
-  // useCallback으로 openModal 함수 최적화
-  const showModalIfTokenExpired = useCallback(() => {
-    if (isTokenExpired === 'true') {
-      openModal('TokenExpired');
-    }
-  }, [isTokenExpired, openModal]);
-
-  useEffect(() => {
-    showModalIfTokenExpired();
-  }, [showModalIfTokenExpired]);
-
   const handleSubmit = async (data: ResetPassword) => {
     const { newPassword, passwordCheck } = data;
 
     try {
-      // 실제 비밀번호 변경 API 요청
       await ForgotPasswordApiService.resetPassword({
         email,
         newPassword,
@@ -78,8 +63,10 @@ export default function ResetPasswordForm() {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
 
-        if (status === 200) {
-          openModal('TokenExpired');
+        if (status === 401) {
+          form.setError('serverError', {
+            message: '토큰이 만료되었습니다. 다시 시도해주세요.',
+          });
         } else {
           const errorMessage =
             error.response?.data?.message ||
@@ -131,7 +118,6 @@ export default function ResetPasswordForm() {
           </form>
         </Form>
         {modal.includes('ResetSuccess') && <ResetSuccessModal />}
-        {modal.includes('TokenExpired') && <TokenExpiredModal />}
       </div>
     </div>
   );
