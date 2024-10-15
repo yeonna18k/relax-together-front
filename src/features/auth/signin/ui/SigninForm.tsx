@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import GenericFormField from '../../ui/GenericFormField';
@@ -40,31 +40,23 @@ export default function SigninForm() {
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
   const { signinUserData } = useSigninUserData();
-  const { accessToken, setAccessToken } = useAccessToken();
+  const { setAccessToken } = useAccessToken();
   const setUser = useUserDataStore(state => state.setUser);
   const [loginError, setLoginError] = useState(false);
 
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
-    if (res) {
-      res.accessToken && setAccessToken(res.accessToken);
-
-      setLoginError(false);
-      router.push(redirectPath); // 로그인 후 기존 페이지로 리다이렉트
-    } else {
-      setLoginError(true);
-    }
-  }
-  useEffect(() => {
-    const userData = async () => {
+    if (res && res.accessToken) {
+      setAccessToken(res.accessToken);
       const response = await signinUserData();
       if (response) {
         setUser(response.data);
+        setLoginError(false);
+        router.push(redirectPath);
       }
-    };
-    accessToken && userData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken]);
+    }
+  }
+
   return (
     <div className="mt-[15px] w-[343px] rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px]">
       <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">

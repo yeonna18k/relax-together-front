@@ -15,12 +15,6 @@ describe('ApiService', () => {
     jest.restoreAllMocks(); // 모든 모의함수를 초기화
   });
 
-  it('액세스 토큰이 올바르게 설정되어야 한다.', () => {
-    const token = 'test-token';
-    apiService.setAccessToken(token);
-    expect(apiService.getAccessToken()).toBe(token);
-  });
-
   it('액세스 토큰이 설정된 경우 권한 부여 헤더를 첨부해야 한다.', async () => {
     const token = 'test-token';
     apiService.setAccessToken(token);

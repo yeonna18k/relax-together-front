@@ -2,16 +2,14 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export default class ApiService {
   protected static instance: ApiService;
-  protected axiosInstance: AxiosInstance;
-  private accessToken: string = '';
+  protected axiosInstance: AxiosInstance = axios.create({
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
   protected constructor() {
-    this.axiosInstance = axios.create({
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
     if (typeof window !== 'undefined') {
       this.initializeAccessToken();
     }
@@ -25,11 +23,19 @@ export default class ApiService {
     return ApiService.instance;
   }
 
+  private initializeAccessToken() {
+    const storedToken = localStorage.getItem('accessToken');
+    if (storedToken) {
+      this.setAccessToken(storedToken);
+    }
+  }
+
   private setupRequestInterceptors() {
     this.axiosInstance.interceptors.request.use(
       config => {
-        if (this.accessToken) {
-          config.headers['Authorization'] = `Bearer ${this.accessToken}`;
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+          config.headers['Authorization'] = `Bearer ${token}`;
         }
         return config;
       },
@@ -40,19 +46,13 @@ export default class ApiService {
     );
   }
 
-  private initializeAccessToken() {
-    const storedToken = localStorage.getItem('accessToken');
-    if (storedToken) {
-      this.setAccessToken(storedToken);
-    }
-  }
-
-  public getAccessToken(): string {
-    return this.accessToken;
-  }
-
   public setAccessToken(accessToken: string) {
-    this.accessToken = accessToken;
+    const newAuthorization = accessToken ? `Bearer ${accessToken}` : undefined;
+
+    localStorage.setItem('accessToken', accessToken);
+    this.axiosInstance.defaults.headers.common['Authorization'] =
+      newAuthorization;
+    this.setupRequestInterceptors();
   }
 
   async get<T = any, R = AxiosResponse<T>, D = any>(
