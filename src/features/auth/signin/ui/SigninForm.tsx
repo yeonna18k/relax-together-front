@@ -85,7 +85,7 @@ export default function SigninForm() {
             placeholder="비밀번호를 입력해주세요"
           />
           <div
-            className={`${loginError ? '!mt-[18px]' : '!mt-10'} flex flex-col gap-6`}
+            className={`${loginError ? '!mt-2' : '!mt-[60px]'} flex flex-col gap-6`}
           >
             <div className="relative flex flex-col gap-3">
               {loginError ? (
