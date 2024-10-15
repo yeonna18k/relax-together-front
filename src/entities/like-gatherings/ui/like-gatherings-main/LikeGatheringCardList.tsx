@@ -3,7 +3,6 @@
 import GatheringCard from '@/entities/gatherings/ui/card';
 import useAdditionalParams from '@/features/gatherings/model/hook/useAdditionalParams';
 import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
-import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
 import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
 import MotionListItem from '@/shared/common/ui/motion-list-item';
@@ -53,8 +52,9 @@ export default function LikeGatheringCardList() {
   if (status === 'pending' || !data) {
     return <LoadingSkeletonList />;
   }
-  return data.pages[0].totalElements > 0 ? (
-    <ScrollSection
+
+  return filteredData && filteredData[0].length > 0 ? (
+    <div
       ref={ref}
       className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]"
     >
@@ -75,8 +75,8 @@ export default function LikeGatheringCardList() {
         )}
       </ul>
       <div ref={ref} />
-    </ScrollSection>
+    </div>
   ) : (
-    <ContentEmptySection description="신청한 모임이 아직 없어요" />
+    <ContentEmptySection description="아직 찜한 모임이 없어요" />
   );
 }
