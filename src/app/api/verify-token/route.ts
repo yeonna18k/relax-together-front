@@ -1,26 +1,46 @@
+import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { token } = await request.json();
 
-    // 이메일 유효성 확인
-    if (!email) {
+    if (!token) {
       return NextResponse.json(
-        { message: '이메일이 제공되지 않았습니다.' },
+        { message: '토큰이 제공되지 않았습니다.' },
         { status: 400 },
       );
     }
 
-    // 실제 이메일 발송 로직을 여기에 구현
-    // 예: nodemailer 등을 사용하여 이메일 전송
-    console.log(`이메일을 보냈습니다: ${email}`);
-    return NextResponse.json(
-      { message: '이메일이 성공적으로 발송되었습니다.' },
-      { status: 200 },
-    );
+    try {
+      // JWT 토큰 검증
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET as string);
+      const email = (decodedToken as any).email; // JWT에서 email 추출
+      return NextResponse.json({ email }, { status: 200 });
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.name === 'TokenExpiredError') {
+          return NextResponse.json(
+            { message: '토큰이 만료되었습니다.' },
+            { status: 401 },
+          );
+        }
+        return NextResponse.json(
+          { message: '토큰 검증 실패' },
+          { status: 400 },
+        );
+      }
+      return NextResponse.json(
+        { message: '알 수 없는 오류 발생' },
+        { status: 500 },
+      );
+    }
   } catch (error) {
-    console.error('이메일 발송 오류:', error);
-    return NextResponse.json({ message: '이메일 발송 실패' }, { status: 500 });
+    if (error instanceof Error) {
+      console.error('서버 오류:', error.message);
+    } else {
+      console.error('알 수 없는 서버 오류:', error);
+    }
+    return NextResponse.json({ message: '서버 오류' }, { status: 500 });
   }
 }

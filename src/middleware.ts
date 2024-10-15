@@ -35,19 +35,22 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
-
   if (url.pathname === '/reset-password' && url.searchParams.has('token')) {
     const token = url.searchParams.get('token');
     console.log('🚀 ~ middleware ~ token:', token);
+
     try {
-      const { email } = await getEmail(token);
-      console.log('🚀 ~ middleware ~ email:', email);
+      const response = await getEmail(token);
+      console.log('🚀 ~ middleware ~ email:', response);
+
       url.searchParams.delete('token');
-      url.searchParams.set('email', email);
-      console.log({ url });
+      url.searchParams.set('email', response);
       return NextResponse.redirect(url);
     } catch (error) {
-      return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
+      if (error instanceof Error) {
+        console.error('미들웨어 오류:', error.message);
+        return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
+      }
     }
   }
 
@@ -61,6 +64,7 @@ export async function middleware(req: NextRequest) {
     url.searchParams.set('filter', 'all');
     return NextResponse.redirect(url);
   }
+  return NextResponse.next();
 }
 
 export const config = {

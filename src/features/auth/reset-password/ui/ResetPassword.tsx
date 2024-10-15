@@ -17,10 +17,10 @@ const formSchema = z
   .object({
     newPassword: z
       .string()
-      .min(1, { message: '비밀번호가 8자 이상이 되도록 해 주세요.' }),
+      .min(8, { message: '비밀번호가 8자 이상이 되도록 해 주세요.' }),
     passwordCheck: z
       .string()
-      .min(1, { message: '비밀번호 확인을 위해 한 번 더 입력해주세요.' }),
+      .min(8, { message: '비밀번호 확인을 위해 한 번 더 입력해주세요.' }),
     serverError: z.string().optional(),
   })
   .refine(data => data.newPassword === data.passwordCheck, {
@@ -34,8 +34,9 @@ export default function ResetPasswordForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const email = searchParams.get('email');
-  const decodedEmail = decodeURIComponent(email || '');
-  console.log('🚀 ~ ResetPasswordForm ~ decodedEmail:', decodedEmail);
+  const token = searchParams.get('token'); // token 값도 URL에서 가져옴
+  const decodedEmail = email ? decodeURIComponent(email) : '';
+
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const form = useForm<ResetPassword>({
@@ -49,31 +50,35 @@ export default function ResetPasswordForm() {
 
   const formValid = form.formState.isValid;
   const { modal, openModal, closeModal } = useModal();
-  const handleSubmit = async (data: ResetPassword) => {
-    // {
-    //   “email”: “String”,
-    //   “newPassword”: “String”,
-    //   “passwordCheck”: “String”
-    // }
 
+  const handleSubmit = async (data: ResetPassword) => {
     const { newPassword, passwordCheck } = data;
+
+    if (!decodedEmail || !token) {
+      setErrorMessage(
+        '잘못된 요청입니다. 이메일 또는 토큰이 제공되지 않았습니다.',
+      );
+      return;
+    }
+
     try {
       setErrorMessage(null);
       openModal('ResetSuccess');
-      // 실제 비밀번호 변경 API 요청을 여기에 추가하세요
-      console.log('비밀번호 변경 데이터:', data);
-      email &&
-        (await ForgotPasswordApiService.resetPassword({
-          email: 'user@example.com',
-          newPassword: 'newPassword123',
-          passwordCheck: 'newPassword123',
-          token: 'tokenValue', // 비밀번호 재설정에 필요한 토큰
-        }));
+
+      // 실제 비밀번호 변경 API 요청
+      await ForgotPasswordApiService.resetPassword({
+        email: decodedEmail,
+        newPassword,
+        passwordCheck,
+        token, // URL에서 가져온 token 사용
+      });
+
+      // 성공 시 리디렉션 등 추가 동작이 필요하다면 여기에 추가
     } catch (error: unknown) {
       if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
-        if (error.response?.status === 400) {
-          form.setError('serverError', { message: '잘못된 요청입니다.' });
-        }
+        const errorMessage =
+          error.response?.data?.e?.message || '잘못된 요청입니다.';
+        form.setError('serverError', { message: errorMessage });
       }
     }
   };
@@ -98,11 +103,13 @@ export default function ResetPasswordForm() {
               label="비밀번호 확인"
               placeholder="비밀번호를 입력해주세요"
             />
-            {form.formState.errors && (
+            {form.formState.errors.serverError && (
               <p className="text-red-500">
                 {form.formState.errors.serverError?.message}
               </p>
             )}
+
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 
             <Button
               disabled={!formValid}
