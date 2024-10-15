@@ -1,6 +1,7 @@
 import SigninForm from '@/features/auth/signin/ui/SigninForm';
 import AuthHeader from '@/features/auth/ui/AuthHeader';
 import AuthImage from '@/features/auth/ui/AuthImage';
+import { Suspense } from 'react';
 
 export default function Signin() {
   return (
@@ -12,7 +13,9 @@ export default function Signin() {
         />
         <AuthImage />
       </div>
-      <SigninForm />
+      <Suspense fallback={null}>
+        <SigninForm />
+      </Suspense>
     </>
   );
 }
