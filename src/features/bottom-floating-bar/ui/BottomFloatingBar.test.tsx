@@ -13,6 +13,10 @@ jest.mock('next/navigation', () => ({
   useParams: () => ({
     id: '1',
   }),
+  usePathname: jest.fn(() => '/currentPath'),
+  useSearchParams: jest.fn(() => ({
+    toString: () => 'param1=value1&param2=value2',
+  })),
 }));
 
 jest.mock('@tanstack/react-query', () => ({
