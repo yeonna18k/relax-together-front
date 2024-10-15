@@ -52,7 +52,7 @@ export default function ReviewContent(props: ReviewCardProps) {
           {moreButton ? (
             <button
               onClick={toggleExpand}
-              className="absolute bottom-2 right-0 z-10 text-xs font-medium text-gray-500"
+              className={`absolute right-0 text-xs font-medium text-gray-500 ${page === 'GATHERING_DETAIL' ? '-bottom-[18px]' : 'bottom-2'}`}
             >
               {isExpanded ? '간략히' : '자세히 보기'}
             </button>
