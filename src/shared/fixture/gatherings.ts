@@ -38,5 +38,5 @@ export const gatheringsContents: Array<Gathering> = Array.from({
 export const gatheringsDummyData: Response<Gathering> = {
   content: gatheringsContents,
   hasNext: true,
-  totalElements: 0,
+  totalElements: gatheringsContents.length,
 };

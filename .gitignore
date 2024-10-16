@@ -40,3 +40,8 @@ next-env.d.ts
 
 *storybook.log
 .vscode/settings.json
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

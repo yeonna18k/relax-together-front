@@ -89,8 +89,6 @@ export async function middleware(req: NextRequest) {
     url.searchParams.set('filter', 'all');
     return NextResponse.redirect(url);
   }
-
-  return NextResponse.next();
 }
 
 export const config = {
