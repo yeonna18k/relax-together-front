@@ -6,7 +6,7 @@ describe('CommonBlurCard Component', () => {
   test('화면에 렌더링 된다.', () => {
     render(
       <Provider>
-        <CommonBlurCard id={0} />
+        <CommonBlurCard id={0} status="CANCELLED" />
       </Provider>,
     );
 

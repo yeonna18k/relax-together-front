@@ -8,7 +8,7 @@ interface ByeButtonProps {
 export default function ByeButton({ onClick }: ByeButtonProps) {
   return (
     <Button
-      className="flex h-9 w-[116px] items-center justify-between rounded-xl border-green-50 bg-green-50 px-3 py-1.5 hover:bg-green-50 active:bg-green-50 xs:h-12 xs:w-12 xs:rounded-full xs:p-3"
+      className="z-40 flex h-9 w-[116px] items-center justify-between rounded-xl border-green-50 bg-green-50 px-3 py-1.5 hover:bg-green-50 active:bg-green-50 xs:h-12 xs:w-12 xs:rounded-full xs:p-3"
       onClick={onClick}
     >
       <ByeIcon className="h-6 w-6" />

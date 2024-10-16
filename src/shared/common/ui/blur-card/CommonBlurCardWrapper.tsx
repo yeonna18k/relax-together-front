@@ -9,7 +9,7 @@ export default function CommonBlurCardWrapper({
 }: PropsWithChildren & Pick<MyGathering, 'id' | 'status'>) {
   return (
     <div className="relative">
-      {status === 'CANCELLED' && <CommonBlurCard id={id} />}
+      <CommonBlurCard id={id} status={status} />
       {children}
     </div>
   );

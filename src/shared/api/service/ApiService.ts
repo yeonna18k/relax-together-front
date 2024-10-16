@@ -10,9 +10,7 @@ export default class ApiService {
   });
 
   protected constructor() {
-    if (typeof window !== 'undefined') {
-      this.initializeAccessToken();
-    }
+    this.initializeAccessToken();
     this.setupRequestInterceptors();
   }
 
