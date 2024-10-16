@@ -3,8 +3,8 @@
 # 변경된 파일 목록 가져오기 (Playwright 테스트 파일 제외)
 changed_files=$(git diff --name-only --cached | grep -v "\.spec\.ts$")
 
-# 모든 테스트 파일 목록 가져오기 (현재 디렉터리에서 .spec.ts 파일들 찾기)
-test_files=$(find . -name "*.spec.ts")
+# 모든 테스트 파일 목록 가져오기 (현재 디렉터리에서 .test.ts 파일들 찾기)
+test_files=$(find . -name "*.test.ts")
 
 # 변경된 파일과 모든 테스트 파일 합치기
 all_files="$changed_files $test_files"
