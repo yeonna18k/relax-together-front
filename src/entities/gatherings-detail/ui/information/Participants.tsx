@@ -1,19 +1,12 @@
 import OpenBadge from '@/shared/common/ui/open-badge';
-import {
-  GatheringsInfoTypes,
-  ParticipantListTypes,
-} from '../../model/information';
+import { ParticipantListTypes } from '../../model/information';
 import UserProfileImage from './UserProfileImage';
 
 interface ParticipantsProps {
-  gatheringsInfo: GatheringsInfoTypes;
   participantList: ParticipantListTypes;
 }
 
-export default function Participants({
-  gatheringsInfo,
-  participantList,
-}: ParticipantsProps) {
+export default function Participants({ participantList }: ParticipantsProps) {
   return (
     <div className="flex justify-between">
       <div className="flex items-center gap-3 text-sm font-semibold text-gray-900">
@@ -23,13 +16,10 @@ export default function Participants({
             {participantList.totalElements}명
           </span>
         </div>
-        <UserProfileImage
-          gatheringsInfo={gatheringsInfo}
-          participantList={participantList}
-        />
+        <UserProfileImage participantList={participantList} />
       </div>
-      {gatheringsInfo.participantCount >= 5 ? (
-        <OpenBadge value={gatheringsInfo.participantCount} />
+      {participantList.totalElements >= 5 ? (
+        <OpenBadge value={participantList.totalElements} />
       ) : null}
     </div>
   );
