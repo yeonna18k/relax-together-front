@@ -24,18 +24,22 @@ export default class ApiService {
   }
 
   private initializeAccessToken() {
-    const storedToken = localStorage.getItem('accessToken');
-    if (storedToken) {
-      this.setAccessToken(storedToken);
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('accessToken');
+      if (storedToken) {
+        this.setAccessToken(storedToken);
+      }
     }
   }
 
   private setupRequestInterceptors() {
     this.axiosInstance.interceptors.request.use(
       config => {
-        const token = localStorage.getItem('accessToken');
-        if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem('accessToken');
+          if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+          }
         }
         return config;
       },
