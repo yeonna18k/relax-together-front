@@ -6,8 +6,8 @@ import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import GenericFormField from '../../ui/GenericFormField';
@@ -19,6 +19,7 @@ const formSchema = z.object({
     .min(1, { message: '이메일을 입력해주세요.' })
     .email('이메일 형식을 입력해주세요.'),
   password: z.string().min(1, { message: '비밀번호를 입력해주세요.' }),
+  loginError: z.string().optional(),
 });
 
 export type SigninFormType = z.infer<typeof formSchema>;
@@ -34,63 +35,70 @@ export default function SigninForm() {
   });
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get('redirect') || '/gatherings'; // redirect 경로 (기본값: /gatherings)
+
   const formValid = form.formState.isValid;
   const { signin } = useSignin(form);
   const { signinUserData } = useSigninUserData();
-  const { accessToken, setAccessToken } = useAccessToken();
+  const { setAccessToken } = useAccessToken();
   const setUser = useUserDataStore(state => state.setUser);
-  const [loginError, setLoginError] = useState(false);
 
   async function onSubmit(values: SigninFormType) {
     const res = await signin(values);
-    if (res) {
-      res.accessToken && setAccessToken(res.accessToken);
-
-      setLoginError(false);
-      router.push('/gatherings');
-    } else {
-      setLoginError(true);
-    }
-  }
-  useEffect(() => {
-    const userData = async () => {
+    if (res && res.accessToken) {
+      setAccessToken(res.accessToken);
       const response = await signinUserData();
       if (response) {
         setUser(response.data);
+        router.push(redirectPath);
       }
-    };
-    accessToken && userData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken]);
+    }
+  }
+
   return (
-    <div className="mt-[15px] h-[468px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-[30px] xl:w-[510px]">
-      <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
-        로그인
-      </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <GenericFormField
-            form={form}
-            name="email"
-            label="아이디"
-            placeholder="이메일을 입력해주세요"
-          />
-          <GenericFormField
-            form={form}
-            name="password"
-            label="비밀번호"
-            placeholder="비밀번호를 입력해주세요"
-          />
-          <div className="!mt-10 flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
-              {loginError ? (
-                <div className="text-center text-sm font-semibold text-error">
-                  아이디 또는 비밀번호가 잘못 되었습니다.
-                  <br />
-                  아이디와 비밀번호를 정확히 입력해 주세요.
-                </div>
+    <div>
+      <div className="mt-[15px] w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-[30px] xl:w-[510px]">
+        <div className="mb-8 text-center text-xl font-semibold text-gray-800 md:text-2xl">
+          로그인
+        </div>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-6"
+          >
+            <GenericFormField
+              form={form}
+              name="email"
+              label="아이디"
+              placeholder="이메일을 입력해주세요"
+              isErrorMessage={false}
+            />
+            <GenericFormField
+              form={form}
+              name="password"
+              label="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
+              isErrorMessage={false}
+            />
+            <div className="space-y-3">
+              {form.formState.errors.loginError ? (
+                <p className="text-center text-sm font-semibold text-error">
+                  {form.formState.errors.loginError?.message
+                    ?.split('^')
+                    .map((msg, index) =>
+                      index === 0 ? (
+                        <>
+                          {msg}
+                          <br />
+                        </>
+                      ) : (
+                        <>{msg}</>
+                      ),
+                    )}
+                </p>
               ) : (
-                <></>
+                <div className="h-10 w-full" />
               )}
               <Button
                 disabled={!formValid}
@@ -102,9 +110,15 @@ export default function SigninForm() {
               </Button>
             </div>
             <TogglePage page="signin" />
-          </div>
-        </form>
-      </Form>
+          </form>
+        </Form>
+      </div>
+      <div className="mt-6 flex w-full justify-center gap-2 text-gray-500">
+        <p>비밀번호를 잊어버리셨나요?</p>
+        <Link href="/forgot-password" className="underline">
+          비밀번호 찾기
+        </Link>
+      </div>
     </div>
   );
 }

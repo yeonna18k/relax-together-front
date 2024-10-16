@@ -52,15 +52,14 @@ export const getISOTimeWithOffset = (hourOffset: number) => {
 export const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text);
-    alert('링크가 복사되었습니다.');
   } catch (err) {
     console.error('클립보드 복사 실패:', err);
   }
 };
 
-export function getKoreaTime() {
+export function getKoreaTime(date?: Date): Date {
   const koreaTimeZone = 'Asia/Seoul';
-  const now = new Date();
+  const now = date ?? new Date();
   const koreaTime = toZonedTime(now, koreaTimeZone);
   return koreaTime;
 }
@@ -86,8 +85,11 @@ function getRemainingHoursText(remainingHours: number): string {
 }
 
 // 전체 마감 처리 로직
-export function getTimeUntilDeadline(registrationEnd: Date): string {
-  const now = getKoreaTime();
+export function getTimeUntilDeadline(
+  registrationEnd: Date,
+  date?: Date,
+): string {
+  const now = getKoreaTime(date);
   const diffInMilliseconds = registrationEnd.getTime() - now.getTime();
   const diffInMinutes = diffInMilliseconds / 1000 / 60;
   const diffInHours = diffInMinutes / 60;

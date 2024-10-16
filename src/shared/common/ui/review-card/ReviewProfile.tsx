@@ -8,7 +8,7 @@ export default function ReviewProfile({
   return (
     <div className="flex items-center gap-2 text-xs font-medium">
       <Image
-        src={userProfileImage}
+        src={userProfileImage || `/assets/logo-icon.svg`}
         alt="user-profile-img"
         width={24}
         height={24}

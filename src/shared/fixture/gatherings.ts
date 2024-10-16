@@ -32,6 +32,7 @@ export const gatheringsContents: Array<Gathering> = Array.from({
     capacity: MAX_CAPACITY,
     imageUrl: `/assets/sample${condition + 1}.png`,
     hostUser: 0,
+    ended: condition === 3 ? true : false,
   };
 });
 export const gatheringsDummyData: Response<Gathering> = {

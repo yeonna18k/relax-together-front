@@ -6,6 +6,7 @@ import ShareBtn from './ShareBtn';
 export default function FloatingBarBtn({
   id,
   isHost,
+  gatheringsInfo,
   participantList,
 }: BottomFloatingBarProps) {
   return (
@@ -16,7 +17,11 @@ export default function FloatingBarBtn({
           <ShareBtn />
         </div>
       ) : (
-        <JoinBtn id={id} participantList={participantList} />
+        <JoinBtn
+          id={id}
+          gatheringsInfo={gatheringsInfo}
+          participantList={participantList}
+        />
       )}
     </>
   );

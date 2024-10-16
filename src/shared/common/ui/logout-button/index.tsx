@@ -10,12 +10,12 @@ interface LogoutButtonProps {
 }
 export default function LogoutButton({ className }: LogoutButtonProps) {
   const router = useRouter();
-  const { setAccessToken } = useAccessToken();
   const { signout } = useSignout();
+  const { setAccessToken } = useAccessToken();
   const clearUser = useUserDataStore(state => state.clearUser);
 
-  const handleSignout = () => {
-    signout();
+  const handleSignout = async () => {
+    await signout();
     setAccessToken('');
     clearUser();
     router.push('/');

@@ -18,6 +18,9 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      boxShadow: {
+        custom: '0px 5px 10px rgba(0, 0, 0, 0.1)',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -149,12 +152,17 @@ const config: Config = {
             position: 'absolute',
           },
         },
+        'caret-blink': {
+          '0%,70%,100%': { opacity: '1' },
+          '20%,50%': { opacity: '0' },
+        },
       },
       animation: {
         slideIn: 'slideIn 0.5s ease-out forwards',
         slideOut: 'slideOut 0.5s ease-out forwards',
         fillHeart: 'fillHeart 0.3s ease-out forwards',
         clearHeart: 'clearHeart 0.3s ease-out forwards',
+        'caret-blink': 'caret-blink 1.25s ease-out infinite',
       },
     },
   },

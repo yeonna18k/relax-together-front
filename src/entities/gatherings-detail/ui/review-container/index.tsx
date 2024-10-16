@@ -11,7 +11,7 @@ interface ReviewContainerProps {
 }
 
 export default function ReviewContainer({ id }: ReviewContainerProps) {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const { data } = useQuery({
     queryKey: ['review', id, currentPage],
@@ -24,11 +24,13 @@ export default function ReviewContainer({ id }: ReviewContainerProps) {
   const totalPages = totalReviews && Math.ceil(totalReviews / REVIEWS_PER_PAGE);
 
   return (
-    <div className="mt-4 h-[calc(100vh-500px)] rounded-xl bg-white p-6 sm:mt-6">
+    <div className="mt-4 rounded-xl bg-white p-6 sm:mt-6">
       <h3 className="text-base font-semibold text-gray-900 sm:text-lg">
         이용자들은 이 프로그램을 이렇게 느꼈어요!
       </h3>
-      <div className="mt-4 flex min-h-full items-center justify-center">
+      <div
+        className={`mt-4 min-h-[calc(100vh-740px)] sm:min-h-[calc(100vh-556px)] md:min-h-[calc(100vh-584px)] lg:min-h-[calc(100vh-600px)] ${!(data && totalPages) && 'flex items-center justify-center'}`}
+      >
         {data && totalPages ? (
           <PaginationReviews
             reviewList={data}
@@ -37,10 +39,9 @@ export default function ReviewContainer({ id }: ReviewContainerProps) {
             totalPages={totalPages}
           />
         ) : (
-          // TODO: 높이 조절
-          <div className="flex items-center justify-center text-sm font-medium text-gray-600">
+          <span className="text-sm font-medium text-gray-600">
             아직 리뷰가 없어요
-          </div>
+          </span>
         )}
       </div>
     </div>

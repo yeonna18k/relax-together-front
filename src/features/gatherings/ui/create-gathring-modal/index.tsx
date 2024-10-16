@@ -16,6 +16,7 @@ import CreateGatheringNameFormFiled from '@/features/gatherings/ui/create-gather
 import CreateGatheringSwitchButtonGroup from '@/features/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import CreateGatheringTypeFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
 import Modal from '@/shared/common/ui/modal';
+import { getKoreaTime } from '@/shared/lib/utils';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
@@ -33,8 +34,8 @@ export default function GatheringCreateModal() {
     defaultValues: {
       name: null,
       location: '건대입구',
-      type: selectedFilter === '달램핏' ? '오피스 스트레칭' : '워케이션',
-      dateTime: getAddHoursDateISOString(selectedDate, selectedTime),
+      type: '오피스 스트레칭',
+      dateTime: getKoreaTime().toISOString(),
       registrationEnd: getAddHoursDateISOString(selectedDate, selectedTime),
       imageUrl: '',
       capacity: 5,
@@ -47,8 +48,6 @@ export default function GatheringCreateModal() {
       setIsDisabled(true);
     } else {
       form.setValue('type', '오피스 스트레칭');
-
-      setIsDisabled(false);
     }
   }, [selectedFilter, form]);
 
@@ -98,6 +97,7 @@ export default function GatheringCreateModal() {
             <CreateGatheringDateTimeFormFiled
               form={form}
               selectedFilter={selectedFilter}
+              setIsDisabled={setIsDisabled}
             />
             <CreateGatheringCapacityFormFiled control={form.control} />
           </form>

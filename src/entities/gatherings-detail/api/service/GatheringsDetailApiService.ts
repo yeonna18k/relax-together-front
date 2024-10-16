@@ -7,6 +7,9 @@ import {
 } from '../../model/information';
 
 class GatheringsDetailApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async getGatheringsInfo(id: string) {
     const response = await this.get<GatheringsInfoTypes>(
       `${BASE_URL}/api/gatherings/${id}`,
@@ -29,8 +32,7 @@ class GatheringsDetailApiService extends ApiService {
     currentPage: number;
   }) {
     const response = await this.get<Reviews>(
-      `${BASE_URL}/api/gatherings/${id}/reviews`, // msw
-      // `http://localhost:3000/api/gatherings/${id}/reviews`,
+      `${BASE_URL}/api/gatherings/${id}/reviews`,
       {
         params: {
           page: currentPage,
@@ -43,24 +45,21 @@ class GatheringsDetailApiService extends ApiService {
 
   async joinGathering(id: string) {
     const response = await this.post<string>(
-      `${BASE_URL}/api/gatherings/${id}/join`, // msw
-      // `http://localhost:3000/api/gatherings/${id}/join`,
+      `${BASE_URL}/api/gatherings/${id}/join`,
     );
     return response.data;
   }
 
   async leaveGathering(id: string) {
     const response = await this.delete<string>(
-      `${BASE_URL}/api/gatherings/${id}/leave`, // msw
-      // `http://localhost:3000/api/gatherings/${id}/join`,
+      `${BASE_URL}/api/gatherings/${id}/leave`,
     );
     return response.data;
   }
 
   async cancelGathering(id: string) {
     const response = await this.put<string>(
-      `${BASE_URL}/api/gatherings/${id}/cancel`, // msw
-      // `http://localhost:3000/api/gatherings/${id}/join`,
+      `${BASE_URL}/api/gatherings/${id}/cancel`,
     );
     return response.data;
   }

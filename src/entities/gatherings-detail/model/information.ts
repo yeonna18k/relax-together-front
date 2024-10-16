@@ -1,14 +1,6 @@
-export type GatheringsInfoTypes = {
-  id: number;
-  hostUser: number;
-  name: string;
-  location: string;
-  type: string;
-  capacity: number;
-  imageUrl: string;
-  participantCount: number;
-  dateTime: string;
-  registrationEnd: string;
+import { Gathering } from '@/shared/model';
+
+export type GatheringsInfoTypes = Omit<Gathering, 'ended'> & {
   status: string;
 };
 

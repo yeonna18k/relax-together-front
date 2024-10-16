@@ -2,7 +2,10 @@ import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL } from '@/shared/lib/constants';
 import { SigninUser, SignupUser } from '../../model/user';
 
-export class SignupApiService extends ApiService {
+class SignupApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async signup({
     email,
     password,
@@ -25,9 +28,21 @@ export class SignupApiService extends ApiService {
     );
     return response;
   }
-  async checkEmail(email: string) {
+  async VerifyUniqueEmail(email: string) {
     const response = await this.post(`${BASE_URL}/api/auths/check-email`, {
       email,
+    });
+    return response;
+  }
+  async EmailAuth(email: string) {
+    const response = await this.post(`${BASE_URL}/api/email/signup`, {
+      email,
+    });
+    return response;
+  }
+  async VerifyEmailAuthCode(code: string) {
+    const response = await this.post(`${BASE_URL}/api/verify-code`, {
+      code,
     });
     return response;
   }
@@ -37,6 +52,9 @@ export const signupApiService = new SignupApiService();
 
 export type Tokens = { accessToken: string };
 class SigninApiService extends ApiService {
+  constructor() {
+    super();
+  }
   async signin({ email, password }: SigninUser) {
     const response = await this.post<Tokens>(`${BASE_URL}/api/auths/login`, {
       email,

@@ -1,7 +1,9 @@
 'use client';
 
 import BottomFloatingBar from '@/features/bottom-floating-bar/ui';
+import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useQuery } from '@tanstack/react-query';
+import { notFound } from 'next/navigation';
 import { gatheringsDetailApiService } from '../../api/service/GatheringsDetailApiService';
 import GatheringTop from '../gathering-top';
 import ReviewContainer from '../review-container';
@@ -13,6 +15,8 @@ interface GatheringsDetailMainProps {
 export default function GatheringsDetailMain({
   id,
 }: GatheringsDetailMainProps) {
+  const user = useUserDataStore(state => state.user);
+
   const { data: gatheringsInfo } = useQuery({
     queryKey: ['gathering', id],
     queryFn: () => gatheringsDetailApiService.getGatheringsInfo(id),
@@ -24,13 +28,18 @@ export default function GatheringsDetailMain({
     queryFn: () => gatheringsDetailApiService.getParticipantList(id),
   });
 
-  // const isHost = gatheringsInfo.hostUser === userInfo.id;
-  const isHost = false;
+  // 데이터가 없을 때 처리
+  if (!gatheringsInfo || !participantList) {
+    notFound();
+  }
+
+  // 유저가 해당 모임의 주최자인지 여부
+  const isHost = gatheringsInfo?.hostUser === user?.id;
 
   return (
     <>
       <div
-        className={`mx-auto max-w-[996px] px-4 pt-6 sm:px-6 sm:pb-[84px] sm:pt-[27.5px] lg:px-0 lg:pt-[29.5px] ${isHost ? 'pb-[134px]' : 'pb-[96px]'}`}
+        className={`mx-auto max-w-[996px] px-4 pt-6 sm:px-6 sm:pb-[84px] sm:pt-[27.5px] md:pb-[110px] lg:px-0 lg:pt-[29.5px] ${isHost ? 'pb-[154px]' : 'pb-[114px]'}`}
       >
         {gatheringsInfo && participantList && (
           <GatheringTop
@@ -44,6 +53,7 @@ export default function GatheringsDetailMain({
         <BottomFloatingBar
           id={id}
           isHost={isHost}
+          gatheringsInfo={gatheringsInfo}
           participantList={participantList}
         />
       )}

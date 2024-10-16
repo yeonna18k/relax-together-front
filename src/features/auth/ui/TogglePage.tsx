@@ -1,29 +1,17 @@
+import { TogglePageType } from '@/shared/lib/constants';
 import Link from 'next/link';
 
-type TogglePagePropsMap = {
-  signup: {
-    span: string;
-    href: string;
-    link: string;
-  };
-  signin: {
-    span: string;
-    href: string;
-    link: string;
-  };
-  forgotPassword: {
-    span: string;
-    href: string;
-    link: string;
-  };
+type TogglePageValue = {
+  span: string;
+  href: string;
+  link: string;
 };
 
-export default function TogglePage({
-  page,
-}: {
-  page: keyof TogglePagePropsMap;
-}) {
-  const PageMap: TogglePagePropsMap = {
+type ValueOf<T> = T[keyof T];
+type TogglePageKey = ValueOf<typeof TogglePageType>;
+
+export default function TogglePage({ page }: { page: TogglePageKey }) {
+  const PageMap: Record<TogglePageKey, TogglePageValue> = {
     signup: {
       span: '이미 회원이신가요?',
       href: '/signin',
@@ -35,50 +23,18 @@ export default function TogglePage({
       link: '회원가입',
     },
     forgotPassword: {
-      span: '비밀번호를 잊어버리셨나요?',
-      href: '/forgot-password',
-      link: '비밀번호 찾기',
+      span: '같이 달램이 처음이신가요?',
+      href: '/signup',
+      link: '회원가입',
     },
   };
 
   return (
-    <div className="mt-10 flex h-[18px] flex-col items-center justify-center gap-1 text-[15px] font-medium">
-      {/* 로그인 페이지에서는 회원가입과 비밀번호 찾기 링크 모두 출력 */}
-      {page === 'signin' && (
-        <>
-          <div className="flex">
-            <p className="text-gray-500">{PageMap.signin.span}</p>
-            <Link
-              href={PageMap.signin.href}
-              className="ml-2 text-green-500 underline"
-            >
-              {PageMap.signin.link}
-            </Link>
-          </div>
-          <div className="mt-10 flex">
-            <p className="text-gray-500">{PageMap.forgotPassword.span}</p>
-            <Link
-              href={PageMap.forgotPassword.href}
-              className="ml-2 text-gray-500 underline"
-            >
-              {PageMap.forgotPassword.link}
-            </Link>
-          </div>
-        </>
-      )}
-
-      {/* 비밀번호 찾기 페이지에서는 회원가입 링크만 출력 */}
-      {page === 'forgotPassword' && (
-        <div className="relative top-[-30px] flex text-[15px] font-medium">
-          <p className="text-gray-800">{PageMap.signin.span}</p>
-          <Link
-            href={PageMap.signin.href}
-            className="ml-2 text-green-500 underline"
-          >
-            {PageMap.signin.link}
-          </Link>
-        </div>
-      )}
+    <div className="flex w-full items-center justify-center gap-2">
+      <p className="text-gray-800">{PageMap[page].span}</p>
+      <Link href={PageMap[page].href} className="text-green-500 underline">
+        {PageMap[page].link}
+      </Link>
     </div>
   );
 }

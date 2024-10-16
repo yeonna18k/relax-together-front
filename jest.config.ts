@@ -18,7 +18,9 @@ const config: Config = {
   },
   moduleNameMapper: {
     '^.+\\.(svg)$': '<rootDir>/src/shared/mocks/mockSvgr.ts',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
+  moduleDirectories: ['node_modules', '<rootDir>'],
 };
 
 export default createJestConfig(config);

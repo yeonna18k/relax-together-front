@@ -1,12 +1,4 @@
-export type Review = {
-  gatheringType: string;
-  gatheringLocation: string;
-  userProfileImage: string;
-  userName: string;
-  score: number;
-  comment: string;
-  createdDate: string;
-};
+import { Review } from '@/shared/model';
 
 export type Reviews = {
   reviews: Review[];

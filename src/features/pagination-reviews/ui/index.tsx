@@ -4,6 +4,7 @@ import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-pagination.svg';
 import ArrowRightIcon from '@/shared/assets/icons/arrow-right-pagination.svg';
 import ReviewCard from '@/shared/common/ui/review-card';
 import { cn } from '@/shared/lib/utils';
+import { Review } from '@/shared/model';
 import {
   Pagination,
   PaginationItemRenderProps,
@@ -11,7 +12,7 @@ import {
 } from '@nextui-org/pagination';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Review, Reviews } from '../model/reviews';
+import { Reviews } from '../model/reviews';
 
 export interface PaginationReviewsProps {
   reviewList: Reviews;
@@ -75,7 +76,7 @@ export default function PaginationReviews({
     };
 
     const handlePageBtnClick = (value: number) => {
-      handlePageChange(value);
+      handlePageChange(value - 1);
     };
 
     if (value === PaginationItemType.NEXT) {
@@ -159,7 +160,6 @@ export default function PaginationReviews({
   return (
     <>
       <ul>
-        {/* TODO: key값 필요, ReviewCard */}
         {reviewList?.reviews?.map((review: Review, index) => {
           return (
             <li key={index}>
@@ -167,12 +167,10 @@ export default function PaginationReviews({
                 page="GATHERING_DETAIL"
                 score={review.score}
                 userName={review.userName}
-                userProfileImage={review.userProfileImage} // X
+                userProfileImage={review.userProfileImage}
                 comment={review.comment}
-                // gatheringLocation={review.gatheringLocation} // X
-                // gatheringType={review.gatheringType} // X
-                gatheringLocation="건대입구"
-                gatheringType="달램핏"
+                gatheringLocation={review.gatheringLocation}
+                gatheringType={review.gatheringType}
                 createdDate={review.createdDate}
               />
             </li>

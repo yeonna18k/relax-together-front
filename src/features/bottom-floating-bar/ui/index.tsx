@@ -1,16 +1,21 @@
-import { ParticipantListTypes } from '@/entities/gatherings-detail/model/information';
+import {
+  GatheringsInfoTypes,
+  ParticipantListTypes,
+} from '@/entities/gatherings-detail/model/information';
 import FloatingBarBtn from './FloatingBarBtn';
 import FloatingBarText from './FloatingBarText';
 
 export interface BottomFloatingBarProps {
   id: string;
   isHost: boolean;
+  gatheringsInfo: GatheringsInfoTypes;
   participantList: ParticipantListTypes;
 }
 
 export default function BottomFloatingBar({
   id,
   isHost,
+  gatheringsInfo,
   participantList,
 }: BottomFloatingBarProps) {
   return (
@@ -24,6 +29,7 @@ export default function BottomFloatingBar({
         <FloatingBarBtn
           id={id}
           isHost={isHost}
+          gatheringsInfo={gatheringsInfo}
           participantList={participantList}
         />
       </div>

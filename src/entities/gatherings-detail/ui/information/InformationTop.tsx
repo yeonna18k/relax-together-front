@@ -15,8 +15,7 @@ export default function InformationTop({
       <div className="flex justify-between gap-4">
         <GatheringInfo gatheringsInfo={gatheringsInfo} />
         <div className="h-12 w-12 shrink-0">
-          {/* TODO: gatheringId 추가 */}
-          <LikeButton gatheringId="" />
+          <LikeButton gatheringId={gatheringsInfo.id.toString()} />
         </div>
       </div>
       <GatheringChip gatheringsInfo={gatheringsInfo} />

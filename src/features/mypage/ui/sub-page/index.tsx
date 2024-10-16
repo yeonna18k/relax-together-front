@@ -13,27 +13,6 @@ const subPageTargetMap: Record<string, React.ReactNode> = {
   'my-hosted-gatherings': <MyHostedGatheringsSection />,
 };
 
-const pageVariants = {
-  initial: {
-    opacity: 0,
-    x: -30,
-  },
-  in: {
-    opacity: 1,
-    x: 0,
-  },
-  out: {
-    opacity: 0,
-    x: 30,
-  },
-};
-
-const pageTransition = {
-  type: 'tween',
-  ease: 'anticipate',
-  duration: 0.5,
-};
-
 export default function SubPageContainer() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
   const [subPage, setSubPage] = useState<string | null>(null);

@@ -16,6 +16,15 @@ export function useSignup() {
   return { signup };
 }
 
+export const fetchEmailAuth = async (email: string) => {
+  try {
+    const response = await signupApiService.EmailAuth(email);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export function useSignin(form: UseFormReturn<SigninFormType>) {
   const signin = async (userData: SigninUser) => {
     try {
@@ -23,9 +32,13 @@ export function useSignin(form: UseFormReturn<SigninFormType>) {
       return response.data;
     } catch (e) {
       console.error(e);
-      form.setError('email', {});
-      form.setError('password', {});
+      form.setError('email', { message: '' });
+      form.setError('password', { message: '' });
       form.setValue('password', '');
+      form.setError('loginError', {
+        message:
+          '아이디 또는 비밀번호가 잘못 되었습니다.^아이디와 비밀번호를 정확히 입력해 주세요.',
+      });
     }
   };
   return { signin };
