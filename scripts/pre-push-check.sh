@@ -4,7 +4,7 @@
 changed_files=$(git diff --name-only --cached | grep -v "\.spec\.ts$")
 
 # src 디렉토리 안의 모든 .test.ts 파일 목록 가져오기 (node_modules 폴더 제외)
-test_files=$(find ./src -type f -name "*.test.ts" -not -path "*/node_modules/*")
+test_files=$(find ./src -type f \( -name "*.test.ts" -o -name "*.test.tsx" \) -not -path "*/node_modules/*")
 
 # 변경된 파일과 src 폴더 내의 테스트 파일 합치기
 all_files="$changed_files $test_files"
