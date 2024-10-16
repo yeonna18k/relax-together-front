@@ -1,8 +1,13 @@
+import { RequestResetPassword } from '@/entities/auth/model/reset-password';
 import { SigninFormType } from '@/features/auth/signin/ui/SigninForm';
 import { commonApiService } from '@/shared/api/service/CommonApiService';
 import { UseFormReturn } from 'react-hook-form';
 import { SigninUser, SignupUser } from '../model/user';
-import { signinApiService, signupApiService } from './service/AuthApiService';
+import {
+  forgotPasswordApiService,
+  signinApiService,
+  signupApiService,
+} from './service/AuthApiService';
 
 export function useSignup() {
   const signup = async (userData: SignupUser) => {
@@ -35,6 +40,10 @@ export function useSignin(form: UseFormReturn<SigninFormType>) {
       form.setError('email', { message: '' });
       form.setError('password', { message: '' });
       form.setValue('password', '');
+      form.setError('loginError', {
+        message:
+          '아이디 또는 비밀번호가 잘못 되었습니다.^아이디와 비밀번호를 정확히 입력해 주세요.',
+      });
     }
   };
   return { signin };
@@ -62,4 +71,23 @@ export function useSignout() {
     }
   };
   return { signout };
+}
+
+export async function requestPasswordResetEmail(email: string) {
+  const response =
+    await forgotPasswordApiService.sendForgotPasswordEmail(email);
+  return response;
+}
+
+export async function requestResetPasswordEmail({
+  email,
+  newPassword,
+  passwordCheck,
+}: RequestResetPassword) {
+  const response = await forgotPasswordApiService.resetPassword({
+    email,
+    newPassword,
+    passwordCheck,
+  });
+  return response;
 }

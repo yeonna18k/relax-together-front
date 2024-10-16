@@ -11,14 +11,6 @@ import {
 import { cva, VariantProps } from 'class-variance-authority';
 type FilterIconType = 'default' | 'sort';
 
-interface SelectProps {
-  filterIconType: FilterIconType;
-  placeholder: string;
-  onValueChange?: (value: string) => void;
-  selectedValue?: string;
-  menuItems: Array<CommonSelectItem>;
-  size?: 'sm' | 'lg';
-}
 const triggerVariants = cva('w-full rounded-md', {
   variants: {
     variant: {
@@ -42,7 +34,6 @@ export type CommonSelectItem = {
   value: string;
   label: string;
 };
-
 interface SelectProps {
   variant?: VariantProps<typeof triggerVariants>['variant'];
   filterIconType: FilterIconType;
@@ -50,6 +41,7 @@ interface SelectProps {
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
+  size?: 'sm' | 'lg';
 }
 
 /**
@@ -94,8 +86,8 @@ export default function CommonSelect({
           `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}
-        icon={filterIconMap[filterIconType]}
       >
+        {filterIconMap[filterIconType]} {/* 아이콘을 자식으로 추가 */}
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent data-testid="select-content">

@@ -14,14 +14,17 @@ interface FormFieldProps<TFormType extends FieldValues> {
   name: Path<TFormType>;
   label: string;
   placeholder: string;
+  isErrorMessage?: boolean;
 }
 export default function GenericFormField<TFormType extends FieldValues>({
   form,
   name,
   label,
   placeholder,
+  isErrorMessage = true,
 }: FormFieldProps<TFormType>) {
-  const isPasswordField = name === 'password' || name === 'passwordCheck';
+  const isPasswordField =
+    name === 'password' || name === 'passwordCheck' || name === 'newPassword';
   const error = form.formState.errors[name];
 
   const commonInputProps = {
@@ -38,17 +41,17 @@ export default function GenericFormField<TFormType extends FieldValues>({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-sm font-semibold text-gray-900">
-            {label}
-          </FormLabel>
-          <FormControl className="mt-2">
+          <FormLabel className="font-semibold text-gray-900">{label}</FormLabel>
+          <FormControl className="mt-2 space-y-2 py-2">
             {isPasswordField ? (
               <InputPassword {...commonInputProps} {...field} />
             ) : (
               <Input {...commonInputProps} {...field} />
             )}
           </FormControl>
-          <FormMessage className="text-sm font-medium text-error" />
+          {isErrorMessage && (
+            <FormMessage className="mt-0 text-xs font-medium text-error" />
+          )}
         </FormItem>
       )}
     />
