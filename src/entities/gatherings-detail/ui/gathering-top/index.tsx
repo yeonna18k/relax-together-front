@@ -18,7 +18,7 @@ export default function GatheringTop({
 }: GatheringTopProps) {
   return (
     <div className="gap-6 sm:flex">
-      <div className="relative h-[180px] overflow-hidden rounded-xl border-2 border-gray-200 sm:h-[240px] sm:w-1/2 md:h-[270px]">
+      <div className="relative h-[180px] overflow-hidden rounded-xl border-2 border-gray-200 sm:h-[240px] sm:w-1/2 lg:h-[270px]">
         <Image
           src={gatheringsInfo.imageUrl}
           alt="이미지"

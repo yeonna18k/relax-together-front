@@ -30,7 +30,7 @@ export default function InformationBottom({
   }, [participantList.totalElements]);
 
   return (
-    <div className="border-t-2 border-dashed border-gray-200 p-6 pt-3 md:pt-6">
+    <div className="p-6 pt-3 lg:pt-6">
       <Participants participantList={participantList} />
       <Progress
         className="mt-3"
