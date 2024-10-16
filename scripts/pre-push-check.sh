@@ -14,7 +14,7 @@ if [ -n "$all_files" ]; then
     echo "Running tests on changed and src test files..."
 
     # Jest를 사용하여 변경된 파일과 모든 src 폴더 내의 테스트 파일에 대해서 테스트 실행
-    if ! jest $all_files --verbose=false; then
+    if ! jest $all_files --silent --verbose=false; then
         echo "Pre-push checks failed: Jest tests failed"
         exit 1
     fi
