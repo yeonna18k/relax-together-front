@@ -3,15 +3,15 @@
 # 변경된 파일 목록 가져오기 (Playwright 테스트 파일 제외)
 changed_files=$(git diff --name-only --cached | grep -v "\.spec\.ts$")
 
-# 모든 테스트 파일 목록 가져오기 (현재 디렉터리에서 .test.ts 파일들 찾기)
-test_files=$(find . -name "*.test.ts")
+# 모든 .test.ts 파일 목록 가져오기 (서브디렉토리 포함)
+test_files=$(find . -type f -name "*.test.ts")
 
 # 변경된 파일과 모든 테스트 파일 합치기
 all_files="$changed_files $test_files"
 
 # 변경된 파일이나 테스트 파일이 있는지 확인
 if [ -n "$all_files" ]; then
-    echo "Running tests on changed and all spec files..."
+    echo "Running tests on changed and all test files..."
 
     # Jest를 사용하여 변경된 파일과 모든 테스트 파일에 대해서 테스트 실행
     if ! jest --findRelatedTests $all_files; then
