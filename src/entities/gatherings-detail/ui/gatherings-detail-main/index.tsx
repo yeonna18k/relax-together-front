@@ -49,7 +49,7 @@ export default function GatheringsDetailMain({
         )}
         <ReviewContainer id={id} />
       </div>
-      {participantList && (
+      {gatheringsInfo && participantList && (
         <BottomFloatingBar
           id={id}
           isHost={isHost}

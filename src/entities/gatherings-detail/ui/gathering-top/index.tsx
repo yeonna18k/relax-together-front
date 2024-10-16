@@ -35,12 +35,10 @@ export default function GatheringTop({
           />
         </div>
       </div>
-      <div className="relative mt-4 sm:mt-0 sm:w-1/2">
-        <Information
-          gatheringsInfo={gatheringsInfo}
-          participantList={participantList}
-        />
-      </div>
+      <Information
+        gatheringsInfo={gatheringsInfo}
+        participantList={participantList}
+      />
     </div>
   );
 }
