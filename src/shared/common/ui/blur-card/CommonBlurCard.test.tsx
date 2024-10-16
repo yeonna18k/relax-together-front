@@ -15,7 +15,5 @@ describe('CommonBlurCard Component', () => {
 
     expect(topText).toBeInTheDocument();
     expect(bottomText).toBeInTheDocument();
-    expect(bottomText).toBeInTheDocument();
-    expect(bottomText).toBeInTheDocument();
   });
 });
