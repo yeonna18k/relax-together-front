@@ -2,7 +2,7 @@
 
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function ResetSuccessModal() {
   const { closeModal } = useModal();
@@ -17,10 +17,10 @@ export default function ResetSuccessModal() {
     <Modal
       variant="notice"
       size="sm"
-      actionBtnName="확인"
+      actionBtnName="로그인 하러가기"
       handleAction={handleAction}
     >
-      <p className="w-full p-2 text-center text-base font-medium text-gray-900">
+      <p className="p-2 text-center text-base font-medium text-gray-900">
         비밀번호를 성공적으로 변경했습니다!
       </p>
     </Modal>

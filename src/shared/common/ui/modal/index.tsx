@@ -60,7 +60,7 @@ export default function Modal({
   };
 
   return (
-    <AlertDialogContent>
+    <AlertDialogContent variant={variant}>
       <AlertDialogHeader>
         <AlertDialogTitle
           className={`flex w-full ${title ? 'justify-between' : 'justify-end'}`}

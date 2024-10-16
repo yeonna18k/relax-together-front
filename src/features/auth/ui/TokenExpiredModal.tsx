@@ -8,7 +8,6 @@ export default function TokenExpiredModal() {
 
   const handleAction = () => {
     closeModal('forgotPassword');
-    router.push('/forgot-password'); // 비밀번호 찾기 페이지로 리디렉션
   };
 
   return (
@@ -19,7 +18,9 @@ export default function TokenExpiredModal() {
       handleAction={handleAction}
     >
       <p className="w-full p-2 text-center text-base font-medium text-gray-900">
-        토큰이 만료되었습니다. 비밀번호 찾기 페이지로 이동합니다.
+        토큰이 만료되었습니다.
+        <br />
+        비밀번호 찾기를 다시 시도해주세요.
       </p>
     </Modal>
   );

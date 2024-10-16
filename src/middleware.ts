@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const FALLBACK_URL = '/gatherings';
+const FALLBACK_LOGIN_URL = '/signin';
 const FALLBACK_FORGOT_PASSWORD_URL = '/forgot-password';
 const withAuthList = ['/mypage'];
+const withOutAuthList = ['/signin', '/signup', '/reset-password'];
 
 const getEmail = async (token: string | null) => {
   const response = await fetch(
@@ -17,7 +19,7 @@ const getEmail = async (token: string | null) => {
       }),
     },
   );
-  return response.json();
+  return response.json() as Promise<{ email: string }>;
 };
 
 export async function middleware(req: NextRequest) {
@@ -26,6 +28,7 @@ export async function middleware(req: NextRequest) {
 
   const targetPathname = pathname.split('/')[1];
   const isWithAuth = withAuthList.includes(`/${targetPathname}`);
+  const isWithOutAuth = withOutAuthList.includes(`/${targetPathname}`);
   const url = req.nextUrl.clone();
 
   if (isWithAuth) {
@@ -38,6 +41,20 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
+
+  if (isWithOutAuth) {
+    if (isLoginUser === 'true') {
+      return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
+    }
+  }
+
+  if (
+    url.pathname === '/reset-password' &&
+    !(url.searchParams.has('token') || url.searchParams.has('email'))
+  ) {
+    return NextResponse.redirect(new URL(FALLBACK_LOGIN_URL, req.url));
+  }
+
   if (url.pathname === '/reset-password' && url.searchParams.has('token')) {
     const token = url.searchParams.get('token');
 

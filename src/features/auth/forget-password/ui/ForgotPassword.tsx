@@ -6,12 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { useForgotPassword } from '@/entities/auth/model/hooks/useForgetPassword';
-
+import useForgotPassword from '@/entities/auth/model/hooks/useForgotPassword';
 import { useModal } from '@/shared/hooks/useModal';
-import axios from 'axios';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import CreateSuccessModal from '../../ui/ForgotSuccessModal';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
@@ -35,43 +31,12 @@ export default function ForgotPasswordForm() {
       email: '',
     },
   });
-
-  const searchParams = useSearchParams();
-  const isTokenExpired = searchParams.get('isTokenExpired');
-  const formValid = form.formState.isValid;
-  const { sendForgotPasswordEmail } = useForgotPassword();
-  const { openModal } = useModal();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const { modal } = useModal();
-
-  useEffect(() => {
-    if (isTokenExpired === 'true') {
-      openModal('TokenExpired');
-    }
-  }, [isTokenExpired, openModal]);
-
-  // 비밀번호 찾기 요청 함수
-  async function onSubmit(values: ForgotPassword) {
-    setIsSubmitting(true);
-    try {
-      await sendForgotPasswordEmail(values.email);
-      setIsSuccess(true);
-      openModal('forgotPassword');
-    } catch (error: unknown) {
-      setIsSuccess(false);
-      if (axios.isAxiosError<{ e?: { message: string } }>(error)) {
-        const errorMessage =
-          error.response?.data?.e?.message || '존재하지 않는 아이디입니다.';
-        form.setError('serverError', { message: errorMessage });
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
+  const { onSubmit, isSubmitting, isSuccess } = useForgotPassword(form);
+  const formValid = form.formState.isValid;
 
   return (
-    <div className="mt-8 w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px] xl:px-16 xl:py-8">
+    <div className="mt-8 w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:px-[54px] xl:mx-0 xl:mt-0 xl:px-16 xl:py-8">
       <div className="mb-8 text-center text-xs font-semibold text-gray-800 md:text-2xl">
         비밀번호 찾기
       </div>

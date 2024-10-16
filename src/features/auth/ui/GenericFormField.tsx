@@ -23,7 +23,8 @@ export default function GenericFormField<TFormType extends FieldValues>({
   placeholder,
   isErrorMessage = true,
 }: FormFieldProps<TFormType>) {
-  const isPasswordField = name === 'password' || name === 'passwordCheck';
+  const isPasswordField =
+    name === 'password' || name === 'passwordCheck' || name === 'newPassword';
   const error = form.formState.errors[name];
 
   const commonInputProps = {
