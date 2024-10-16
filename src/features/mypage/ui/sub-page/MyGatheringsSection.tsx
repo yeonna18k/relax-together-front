@@ -17,6 +17,7 @@ export const itemVariants = {
 };
 
 export default function MyGatheringsSection() {
+  // useMswApiMock();
   const { data, fetchNextPage } = useMyGatheringsData();
 
   const { ref, inView } = useInView();

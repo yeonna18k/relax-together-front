@@ -24,12 +24,17 @@ const getEmail = async (token: string | null) => {
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  console.log('🚀 ~ middleware ~ pathname:', pathname);
   const isLoginUser = req.cookies.get('isLoginUser')?.value;
 
   const targetPathname = pathname.split('/')[1];
+  console.log('🚀 ~ middleware ~ targetPathname:', targetPathname);
   const isWithAuth = withAuthList.includes(`/${targetPathname}`);
   const isWithOutAuth = withOutAuthList.includes(`/${targetPathname}`);
+  console.log('🚀 ~ middleware ~ isWithAuth:', isWithAuth);
+  console.log('🚀 ~ middleware ~ isWithOutAuth:', isWithOutAuth);
   const url = req.nextUrl.clone();
+  console.log('🚀 ~ middleware ~ url:', url);
 
   if (isWithAuth) {
     if (isLoginUser === 'false') {
@@ -89,8 +94,6 @@ export async function middleware(req: NextRequest) {
     url.searchParams.set('filter', 'all');
     return NextResponse.redirect(url);
   }
-
-  return NextResponse.next();
 }
 
 export const config = {
