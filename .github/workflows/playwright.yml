@@ -23,9 +23,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        uses: microsoft/playwright-github-action@v1
-        with:
-          command: xvfb-run npx playwright test
+        run: xvfb-run npx playwright test
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
