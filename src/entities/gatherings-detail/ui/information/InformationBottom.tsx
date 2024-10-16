@@ -23,18 +23,15 @@ export default function InformationBottom({
   // progress bar 애니메이션
   useEffect(() => {
     const timer = setTimeout(
-      () => setProgress(gatheringsInfo.participantCount),
-      500,
+      () => setProgress(participantList.totalElements),
+      300,
     );
     return () => clearTimeout(timer);
-  }, [gatheringsInfo.participantCount]);
+  }, [participantList.totalElements]);
 
   return (
     <div className="border-t-2 border-dashed border-gray-200 p-6 pt-3 md:pt-6">
-      <Participants
-        gatheringsInfo={gatheringsInfo}
-        participantList={participantList}
-      />
+      <Participants participantList={participantList} />
       <Progress
         className="mt-3"
         value={progress}

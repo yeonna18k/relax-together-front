@@ -3,20 +3,14 @@
 import { MIN_PARTICIPANT } from '@/shared/lib/constants';
 import Image from 'next/image';
 import { useState } from 'react';
-import {
-  GatheringsInfoTypes,
-  ParticipantListTypes,
-  Participants,
-} from '../../model/information';
+import { ParticipantListTypes, Participants } from '../../model/information';
 import UserProfileModal from './UserProfileModal';
 
 interface UserProfileImageProps {
-  gatheringsInfo: GatheringsInfoTypes;
   participantList: ParticipantListTypes;
 }
 
 export default function UserProfileImage({
-  gatheringsInfo,
   participantList,
 }: UserProfileImageProps) {
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
@@ -27,7 +21,7 @@ export default function UserProfileImage({
       : participantList.participants;
 
   const extraParticipantsCount =
-    gatheringsInfo.participantCount - MIN_PARTICIPANT + 1;
+    participantList.totalElements - MIN_PARTICIPANT + 1;
 
   const handleOnMouseEnter = () => {
     setModalVisible(true);
@@ -62,7 +56,7 @@ export default function UserProfileImage({
             </li>
           );
         })}
-        {gatheringsInfo.participantCount >= MIN_PARTICIPANT ? (
+        {participantList.totalElements >= MIN_PARTICIPANT ? (
           <li className="-ml-[10px] flex h-[29px] w-[29px] items-center justify-center rounded-full bg-gray-100 text-sm font-semibold">
             +{extraParticipantsCount}
           </li>

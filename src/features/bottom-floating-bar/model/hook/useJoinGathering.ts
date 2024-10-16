@@ -22,7 +22,7 @@ export default function useJoinGathering(id: string) {
     },
     onSuccess: data => {
       console.log('성공적으로 참여했습니다:', data);
-      queryClient.invalidateQueries({ queryKey: ['participants'] });
+      queryClient.invalidateQueries({ queryKey: ['participants', id] });
     },
     onError: error => {
       console.error('참여하기 요청 실패:', error);
@@ -35,7 +35,7 @@ export default function useJoinGathering(id: string) {
     },
     onSuccess: data => {
       console.log('성공적으로 참여 취소했습니다:', data);
-      queryClient.invalidateQueries({ queryKey: ['participants'] });
+      queryClient.invalidateQueries({ queryKey: ['participants', id] });
     },
     onError: error => {
       console.error('참여 취소하기 요청 실패:', error);
