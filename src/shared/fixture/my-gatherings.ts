@@ -18,11 +18,11 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
     name: null,
     dateTime:
       condition === 0
-        ? '2024-09-23T07:30:24.329Z'
+        ? getISOTimeWithOffset(0)
         : condition === 1
           ? getISOTimeWithOffset(-4)
           : getISOTimeWithOffset(4),
-    registrationEnd: '2024-09-23T07:30:24.330Z',
+    registrationEnd: getISOTimeWithOffset(48),
     location: '건대입구',
     participantCount: condition === 0 ? 4 : condition === 1 ? 10 : 20,
     capacity: MAX_CAPACITY,
@@ -36,5 +36,5 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
 export const myGatheringsDummyData: Response<MyGathering> = {
   content: myGatheringsContents,
   hasNext: true,
-  totalElements: 0,
+  totalElements: myGatheringsContents.length,
 };

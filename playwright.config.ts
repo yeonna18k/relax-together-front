@@ -1,4 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import path from 'path';
+
+export const USER_STORAGE_STATE = path.join(
+  __dirname,
+  'playwright/.auth/user.json',
+);
 
 /**
  * Read environment variables from file.
@@ -33,6 +39,13 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
+  /* Run your local dev server before starting the tests */
+  webServer: {
+    command: 'yarn dev',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+  },
+
   /* Configure projects for major browsers */
   projects: [
     {
@@ -48,6 +61,19 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+    },
+    {
+      name: 'userSetup',
+      testMatch: '**/*.user.setup.ts',
+    },
+    {
+      name: 'logged in user',
+      testMatch: '**/*.user.spec.ts',
+      dependencies: ['userSetup'],
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: USER_STORAGE_STATE,
+      },
     },
 
     /* Test against mobile viewports. */
@@ -70,11 +96,4 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });

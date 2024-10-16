@@ -37,7 +37,7 @@ export const formatFullDate = (stringDate: string): string => {
 
 export const getISOTimeWithOffset = (hourOffset: number) => {
   // 현재 날짜와 시간 가져오기
-  const currentDate = new Date();
+  const currentDate = getKoreaTime();
 
   // 4시간 뒤의 시간을 계산 (4시간 = 4 * 60 * 60 * 1000 밀리초)
   const futureDate = new Date(
