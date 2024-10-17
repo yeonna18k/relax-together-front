@@ -1,8 +1,10 @@
 import { storage } from '@/app/firebase';
+import { useUploadStore } from '@/shared/store/useUploadStore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 
 export default function useFileUpload() {
+  const { isUploading, setIsUploading } = useUploadStore();
   const [file, setFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [downloadURL, setDownloadURL] = useState<string>('');
@@ -17,7 +19,7 @@ export default function useFileUpload() {
 
   useEffect(() => {
     if (!file) return;
-
+    setIsUploading(true);
     const storageRef = ref(storage, `images/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -37,10 +39,12 @@ export default function useFileUpload() {
           setDownloadURL(downloadURL);
           setFile(null);
           setUploadProgress(0);
+          setIsUploading(false);
         });
       },
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
-  return { handleFileChange, uploadProgress, downloadURL };
+  return { handleFileChange, uploadProgress, downloadURL, isUploading };
 }

@@ -1,32 +1,31 @@
 import { SwitchFiler } from '@/features/gatherings/model/create-gathring';
+import { useHandleDownloadURL } from '@/features/gatherings/model/hook/useHandleDownloadURL';
+import { useResetOnFilterChange } from '@/features/gatherings/model/hook/useResetOnFilterChange';
+import { useToggleDisableState } from '@/features/gatherings/model/hook/useToggleDisableState';
+import LoadingSpinner from '@/shared/common/ui/loading-spinner';
+
 import useFileUpload from '@/shared/hooks/useFileUpload';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
-import { useEffect } from 'react';
 
 interface FileUploadProps {
   imageUrl: string;
   onChange: (...event: any[]) => void;
   selectedFilter?: SwitchFiler;
+  setIsDisabled: (value: boolean) => void;
 }
 export default function FileUpload({
   imageUrl,
   onChange,
   selectedFilter,
+  setIsDisabled,
 }: FileUploadProps) {
-  const { handleFileChange, downloadURL } = useFileUpload();
+  const { handleFileChange, downloadURL, isUploading } = useFileUpload();
 
-  useEffect(() => {
-    if (downloadURL) {
-      onChange(downloadURL);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [downloadURL]);
+  useHandleDownloadURL(downloadURL, onChange);
+  useResetOnFilterChange(onChange, selectedFilter);
+  useToggleDisableState(isUploading, setIsDisabled);
 
-  useEffect(() => {
-    onChange('');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFilter]);
   return (
     <div className="flex w-full gap-2">
       <Input
@@ -45,9 +44,9 @@ export default function FileUpload({
       />
       <Label
         htmlFor="image-uploader"
-        className="min-w-[90px] cursor-pointer rounded-[6px] border border-green-500 bg-white px-4 py-2.5 text-center text-sm text-green-500 hover:border-green-800 hover:bg-green-800 hover:text-white"
+        className={`${isUploading ? 'pointer-events-none bg-gray-200' : 'bg-white'} min-w-[90px] cursor-pointer rounded-[6px] border border-green-500 px-4 py-2.5 text-center text-sm text-green-500 hover:border-green-800 hover:bg-green-800 hover:text-white`}
       >
-        파일 찾기
+        {isUploading ? <LoadingSpinner /> : '파일 찾기'}
       </Label>
     </div>
   );

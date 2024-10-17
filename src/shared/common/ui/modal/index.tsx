@@ -1,5 +1,7 @@
 'use client';
 import Xmark from '@/shared/assets/icons/xmark.svg';
+import LoadingSpinner from '@/shared/common/ui/loading-spinner';
+import useFileUpload from '@/shared/hooks/useFileUpload';
 import { useModal } from '@/shared/hooks/useModal';
 import { CommonSizeValueType, ModalVariant } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
@@ -50,6 +52,8 @@ export default function Modal({
   type = 'button',
 }: ModalProps) {
   const { resetModal } = useModal();
+  const { isUploading } = useFileUpload();
+
   const isDefault = variant === ModalVariant.DEFAULT;
 
   const handleBtnClick = () => {
@@ -86,8 +90,9 @@ export default function Modal({
           onClick={handleAction}
           disabled={disabled}
           type={type}
+          className={`${isUploading ? 'pointer-events-none bg-gray-200' : ''}`}
         >
-          {actionBtnName}
+          {isUploading ? <LoadingSpinner /> : `${actionBtnName}`}
         </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
