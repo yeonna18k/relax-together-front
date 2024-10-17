@@ -28,6 +28,7 @@ export default function LogoutButton({ className }: LogoutButtonProps) {
         className,
       )}
       onClick={handleSignout}
+      aria-label="로그아웃"
     >
       로그아웃
     </Button>

@@ -21,6 +21,7 @@ export default function Chip({ selected, children }: ChipProps) {
           'bg-gray-200 text-gray-900': !selected,
         },
       )}
+      aria-label="칩"
     >
       {children}
     </button>

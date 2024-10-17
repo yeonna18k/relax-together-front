@@ -58,6 +58,7 @@ export default function NotFound() {
       <Link
         href="/"
         className="fixed bottom-[30px] mt-[60px] w-[332px] rounded-md border border-green-600 py-[9px] font-semibold text-green-600 sm:static"
+        aria-label="메인으로 돌아가기"
       >
         메인으로 돌아가기
       </Link>

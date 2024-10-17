@@ -29,6 +29,7 @@ export default function CreateGatheringSwitchButtonGroup({
           value={button.value}
           variant="filter"
           type="button"
+          aria-label={button.label}
         >
           {button.label}
         </Button>

@@ -66,6 +66,7 @@ export default function ForgotPasswordForm() {
               variant={`${formValid && !isSubmitting ? 'enabled' : 'disabled'}`}
               size="full"
               className="md:h-11 md:text-base"
+              aria-label="메일 보내기"
             >
               {isSubmitting ? '메일 보내는 중...' : '메일 보내기'}
             </Button>

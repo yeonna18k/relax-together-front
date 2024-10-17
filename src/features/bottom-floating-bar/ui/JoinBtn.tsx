@@ -49,6 +49,7 @@ export default function JoinBtn({
           size="lg"
           className="h-11 w-[115px]"
           onClick={handleLeaveBtnClick}
+          aria-label="참여 취소하기"
         >
           참여 취소하기
         </Button>
@@ -59,6 +60,7 @@ export default function JoinBtn({
           size="lg"
           className="h-11 w-[115px]"
           onClick={handleJoinBtnClick}
+          aria-label="참여하기"
         >
           참여하기
         </Button>

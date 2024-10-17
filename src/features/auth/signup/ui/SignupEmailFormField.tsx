@@ -82,6 +82,7 @@ export default function SignupEmailFormField({
               className={`h-10 w-[97px] px-6 ${emailAuth && 'bg-green-500'}`}
               disabled={emailAuth || error.email !== undefined}
               onClick={handleButtonClick}
+              aria-label="이메일 인증하기"
             >
               {emailAuth ? '인증완료' : '인증하기'}
             </Button>

@@ -26,6 +26,7 @@ export default function TopTap({ path, name, className }: TopTapProps) {
         `${currentPathName === path ? 'text-green-500' : ''}`,
       )}
       onClick={() => resetPopover()}
+      aria-label={`${path}로 이동`}
     >
       <p>{name}</p>
       {value > 0 && path === '/like-gatherings' && (

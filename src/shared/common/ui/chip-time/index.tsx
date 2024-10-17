@@ -32,6 +32,7 @@ export default function ChipTime({
       value={hour}
       onClick={onClick}
       {...props}
+      aria-label="칩 시간 표시"
     >
       {String(hour).padStart(2, '0')}:{String(minute).padStart(2, '0')}
     </Button>

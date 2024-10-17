@@ -71,6 +71,7 @@ export default function Modal({
             size="icon"
             className="p-0"
             onClick={handleBtnClick}
+            aria-label="닫기"
           >
             <Xmark className="stroke-gray-500 stroke-2 hover:stroke-gray-700" />
           </Button>

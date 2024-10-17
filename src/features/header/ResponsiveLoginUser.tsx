@@ -18,6 +18,7 @@ export default function ResponsiveLoginUser({
       href="/mypage"
       className="group flex w-full items-center justify-between"
       onClick={() => resetPopover()}
+      aria-label="마이페이지로 이동"
     >
       <div className="flex gap-4 py-4">
         <Image

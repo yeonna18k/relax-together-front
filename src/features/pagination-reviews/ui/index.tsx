@@ -127,6 +127,7 @@ export default function PaginationReviews({
             className,
             'h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
           )}
+          aria-label="생략 버튼"
         >
           <Image
             src="/assets/ellipsis.svg"
