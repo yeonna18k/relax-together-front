@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /mypage
+Disallow: /reset-password
+
+Sitemap: https://relax-together.web.app/sitemap.xml
