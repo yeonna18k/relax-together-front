@@ -1,8 +1,9 @@
 import { FilterParams } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
-import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
+
 import { SortBy, SortOrder, SubPage } from '@/shared/lib/constants';
 import { GatheringType } from '@/shared/model';
+import { useSearchFilterStore } from '@/shared/store/useSearchFilterStore';
 import { endOfDay } from 'date-fns';
 
 const getCurrentTypeMap: Record<string, GatheringType> = {
@@ -14,7 +15,7 @@ const getCurrentTypeMap: Record<string, GatheringType> = {
 
 export default function useAdditionalParams() {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
-  const { searchFilterValues } = useSearchFilter();
+  const { searchFilterValues } = useSearchFilterStore();
 
   // SubPage와 Filter 값을 결합하여 타입 결정
   const target =

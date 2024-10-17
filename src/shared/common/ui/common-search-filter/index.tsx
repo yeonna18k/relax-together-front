@@ -7,11 +7,12 @@ import DatePicker from '@/shared/common/ui/date-picker';
 import FilterButtonGroup from '@/shared/common/ui/filter-button-group';
 import { commonFilters } from '@/shared/fixture/filter';
 import { commonSelectItems } from '@/shared/fixture/select-items';
-import { SelectedValue, useSearchFilter } from '@/shared/hooks/useSearchFilter';
-import { SortBy, SubPage } from '@/shared/lib/constants';
+import useSearchFilter from '@/shared/hooks/useSearchFilter';
+
+import { SubPage } from '@/shared/lib/constants';
 import { FilterIconType } from '@/shared/lib/constants/ui';
+import { SelectedValue } from '@/shared/store/useSearchFilterStore';
 import { SortByValueType } from '@/shared/types/utility';
-import { useEffect } from 'react';
 
 interface CommonSearchFilterProps {
   sortItems: Array<CommonSelectItem>;
@@ -27,12 +28,7 @@ export default function CommonSearchFilter({
     setDate,
     setSelectedValue,
     setSelectedSortValue,
-  } = useSearchFilter();
-
-  useEffect(() => {
-    path === 'reviews' && setSelectedSortValue(SortBy.CREATED_DATE);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [path]);
+  } = useSearchFilter(path);
 
   return (
     <div
