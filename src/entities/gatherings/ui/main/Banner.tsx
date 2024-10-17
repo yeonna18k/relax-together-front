@@ -19,8 +19,8 @@ export default function Banner() {
 
           <SlideTabs
             tabs={commonTabs}
-            path={Path.gatherings}
-            variant={Path.gatherings}
+            path={Path.GATHERINGS}
+            variant={Path.GATHERINGS}
           />
         </div>
       </div>

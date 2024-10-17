@@ -1,5 +1,8 @@
-import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+import useCommonSearchParams, {
+  FiltersValueType,
+} from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { Filter } from '@/shared/fixture/filter';
+
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
 
@@ -12,7 +15,7 @@ export default function FilterButtonGroup({
   filters,
 }: FilterButtonGroupProps) {
   const { currentSubPage, currentFilter } = useCommonSearchParams();
-  const isActive = (filter: string) => filter === currentFilter;
+  const isActive = (filter: FiltersValueType) => filter === currentFilter;
 
   return (
     <div className="flex gap-2">

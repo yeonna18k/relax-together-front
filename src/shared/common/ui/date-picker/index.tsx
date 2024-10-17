@@ -3,6 +3,7 @@
 import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
 import PopupCalendar from '@/shared/common/ui/popup-calendar';
 import { Device } from '@/shared/lib/constants';
+
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';

@@ -1,15 +1,21 @@
+import { FiltersValueType } from '@/entities/mypage/model/hooks/useCommonSearchParams';
+import { FilterNames, Filters } from '@/shared/lib/constants';
+import { ValueOf } from '@/shared/types/utility';
+
+export type FiltersNameValueType = ValueOf<typeof FilterNames>;
+
 export type Filter = {
-  name: string;
-  filter: string;
+  name: FiltersNameValueType;
+  filter: FiltersValueType;
 };
 
 export const mypageFilters: Array<Filter> = [
-  { name: '작성 가능한 리뷰', filter: 'pending' },
-  { name: '작성한 리뷰', filter: 'written' },
+  { name: FilterNames.PENDING, filter: Filters.PENDING },
+  { name: FilterNames.WRITTEN, filter: Filters.WRITTEN },
 ];
 
 export const commonFilters: Array<Filter> = [
-  { name: '전체', filter: 'all' },
-  { name: '오피스 스트레칭', filter: 'office_stretching' },
-  { name: '마인드풀니스', filter: 'mindfulness' },
+  { name: FilterNames.ALL, filter: Filters.ALL },
+  { name: FilterNames.OFFICE_STRETCHING, filter: Filters.OFFICE_STRETCHING },
+  { name: FilterNames.MINDFULNESS, filter: Filters.MINDFULNESS },
 ];

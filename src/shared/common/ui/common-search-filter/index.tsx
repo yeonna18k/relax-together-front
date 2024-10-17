@@ -1,5 +1,5 @@
 'use client';
-import { SortBy } from '@/entities/gatherings/model/params';
+import { SortByValueType } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import CommonSelect, {
   CommonSelectItem,
@@ -8,8 +8,11 @@ import DatePicker from '@/shared/common/ui/date-picker';
 import FilterButtonGroup from '@/shared/common/ui/filter-button-group';
 import { commonFilters } from '@/shared/fixture/filter';
 import { commonSelectItems } from '@/shared/fixture/select-items';
-import { SelectedValue, useSearchFilter } from '@/shared/hooks/useSearchFilter';
-import { useEffect } from 'react';
+import useSearchFilter from '@/shared/hooks/useSearchFilter';
+
+import { SubPage } from '@/shared/lib/constants';
+import { FilterIconType } from '@/shared/lib/constants/ui';
+import { SelectedValue } from '@/shared/store/useSearchFilterStore';
 
 interface CommonSearchFilterProps {
   sortItems: Array<CommonSelectItem>;
@@ -25,12 +28,7 @@ export default function CommonSearchFilter({
     setDate,
     setSelectedValue,
     setSelectedSortValue,
-  } = useSearchFilter();
-
-  useEffect(() => {
-    path === 'reviews' && setSelectedSortValue('createdDate');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [path]);
+  } = useSearchFilter(path);
 
   return (
     <div
@@ -39,7 +37,7 @@ export default function CommonSearchFilter({
       <div className="flex w-full justify-between py-3 sm:w-min md:gap-2 md:py-0">
         <div className="flex justify-between gap-1.5 md:gap-2">
           <CommonSelect
-            filterIconType="default"
+            filterIconType={FilterIconType.DEFAULT}
             menuItems={commonSelectItems}
             onValueChange={selectedValue =>
               setSelectedValue(selectedValue as SelectedValue)
@@ -51,16 +49,16 @@ export default function CommonSearchFilter({
         </div>
         <CommonSelect
           variant="sort"
-          filterIconType="sort"
+          filterIconType={FilterIconType.SORT}
           menuItems={sortItems}
           onValueChange={selectedSortValue =>
-            setSelectedSortValue(selectedSortValue as SortBy)
+            setSelectedSortValue(selectedSortValue as SortByValueType)
           }
           placeholder={sortItems[0].label}
           selectedValue={searchFilterValues.selectedSortValue}
         />
       </div>
-      {currentSubPage === 'dalaemfit' && (
+      {currentSubPage === SubPage.DALAEMFIT && (
         <div className="w-full border-b-2 border-gray-200 py-3 sm:w-auto sm:border-none md:py-0">
           <FilterButtonGroup filters={commonFilters} path={path} />
         </div>

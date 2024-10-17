@@ -1,6 +1,12 @@
 import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
 import SortArrow from '@/shared/assets/icons/sort-arrow.svg';
+import {
+  CommonSize,
+  CommonSizeValueType,
+  FilterIconType,
+} from '@/shared/lib/constants/ui';
 import { cn } from '@/shared/lib/utils';
+import { ValueOf } from '@/shared/types/utility';
 import {
   Select,
   SelectContent,
@@ -9,14 +15,15 @@ import {
   SelectValue,
 } from '@/shared/ui/select';
 import { cva, VariantProps } from 'class-variance-authority';
-type FilterIconType = 'default' | 'sort';
+
+export type FilterIconValueType = ValueOf<typeof FilterIconType>;
 
 const triggerVariants = cva('w-full rounded-md', {
   variants: {
     variant: {
       default: 'w-[120px]',
       modal: 'text-base border-none',
-      sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5',
+      sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 gap-1 w-10 lg:w-[120px] p-1.5',
     },
   },
   defaultVariants: {
@@ -36,23 +43,25 @@ export type CommonSelectItem = {
 };
 interface SelectProps {
   variant?: VariantProps<typeof triggerVariants>['variant'];
-  filterIconType: FilterIconType;
+  filterIconType: FilterIconValueType;
   placeholder: string;
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
-  size?: 'sm' | 'lg';
+  size?: CommonSizeValueType;
 }
 
 /**
  * @description 공용 셀렉트 컴포넌트
  * @author Charles
  * @param {SelectProps} {
+ *   variant,
  *   filterIconType,
  *   placeholder,
  *   onValueChange,
  *   selectedValue,
- *   children,
+ *   menuItems,
+ *   size = FilterSize.SMALL,
  * }
  */
 export default function CommonSelect({
@@ -62,14 +71,14 @@ export default function CommonSelect({
   onValueChange,
   selectedValue,
   menuItems,
-  size = 'sm',
+  size = CommonSize.SMALL,
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
       ? 'fill-[#1F2937]'
       : 'fill-[#FFFFFF]';
 
-  const filterIconMap: Record<FilterIconType, React.ReactNode> = {
+  const filterIconMap: Record<FilterIconValueType, React.ReactNode> = {
     default: (
       <ArrowDropdown
         className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
@@ -77,17 +86,18 @@ export default function CommonSelect({
     ),
     sort: <SortArrow className="h-6 w-6" />,
   };
+
   return (
     <Select onValueChange={onValueChange} value={selectedValue}>
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          `${size === 'sm' ? 'w-[120px]' : 'w-full'} h-10`,
+          `${size === CommonSize.SMALL ? 'w-[120px]' : 'w-full'} h-10`,
           `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}
+        icon={filterIconMap[filterIconType]}
       >
-        {filterIconMap[filterIconType]} {/* 아이콘을 자식으로 추가 */}
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent data-testid="select-content">

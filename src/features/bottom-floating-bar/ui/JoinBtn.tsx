@@ -4,6 +4,7 @@ import {
 } from '@/entities/gatherings-detail/model/information';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
+import { CommonSize, ModalType, ModalVariant } from '@/shared/lib/constants';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
@@ -46,7 +47,7 @@ export default function JoinBtn({
         <Button
           disabled={isClosed}
           variant={isClosed ? 'disabled' : 'outline'}
-          size="lg"
+          size={CommonSize.LARGE}
           className="h-11 w-[115px]"
           onClick={handleLeaveBtnClick}
         >
@@ -56,15 +57,19 @@ export default function JoinBtn({
         <Button
           disabled={isClosed}
           variant={isClosed || isCapacityFull ? 'disabled' : 'default'}
-          size="lg"
+          size={CommonSize.LARGE}
           className="h-11 w-[115px]"
           onClick={handleJoinBtnClick}
         >
           참여하기
         </Button>
       )}
-      {modal.includes('LoginRequiredModal') && (
-        <Modal variant="notice" size="sm" handleAction={handleOnClick}>
+      {modal.includes(ModalType.LOGIN_REQUIRED) && (
+        <Modal
+          variant={ModalVariant.NOTICE}
+          size={CommonSize.SMALL}
+          handleAction={handleOnClick}
+        >
           <p className="text-center text-base font-medium text-[#111827]">
             로그인이 필요해요
           </p>

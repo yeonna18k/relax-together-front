@@ -1,9 +1,9 @@
-import { GatheringType } from '@/shared/model';
+import { GatheringLocationValueType, GatheringValueType } from '@/shared/model';
 
 interface CardTitleProps {
-  type: GatheringType;
+  type: GatheringValueType;
   name: string | null;
-  location: string;
+  location: GatheringLocationValueType;
 }
 
 export default function CardTitle({ type, name, location }: CardTitleProps) {

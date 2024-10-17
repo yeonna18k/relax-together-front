@@ -8,7 +8,7 @@ describe('CardTitle Component', () => {
     const name = null;
 
     const { getByText } = render(
-      <CardTitle type={type} name={null} location={location} />,
+      <CardTitle type={type} name={name} location={location} />,
     );
 
     const headerElement = screen.getByRole('heading', { level: 2 });

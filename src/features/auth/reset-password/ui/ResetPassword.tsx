@@ -3,6 +3,7 @@
 import useResetPassword from '@/entities/auth/model/hooks/useResetPassword';
 import GenericFormField from '@/features/auth/ui/GenericFormField';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import { Button } from '@/shared/ui/button';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -77,7 +78,7 @@ export default function ResetPasswordForm() {
           </Button>
         </form>
       </Form>
-      {modal.includes('ResetSuccess') && <ResetSuccessModal />}
+      {modal.includes(ModalType.RESET_SUCCESS) && <ResetSuccessModal />}
     </div>
   );
 }

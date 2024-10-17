@@ -1,4 +1,5 @@
 import CommonButton from '@/shared/common/ui/common-button/index';
+import { CommonSize } from '@/shared/lib/constants';
 import { render, screen } from '@testing-library/react';
 
 describe('Common Button Component', () => {
@@ -6,7 +7,7 @@ describe('Common Button Component', () => {
     render(
       <CommonButton
         variant="default"
-        size="sm"
+        size={CommonSize.SMALL}
         onClick={() => console.log('click')}
       >
         생성하기

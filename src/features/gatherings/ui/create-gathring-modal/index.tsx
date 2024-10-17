@@ -16,6 +16,7 @@ import CreateGatheringNameFormFiled from '@/features/gatherings/ui/create-gather
 import CreateGatheringSwitchButtonGroup from '@/features/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import CreateGatheringTypeFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
 import Modal from '@/shared/common/ui/modal';
+import { CommonSize, ModalVariant } from '@/shared/lib/constants';
 import { getKoreaTime } from '@/shared/lib/utils';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -68,8 +69,8 @@ export default function GatheringCreateModal() {
   return (
     <Modal
       title="모임 만들기"
-      variant="single"
-      size="lg"
+      variant={ModalVariant.SINGLE}
+      size={CommonSize.LARGE}
       actionBtnName="확인"
       type="submit"
       disabled={isDisabled}
