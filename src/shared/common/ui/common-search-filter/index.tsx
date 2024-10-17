@@ -1,4 +1,5 @@
 'use client';
+import { SortByValueType } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import CommonSelect, {
   CommonSelectItem,
@@ -12,7 +13,6 @@ import useSearchFilter from '@/shared/hooks/useSearchFilter';
 import { SubPage } from '@/shared/lib/constants';
 import { FilterIconType } from '@/shared/lib/constants/ui';
 import { SelectedValue } from '@/shared/store/useSearchFilterStore';
-import { SortByValueType } from '@/shared/types/utility';
 
 interface CommonSearchFilterProps {
   sortItems: Array<CommonSelectItem>;

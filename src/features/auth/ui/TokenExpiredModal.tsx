@@ -1,11 +1,9 @@
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
 import { CommonSize, ModalVariant } from '@/shared/lib/constants';
-import { useRouter } from 'next/navigation';
 
 export default function TokenExpiredModal() {
   const { closeModal } = useModal();
-  const router = useRouter();
 
   const handleAction = () => {
     closeModal('forgotPassword');
