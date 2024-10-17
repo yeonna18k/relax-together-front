@@ -55,7 +55,12 @@ export default function TabItem({
       className={cn(tabVariants({ variant }), transTextColor, className)}
     >
       {IconComponent && <IconComponent className={transIconColor} />}
-      <Link href={path} className={`${transTextColor}`} scroll={false}>
+      <Link
+        href={path}
+        className={`${transTextColor}`}
+        scroll={false}
+        aria-label={`${path}로 이동`}
+      >
         {name}
       </Link>
     </li>

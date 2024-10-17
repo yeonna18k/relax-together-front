@@ -1,5 +1,5 @@
-import CommonButton from '@/shared/common/ui/common-button';
 import { CommonSize } from '@/shared/lib/constants';
+import { Button } from '@/shared/ui/button';
 
 interface ButtonGroupProps {
   handleReset: () => void;
@@ -17,20 +17,12 @@ export default function ButtonGroup({
 }: ButtonGroupProps) {
   return (
     <div className="flex w-full justify-between">
-      <CommonButton
-        variant="outline"
-        size={CommonSize.SMALL}
-        onClick={handleReset}
-      >
+      <Button variant="outline" size={CommonSize.SMALL} onClick={handleReset}>
         초기화
-      </CommonButton>
-      <CommonButton
-        variant="default"
-        size={CommonSize.SMALL}
-        onClick={handleSubmit}
-      >
+      </Button>
+      <Button variant="default" size={CommonSize.SMALL} onClick={handleSubmit}>
         적용
-      </CommonButton>
+      </Button>
     </div>
   );
 }

@@ -24,6 +24,10 @@ export default function CommonBlurCard({
       </div>
     </div>
   ) : (
-    <Link href={`/gatherings/${id}`} className={`${defaultStyle}`} />
+    <Link
+      href={`/gatherings/${id}`}
+      className={`${defaultStyle}`}
+      aria-label={`모임 ${id} 상세 페이지로 이동`}
+    />
   );
 }

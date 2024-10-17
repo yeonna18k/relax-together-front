@@ -58,7 +58,10 @@ export default function CreateGatheringDateTimeFormFiled({
   }, [selectedDate, setIsDisabled, selectedFilter]);
 
   useEffect(() => {
-    form.setValue('dateTime', getKoreaTime().toISOString());
+    form.setValue(
+      'dateTime',
+      getAddHoursDateISOString(selectedDate, selectedTime),
+    );
     form.setValue(
       'registrationEnd',
       getAddHoursDateISOString(selectedDate, selectedTime),

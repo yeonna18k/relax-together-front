@@ -73,6 +73,7 @@ export default function ResetPasswordForm() {
             disabled={!formValid}
             variant={`${formValid ? 'enabled' : 'disabled'}`}
             size="full"
+            aria-label="비밀번호 변경하기"
           >
             비밀번호 변경하기
           </Button>

@@ -21,6 +21,7 @@ export default function WriteReviewButton({
       onClick={handleClick}
       disabled={reviewed}
       className="z-20"
+      aria-label="리뷰 작성하기"
     >
       {reviewed ? '리뷰 작성완료' : '리뷰 작성하기'}
     </Button>

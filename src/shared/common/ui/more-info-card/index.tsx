@@ -12,6 +12,7 @@ export default function MoreInfoCard({ id, status }: MoreInfoCardProps) {
   return (
     <Link
       href={`/gatherings/${id}`}
+      aria-label={`모임 ${id} 상세 페이지로 이동`}
       className={`absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-6 rounded-md p-6 xs:flex-row xs:items-start xs:justify-between md:rounded-xl ${statusColor}`}
     >
       {status ? (

@@ -18,6 +18,7 @@ export default function CommonButton({
       variant={variant}
       size={size}
       {...props}
+      aria-label="공통 버튼"
     >
       {children}
     </Button>

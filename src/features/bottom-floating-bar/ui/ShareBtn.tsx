@@ -1,10 +1,10 @@
 'use client';
 
-import CommonButton from '@/shared/common/ui/common-button';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
 import { CommonSize, ModalType, ModalVariant } from '@/shared/lib/constants';
 import { copyToClipboard } from '@/shared/lib/utils';
+import { Button } from '@/shared/ui/button';
 import { useParams } from 'next/navigation';
 
 export default function ShareBtn() {
@@ -27,14 +27,15 @@ export default function ShareBtn() {
 
   return (
     <>
-      <CommonButton
+      <Button
         variant="default"
         size={CommonSize.LARGE}
         className="h-11 w-1/2 sm:w-[115px]"
         onClick={handleShareBtnClick}
+        aria-label="공유하기"
       >
         공유하기
-      </CommonButton>
+      </Button>
       {modal.includes(ModalType.SHARE_CONFIRM) && (
         <Modal
           variant={ModalVariant.NOTICE}

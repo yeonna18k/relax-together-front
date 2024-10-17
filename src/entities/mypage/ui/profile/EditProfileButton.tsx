@@ -10,6 +10,7 @@ export default function EditProfileButton() {
       <Button
         variant="ghost"
         className="group h-8 w-8 rounded-full bg-gray-200 px-[10.5px] py-2 hover:bg-green-100 md:h-[52px] md:w-[52px] md:px-[15.5px] md:py-[12.5px]"
+        aria-label="프로필 수정하기"
         onClick={() => openModal(ModalType.PROFILE_UPDATE)}
       >
         <Pen className="h-[16px] w-[11px] fill-gray-500 stroke-gray-200 group-hover:fill-green-500 group-hover:stroke-green-100 md:h-[27px] md:w-[21px]" />

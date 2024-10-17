@@ -32,7 +32,11 @@ export default function TogglePage({ page }: { page: TogglePageKey }) {
   return (
     <div className="flex w-full items-center justify-center gap-2">
       <p className="text-gray-800">{PageMap[page].span}</p>
-      <Link href={PageMap[page].href} className="text-green-500 underline">
+      <Link
+        href={PageMap[page].href}
+        className="text-green-500 underline"
+        aria-label={PageMap[page].link}
+      >
         {PageMap[page].link}
       </Link>
     </div>

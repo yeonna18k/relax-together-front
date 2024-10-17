@@ -43,6 +43,7 @@ export default function CancleBtn({ id }: { id: string }) {
         size="lg"
         className="h-11 w-1/2 sm:w-[115px]"
         onClick={handleCancleBtnClick}
+        aria-label="취소하기"
       >
         취소하기
       </Button>

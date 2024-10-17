@@ -54,6 +54,7 @@ const InputPassword = React.forwardRef<
         onClick={() => {
           handleToggle();
         }}
+        aria-label="비밀번호 보기"
       >
         {toggled ? (
           <EyeOn height={24} width={24} />
