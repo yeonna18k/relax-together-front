@@ -64,7 +64,6 @@
     "@chromatic-com/storybook": "^1.8.0",
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
-    "@next/bundle-analyzer": "^14.2.15",
     "@playwright/test": "^1.48.0",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
@@ -107,8 +106,7 @@
     "storybook": "^8.2.9",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5",
-    "webpack-bundle-analyzer": "^4.10.2"
+    "typescript": "^5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
