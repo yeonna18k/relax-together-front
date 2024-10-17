@@ -1,24 +1,20 @@
 import CheckIcon from '@/shared/assets/icons/check-icon.svg';
+import { ChipStateType } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
-
-export type ChipStateTypes =
-  | 'scheduled'
-  | 'completed'
-  | 'confirmed'
-  | 'pending';
+import { ChipStateValueType } from '@/shared/types/utility';
 
 interface ChipStateProps {
-  state: ChipStateTypes;
+  state: ChipStateValueType;
 }
 
-const ChipStateStyles: Record<ChipStateTypes, string> = {
+const ChipStateStyles: Record<ChipStateValueType, string> = {
   scheduled: 'bg-green-50 text-green-500',
   completed: 'bg-gray-200 text-gray-500',
   confirmed: 'border border-green-50 text-green-500',
   pending: 'border border-gray-200 text-gray-500',
 };
 
-const ChipStateText: Record<ChipStateTypes, string> = {
+const ChipStateText: Record<ChipStateValueType, string> = {
   scheduled: '이용 예정',
   completed: '이용 완료',
   confirmed: '개설확정',
@@ -35,7 +31,7 @@ export default function ChipState({ state }: ChipStateProps) {
       )}
     >
       <div className="flex items-center gap-1">
-        {state === 'confirmed' ? (
+        {state === ChipStateType.CONFIRMED ? (
           <CheckIcon className="stroke-green-500" />
         ) : (
           <></>

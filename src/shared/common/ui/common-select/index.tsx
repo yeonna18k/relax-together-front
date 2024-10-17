@@ -1,6 +1,11 @@
 import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
 import SortArrow from '@/shared/assets/icons/sort-arrow.svg';
+import { FilterSize } from '@/shared/lib/constants/ui';
 import { cn } from '@/shared/lib/utils';
+import {
+  FilterIconValueType,
+  FilterSizeValueType,
+} from '@/shared/types/utility';
 import {
   Select,
   SelectContent,
@@ -9,7 +14,6 @@ import {
   SelectValue,
 } from '@/shared/ui/select';
 import { cva, VariantProps } from 'class-variance-authority';
-type FilterIconType = 'default' | 'sort';
 
 const triggerVariants = cva('w-full rounded-md', {
   variants: {
@@ -36,23 +40,25 @@ export type CommonSelectItem = {
 };
 interface SelectProps {
   variant?: VariantProps<typeof triggerVariants>['variant'];
-  filterIconType: FilterIconType;
+  filterIconType: FilterIconValueType;
   placeholder: string;
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
-  size?: 'sm' | 'lg';
+  size?: FilterSizeValueType;
 }
 
 /**
  * @description 공용 셀렉트 컴포넌트
  * @author Charles
  * @param {SelectProps} {
+ *   variant,
  *   filterIconType,
  *   placeholder,
  *   onValueChange,
  *   selectedValue,
- *   children,
+ *   menuItems,
+ *   size = FilterSize.SMALL,
  * }
  */
 export default function CommonSelect({
@@ -62,14 +68,14 @@ export default function CommonSelect({
   onValueChange,
   selectedValue,
   menuItems,
-  size = 'sm',
+  size = FilterSize.SMALL,
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
       ? 'fill-[#1F2937]'
       : 'fill-[#FFFFFF]';
 
-  const filterIconMap: Record<FilterIconType, React.ReactNode> = {
+  const filterIconMap: Record<FilterIconValueType, React.ReactNode> = {
     default: (
       <ArrowDropdown
         className={`h-6 w-6 transform transition-all group-data-[state=open]:rotate-180 ${getIconFillColor}`}
@@ -82,7 +88,7 @@ export default function CommonSelect({
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          `${size === 'sm' ? 'w-[120px]' : 'w-full'} h-10`,
+          `${size === FilterSize.SMALL ? 'w-[120px]' : 'w-full'} h-10`,
           `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}

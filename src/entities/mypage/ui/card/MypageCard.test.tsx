@@ -1,7 +1,6 @@
 import Provider from '@/app/provider';
 import MypageCard from '@/entities/mypage/ui/card';
-import { MAX_CAPACITY } from '@/shared/lib/constants';
-import { getISOTimeWithOffset } from '@/shared/lib/utils';
+import { myGatheringsContents } from '@/shared/fixture/my-gatherings';
 import { mockUseSearchParams } from '@/shared/mocks/mockUseSearchParams';
 import { render, screen } from '@testing-library/react';
 
@@ -20,29 +19,14 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-gatherings');
     render(
       <Provider>
-        <MypageCard
-          id={1}
-          imageUrl="/assets/review-sample.png"
-          alt="리뷰 샘플 이미지"
-          type="오피스 스트레칭"
-          location="을지로3가"
-          participantCount={5}
-          dateTime={getISOTimeWithOffset(4)}
-          status="ONGOING"
-          registrationEnd="2024-09-23T07:30:24.330Z"
-          completed={false}
-          hostUser={0}
-          capacity={MAX_CAPACITY}
-          name={null}
-        />
-        ,
+        <MypageCard alt="리뷰 샘플 이미지" {...myGatheringsContents[0]} />,
       </Provider>,
     );
 
     const upcomingChip = screen.getByText('이용 예정');
     const completedChip = screen.queryByText('개설확정');
     const headerElement = screen.getByRole('heading', { level: 2 });
-    const gatheringLocation = screen.getByText('을지로3가');
+    const gatheringLocation = screen.getByText('건대입구');
     const cancelReservationButton = screen.getByText('예약 취소하기');
 
     expect(upcomingChip).toBeInTheDocument();
@@ -58,19 +42,9 @@ describe('MypageCard Component', () => {
     render(
       <Provider>
         <MypageCard
-          id={1}
-          imageUrl="/assets/review-sample.png"
+          {...myGatheringsContents[0]}
           alt="리뷰 샘플 이미지"
-          type="오피스 스트레칭"
-          location="을지로3가"
           participantCount={4}
-          dateTime={getISOTimeWithOffset(4)}
-          status="ONGOING"
-          registrationEnd="2024-09-23T07:30:24.330Z"
-          completed={false}
-          hostUser={0}
-          capacity={MAX_CAPACITY}
-          name={null}
         />
         ,
       </Provider>,
@@ -79,7 +53,7 @@ describe('MypageCard Component', () => {
     const upcomingChip = screen.getByText('이용 예정');
     const scheduledChip = screen.queryByText('개설대기');
     const headerElement = screen.getByRole('heading', { level: 2 });
-    const gatheringLocation = screen.getByText('을지로3가');
+    const gatheringLocation = screen.getByText('건대입구');
     const cancelReservationButton = screen.getByText('예약 취소하기');
 
     expect(upcomingChip).toBeInTheDocument();
@@ -94,34 +68,19 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-gatherings');
     render(
       <Provider>
-        <MypageCard
-          id={1}
-          imageUrl="/assets/review-sample.png"
-          alt="리뷰 샘플 이미지"
-          type="오피스 스트레칭"
-          location="을지로3가"
-          participantCount={4}
-          dateTime={getISOTimeWithOffset(-4)}
-          status="ONGOING"
-          registrationEnd="2024-09-23T07:30:24.330Z"
-          completed={false}
-          hostUser={0}
-          capacity={MAX_CAPACITY}
-          name={null}
-        />
-        ,
+        <MypageCard {...myGatheringsContents[1]} alt="리뷰 샘플 이미지" />,
       </Provider>,
     );
 
     const upcomingChip = screen.getByText('이용 완료');
     const completedChip = screen.queryByText('개설확정');
     const headerElement = screen.getByRole('heading', { level: 2 });
-    const gatheringLocation = screen.getByText('을지로3가');
+    const gatheringLocation = screen.getByText('건대입구');
     const writeReviewButton = screen.getByText('리뷰 작성하기');
 
     expect(upcomingChip).toBeInTheDocument();
     expect(completedChip).not.toBeInTheDocument();
-    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('달램핏 마인드풀니스', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
@@ -131,34 +90,19 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-reviews');
     render(
       <Provider>
-        <MypageCard
-          id={1}
-          imageUrl="/assets/review-sample.png"
-          alt="리뷰 샘플 이미지"
-          type="오피스 스트레칭"
-          location="을지로3가"
-          participantCount={4}
-          dateTime={getISOTimeWithOffset(-4)}
-          status="ONGOING"
-          registrationEnd="2024-09-23T07:30:24.330Z"
-          completed={false}
-          hostUser={0}
-          capacity={MAX_CAPACITY}
-          name={null}
-        />
-        ,
+        <MypageCard {...myGatheringsContents[1]} alt="리뷰 샘플 이미지" />,
       </Provider>,
     );
 
     const upcomingChip = screen.queryByText('이용 완료');
     const completedChip = screen.queryByText('개설확정');
     const headerElement = screen.getByRole('heading', { level: 2 });
-    const gatheringLocation = screen.getByText('을지로3가');
+    const gatheringLocation = screen.getByText('건대입구');
     const writeReviewButton = screen.getByText('리뷰 작성하기');
 
     expect(upcomingChip).not.toBeInTheDocument();
     expect(completedChip).not.toBeInTheDocument();
-    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('달램핏 마인드풀니스', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();
@@ -168,22 +112,7 @@ describe('MypageCard Component', () => {
     mockUseSearchParams('?subPage=my-hosted-gatherings');
     render(
       <Provider>
-        <MypageCard
-          id={1}
-          imageUrl="/assets/review-sample.png"
-          alt="리뷰 샘플 이미지"
-          type="오피스 스트레칭"
-          location="을지로3가"
-          participantCount={4}
-          dateTime={getISOTimeWithOffset(-4)}
-          status="ONGOING"
-          registrationEnd="2024-09-23T07:30:24.330Z"
-          completed={false}
-          hostUser={0}
-          capacity={MAX_CAPACITY}
-          name={null}
-        />
-        ,
+        <MypageCard {...myGatheringsContents[1]} alt="리뷰 샘플 이미지" />,
       </Provider>,
     );
 
@@ -193,14 +122,14 @@ describe('MypageCard Component', () => {
     const cancelReservationButton = screen.queryByText('예약 취소하기');
 
     const headerElement = screen.getByRole('heading', { level: 2 });
-    const gatheringLocation = screen.getByText('을지로3가');
+    const gatheringLocation = screen.getByText('건대입구');
 
     expect(upcomingChip).not.toBeInTheDocument();
     expect(completedChip).not.toBeInTheDocument();
     expect(writeReviewButton).not.toBeInTheDocument();
     expect(cancelReservationButton).not.toBeInTheDocument();
 
-    expect(headerElement).toHaveTextContent('오피스 스트레칭', {
+    expect(headerElement).toHaveTextContent('달램핏 마인드풀니스', {
       normalizeWhitespace: true,
     });
     expect(gatheringLocation).toBeInTheDocument();

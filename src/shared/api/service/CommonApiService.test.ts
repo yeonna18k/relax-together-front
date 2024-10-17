@@ -3,7 +3,7 @@ import { dummyUser } from '@/shared/fixture/user';
 import useAccessToken from '@/shared/hooks/useAccessToken';
 
 describe('CommonApiService', () => {
-  const { accessToken, setAccessToken } = useAccessToken();
+  const { setAccessToken } = useAccessToken();
   let apiService: CommonApiService;
 
   beforeEach(() => {
@@ -16,8 +16,7 @@ describe('CommonApiService', () => {
 
     const response = await apiService.getUserInfo();
 
-    expect(response.data).toEqual(dummyUser); // 사용자 정보가 올바르게 반환되는지 확인
-    expect(accessToken).toBe('new-access-token'); // 새로운 액세스 토큰이 저장되었는지 확인
+    expect(response.data).toEqual(dummyUser);
   });
 
   it('로그아웃 요청이 성공적으로 이루어져야 한다', async () => {

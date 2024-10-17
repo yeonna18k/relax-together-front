@@ -1,5 +1,6 @@
 import CommonSelect from '@/shared/common/ui/common-select';
 import { commonSelectItems } from '@/shared/fixture/select-items';
+import { FilterIconType } from '@/shared/lib/constants/ui';
 import { render, screen } from '@testing-library/react';
 
 describe('Select Component', () => {
@@ -8,7 +9,7 @@ describe('Select Component', () => {
     const selectedValue = 'ALL';
     render(
       <CommonSelect
-        filterIconType="default"
+        filterIconType={FilterIconType.DEFAULT}
         placeholder="지역 전체"
         menuItems={commonSelectItems}
         onValueChange={handleValueChange}

@@ -3,6 +3,7 @@
 import CommonButton from '@/shared/common/ui/common-button';
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import { copyToClipboard } from '@/shared/lib/utils';
 import { useParams } from 'next/navigation';
 
@@ -17,11 +18,11 @@ export default function ShareBtn() {
     // 클립보드에 URL 복사
     copyToClipboard(textToCopy);
 
-    openModal('ShareConfirmModal');
+    openModal(ModalType.SHARE_CONFIRM);
   };
 
   const handleOnClick = () => {
-    closeModal('ShareConfirmModal');
+    closeModal(ModalType.SHARE_CONFIRM);
   };
 
   return (

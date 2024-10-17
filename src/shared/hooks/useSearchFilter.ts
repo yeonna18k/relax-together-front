@@ -1,5 +1,6 @@
-import { SortBy } from '@/entities/gatherings/model/params';
+import { SortBy } from '@/shared/lib/constants';
 import { GatheringLocation } from '@/shared/model';
+import { SortByValueType } from '@/shared/types/utility';
 
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
@@ -8,7 +9,7 @@ export type SelectedValue = GatheringLocation | 'ALL';
 type SearchFilterValues = {
   date: Date | undefined;
   selectedValue: SelectedValue;
-  selectedSortValue: SortBy;
+  selectedSortValue: SortByValueType;
 };
 
 type SearchFilterState = {
@@ -19,7 +20,7 @@ type SearchFilterAction = {
   resetSearchFilter: () => void;
   setDate: (date: Date | undefined) => void;
   setSelectedValue: (value: SelectedValue) => void;
-  setSelectedSortValue: (value: SortBy) => void;
+  setSelectedSortValue: (value: SortByValueType) => void;
 };
 
 export const useSearchFilter = create(
@@ -27,13 +28,13 @@ export const useSearchFilter = create(
     searchFilterValues: {
       date: undefined,
       selectedValue: 'ALL',
-      selectedSortValue: 'registrationEnd',
+      selectedSortValue: SortBy.REGISTRATION_END,
     },
     resetSearchFilter: () =>
       set(state => {
         state.searchFilterValues.date = undefined;
         state.searchFilterValues.selectedValue = 'ALL';
-        state.searchFilterValues.selectedSortValue = 'registrationEnd';
+        state.searchFilterValues.selectedSortValue = SortBy.REGISTRATION_END;
       }),
     setDate: date =>
       set(state => {

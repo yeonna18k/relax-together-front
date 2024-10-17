@@ -1,5 +1,4 @@
 'use client';
-import { SortBy } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import CommonSelect, {
   CommonSelectItem,
@@ -9,6 +8,9 @@ import FilterButtonGroup from '@/shared/common/ui/filter-button-group';
 import { commonFilters } from '@/shared/fixture/filter';
 import { commonSelectItems } from '@/shared/fixture/select-items';
 import { SelectedValue, useSearchFilter } from '@/shared/hooks/useSearchFilter';
+import { SortBy, SubPage } from '@/shared/lib/constants';
+import { FilterIconType } from '@/shared/lib/constants/ui';
+import { SortByValueType } from '@/shared/types/utility';
 import { useEffect } from 'react';
 
 interface CommonSearchFilterProps {
@@ -28,7 +30,7 @@ export default function CommonSearchFilter({
   } = useSearchFilter();
 
   useEffect(() => {
-    path === 'reviews' && setSelectedSortValue('createdDate');
+    path === 'reviews' && setSelectedSortValue(SortBy.CREATED_DATE);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
@@ -39,7 +41,7 @@ export default function CommonSearchFilter({
       <div className="flex w-full justify-between py-3 sm:w-min md:gap-2 md:py-0">
         <div className="flex justify-between gap-1.5 md:gap-2">
           <CommonSelect
-            filterIconType="default"
+            filterIconType={FilterIconType.DEFAULT}
             menuItems={commonSelectItems}
             onValueChange={selectedValue =>
               setSelectedValue(selectedValue as SelectedValue)
@@ -50,17 +52,17 @@ export default function CommonSearchFilter({
           <DatePicker date={searchFilterValues.date} setDate={setDate} />
         </div>
         <CommonSelect
-          variant="sort"
-          filterIconType="sort"
+          variant={FilterIconType.SORT}
+          filterIconType={FilterIconType.SORT}
           menuItems={sortItems}
           onValueChange={selectedSortValue =>
-            setSelectedSortValue(selectedSortValue as SortBy)
+            setSelectedSortValue(selectedSortValue as SortByValueType)
           }
           placeholder={sortItems[0].label}
           selectedValue={searchFilterValues.selectedSortValue}
         />
       </div>
-      {currentSubPage === 'dalaemfit' && (
+      {currentSubPage === SubPage.DALAEMFIT && (
         <div className="w-full border-b-2 border-gray-200 py-3 sm:w-auto sm:border-none md:py-0">
           <FilterButtonGroup filters={commonFilters} path={path} />
         </div>

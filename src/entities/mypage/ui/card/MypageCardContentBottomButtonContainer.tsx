@@ -9,6 +9,7 @@ import {
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import CanceledGatheringButton from '@/entities/mypage/ui/card/CanceledGatheringButton';
 import WriteReviewButton from '@/entities/mypage/ui/card/WriteReviewButton';
+import { SubPage } from '@/shared/lib/constants';
 
 const statusComponentMap: Record<
   UseChipStateTypes,
@@ -28,10 +29,10 @@ export default function MypageCardContentBottomButtonContainer({
   const { currentSubPage } = useCommonSearchParams();
   const status = timeComparisonStatus(dateTime);
 
-  if (currentSubPage === 'my-gatherings') {
+  if (currentSubPage === SubPage.MY_GATHERINGS) {
     return statusComponentMap[status]({ id, reviewed });
   }
-  if (currentSubPage === 'my-reviews') {
+  if (currentSubPage === SubPage.MY_REVIEWS) {
     return <WriteReviewButton id={id} reviewed={reviewed} />;
   }
   return <></>;

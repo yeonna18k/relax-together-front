@@ -2,7 +2,7 @@
 
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import { useModal } from '@/shared/hooks/useModal';
-import { Modal } from '@/shared/lib/constants';
+import { ModalType } from '@/shared/lib/constants';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -44,7 +44,7 @@ export default function useJoinGathering(id: string) {
   });
 
   const handleOnClick = () => {
-    closeModal(Modal.LOGIN_REQUIRED);
+    closeModal(ModalType.LOGIN_REQUIRED);
 
     // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트, 로그인 후 기존 페이지로 리다이렉트
     const currentPath = `${pathname}?${searchParams.toString()}`;
@@ -55,7 +55,7 @@ export default function useJoinGathering(id: string) {
     // 로그인 상태 확인
     if (!user) {
       // 비로그인 시 로그인이 필요하다는 팝업
-      openModal(Modal.LOGIN_REQUIRED);
+      openModal(ModalType.LOGIN_REQUIRED);
     } else {
       // 참여
       joinMutation(id);

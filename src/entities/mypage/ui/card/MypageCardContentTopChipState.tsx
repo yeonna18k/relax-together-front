@@ -8,6 +8,7 @@ import {
 } from '@/entities/mypage/model/lib/utils';
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import ChipState from '@/shared/common/ui/chip-state';
+import { SubPage } from '@/shared/lib/constants';
 
 const useChipStateMap: Record<
   UseChipStateTypes,
@@ -35,7 +36,7 @@ export default function MypageCardContentTopChipState({
   const participantStatus = participantComparisonStatus(participantCount);
   const timeStatus = timeComparisonStatus(dateTime);
 
-  if (currentSubPage !== 'my-gatherings') {
+  if (currentSubPage !== SubPage.MY_GATHERINGS) {
     return <></>;
   }
   return (

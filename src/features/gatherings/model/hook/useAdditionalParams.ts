@@ -1,6 +1,7 @@
 import { FilterParams } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { useSearchFilter } from '@/shared/hooks/useSearchFilter';
+import { SortBy, SortOrder, SubPage } from '@/shared/lib/constants';
 import { GatheringType } from '@/shared/model';
 import { endOfDay } from 'date-fns';
 
@@ -17,7 +18,7 @@ export default function useAdditionalParams() {
 
   // SubPage와 Filter 값을 결합하여 타입 결정
   const target =
-    currentSubPage === 'workation'
+    currentSubPage === SubPage.WORKATION
       ? currentSubPage
       : `${currentSubPage}_${currentFilter}`;
 
@@ -35,9 +36,9 @@ export default function useAdditionalParams() {
       : undefined, // 선택된 날짜가 있으면 ISO 형식으로 변환
     sortBy: searchFilterValues.selectedSortValue, // 선택된 정렬 값
     sortOrder:
-      searchFilterValues.selectedSortValue !== 'participantCount'
-        ? 'ASC'
-        : 'DESC', // 정렬 값에 따라 정렬 순서 결정
+      searchFilterValues.selectedSortValue !== SortBy.PARTICIPANT_COUNT
+        ? SortOrder.ASC
+        : SortOrder.DESC, // 정렬 값에 따라 정렬 순서 결정
   };
 
   return { additionalParams };
