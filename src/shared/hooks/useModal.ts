@@ -1,29 +1,34 @@
+import { ModalType as ModalValueType } from '@/shared/lib/constants';
+import { ValueOf } from '@/shared/types/utility';
+
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
 type ModalState = {
-  modal: string[];
+  modal: ModalValueType[];
 };
 
+type ModalValueType = ValueOf<typeof ModalValueType>;
+
 type ModalAction = {
-  openModal: (modalType: string) => void;
-  closeModal: (modalType: string) => void;
+  openModal: (modalValueType: ModalValueType) => void;
+  closeModal: (modalValueType: ModalValueType) => void;
   resetModal: () => void;
 };
 
 export const useModal = create(
   immer<ModalState & ModalAction>(set => ({
     modal: [],
-    openModal: modalType => {
+    openModal: modalValueType => {
       set(state => {
-        if (!state.modal.includes(modalType)) {
-          state.modal.push(modalType);
+        if (!state.modal.includes(modalValueType)) {
+          state.modal.push(modalValueType);
         }
       });
     },
-    closeModal: modalType => {
+    closeModal: modalValueType => {
       set(state => {
-        state.modal = state.modal.filter(type => type !== modalType);
+        state.modal = state.modal.filter(type => type !== modalValueType);
       });
     },
     resetModal: () => {

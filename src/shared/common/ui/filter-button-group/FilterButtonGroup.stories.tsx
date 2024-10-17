@@ -26,7 +26,7 @@ export const MypageFilterButtonGroup: Story = {
     },
   },
   args: {
-    path: Path.mypage,
+    path: Path.MYPAGE,
     filters: mypageFilters,
   },
 };
@@ -40,7 +40,7 @@ export const CommonFilterButtonGroup: Story = {
     },
   },
   args: {
-    path: Path.gatherings,
+    path: Path.GATHERINGS,
     filters: commonFilters,
   },
 };

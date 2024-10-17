@@ -26,7 +26,7 @@ export const MypageSlideTabs: Story = {
     },
   },
   args: {
-    path: Path.mypage,
+    path: Path.MYPAGE,
     tabs: mypageTabs,
   },
 };
@@ -40,7 +40,7 @@ export const CommonSlideTabs: Story = {
     },
   },
   args: {
-    path: Path.gatherings,
+    path: Path.GATHERINGS,
     tabs: commonTabs,
   },
 };

@@ -2,6 +2,7 @@
 import { requestPasswordResetEmail } from '@/entities/auth/api';
 import { ForgotPassword } from '@/features/auth/forget-password/ui/ForgotPassword';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -16,7 +17,7 @@ export default function useForgotPassword(form: UseFormReturn<ForgotPassword>) {
 
   useEffect(() => {
     if (isTokenExpired === 'true') {
-      openModal('TokenExpired');
+      openModal(ModalType.TOKEN_EXPIRED);
     }
   }, [isTokenExpired, openModal]);
 
@@ -26,7 +27,7 @@ export default function useForgotPassword(form: UseFormReturn<ForgotPassword>) {
     try {
       await requestPasswordResetEmail(values.email);
       setIsSuccess(true);
-      openModal('forgotPassword');
+      openModal(ModalType.FORGOT_PASSWORD);
     } catch (error: unknown) {
       setIsSuccess(false);
       if (axios.isAxiosError<{ e?: { message: string } }>(error)) {

@@ -1,5 +1,6 @@
 import { SignupFormType } from '@/features/auth/signup/ui/SignupForm';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import axios from 'axios';
 import { UseFormReturn } from 'react-hook-form';
 import { signupApiService } from '../../api/service/AuthApiService';
@@ -19,7 +20,7 @@ export function useVerifyEmailAuthCode(
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
         if (e.response?.status === 409) {
-          openModal('EmailAuthModal');
+          openModal(ModalType.EMAIL_AUTH);
         } else {
           form.setError('email', {
             message: '이메일 인증 중 오류가 발생했습니다.',

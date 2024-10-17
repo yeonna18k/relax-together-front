@@ -1,6 +1,7 @@
 'use client';
 import Xmark from '@/shared/assets/icons/xmark.svg';
 import { useModal } from '@/shared/hooks/useModal';
+import { CommonSizeValueType, ModalVariant } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
 import {
   AlertDialogAction,
@@ -31,7 +32,7 @@ interface ModalProps {
   title?: string;
   children: React.ReactNode;
   variant?: VariantProps<typeof footerVariants>['variant'];
-  size: 'lg' | 'sm';
+  size: CommonSizeValueType;
   disabled?: boolean;
   actionBtnName?: string;
   handleAction?: () => void;
@@ -41,7 +42,7 @@ interface ModalProps {
 export default function Modal({
   title,
   children,
-  variant = 'default',
+  variant = ModalVariant.DEFAULT,
   size,
   disabled,
   actionBtnName = '확인',
@@ -49,7 +50,7 @@ export default function Modal({
   type = 'button',
 }: ModalProps) {
   const { resetModal } = useModal();
-  const isDefault = variant === 'default';
+  const isDefault = variant === ModalVariant.DEFAULT;
 
   const handleBtnClick = () => {
     resetModal();
@@ -71,6 +72,7 @@ export default function Modal({
             size="icon"
             className="p-0"
             onClick={handleBtnClick}
+            aria-label="닫기"
           >
             <Xmark className="stroke-gray-500 stroke-2 hover:stroke-gray-700" />
           </Button>

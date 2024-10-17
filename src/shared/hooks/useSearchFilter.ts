@@ -1,51 +1,33 @@
-import { SortBy } from '@/entities/gatherings/model/params';
-import { GatheringLocation } from '@/shared/model';
+'use client';
+import { SortBy } from '@/shared/lib/constants';
+import { useSearchFilterStore } from '@/shared/store/useSearchFilterStore';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
-import { create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
+export default function useSearchFilter(path: string) {
+  const pathName = usePathname();
 
-export type SelectedValue = GatheringLocation | 'ALL';
-type SearchFilterValues = {
-  date: Date | undefined;
-  selectedValue: SelectedValue;
-  selectedSortValue: SortBy;
-};
+  const {
+    resetSearchFilter,
+    searchFilterValues,
+    setDate,
+    setSelectedValue,
+    setSelectedSortValue,
+  } = useSearchFilterStore();
 
-type SearchFilterState = {
-  searchFilterValues: SearchFilterValues;
-};
+  useEffect(() => {
+    resetSearchFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathName]);
 
-type SearchFilterAction = {
-  resetSearchFilter: () => void;
-  setDate: (date: Date | undefined) => void;
-  setSelectedValue: (value: SelectedValue) => void;
-  setSelectedSortValue: (value: SortBy) => void;
-};
-
-export const useSearchFilter = create(
-  immer<SearchFilterState & SearchFilterAction>(set => ({
-    searchFilterValues: {
-      date: undefined,
-      selectedValue: 'ALL',
-      selectedSortValue: 'registrationEnd',
-    },
-    resetSearchFilter: () =>
-      set(state => {
-        state.searchFilterValues.date = undefined;
-        state.searchFilterValues.selectedValue = 'ALL';
-        state.searchFilterValues.selectedSortValue = 'registrationEnd';
-      }),
-    setDate: date =>
-      set(state => {
-        state.searchFilterValues.date = date;
-      }),
-    setSelectedValue: value =>
-      set(state => {
-        state.searchFilterValues.selectedValue = value;
-      }),
-    setSelectedSortValue: value =>
-      set(state => {
-        state.searchFilterValues.selectedSortValue = value;
-      }),
-  })),
-);
+  useEffect(() => {
+    path === 'reviews' && setSelectedSortValue(SortBy.CREATED_DATE);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path]);
+  return {
+    searchFilterValues,
+    setDate,
+    setSelectedValue,
+    setSelectedSortValue,
+  };
+}

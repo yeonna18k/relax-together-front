@@ -1,29 +1,25 @@
 'use client';
 
+import useDeviceType from '@/shared/hooks/useDeviceType';
+import { DeviceType } from '@/shared/lib/constants/viewport';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { useWindowSize } from 'usehooks-ts';
 
 export default function LikeGatheringsBanner() {
-  const { width = 0 } = useWindowSize();
-
-  const [deviceType, setDeviceType] = useState<string>('desktop');
-
-  useEffect(() => {
-    if (width < 640) {
-      setDeviceType('mobile');
-    } else if (width >= 640 && width < 1024) {
-      setDeviceType('tablet');
-    } else {
-      setDeviceType('desktop');
-    }
-  }, [width]);
+  const { deviceType } = useDeviceType();
 
   const widthValue =
-    deviceType === 'mobile' ? 107 : deviceType === 'tablet' ? 130 : 170;
+    deviceType === DeviceType.MOBILE
+      ? 107
+      : deviceType === DeviceType.TABLET
+        ? 130
+        : 170;
 
   const heightValue =
-    deviceType === 'mobile' ? 83 : deviceType === 'tablet' ? 101 : 122;
+    deviceType === DeviceType.MOBILE
+      ? 83
+      : deviceType === DeviceType.TABLET
+        ? 101
+        : 122;
 
   return (
     <div className="flex h-[112px] items-center justify-center gap-1 bg-white sm:h-[132px] sm:gap-6 lg:relative lg:h-[182px] lg:gap-0 lg:bg-transparent">

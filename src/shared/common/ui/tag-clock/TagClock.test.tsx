@@ -15,11 +15,9 @@ describe('TagClock Component', () => {
   });
 
   test('variant가 rounded일 때 컴포넌트가 둥근 스타일을 가진다.', () => {
-    const { container } = render(
-      <TagClock message="오늘 21시 마감" variant="rounded" />,
-    );
+    render(<TagClock message="오늘 21시 마감" variant="rounded" />);
     const tagClockElement = screen.getAllByTestId('tag-clock');
-    expect(tagClockElement[0]).toHaveClass('rounded-tr-3xl');
+    expect(tagClockElement[0]).toHaveClass('rounded-tr-md');
   });
 
   test('아이콘이 화면에 렌더링 된다.', () => {

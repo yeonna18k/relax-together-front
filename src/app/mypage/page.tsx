@@ -8,6 +8,7 @@ import ReviewModal from '@/features/mypage/ui/review-modal';
 import SubPageContainer from '@/features/mypage/ui/sub-page';
 import TabSection from '@/features/mypage/ui/tab-section';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import { Suspense } from 'react';
 
 export default function Mypage() {
@@ -22,8 +23,10 @@ export default function Mypage() {
           <TabSection />
           <SubPageContainer />
         </Suspense>
-        {modal.includes('writeReview') && <ReviewModal />}
-        {modal.includes('profileUpdate') && <ProfileUpdateModal user={user} />}
+        {modal.includes(ModalType.WRITE_REVIEW) && <ReviewModal />}
+        {modal.includes(ModalType.PROFILE_UPDATE) && (
+          <ProfileUpdateModal user={user} />
+        )}
       </div>
     </div>
   );

@@ -16,7 +16,12 @@ export default function ScoreButton({ score, index }: RatingButtonProps) {
   }, [liked]);
 
   return (
-    <Button className="relative" variant="ghost" size="icon">
+    <Button
+      className="relative"
+      variant="ghost"
+      size="icon"
+      aria-label="찜하기"
+    >
       <LikeHeartEmptyIcon
         data-testid="like-heart-empty-icon"
         className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform"

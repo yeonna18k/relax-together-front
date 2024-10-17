@@ -26,6 +26,8 @@ const Progress = React.forwardRef<
         className,
       )}
       {...props}
+      role="progressbar"
+      aria-label="참여율"
     >
       <ProgressPrimitive.Indicator
         data-testid="indicator"

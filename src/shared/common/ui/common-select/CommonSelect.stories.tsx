@@ -3,6 +3,7 @@ import {
   gatheringsSortItems,
   reviewsSortItems,
 } from '@/shared/fixture/select-items';
+import { FilterIconType } from '@/shared/lib/constants/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import CommonSelect from './index';
@@ -37,7 +38,7 @@ export const DefaultSelect: Story = {
     );
   },
   args: {
-    filterIconType: 'default',
+    filterIconType: FilterIconType.DEFAULT,
     placeholder: '지역 전체',
     menuItems: commonSelectItems,
   },
@@ -60,7 +61,7 @@ export const ReviewsSortSelect: Story = {
     );
   },
   args: {
-    filterIconType: 'sort',
+    filterIconType: FilterIconType.SORT,
     placeholder: reviewsSortItems[0].label,
     menuItems: reviewsSortItems,
   },
@@ -84,7 +85,7 @@ export const GatheringsSortSelect: Story = {
     );
   },
   args: {
-    filterIconType: 'sort',
+    filterIconType: FilterIconType.SORT,
     placeholder: gatheringsSortItems[0].label,
     menuItems: gatheringsSortItems,
   },

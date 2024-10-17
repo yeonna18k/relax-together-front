@@ -12,7 +12,10 @@ describe('Header Component', () => {
     expect(logoIcon).toBeInTheDocument();
 
     navList.forEach(item => {
-      const linkElement = screen.getByRole('link', { name: item.name });
+      const linkElement = screen
+        .getByText(new RegExp(item.name, 'i'))
+        .closest('a');
+
       expect(linkElement).toBeInTheDocument();
       expect(linkElement).toHaveAttribute('href', item.path);
     });

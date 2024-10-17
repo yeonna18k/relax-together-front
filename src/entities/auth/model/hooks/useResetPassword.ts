@@ -1,6 +1,7 @@
 import { requestResetPasswordEmail } from '@/entities/auth/api';
 import { ResetPassword } from '@/features/auth/reset-password/ui/ResetPassword';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { UseFormReturn } from 'react-hook-form';
@@ -21,7 +22,7 @@ export default function useResetPassword(form: UseFormReturn<ResetPassword>) {
         passwordCheck,
       });
 
-      openModal('ResetSuccess');
+      openModal(ModalType.RESET_SUCCESS);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;

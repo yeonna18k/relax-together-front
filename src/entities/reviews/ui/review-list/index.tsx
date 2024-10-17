@@ -7,7 +7,7 @@ import { useReviewsData } from '../../api/queries/reviews';
 
 export default function ReviewList() {
   const { additionalParams } = useAdditionalParams();
-  const { data, fetchNextPage, isFetching } = useReviewsData(additionalParams);
+  const { data, fetchNextPage } = useReviewsData(additionalParams);
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -32,6 +32,7 @@ export default function ReviewList() {
                     page="ALL_REVIEWS"
                     gatheringType={review.gatheringType}
                     gatheringLocation={review.gatheringLocation}
+                    gatheringImage={review.gatheringImage}
                     userProfileImage={review.userProfileImage}
                     userName={review.userName}
                     score={review.score}

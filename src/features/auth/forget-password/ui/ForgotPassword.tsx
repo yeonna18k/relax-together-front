@@ -8,6 +8,7 @@ import { z } from 'zod';
 
 import useForgotPassword from '@/entities/auth/model/hooks/useForgotPassword';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import CreateSuccessModal from '../../ui/ForgotSuccessModal';
 import GenericFormField from '../../ui/GenericFormField';
 import TogglePage from '../../ui/TogglePage';
@@ -66,6 +67,7 @@ export default function ForgotPasswordForm() {
               variant={`${formValid && !isSubmitting ? 'enabled' : 'disabled'}`}
               size="full"
               className="md:h-11 md:text-base"
+              aria-label="메일 보내기"
             >
               {isSubmitting ? '메일 보내는 중...' : '메일 보내기'}
             </Button>
@@ -75,7 +77,7 @@ export default function ForgotPasswordForm() {
       </Form>
 
       {isSuccess && <CreateSuccessModal />}
-      {modal.includes('TokenExpired') && <TokenExpiredModal />}
+      {modal.includes(ModalType.TOKEN_EXPIRED) && <TokenExpiredModal />}
     </div>
   );
 }

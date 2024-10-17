@@ -32,7 +32,7 @@ export default function MyPendingReviewSection() {
               {page.content.map((gathering, idx) => (
                 <MotionListItem key={gathering.id} index={idx}>
                   <CommonBlurCardWrapper id={gathering.id}>
-                    <MypageCard alt="my-gatherings-image" {...gathering} />
+                    <MypageCard alt="my-pending-review-image" {...gathering} />
                   </CommonBlurCardWrapper>
                 </MotionListItem>
               ))}

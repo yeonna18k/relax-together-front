@@ -3,6 +3,7 @@
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-pagination.svg';
 import ArrowRightIcon from '@/shared/assets/icons/arrow-right-pagination.svg';
 import ReviewCard from '@/shared/common/ui/review-card';
+import { Device } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
 import { Review } from '@/shared/model';
 import {
@@ -31,7 +32,7 @@ export default function PaginationReviews({
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < Device.tablet);
     };
 
     checkScreenSize();
@@ -127,6 +128,7 @@ export default function PaginationReviews({
             className,
             'h-[34px] w-[34px] rounded-lg bg-white md:h-12 md:w-12',
           )}
+          aria-label="생략 버튼"
         >
           <Image
             src="/assets/ellipsis.svg"

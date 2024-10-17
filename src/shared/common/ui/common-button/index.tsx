@@ -1,8 +1,9 @@
+import { CommonSizeValueType } from '@/shared/lib/constants';
 import { Button, ButtonProps } from '@/shared/ui/button';
 
 interface CommonButtonProps extends ButtonProps {
   variant: 'default' | 'outline';
-  size: 'sm' | 'lg';
+  size: CommonSizeValueType;
 }
 
 export default function CommonButton({
@@ -17,6 +18,7 @@ export default function CommonButton({
       variant={variant}
       size={size}
       {...props}
+      aria-label="공통 버튼"
     >
       {children}
     </Button>

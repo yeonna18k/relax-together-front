@@ -115,6 +115,7 @@ export default function SignupForm({
               disabled={!formValid}
               variant={`${formValid ? 'enabled' : 'disabled'}`}
               size="full"
+              aria-label="회원가입"
             >
               확인
             </Button>

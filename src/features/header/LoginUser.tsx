@@ -34,6 +34,7 @@ export default function LoginUser({ image, name }: LoginUserProps) {
           href="/mypage"
           className={`hover:text-green-500 ${pathName === '/mypage' ? 'text-green-500' : ''}`}
           onClick={() => setIsPopoverOpen(false)}
+          aria-label="마이페이지로 이동"
         >
           마이페이지
         </Link>

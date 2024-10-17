@@ -18,13 +18,13 @@ export const myGatheringsContents: Array<MyGathering> = Array.from({
     name: null,
     dateTime:
       condition === 0
-        ? getISOTimeWithOffset(0)
+        ? getISOTimeWithOffset(10)
         : condition === 1
           ? getISOTimeWithOffset(-4)
           : getISOTimeWithOffset(4),
     registrationEnd: getISOTimeWithOffset(48),
     location: '건대입구',
-    participantCount: condition === 0 ? 4 : condition === 1 ? 10 : 20,
+    participantCount: condition === 0 ? 5 : condition === 1 ? 10 : 20,
     capacity: MAX_CAPACITY,
     imageUrl: `/assets/sample${condition + 1}.png`,
     hostUser: 0,

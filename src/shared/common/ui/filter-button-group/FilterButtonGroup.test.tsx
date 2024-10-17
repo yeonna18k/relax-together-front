@@ -10,7 +10,7 @@ describe('FilterButtonGroup Component', () => {
   });
   test('mypage URLSearchParams의 filter를 변경하기 위해서는 mypageFilters, Path.mypage를 전달해주면 랜더링 된다.', () => {
     mockUseSearchParams('?filter=pending');
-    render(<FilterButtonGroup filters={mypageFilters} path={Path.mypage} />);
+    render(<FilterButtonGroup filters={mypageFilters} path={Path.MYPAGE} />);
 
     const pendingButton = screen.getByText('작성 가능한 리뷰');
     const completedButton = screen.getByText('작성한 리뷰');
@@ -21,7 +21,7 @@ describe('FilterButtonGroup Component', () => {
   test('gatherings URLSearchParams의 filter를 변경하기 위해서는 commonFilters, Path.gatherings를 전달해주면 랜더링 된다.', () => {
     mockUseSearchParams('?filter=pending');
     render(
-      <FilterButtonGroup filters={commonFilters} path={Path.gatherings} />,
+      <FilterButtonGroup filters={commonFilters} path={Path.GATHERINGS} />,
     );
 
     const allButton = screen.getByText('전체');

@@ -1,4 +1,5 @@
 import Modal from '@/shared/common/ui/modal';
+import { CommonSize, ModalVariant } from '@/shared/lib/constants';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/shared/ui/input-otp';
 import { useState } from 'react';
 
@@ -12,8 +13,8 @@ export default function EmailAuthModal({
   const [otp, setOtp] = useState('');
   return (
     <Modal
-      variant="single"
-      size="sm"
+      variant={ModalVariant.SINGLE}
+      size={CommonSize.SMALL}
       title="이메일 인증"
       disabled={otp.length < 6}
       handleAction={() => handleVerifyCode(otp)}

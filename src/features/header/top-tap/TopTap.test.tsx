@@ -30,16 +30,22 @@ describe('TopTap Component', () => {
   test('TopTap 컴포넌트가 렌더링된다.', () => {
     renderedTopTap();
 
-    expect(screen.getByRole('link', { name: '모임 찾기' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '찜한 모임' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: '모든 리뷰' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: '/gatherings로 이동' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: '/like-gatherings로 이동' }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: '/reviews로 이동' }),
+    ).toBeInTheDocument();
   });
 
   test('3개의 TopTap 컴포넌트 중 현재 경로와 전달한 path가 같으면 selectedClassName과 일치한다.', () => {
     renderedTopTap();
-    const gatherings = screen.getByRole('link', { name: '모임 찾기' });
-    const likeGatherings = screen.getByRole('link', { name: '찜한 모임' });
-    const reviews = screen.getByRole('link', { name: '모든 리뷰' });
+    const gatherings = screen.getByLabelText('/gatherings로 이동');
+    const likeGatherings = screen.getByLabelText('/like-gatherings로 이동');
+    const reviews = screen.getByLabelText('/reviews로 이동');
 
     expect(gatherings).toHaveClass(selectedClassName);
     expect(likeGatherings).toHaveClass(defaultClassName);
@@ -51,7 +57,9 @@ describe('TopTap Component', () => {
 
     renderedTopTap();
 
-    const likeGatherings = screen.getByRole('link', { name: '찜한 모임' });
+    const likeGatherings = screen.getByRole('link', {
+      name: '/like-gatherings로 이동',
+    });
 
     expect(likeGatherings).toHaveClass(selectedClassName);
   });

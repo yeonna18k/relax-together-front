@@ -105,6 +105,7 @@ export default function SigninForm() {
                 variant={`${formValid ? 'enabled' : 'disabled'}`}
                 size="full"
                 className="md:h-11 md:text-base"
+                aria-label="로그인"
               >
                 로그인
               </Button>
@@ -115,7 +116,11 @@ export default function SigninForm() {
       </div>
       <div className="mt-6 flex w-full justify-center gap-2 text-gray-500">
         <p>비밀번호를 잊어버리셨나요?</p>
-        <Link href="/forgot-password" className="underline">
+        <Link
+          href="/forgot-password"
+          className="underline"
+          aria-label="비밀번호 찾기"
+        >
           비밀번호 찾기
         </Link>
       </div>

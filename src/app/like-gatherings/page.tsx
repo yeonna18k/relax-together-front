@@ -34,7 +34,7 @@ export default async function LikeGatherings() {
           <div className="px-4">
             <CommonSearchFilter
               sortItems={gatheringsSortItems}
-              path={Path['like-gatherings']}
+              path={Path['LIKE_GATHERINGS']}
             />
             <HydrationBoundary state={dehydrate(queryClient)}>
               <LikeGatheringCardList />

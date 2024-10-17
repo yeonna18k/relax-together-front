@@ -16,7 +16,7 @@ import CreateGatheringNameFormFiled from '@/features/gatherings/ui/create-gather
 import CreateGatheringSwitchButtonGroup from '@/features/gatherings/ui/create-gathering-form/CreateGatheringSwitchButtonGroup';
 import CreateGatheringTypeFormFiled from '@/features/gatherings/ui/create-gathering-form/CreateGatheringTypeFormFiled';
 import Modal from '@/shared/common/ui/modal';
-import { getKoreaTime } from '@/shared/lib/utils';
+import { CommonSize, ModalVariant } from '@/shared/lib/constants';
 import { Form } from '@/shared/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
@@ -35,7 +35,7 @@ export default function GatheringCreateModal() {
       name: null,
       location: '건대입구',
       type: '오피스 스트레칭',
-      dateTime: getKoreaTime().toISOString(),
+      dateTime: getAddHoursDateISOString(selectedDate, selectedTime),
       registrationEnd: getAddHoursDateISOString(selectedDate, selectedTime),
       imageUrl: '',
       capacity: 5,
@@ -68,8 +68,8 @@ export default function GatheringCreateModal() {
   return (
     <Modal
       title="모임 만들기"
-      variant="single"
-      size="lg"
+      variant={ModalVariant.SINGLE}
+      size={CommonSize.LARGE}
       actionBtnName="확인"
       type="submit"
       disabled={isDisabled}

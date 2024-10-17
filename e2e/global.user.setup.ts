@@ -18,8 +18,6 @@ setup('사용자 로그인', async ({ page }) => {
     });
   });
   await page.goto('/signin');
-  await page.getByRole('link', { name: '로그인' }).click();
-  await page.getByRole('link', { name: '로그인' }).click();
   await page.getByPlaceholder('이메일을 입력해주세요').click();
   await page
     .getByPlaceholder('이메일을 입력해주세요')
@@ -28,7 +26,7 @@ setup('사용자 로그인', async ({ page }) => {
   await page
     .getByPlaceholder('비밀번호를 입력해주세요')
     .fill(`${process.env.NEXT_PUBLIC_USER_PASSWORD!}`);
-  await page.getByRole('button', { name: '로그인' }).click();
+  await page.getByLabel('로그인').click();
 
   await page.waitForURL('/gatherings?subPage=dalaemfit&filter=all');
   await expect(
