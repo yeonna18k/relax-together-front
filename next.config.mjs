@@ -1,6 +1,14 @@
+import withBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
-/** @type {import('next').NextConfig} */
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   async redirects() {
     return [
@@ -30,16 +38,46 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  webpack(config) {
+  webpack(config, { dev, isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+    if (process.env.ANALYZE === 'true') {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          reportFilename: isServer
+            ? '../analyze/server.html'
+            : './analyze/client.html',
+          openAnalyzer: false,
+          generateStatsFile: true,
+          statsFilename: isServer
+            ? '../analyze/stats-server.json'
+            : './analyze/stats-client.json',
+        }),
+      );
+    }
+
+    // 각 페이지별 번들 분석 설정
+    if (process.env.ANALYZE === 'true' && !isServer) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          reportFilename: './analyze/[name].html',
+          openAnalyzer: false,
+          generateStatsFile: true,
+          statsFilename: './analyze/stats-[name].json',
+        }),
+      );
+    }
     return config;
   },
 };
 
-export default withSentryConfig(nextConfig, {
+const configWithBundleAnalyzer = bundleAnalyzer(nextConfig);
+
+export default withSentryConfig(configWithBundleAnalyzer, {
   org: 'codeit-2',
   project: 'relax-together',
   silent: !process.env.CI,
