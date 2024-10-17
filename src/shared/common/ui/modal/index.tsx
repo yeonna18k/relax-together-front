@@ -1,7 +1,5 @@
 'use client';
 import Xmark from '@/shared/assets/icons/xmark.svg';
-import LoadingSpinner from '@/shared/common/ui/loading-spinner';
-import useFileUpload from '@/shared/hooks/useFileUpload';
 import { useModal } from '@/shared/hooks/useModal';
 import { CommonSizeValueType, ModalVariant } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
@@ -36,7 +34,8 @@ interface ModalProps {
   variant?: VariantProps<typeof footerVariants>['variant'];
   size: CommonSizeValueType;
   disabled?: boolean;
-  actionBtnName?: string;
+  actionBtnName?: React.ReactNode;
+  actionBtnClassName?: string;
   handleAction?: () => void;
   type?: 'submit' | 'button';
 }
@@ -48,11 +47,11 @@ export default function Modal({
   size,
   disabled,
   actionBtnName = '확인',
+  actionBtnClassName,
   handleAction,
   type = 'button',
 }: ModalProps) {
   const { resetModal } = useModal();
-  const { isUploading } = useFileUpload();
 
   const isDefault = variant === ModalVariant.DEFAULT;
 
@@ -90,9 +89,9 @@ export default function Modal({
           onClick={handleAction}
           disabled={disabled}
           type={type}
-          className={`${isUploading ? 'pointer-events-none bg-gray-200' : ''}`}
+          className={actionBtnClassName}
         >
-          {isUploading ? <LoadingSpinner /> : `${actionBtnName}`}
+          {actionBtnName}
         </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
