@@ -3,6 +3,7 @@
 import BottomFloatingBar from '@/features/bottom-floating-bar/ui';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useQuery } from '@tanstack/react-query';
+import { notFound } from 'next/navigation';
 import { gatheringsDetailApiService } from '../../api/service/GatheringsDetailApiService';
 import GatheringTop from '../gathering-top';
 import ReviewContainer from '../review-container';
@@ -27,6 +28,11 @@ export default function GatheringsDetailMain({
     queryFn: () => gatheringsDetailApiService.getParticipantList(id),
   });
 
+  // 데이터가 없을 때 처리
+  if (!gatheringsInfo || !participantList) {
+    notFound();
+  }
+
   // 유저가 해당 모임의 주최자인지 여부
   const isHost = gatheringsInfo?.hostUser === user?.id;
 
@@ -47,6 +53,7 @@ export default function GatheringsDetailMain({
         <BottomFloatingBar
           id={id}
           isHost={isHost}
+          gatheringsInfo={gatheringsInfo}
           participantList={participantList}
         />
       )}

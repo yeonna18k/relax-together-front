@@ -27,9 +27,9 @@ export default async function GatheringsDetail({ params }: GatheringsDetail) {
       queryFn: () => gatheringsDetailApiService.getParticipantList(id),
     }),
     queryClient.prefetchQuery({
-      queryKey: ['review', id, 1],
+      queryKey: ['review', id, 0],
       queryFn: () =>
-        gatheringsDetailApiService.getReviewList({ id, currentPage: 1 }),
+        gatheringsDetailApiService.getReviewList({ id, currentPage: 0 }),
     }),
   ]);
 

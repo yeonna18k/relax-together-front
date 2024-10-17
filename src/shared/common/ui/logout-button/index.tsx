@@ -1,5 +1,5 @@
 import { useSignout } from '@/entities/auth/api';
-import useSetAccessToken from '@/shared/hooks/useAccessToken';
+import useAccessToken from '@/shared/hooks/useAccessToken';
 import { cn } from '@/shared/lib/utils';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { Button } from '@/shared/ui/button';
@@ -10,12 +10,12 @@ interface LogoutButtonProps {
 }
 export default function LogoutButton({ className }: LogoutButtonProps) {
   const router = useRouter();
-  const { setAccessToken } = useSetAccessToken();
   const { signout } = useSignout();
+  const { setAccessToken } = useAccessToken();
   const clearUser = useUserDataStore(state => state.clearUser);
 
-  const handleSignout = () => {
-    signout();
+  const handleSignout = async () => {
+    await signout();
     setAccessToken('');
     clearUser();
     router.push('/');

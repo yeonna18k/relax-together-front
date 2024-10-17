@@ -17,14 +17,14 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
     "src/shared/types/svgr.d.ts",
     "next-env.d.ts",
+    "e2e/**/*",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"

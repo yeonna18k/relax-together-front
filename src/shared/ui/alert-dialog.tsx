@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { cn } from '@/shared/lib/utils';
 import { buttonVariants } from '@/shared/ui/button';
-import { type VariantProps } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 const AlertDialog = AlertDialogPrimitive.Root;
 
@@ -28,16 +28,34 @@ const AlertDialogOverlay = React.forwardRef<
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
 
+const alertDialogContentVariants = cva('', {
+  variants: {
+    variant: {
+      default: 'w-[343px] max-w-[375px] xs:w-[530px] xs:max-w-[530px]',
+      single: 'w-[343px] max-w-[375px] xs:w-[530px] xs:max-w-[530px]',
+      notice: 'w-[300px] max-w-[300px] xs:w-[450px] xs:max-w-[450px]',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+
+interface AlertDialogContentProps
+  extends React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>,
+    VariantProps<typeof alertDialogContentVariants> {}
+
 const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>
->(({ className, ...props }, ref) => (
+  AlertDialogContentProps
+>(({ className, variant, ...props }, ref) => (
   <AlertDialogPortal>
     <AlertDialogOverlay />
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-[50%] top-[50%] z-50 grid w-[343px] max-w-[375px] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] xs:w-[530px] xs:max-w-[530px]',
+        'fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
+        alertDialogContentVariants({ variant }),
         className,
       )}
       {...props}

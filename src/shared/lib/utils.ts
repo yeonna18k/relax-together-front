@@ -51,7 +51,6 @@ export const getISOTimeWithOffset = (hourOffset: number) => {
 export const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text);
-    alert('링크가 복사되었습니다.');
   } catch (err) {
     console.error('클립보드 복사 실패:', err);
   }

@@ -13,7 +13,7 @@ export default function UserProfileModal({
   return (
     <>
       {isModalVisible && (
-        <div className="absolute right-1/2 top-[256px] h-fit w-[96%] translate-x-1/2 rounded-xl border border-gray-200 bg-white p-[30px] shadow-custom sm:right-2 sm:top-[296px] sm:w-[477px] sm:translate-x-0">
+        <div className="absolute right-1/2 top-[256px] z-10 h-fit w-[96%] translate-x-1/2 rounded-xl border border-gray-200 bg-white p-[30px] shadow-custom sm:right-2 sm:top-[296px] sm:w-[477px] sm:translate-x-0">
           <div className="flex items-center">
             <p className="h-12 w-12 overflow-hidden rounded-full">
               <Image
@@ -47,7 +47,7 @@ export default function UserProfileModal({
                       key={participant.userId}
                       className="flex items-center gap-[10px]"
                     >
-                      <p className="flex h-12 w-12 items-center justify-center rounded-full">
+                      <p className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full">
                         <Image
                           src={
                             participant.profileImage === null
@@ -57,6 +57,7 @@ export default function UserProfileModal({
                           alt="참여 유저 프로필 이미지"
                           width={48}
                           height={48}
+                          className="h-full w-full object-cover"
                         />
                       </p>
                       <span className="text-sm font-semibold text-gray-700">

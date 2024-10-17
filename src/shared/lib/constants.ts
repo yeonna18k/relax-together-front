@@ -32,6 +32,12 @@ export const Page = {
   ALL_REVIEWS: 'ALL_REVIEWS',
 } as const;
 
+export const TogglePageType = {
+  SIGNUP: 'signup',
+  SIGNIN: 'signin',
+  FORGOT_PASSWORD: 'forgotPassword',
+} as const;
+
 export const Path = {
   MYPAGE: 'mypage',
   GATHERINGS: 'gatherings',

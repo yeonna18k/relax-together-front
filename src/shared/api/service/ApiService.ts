@@ -1,21 +1,16 @@
-import { ACCESS_TOKEN_KEY } from '@/shared/lib/constants';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export default class ApiService {
   protected static instance: ApiService;
-  protected axiosInstance: AxiosInstance;
-  private accessToken: string = '';
+  protected axiosInstance: AxiosInstance = axios.create({
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
   protected constructor() {
-    this.axiosInstance = axios.create({
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (typeof window !== 'undefined') {
-      this.initializeAccessToken();
-    }
+    this.initializeAccessToken();
     this.setupRequestInterceptors();
   }
 
@@ -26,11 +21,23 @@ export default class ApiService {
     return ApiService.instance;
   }
 
+  private initializeAccessToken() {
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('accessToken');
+      if (storedToken) {
+        this.setAccessToken(storedToken);
+      }
+    }
+  }
+
   private setupRequestInterceptors() {
     this.axiosInstance.interceptors.request.use(
       config => {
-        if (this.accessToken) {
-          config.headers['Authorization'] = `Bearer ${this.accessToken}`;
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem('accessToken');
+          if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+          }
         }
         return config;
       },
@@ -41,19 +48,13 @@ export default class ApiService {
     );
   }
 
-  private initializeAccessToken() {
-    const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
-    if (accessToken) {
-      this.setAccessToken(accessToken);
-    }
-  }
+  public setAccessToken(accessToken: string) {
+    const newAuthorization = accessToken ? `Bearer ${accessToken}` : undefined;
 
-  public getAccessToken(): string {
-    return this.accessToken;
-  }
-
-  public setAccessToken(newAccessToken: string) {
-    this.accessToken = newAccessToken;
+    localStorage.setItem('accessToken', accessToken);
+    this.axiosInstance.defaults.headers.common['Authorization'] =
+      newAuthorization;
+    this.setupRequestInterceptors();
   }
 
   async get<T = any, R = AxiosResponse<T>, D = any>(

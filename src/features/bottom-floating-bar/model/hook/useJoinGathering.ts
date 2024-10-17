@@ -5,11 +5,13 @@ import { useModal } from '@/shared/hooks/useModal';
 import { Modal } from '@/shared/lib/constants';
 import { useUserDataStore } from '@/shared/store/useUserDataStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function useJoinGathering(id: string) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const user = useUserDataStore(state => state.user);
 
@@ -21,7 +23,7 @@ export default function useJoinGathering(id: string) {
     },
     onSuccess: data => {
       console.log('성공적으로 참여했습니다:', data);
-      queryClient.invalidateQueries({ queryKey: ['participants'] });
+      queryClient.invalidateQueries({ queryKey: ['participants', id] });
     },
     onError: error => {
       console.error('참여하기 요청 실패:', error);
@@ -34,7 +36,7 @@ export default function useJoinGathering(id: string) {
     },
     onSuccess: data => {
       console.log('성공적으로 참여 취소했습니다:', data);
-      queryClient.invalidateQueries({ queryKey: ['participants'] });
+      queryClient.invalidateQueries({ queryKey: ['participants', id] });
     },
     onError: error => {
       console.error('참여 취소하기 요청 실패:', error);
@@ -42,10 +44,11 @@ export default function useJoinGathering(id: string) {
   });
 
   const handleOnClick = () => {
-    // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트
-    router.push('/signin');
+    closeModal(Modal.LOGIN_REQUIRED);
 
-    // TODO: 로그인 후 기존 페이지로 리다이렉트
+    // 확인 버튼 클릭 시 로그인 페이지로 리다이렉트, 로그인 후 기존 페이지로 리다이렉트
+    const currentPath = `${pathname}?${searchParams.toString()}`;
+    router.push(`/signin?redirect=${currentPath}`);
   };
 
   const handleJoinBtnClick = () => {

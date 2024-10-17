@@ -4,8 +4,8 @@ import { useMyPendingReviewsData } from '@/entities/mypage/api/queries/my-pendin
 import MypageCard from '@/entities/mypage/ui/card';
 
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
+import CommonBlurCardWrapper from '@/shared/common/ui/blur-card/CommonBlurCardWrapper';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
-import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
 
 import MotionListItem from '@/shared/common/ui/motion-list-item';
 import { AnimatePresence } from 'framer-motion';
@@ -31,9 +31,9 @@ export default function MyPendingReviewSection() {
             <ul key={`my-pending-reviews-${page}-${index}`}>
               {page.content.map((gathering, idx) => (
                 <MotionListItem key={gathering.id} index={idx}>
-                  <CommonMoreInfoWrapper id={gathering.id} status={false}>
+                  <CommonBlurCardWrapper id={gathering.id}>
                     <MypageCard alt="my-gatherings-image" {...gathering} />
-                  </CommonMoreInfoWrapper>
+                  </CommonBlurCardWrapper>
                 </MotionListItem>
               ))}
             </ul>
