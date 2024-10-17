@@ -32,6 +32,7 @@ export default function ReviewList() {
                     page="ALL_REVIEWS"
                     gatheringType={review.gatheringType}
                     gatheringLocation={review.gatheringLocation}
+                    gatheringImage={review.gatheringImage}
                     userProfileImage={review.userProfileImage}
                     userName={review.userName}
                     score={review.score}
