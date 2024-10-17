@@ -1,12 +1,13 @@
 import Provider from '@/app/provider';
 import CommonBlurCard from '@/shared/common/ui/blur-card';
+import { MyGatheringStatus } from '@/shared/lib/constants';
 import { render, screen } from '@testing-library/react';
 
 describe('CommonBlurCard Component', () => {
   test('화면에 렌더링 된다.', () => {
     render(
       <Provider>
-        <CommonBlurCard id={0} status="CANCELLED" />
+        <CommonBlurCard id={0} status={MyGatheringStatus.CANCELLED} />
       </Provider>,
     );
 

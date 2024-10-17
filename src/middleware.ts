@@ -8,7 +8,7 @@ const withOutAuthList = ['/signin', '/signup', '/reset-password'];
 
 const getEmail = async (token: string | null) => {
   const response = await fetch(
-    `https://dev.relax-together.shop/api/verify-token`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/verify-token`,
     {
       method: 'POST',
       headers: {

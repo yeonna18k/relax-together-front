@@ -1,31 +1,16 @@
 'use client';
 
+import useDeviceType from '@/shared/hooks/useDeviceType';
+import { DeviceType } from '@/shared/lib/constants/viewport';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { useWindowSize } from 'usehooks-ts';
 
 export default function NotFound() {
-  const { width = 0 } = useWindowSize();
+  const { deviceType } = useDeviceType();
 
-  const [deviceType, setDeviceType] = useState<string>('desktop');
-
-  const TABLET = 640;
-  const DESKTOP = 1024;
-
-  useEffect(() => {
-    if (width < TABLET) {
-      setDeviceType('mobile');
-    } else if (width >= TABLET && width < DESKTOP) {
-      setDeviceType('tablet');
-    } else {
-      setDeviceType('desktop');
-    }
-  }, [width]);
-
-  const gifSize = deviceType === 'mobile' ? 94 : 144;
-  const widthValue = deviceType === 'mobile' ? 101 : 184;
-  const heightValue = deviceType === 'mobile' ? 38 : 68;
+  const gifSize = deviceType === DeviceType.MOBILE ? 94 : 144;
+  const widthValue = deviceType === DeviceType.MOBILE ? 101 : 184;
+  const heightValue = deviceType === DeviceType.MOBILE ? 38 : 68;
 
   return (
     <div className="flex min-h-[calc(100vh-57px)] flex-col items-center justify-center text-center text-gray-900 lg:min-h-[calc(100vh-71px)]">

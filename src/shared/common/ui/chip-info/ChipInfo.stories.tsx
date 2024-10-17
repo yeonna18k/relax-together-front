@@ -1,3 +1,4 @@
+import { ChipInfoType } from '@/shared/lib/constants';
 import type { Meta, StoryObj } from '@storybook/react';
 import ChipInfo from './index';
 
@@ -16,13 +17,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Date: Story = {
   args: {
-    type: 'date',
+    type: ChipInfoType.DATE,
     children: '1월 7일',
   },
 };
 export const Time: Story = {
   args: {
-    type: 'time',
+    type: ChipInfoType.TIME,
     children: '17:30',
   },
 };

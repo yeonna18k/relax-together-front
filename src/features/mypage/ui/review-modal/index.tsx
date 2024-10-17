@@ -2,6 +2,7 @@
 import { useWriteReview } from '@/entities/mypage/model/hooks/useWriteReview';
 import ModalContent from '@/features/mypage/ui/review-modal/ModalContent';
 import Modal from '@/shared/common/ui/modal';
+import { CommonSize } from '@/shared/lib/constants';
 
 export default function ReviewModal() {
   const { score, comment, setScore, setComment, handleSubmit } =
@@ -10,8 +11,7 @@ export default function ReviewModal() {
   return (
     <Modal
       title="리뷰 쓰기"
-      variant="default"
-      size="lg"
+      size={CommonSize.LARGE}
       actionBtnName="리뷰 등록"
       disabled={score === 0 || comment === ''}
       handleAction={handleSubmit}

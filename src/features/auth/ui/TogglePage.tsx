@@ -1,4 +1,5 @@
 import { TogglePageType } from '@/shared/lib/constants';
+import { ValueOf } from '@/shared/types/utility';
 import Link from 'next/link';
 
 type TogglePageValue = {
@@ -7,7 +8,6 @@ type TogglePageValue = {
   link: string;
 };
 
-type ValueOf<T> = T[keyof T];
 type TogglePageKey = ValueOf<typeof TogglePageType>;
 
 export default function TogglePage({ page }: { page: TogglePageKey }) {

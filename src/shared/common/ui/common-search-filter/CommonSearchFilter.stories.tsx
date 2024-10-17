@@ -22,12 +22,12 @@ type Story = StoryObj<typeof meta>;
 export const GatheringsSearchFilter: Story = {
   args: {
     sortItems: gatheringsSortItems,
-    path: Path.gatherings,
+    path: Path.GATHERINGS,
   },
 };
 export const OtherSearchFilter: Story = {
   args: {
     sortItems: reviewsSortItems,
-    path: Path.gatherings,
+    path: Path.GATHERINGS,
   },
 };

@@ -1,6 +1,7 @@
 import { fetchEmailAuth } from '@/entities/auth/api';
 import { useVerifyEmailAuthCode } from '@/entities/auth/model/hooks/useVerifyEmailAuthCode';
 import { useModal } from '@/shared/hooks/useModal';
+import { ModalType } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import {
@@ -45,7 +46,7 @@ export default function SignupEmailFormField({
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     fetchEmailAuth(form.control._formValues.email);
-    openModal('EmailAuthModal');
+    openModal(ModalType.EMAIL_AUTH);
   };
 
   return (
@@ -86,7 +87,7 @@ export default function SignupEmailFormField({
             >
               {emailAuth ? '인증완료' : '인증하기'}
             </Button>
-            {modal.includes('EmailAuthModal') && (
+            {modal.includes(ModalType.EMAIL_AUTH) && (
               <EmailAuthModal handleVerifyCode={handleVerifyCode} />
             )}
           </div>

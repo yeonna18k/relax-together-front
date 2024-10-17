@@ -3,6 +3,7 @@ import ProgressBar from '@/features/progress-bar';
 import CardTitle from '@/shared/common/ui/card-title';
 import ChipInfo from '@/shared/common/ui/chip-info';
 import LikeButton from '@/shared/common/ui/like-button';
+import { ChipInfoType } from '@/shared/lib/constants';
 import { formatDate, formatTime } from '@/shared/lib/utils';
 
 interface GatheringCardContentSectionProps
@@ -29,8 +30,12 @@ export default function GatheringCardContentSection(
           <CardTitle type={type} name={name} location={location} />
           <div className="mt-2 flex items-start justify-start">
             <div className="items-start space-x-2">
-              <ChipInfo type="date">{formatDate(dateTime)}</ChipInfo>
-              <ChipInfo type="time">{formatTime(dateTime)}</ChipInfo>
+              <ChipInfo type={ChipInfoType.DATE}>
+                {formatDate(dateTime)}
+              </ChipInfo>
+              <ChipInfo type={ChipInfoType.TIME}>
+                {formatTime(dateTime)}
+              </ChipInfo>
             </div>
           </div>
         </div>

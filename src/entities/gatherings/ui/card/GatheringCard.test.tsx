@@ -25,9 +25,7 @@ describe('CardList Component', () => {
   it('renders the card title correctly', () => {
     render(<GatheringCard {...mockProps} />);
     expect(
-      screen.getByText(
-        `${gatheringsContents[2].type} ${gatheringsContents[2].name}`,
-      ),
+      screen.getByText(`${gatheringsContents[2].name}`),
     ).toBeInTheDocument();
   });
 

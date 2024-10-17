@@ -1,8 +1,9 @@
+import { CommonSizeValueType } from '@/shared/lib/constants';
 import { Button, ButtonProps } from '@/shared/ui/button';
 
 interface CommonButtonProps extends ButtonProps {
   variant: 'default' | 'outline';
-  size: 'sm' | 'lg';
+  size: CommonSizeValueType;
 }
 
 export default function CommonButton({

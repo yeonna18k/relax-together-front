@@ -7,6 +7,7 @@ import {
 import EditCompanyNameInput from '@/features/mypage/ui/profile-update-modal/EditCompanyNameInput';
 import EditImage from '@/features/mypage/ui/profile-update-modal/EditImage';
 import Modal from '@/shared/common/ui/modal';
+import { CommonSize } from '@/shared/lib/constants';
 
 export default function ProfileUpdateModal({ user }: ProfileUpdateUser) {
   const { updateUser, setUpdateUser, handleSubmit } = useUpdateUserInfo({
@@ -16,8 +17,7 @@ export default function ProfileUpdateModal({ user }: ProfileUpdateUser) {
   return (
     <Modal
       title="프로필 수정하기"
-      variant="default"
-      size="lg"
+      size={CommonSize.LARGE}
       actionBtnName="수정하기"
       disabled={updateUser.companyName.length <= 0}
       handleAction={handleSubmit}

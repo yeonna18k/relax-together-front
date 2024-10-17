@@ -1,8 +1,8 @@
-import { ChipStateTypes } from '@/shared/common/ui/chip-state';
+import { ChipStateValueType } from '@/shared/common/ui/chip-state';
 import { MIN_PARTICIPANT } from '@/shared/lib/constants';
 
 export type UseChipStateTypes = Extract<
-  ChipStateTypes,
+  ChipStateValueType,
   'scheduled' | 'completed'
 >;
 export function timeComparisonStatus(
@@ -15,7 +15,7 @@ export function timeComparisonStatus(
 }
 
 export type OpenChipStateTypes = Extract<
-  ChipStateTypes,
+  ChipStateValueType,
   'confirmed' | 'pending'
 >;
 export function participantComparisonStatus(

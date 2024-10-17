@@ -1,3 +1,4 @@
+import { CommonSize } from '@/shared/lib/constants';
 import { Button } from '@/shared/ui/button';
 
 interface ButtonGroupProps {
@@ -16,20 +17,10 @@ export default function ButtonGroup({
 }: ButtonGroupProps) {
   return (
     <div className="flex w-full justify-between">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={handleReset}
-        aria-label="초기화"
-      >
+      <Button variant="outline" size={CommonSize.SMALL} onClick={handleReset}>
         초기화
       </Button>
-      <Button
-        variant="default"
-        size="sm"
-        onClick={handleSubmit}
-        aria-label="적용"
-      >
+      <Button variant="default" size={CommonSize.SMALL} onClick={handleSubmit}>
         적용
       </Button>
     </div>

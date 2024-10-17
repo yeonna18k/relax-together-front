@@ -5,7 +5,6 @@ import { twMerge } from 'tailwind-merge';
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
 // 날짜 포맷팅 (ex. 1월 7일)
 export const formatDate = (stringDate: string): string => {
   const date = new Date(stringDate);

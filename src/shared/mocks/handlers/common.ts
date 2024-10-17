@@ -6,6 +6,10 @@ export const commonHandler = [
   // 사용자 정보 가져오기 핸들러
   rest.get(`${BASE_URL}/api/auths/me`, (req, res, ctx) => {
     // 토큰 만료 응답 시뮬레이션
+    console.log(
+      "🚀 ~ rest.get ~ req.headers.get('Authorization'):",
+      req.headers.get('Authorization'),
+    );
     if (req.headers.get('Authorization') === 'Bearer old-access-token') {
       return res(
         ctx.status(401),

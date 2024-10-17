@@ -19,7 +19,7 @@ export default function GatheringsPageContainer({
           <GatheringSearch />
           <CommonSearchFilter
             sortItems={gatheringsSortItems}
-            path={Path.gatherings}
+            path={Path.GATHERINGS}
           />
           {children}
         </div>
