@@ -25,6 +25,8 @@ export default function JoinBtn({
   const isClosed =
     getTimeUntilDeadline(new Date(gatheringsInfo.registrationEnd)) ===
     '마감되었습니다';
+  const isCapacityFull =
+    gatheringsInfo.capacity === participantList.totalElements;
 
   const user = useUserDataStore(state => state.user);
 
@@ -53,7 +55,7 @@ export default function JoinBtn({
       ) : (
         <Button
           disabled={isClosed}
-          variant={isClosed ? 'disabled' : 'default'}
+          variant={isClosed || isCapacityFull ? 'disabled' : 'default'}
           size="lg"
           className="h-11 w-[115px]"
           onClick={handleJoinBtnClick}

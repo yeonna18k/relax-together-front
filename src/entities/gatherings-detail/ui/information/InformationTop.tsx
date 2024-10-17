@@ -11,7 +11,7 @@ export default function InformationTop({
   gatheringsInfo,
 }: InformationTopProps) {
   return (
-    <div className="p-6 pb-[25px] md:pb-[43px]">
+    <div className="border-b-2 border-dashed border-gray-200 p-6 pb-[19px] lg:pb-[37px]">
       <div className="flex justify-between gap-4">
         <GatheringInfo gatheringsInfo={gatheringsInfo} />
         <div className="h-12 w-12 shrink-0">
