@@ -52,7 +52,7 @@ export default function CommonSearchFilter({
           <DatePicker date={searchFilterValues.date} setDate={setDate} />
         </div>
         <CommonSelect
-          variant={FilterIconType.SORT}
+          variant="sort"
           filterIconType={FilterIconType.SORT}
           menuItems={sortItems}
           onValueChange={selectedSortValue =>

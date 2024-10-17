@@ -20,7 +20,7 @@ const triggerVariants = cva('w-full rounded-md', {
     variant: {
       default: 'w-[120px]',
       modal: 'text-base border-none',
-      sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 justify-end gap-1 w-10 lg:w-[120px] p-1.5',
+      sort: 'bg-white text-gray-900 flex-row-reverse [&>span]:hidden [&>span]:lg:block lg:p-2 gap-1 w-10 lg:w-[120px] p-1.5',
     },
   },
   defaultVariants: {
@@ -83,6 +83,7 @@ export default function CommonSelect({
     ),
     sort: <SortArrow className="h-6 w-6" />,
   };
+
   return (
     <Select onValueChange={onValueChange} value={selectedValue}>
       <SelectTrigger
@@ -92,8 +93,8 @@ export default function CommonSelect({
           `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}
+        icon={filterIconMap[filterIconType]}
       >
-        {filterIconMap[filterIconType]} {/* 아이콘을 자식으로 추가 */}
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent data-testid="select-content">
