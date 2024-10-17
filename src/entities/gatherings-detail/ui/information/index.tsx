@@ -17,16 +17,12 @@ export default function Information({
   participantList,
 }: InformationProps) {
   return (
-    <>
-      <div className="w-full rounded-xl border-2 border-gray-200 bg-white">
-        <InformationTop gatheringsInfo={gatheringsInfo} />
-        {participantList && (
-          <InformationBottom
-            gatheringsInfo={gatheringsInfo}
-            participantList={participantList}
-          />
-        )}
-      </div>
-    </>
+    <div className="relative mt-4 w-full rounded-xl border-2 border-gray-200 bg-white sm:mt-0 sm:w-1/2">
+      <InformationTop gatheringsInfo={gatheringsInfo} />
+      <InformationBottom
+        gatheringsInfo={gatheringsInfo}
+        participantList={participantList}
+      />
+    </div>
   );
 }
