@@ -1,11 +1,15 @@
+import { ChipInfoType } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
+import { ValueOf } from '@/shared/types/utility';
 import { ReactNode } from 'react';
 
+export type ChipInfoTypeValueType = ValueOf<typeof ChipInfoType>;
+
 interface ChipInfoProps {
-  type: 'date' | 'time';
+  type: ChipInfoTypeValueType;
   children: ReactNode;
 }
-const ChipInfoMatch = {
+const ChipInfoMatch: Record<ChipInfoTypeValueType, string> = {
   date: 'text-white',
   time: 'text-green-600',
 };

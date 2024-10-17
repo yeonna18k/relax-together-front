@@ -1,4 +1,5 @@
 import ChipInfo from '@/shared/common/ui/chip-info';
+import { ChipInfoType } from '@/shared/lib/constants';
 import { formatDate, formatTime } from '@/shared/lib/utils';
 import { GatheringsInfoTypes } from '../../model/information';
 
@@ -13,8 +14,8 @@ export default function GatheringChip({ gatheringsInfo }: GatheringChipProps) {
 
   return (
     <div className="mt-3 space-x-2">
-      <ChipInfo type="date">{formattedDate}</ChipInfo>
-      <ChipInfo type="time">{formattedTime}</ChipInfo>
+      <ChipInfo type={ChipInfoType.DATE}>{formattedDate}</ChipInfo>
+      <ChipInfo type={ChipInfoType.TIME}>{formattedTime}</ChipInfo>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 import { MyGathering } from '@/entities/mypage/model/my-gatherings';
 import { useReviewStore } from '@/entities/mypage/model/store/useReviewStore';
 import { useModal } from '@/shared/hooks/useModal';
-import { ModalType } from '@/shared/lib/constants';
+import { CommonSize, ModalType } from '@/shared/lib/constants';
 import { Button } from '@/shared/ui/button';
 
 export default function WriteReviewButton({
@@ -17,7 +17,7 @@ export default function WriteReviewButton({
   };
   return (
     <Button
-      size="sm"
+      size={CommonSize.SMALL}
       onClick={handleClick}
       disabled={reviewed}
       className="z-20"

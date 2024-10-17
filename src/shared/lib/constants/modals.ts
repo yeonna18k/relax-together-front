@@ -9,4 +9,11 @@ export const ModalType = {
   RESET_SUCCESS: 'resetSuccess',
   EMAIL_AUTH: 'emailAuth',
   SHARE_CONFIRM: 'shareConfirm',
+  CANCEL_CONFIRM: 'cancelConfirm',
+} as const;
+
+export const ModalVariant = {
+  DEFAULT: 'default',
+  NOTICE: 'notice',
+  SINGLE: 'single',
 } as const;

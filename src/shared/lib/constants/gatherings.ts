@@ -10,3 +10,22 @@ export const NOW_BASE_CREATE_DATE = addHours(NOW, 3); // NOTE: 현재 시간을 
 export const NOW_BASE_CREATE_HOURS = NOW_BASE_CREATE_DATE.getHours(); // NOTE: 서비스 생성 가능 시간
 export const FUTURE_CREATE_DATE = addDays(NOW, 1); // NOTE: 현재 시간을 기준으로 내일 날짜 설정
 export const FUTURE_BASE_CREATE_HOURS = 9; // NOTE: 내일 날짜의 생성 가능 기본 시간
+
+export const GatheringType = {
+  달램핏: '달램핏',
+  오피스스트레칭: '오피스 스트레칭',
+  마인드풀니스: '마인드풀니스',
+  워케이션: '워케이션',
+} as const;
+
+export const GatheringLocation = {
+  건대입구: '건대입구',
+  을지로3가: '을지로3가',
+  신림: '신림',
+  홍대입구: '홍대입구',
+} as const;
+
+export const MyGatheringStatus = {
+  ONGOING: 'ONGOING',
+  CANCELLED: 'CANCELLED',
+} as const;

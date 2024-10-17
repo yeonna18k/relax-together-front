@@ -1,11 +1,12 @@
 import ArrowDropdown from '@/shared/assets/icons/arrow-dropdown.svg';
 import SortArrow from '@/shared/assets/icons/sort-arrow.svg';
-import { FilterSize } from '@/shared/lib/constants/ui';
-import { cn } from '@/shared/lib/utils';
 import {
-  FilterIconValueType,
-  FilterSizeValueType,
-} from '@/shared/types/utility';
+  CommonSize,
+  CommonSizeValueType,
+  FilterIconType,
+} from '@/shared/lib/constants/ui';
+import { cn } from '@/shared/lib/utils';
+import { ValueOf } from '@/shared/types/utility';
 import {
   Select,
   SelectContent,
@@ -14,6 +15,8 @@ import {
   SelectValue,
 } from '@/shared/ui/select';
 import { cva, VariantProps } from 'class-variance-authority';
+
+export type FilterIconValueType = ValueOf<typeof FilterIconType>;
 
 const triggerVariants = cva('w-full rounded-md', {
   variants: {
@@ -45,7 +48,7 @@ interface SelectProps {
   onValueChange?: (value: string) => void;
   selectedValue?: string;
   menuItems: Array<CommonSelectItem>;
-  size?: FilterSizeValueType;
+  size?: CommonSizeValueType;
 }
 
 /**
@@ -68,7 +71,7 @@ export default function CommonSelect({
   onValueChange,
   selectedValue,
   menuItems,
-  size = FilterSize.SMALL,
+  size = CommonSize.SMALL,
 }: SelectProps) {
   const getIconFillColor =
     selectedValue === 'ALL' || selectedValue === undefined
@@ -89,7 +92,7 @@ export default function CommonSelect({
       <SelectTrigger
         data-testid="select-trigger"
         className={cn(
-          `${size === FilterSize.SMALL ? 'w-[120px]' : 'w-full'} h-10`,
+          `${size === CommonSize.SMALL ? 'w-[120px]' : 'w-full'} h-10`,
           `${getTriggerStyles({ selectedValue })}`,
           triggerVariants({ variant }),
         )}

@@ -1,8 +1,9 @@
 import CheckIcon from '@/shared/assets/icons/check-icon.svg';
 import { ChipStateType } from '@/shared/lib/constants';
 import { cn } from '@/shared/lib/utils';
-import { ChipStateValueType } from '@/shared/types/utility';
+import { ValueOf } from '@/shared/types/utility';
 
+export type ChipStateValueType = ValueOf<typeof ChipStateType>;
 interface ChipStateProps {
   state: ChipStateValueType;
 }

@@ -1,11 +1,11 @@
+import { SortByValueType } from '@/entities/gatherings/model/params';
 import { SortBy } from '@/shared/lib/constants';
-import { GatheringLocation } from '@/shared/model';
-import { SortByValueType } from '@/shared/types/utility';
+import { GatheringLocationValueType } from '@/shared/model';
 
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-export type SelectedValue = GatheringLocation | 'ALL';
+export type SelectedValue = GatheringLocationValueType | 'ALL';
 type SearchFilterValues = {
   date: Date | undefined;
   selectedValue: SelectedValue;

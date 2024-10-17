@@ -3,7 +3,7 @@ import useSelectLocation from '@/features/gatherings/model/hook/useSelectLocatio
 import CreateGatheringFormLabel from '@/features/gatherings/ui/create-gathering-form/CreateGatheringFormLabel';
 
 import CommonSelect from '@/shared/common/ui/common-select';
-import { FilterIconType, FilterSize } from '@/shared/lib/constants/ui';
+import { CommonSize, FilterIconType } from '@/shared/lib/constants/ui';
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 
 export default function CreateGatheringLocationFormFiled({
@@ -22,7 +22,7 @@ export default function CreateGatheringLocationFormFiled({
           <FormControl>
             <CommonSelect
               variant="modal"
-              size={FilterSize.LARGE}
+              size={CommonSize.LARGE}
               filterIconType={FilterIconType.DEFAULT}
               menuItems={modalMenuItems}
               selectedValue={selectedValue}

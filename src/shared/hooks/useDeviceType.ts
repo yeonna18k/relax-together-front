@@ -1,9 +1,10 @@
 'use client';
 import { DESKTOP, DeviceType, TABLET } from '@/shared/lib/constants/viewport';
-import { DeviceValueType } from '@/shared/types/utility';
-
+import { ValueOf } from '@/shared/types/utility';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
+
+export type DeviceValueType = ValueOf<typeof DeviceType>;
 
 export default function useDeviceType() {
   const { width = 0 } = useWindowSize();

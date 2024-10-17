@@ -1,5 +1,8 @@
+import { FiltersValueType } from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { FilterNames, Filters } from '@/shared/lib/constants';
-import { FiltersNameValueType, FiltersValueType } from '@/shared/types/utility';
+import { ValueOf } from '@/shared/types/utility';
+
+export type FiltersNameValueType = ValueOf<typeof FilterNames>;
 
 export type Filter = {
   name: FiltersNameValueType;

@@ -7,17 +7,10 @@ import ContentEmptySection from '@/shared/common/ui/content-empty-section';
 import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
 import MotionListItem from '@/shared/common/ui/motion-list-item';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
-import { GatheringType } from '@/shared/model';
+
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLikeGatheringsData } from '../../api/queries/like-gatherings';
-
-const getCurrentTypeMap: Record<string, GatheringType> = {
-  dalaemfit_all: '달램핏',
-  dalaemfit_office_stretching: '오피스 스트레칭',
-  dalaemfit_mindfulness: '마인드풀니스',
-  workation: '워케이션',
-};
 
 export default function LikeGatheringCardList() {
   const { additionalParams } = useAdditionalParams();

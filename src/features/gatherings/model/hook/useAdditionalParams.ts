@@ -1,12 +1,11 @@
 import { FilterParams } from '@/entities/gatherings/model/params';
 import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
-
 import { SortBy, SortOrder, SubPage } from '@/shared/lib/constants';
-import { GatheringType } from '@/shared/model';
+import { GatheringValueType } from '@/shared/model';
 import { useSearchFilterStore } from '@/shared/store/useSearchFilterStore';
 import { endOfDay } from 'date-fns';
 
-const getCurrentTypeMap: Record<string, GatheringType> = {
+const getCurrentTypeMap: Record<string, GatheringValueType> = {
   dalaemfit_all: '달램핏',
   dalaemfit_office_stretching: '오피스 스트레칭',
   dalaemfit_mindfulness: '마인드풀니스',

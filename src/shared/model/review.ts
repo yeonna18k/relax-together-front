@@ -1,8 +1,8 @@
-import { GatheringLocation, GatheringType } from '@/shared/model';
+import { GatheringLocationValueType, GatheringValueType } from '@/shared/model';
 
 export interface Review {
-  gatheringType: GatheringType;
-  gatheringLocation: GatheringLocation;
+  gatheringType: GatheringValueType;
+  gatheringLocation: GatheringLocationValueType;
   userProfileImage: string;
   userName: string;
   score: number;

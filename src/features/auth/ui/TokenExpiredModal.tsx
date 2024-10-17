@@ -1,5 +1,6 @@
 import Modal from '@/shared/common/ui/modal';
 import { useModal } from '@/shared/hooks/useModal';
+import { CommonSize, ModalVariant } from '@/shared/lib/constants';
 import { useRouter } from 'next/navigation';
 
 export default function TokenExpiredModal() {
@@ -12,8 +13,8 @@ export default function TokenExpiredModal() {
 
   return (
     <Modal
-      variant="notice"
-      size="sm"
+      variant={ModalVariant.NOTICE}
+      size={CommonSize.SMALL}
       actionBtnName="확인"
       handleAction={handleAction}
     >

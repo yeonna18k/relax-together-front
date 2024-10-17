@@ -5,7 +5,7 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
 type ModalState = {
-  modal: string[];
+  modal: ModalValueType[];
 };
 
 type ModalValueType = ValueOf<typeof ModalValueType>;

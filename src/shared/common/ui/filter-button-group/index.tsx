@@ -1,6 +1,8 @@
-import useCommonSearchParams from '@/entities/mypage/model/hooks/useCommonSearchParams';
+import useCommonSearchParams, {
+  FiltersValueType,
+} from '@/entities/mypage/model/hooks/useCommonSearchParams';
 import { Filter } from '@/shared/fixture/filter';
-import { FiltersValueType } from '@/shared/types/utility';
+
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
 
