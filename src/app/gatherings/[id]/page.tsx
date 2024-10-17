@@ -6,7 +6,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 
-interface GatheringsDetail {
+export interface GatheringsDetail {
   params: {
     id: string;
   };

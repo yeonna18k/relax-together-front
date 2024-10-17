@@ -14,10 +14,64 @@ const paperLogyExtraBold = localFont({
   variable: '--font-paperlogy-extrabold',
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const siteName = '같이 달램';
+
 export const metadata: Metadata = {
-  title: '같이 달램',
+  title: {
+    template: `%s | ${siteName}`,
+    default: siteName,
+  },
   description:
     '유저가 바쁜 일상 속 휴식을 위한 다양한 모임을 탐색하고 참여하며, 직접 모임을 개설하고 리뷰를 생성할 수 있는 서비스입니다.',
+  keywords:
+    '같이 달램, 달램, 달램핏, 워케이션, 마인드풀니스, 오피스 스트레칭, 모임, 휴식, relax together, RELAX TOGETHER',
+  authors: [
+    {
+      name: 'team2',
+      url: 'https://github.com/relax-together',
+    },
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: {
+      template: `%s | ${siteName}`,
+      default: siteName,
+    },
+    description:
+      '유저가 바쁜 일상 속 휴식을 위한 다양한 모임을 탐색하고 참여하며, 직접 모임을 개설하고 리뷰를 생성할 수 있는 서비스입니다.',
+    url: BASE_URL,
+    siteName: siteName,
+    type: 'website',
+    images: [
+      {
+        url: '/assets/intro-content.svg',
+        width: 1200,
+        height: 630,
+        alt: '같이 달램 소개 콘텐츠 이미지',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: {
+      template: `%s | ${siteName}`,
+      default: siteName,
+    },
+    description:
+      '유저가 바쁜 일상 속 휴식을 위한 다양한 모임을 탐색하고 참여하며, 직접 모임을 개설하고 리뷰를 생성할 수 있는 서비스입니다.',
+    images: [
+      {
+        url: '/assets/intro-content.svg',
+        width: 1200,
+        height: 630,
+        alt: '같이 달램 소개 콘텐츠 이미지',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
