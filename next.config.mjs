@@ -1,6 +1,8 @@
 import { withSentryConfig } from '@sentry/nextjs';
-/** @type {import('next').NextConfig} */
 
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   async redirects() {
     return [
@@ -30,7 +32,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  webpack(config) {
+  webpack(config, { dev, isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
