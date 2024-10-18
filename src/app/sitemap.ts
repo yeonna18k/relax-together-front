@@ -11,7 +11,8 @@ type Changefreq =
   | 'yearly'
   | 'never';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://relax-together.web.app';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const response = await fetchGatherings({
