@@ -34,7 +34,8 @@ interface ModalProps {
   variant?: VariantProps<typeof footerVariants>['variant'];
   size: CommonSizeValueType;
   disabled?: boolean;
-  actionBtnName?: string;
+  actionBtnName?: React.ReactNode;
+  actionBtnClassName?: string;
   handleAction?: () => void;
   type?: 'submit' | 'button';
 }
@@ -46,10 +47,12 @@ export default function Modal({
   size,
   disabled,
   actionBtnName = '확인',
+  actionBtnClassName,
   handleAction,
   type = 'button',
 }: ModalProps) {
   const { resetModal } = useModal();
+
   const isDefault = variant === ModalVariant.DEFAULT;
 
   const handleBtnClick = () => {
@@ -86,6 +89,7 @@ export default function Modal({
           onClick={handleAction}
           disabled={disabled}
           type={type}
+          className={actionBtnClassName}
         >
           {actionBtnName}
         </AlertDialogAction>

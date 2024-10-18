@@ -4,10 +4,15 @@ import FileUpload from '@/features/gatherings/ui/create-gathering-form/FileUpLoa
 
 import { FormControl, FormField, FormItem } from '@/shared/ui/form';
 
+interface CreateGatheringImageUploadFormFiledProps
+  extends CreateGatheringCommonProps {
+  setIsDisabled: (value: boolean) => void;
+}
 export default function CreateGatheringImageUploadFormFiled({
   control,
   selectedFilter,
-}: CreateGatheringCommonProps) {
+  setIsDisabled,
+}: CreateGatheringImageUploadFormFiledProps) {
   return (
     <FormField
       control={control}
@@ -20,6 +25,7 @@ export default function CreateGatheringImageUploadFormFiled({
               onChange={field.onChange}
               imageUrl={field.value ?? ''}
               selectedFilter={selectedFilter}
+              setIsDisabled={setIsDisabled}
             />
           </FormControl>
         </FormItem>

@@ -93,7 +93,11 @@ export default function GatheringCreateModal() {
               control={form.control}
               selectedFilter={selectedFilter}
             />
-            <CreateGatheringImageUploadFormFiled control={form.control} />
+            <CreateGatheringImageUploadFormFiled
+              control={form.control}
+              selectedFilter={selectedFilter}
+              setIsDisabled={setIsDisabled}
+            />
             <CreateGatheringDateTimeFormFiled
               form={form}
               selectedFilter={selectedFilter}
