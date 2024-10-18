@@ -32,7 +32,7 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
   if (isWithAuth) {
-    if (isLoginUser === 'false') {
+    if (!isLoginUser || isLoginUser === 'false') {
       return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
     }
 
