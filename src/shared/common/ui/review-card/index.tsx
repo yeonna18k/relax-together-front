@@ -11,11 +11,13 @@ export default function ReviewCard(props: ReviewCardProps) {
   return (
     <div className="flex w-full flex-col gap-6 sm:flex-row lg:max-w-[948px]">
       {props.page !== Page.GATHERING_DETAIL && (
-        <ImageCard
-          src={props.gatheringImage || `/assets/review-sample.png`}
-          alt="review-image"
-          className="xs:w-full sm:h-[156px] sm:w-[280px]"
-        />
+        <div className="flex-shrink-0">
+          <ImageCard
+            src={props.gatheringImage || `/assets/review-sample.png`}
+            alt="review-image"
+            className=""
+          />
+        </div>
       )}
       <ReviewContent {...props} />
     </div>
