@@ -15,7 +15,7 @@ export default function ImageCard({ src, alt, className }: ImageCardProps) {
       width={311}
       height={156}
       className={cn(
-        'h-auto w-full rounded-md xs:w-[280px] md:rounded-xl',
+        'h-[214px] w-full rounded-md xs:h-[156px] xs:w-[280px] md:rounded-xl',
         className,
       )}
       priority
