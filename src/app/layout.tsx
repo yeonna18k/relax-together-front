@@ -14,10 +14,12 @@ const paperLogyExtraBold = localFont({
   variable: '--font-paperlogy-extrabold',
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://relax-together.web.app';
 const siteName = '같이 달램';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     template: `%s | ${siteName}`,
     default: siteName,
