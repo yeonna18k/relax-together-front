@@ -20,12 +20,17 @@ const CreateButton = dynamic(
 
 export default async function Gatherings() {
   const queryClient = new QueryClient();
-  await prefetchCommonInfiniteData(
-    queryClient,
-    ['gatherings', additionalParams],
-    fetchGatherings,
-    additionalParams,
-  );
+  try {
+    await prefetchCommonInfiniteData(
+      queryClient,
+      ['gatherings', additionalParams],
+      fetchGatherings,
+      additionalParams,
+    );
+  } catch (error) {
+    console.error('Prefetch failed:', error);
+    // 추가적인 에러 처리 로직
+  }
 
   return (
     <>

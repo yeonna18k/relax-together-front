@@ -2,6 +2,7 @@
 
 import { useMyPendingReviewsData } from '@/entities/mypage/api/queries/my-pending-reviews';
 import MypageCard from '@/entities/mypage/ui/card';
+import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import CommonBlurCardWrapper from '@/shared/common/ui/blur-card/CommonBlurCardWrapper';
@@ -13,7 +14,7 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default function MyPendingReviewSection() {
-  const { data, fetchNextPage } = useMyPendingReviewsData();
+  const { data, fetchNextPage, isFetching } = useMyPendingReviewsData();
 
   const { ref, inView } = useInView();
 
@@ -22,6 +23,10 @@ export default function MyPendingReviewSection() {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
+  if (isFetching) {
+    return <LoadingSkeletonList />;
+  }
 
   return (
     <AnimatePresence mode="wait">

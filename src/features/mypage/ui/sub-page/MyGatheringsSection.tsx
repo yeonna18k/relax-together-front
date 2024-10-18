@@ -2,6 +2,7 @@
 
 import { useMyGatheringsData } from '@/entities/mypage/api/queries';
 import MypageCard from '@/entities/mypage/ui/card';
+import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import CommonBlurCardWrapper from '@/shared/common/ui/blur-card/CommonBlurCardWrapper';
@@ -17,7 +18,7 @@ export const itemVariants = {
 };
 
 export default function MyGatheringsSection() {
-  const { data, fetchNextPage } = useMyGatheringsData();
+  const { data, fetchNextPage, isFetching } = useMyGatheringsData();
 
   const { ref, inView } = useInView();
 
@@ -26,6 +27,10 @@ export default function MyGatheringsSection() {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
+  if (isFetching) {
+    return <LoadingSkeletonList />;
+  }
 
   return (
     <AnimatePresence mode="wait">
