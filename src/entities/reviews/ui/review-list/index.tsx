@@ -23,7 +23,7 @@ export default function ReviewList() {
           {data?.pages.map((page, index) => (
             <div
               key={`reviews-${page}-${index}`}
-              className="flex flex-col gap-6"
+              className="mb-6 flex flex-col gap-6"
             >
               {page.content.map((review, index) => {
                 return (

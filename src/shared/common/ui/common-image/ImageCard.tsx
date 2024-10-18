@@ -9,18 +9,16 @@ interface ImageCardProps {
 
 export default function ImageCard({ src, alt, className }: ImageCardProps) {
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={311}
-      height={156}
-      className={cn(
-        'h-[214px] w-full rounded-md xs:h-[156px] xs:w-[280px] md:rounded-xl',
-        className,
-      )}
-      priority
-      placeholder="blur"
-      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
-    />
+    <div className="relative h-[214px] w-full sm:h-[156px] sm:w-[280px]">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className={cn('rounded-md object-cover md:rounded-xl', className)}
+        priority
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+      />
+    </div>
   );
 }
