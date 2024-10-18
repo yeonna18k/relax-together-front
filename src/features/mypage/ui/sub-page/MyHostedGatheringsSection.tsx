@@ -2,6 +2,7 @@
 
 import { useMyHostedGatheringsData } from '@/entities/mypage/api/queries';
 import MypageCard from '@/entities/mypage/ui/card';
+import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import CommonBlurCardWrapper from '@/shared/common/ui/blur-card/CommonBlurCardWrapper';
@@ -13,7 +14,7 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default function MyHostedGatheringsSection() {
-  const { data, fetchNextPage } = useMyHostedGatheringsData();
+  const { data, fetchNextPage, isFetching } = useMyHostedGatheringsData();
 
   const { ref, inView } = useInView();
 
@@ -22,6 +23,10 @@ export default function MyHostedGatheringsSection() {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
+  if (isFetching) {
+    return <LoadingSkeletonList />;
+  }
 
   return (
     <AnimatePresence mode="wait">

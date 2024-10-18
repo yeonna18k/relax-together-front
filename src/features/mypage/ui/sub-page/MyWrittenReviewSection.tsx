@@ -1,6 +1,7 @@
 'use client';
 
 import { useMyWrittenReviewsData } from '@/entities/mypage/api/queries/my-written-reviews';
+import LoadingSkeletonList from '@/features/mypage/ui/sub-page/LoadingSkeletonList';
 
 import ScrollSection from '@/features/mypage/ui/sub-page/ScrollSection';
 import ContentEmptySection from '@/shared/common/ui/content-empty-section';
@@ -12,7 +13,7 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export default function MyWrittenReviewSection() {
-  const { data, fetchNextPage } = useMyWrittenReviewsData();
+  const { data, fetchNextPage, isFetching } = useMyWrittenReviewsData();
 
   const { ref, inView } = useInView();
 
@@ -21,6 +22,10 @@ export default function MyWrittenReviewSection() {
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
+  if (isFetching) {
+    return <LoadingSkeletonList />;
+  }
 
   return (
     <AnimatePresence mode="wait">
