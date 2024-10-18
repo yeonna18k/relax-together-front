@@ -11,25 +11,24 @@ type Changefreq =
   | 'yearly'
   | 'never';
 
-const BASE_URL =
+function isValidURL(string: string): boolean {
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+let BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || 'https://relax-together.web.app';
 
+if (!isValidURL(BASE_URL)) {
+  console.warn('Invalid BASE_URL in sitemap generation, using default');
+  BASE_URL = 'https://relax-together.web.app';
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const response = await fetchGatherings({
-    ...additionalParams,
-    pageParam: 0,
-    page: 0,
-    size: 10,
-    sortOrder: 'ASC',
-  });
-
-  const gatherings = response.content.map(gathering => ({
-    url: `${BASE_URL}/gatherings/${gathering.id}`,
-    lastModified: new Date(gathering.dateTime).toISOString(),
-    changeFrequency: 'weekly' as Changefreq,
-    priority: 0.8,
-  }));
-
   const routes = [
     '/gatherings',
     '/like-gatherings',
@@ -60,5 +59,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...routes, ...gatherings];
+  try {
+    const response = await fetchGatherings({
+      ...additionalParams,
+      pageParam: 0,
+      page: 0,
+      size: 10,
+      sortOrder: 'ASC',
+    });
+
+    const gatherings = response.content.map(gathering => ({
+      url: `${BASE_URL}/gatherings/${gathering.id}`,
+      lastModified: new Date(gathering.dateTime).toISOString(),
+      changeFrequency: 'weekly' as Changefreq,
+      priority: 0.8,
+    }));
+
+    return [...routes, ...gatherings];
+  } catch (error) {
+    console.error('Error fetching gatherings for sitemap:', error);
+    return routes;
+  }
 }
