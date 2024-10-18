@@ -26,6 +26,18 @@ export const metadata: Metadata = {
   },
   description:
     '유저가 바쁜 일상 속 휴식을 위한 다양한 모임을 탐색하고 참여하며, 직접 모임을 개설하고 리뷰를 생성할 수 있는 서비스입니다.',
+  icons: {
+    icon: [
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+  },
+  manifest: '/site.webmanifest',
+  appleWebApp: {
+    title: '같이 달램',
+  },
   keywords:
     '같이 달램, 달램, 달램핏, 워케이션, 마인드풀니스, 오피스 스트레칭, 모임, 휴식, relax together, RELAX TOGETHER',
   authors: [
