@@ -20,10 +20,7 @@ export default function MotionListItem({
 }: PropsWithChildren<MotionListItemProps>) {
   return (
     <motion.li
-      className={cn(
-        'border-b-2 border-dashed border-gray-300 py-6 first:pt-0',
-        className,
-      )}
+      className={cn('border-gray-300 py-3 first:pt-0', className)}
       variants={itemVariants}
       initial="hidden"
       animate="visible"
