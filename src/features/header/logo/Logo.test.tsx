@@ -10,10 +10,8 @@ describe('Logo Component', () => {
 
   test('로고에 올바른 대체 텍스트가 있다.', () => {
     render(<Logo />);
-    const logoText = screen.getByAltText('logo-text');
-    const logoIcon = screen.getByAltText('logo-icon');
+    const logoText = screen.getByAltText('relax-together-logo');
 
     expect(logoText).toBeInTheDocument();
-    expect(logoIcon).toBeInTheDocument();
   });
 });
