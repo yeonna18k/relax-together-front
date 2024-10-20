@@ -22,9 +22,24 @@ const getEmail = async (token: string | null) => {
   return response.json() as Promise<{ email: string }>;
 };
 
-export async function middleware(req: NextRequest) {
+const getSession = async (isLoginUser?: string) => {
+  const response = await fetch(
+    `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://relax-together.web.app'}/api/session`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isLoginUser }),
+    },
+  );
+  return response.json() as Promise<{ session: boolean }>;
+};
+
+export async function middleware(req: NextRequest, res: NextResponse) {
   const { pathname } = req.nextUrl;
   const isLoginUser = req.cookies.get('isLoginUser')?.value;
+  const { session } = await getSession(isLoginUser);
 
   const targetPathname = pathname.split('/')[1];
   const isWithAuth = withAuthList.includes(`/${targetPathname}`);
@@ -32,13 +47,13 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
   if (isWithAuth) {
-    if (isLoginUser === 'false') {
+    if (!session) {
       return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
     }
   }
 
   if (isWithOutAuth) {
-    if (isLoginUser === 'true') {
+    if (session) {
       return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
     }
   }
