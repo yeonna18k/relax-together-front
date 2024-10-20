@@ -35,17 +35,17 @@ export async function middleware(req: NextRequest) {
     if (!isLoginUser || isLoginUser === 'false') {
       return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
     }
-
-    if (url.pathname === '/mypage' && !url.searchParams.has('subPage')) {
-      url.searchParams.set('subPage', 'my-gatherings');
-      return NextResponse.redirect(url);
-    }
   }
 
   if (isWithOutAuth) {
     if (isLoginUser === 'true') {
       return NextResponse.redirect(new URL(FALLBACK_URL, req.url));
     }
+  }
+
+  if (url.pathname === '/mypage' && !url.searchParams.has('subPage')) {
+    url.searchParams.set('subPage', 'my-gatherings');
+    return NextResponse.redirect(url);
   }
 
   if (
