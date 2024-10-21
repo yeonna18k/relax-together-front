@@ -37,7 +37,7 @@ export default function ForgotPasswordForm() {
   const formValid = form.formState.isValid;
 
   return (
-    <div className="mt-8 w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:px-[54px] xl:mx-0 xl:mt-0 xl:px-16 xl:py-8">
+    <div className="mt-8 w-full rounded-xl bg-white px-4 py-8 md:mx-auto md:mt-[49px] md:w-[608px] md:px-[54px] xl:mx-0 xl:mt-0 xl:w-[510px] xl:px-16 xl:py-8">
       <div className="mb-8 text-center text-xs font-semibold text-gray-800 md:text-2xl">
         비밀번호 찾기
       </div>
