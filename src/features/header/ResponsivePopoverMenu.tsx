@@ -32,7 +32,7 @@ export default function ResponsivePopoverMenu() {
         sideOffset={18}
       >
         {user ? (
-          <ResponsiveLoginUser name={user.name} />
+          <ResponsiveLoginUser name={user.name} image={user.profileImage} />
         ) : (
           <TopTap
             path="/signin"
