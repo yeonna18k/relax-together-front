@@ -23,7 +23,10 @@ export default function CreateGatheringImageUploadFormFiled({
           <FormControl>
             <FileUpload
               onChange={field.onChange}
-              imageUrl={field.value ?? ''}
+              imageUrl={
+                field.value ??
+                'https://wfftvdtsykljejnuzibc.supabase.co/storage/v1/object/public/relax-together/workation04.jpg'
+              }
               selectedFilter={selectedFilter}
               setIsDisabled={setIsDisabled}
             />
