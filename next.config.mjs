@@ -28,10 +28,16 @@ const nextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         pathname: '/v0/b/relax-together.appspot.com/o/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'wfftvdtsykljejnuzibc.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+
   webpack(config, { dev, isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
