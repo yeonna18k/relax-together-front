@@ -44,24 +44,20 @@ class GatheringsDetailApiService extends ApiService {
   }
 
   async joinGathering(id: string) {
-    const response = await this.post<string>(
-      `${BASE_URL}/api/gatherings/${id}/join`,
-    );
-    return response.data;
+    const response = await this.post(`${BASE_URL}/api/gatherings/${id}/join`);
+    return response;
   }
 
   async leaveGathering(id: string) {
-    const response = await this.delete<string>(
+    const response = await this.delete(
       `${BASE_URL}/api/gatherings/${id}/leave`,
     );
-    return response.data;
+    return response;
   }
 
   async cancelGathering(id: string) {
-    const response = await this.put<string>(
-      `${BASE_URL}/api/gatherings/${id}/cancel`,
-    );
-    return response.data;
+    const response = await this.put(`${BASE_URL}/api/gatherings/${id}/cancel`);
+    return response;
   }
 }
 
