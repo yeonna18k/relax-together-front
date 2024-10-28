@@ -8,19 +8,21 @@
 
 #### 3. [기술 스택 및 개발 환경](#tech)
 
+<!--
 #### 4. [아키텍처](#architecture)
+-->
 
-#### 5. [주요 기능](#feature)
+#### 4. [주요 기능](#feature)
 
-#### 6. [화면 구성](#screen)
+#### 5. [화면 구성](#screen)
 
-#### 7. [트러블 슈팅](#trouble)
+#### 6. [트러블 슈팅](#trouble)
 
-#### 8. [Git Branch 전략](#branch)
+#### 7. [Git Branch 전략](#branch)
 
-#### 9. [폴더 구조](#directory)
+#### 8. [폴더 구조](#directory)
 
-#### 10. [프로젝트 관련 문서](#document)
+#### 9. [프로젝트 관련 문서](#document)
 
 <br>
 <br>
@@ -81,7 +83,7 @@ $ yarn dev
 | :---: | :---: | :---: | :---: |
 | Frontend<br>Leader | Frontend | Frontend | Frontend |
 
-| [🔗 박용현](https://github.com/yonghyeonpark) | [🔗 이정우](https://github.com/JWbase) | [🔗 배다연]() |
+| [🔗 박용현](https://github.com/yonghyeonpark) | [🔗 이정우](https://github.com/JWbase) | [🔗 배다연](https://dayeon0601.notion.site/18551da3cde14ec78132ed4e2faa3cea) |
 | :---: | :---: | :---: |
 | Backend | Backend | Design |
 
@@ -90,7 +92,7 @@ $ yarn dev
 
 ## <span id='tech'>3. 기술 스택 및 개발 환경</span>
 
-### 기술 스택
+### Frontend
 
 | 구분 | |
 | :---: | --- |
@@ -103,7 +105,7 @@ $ yarn dev
 <br>
 
 <details>
-  <summary><h3>기술적 의사결정</h3></summary>
+  <summary>기술적 의사결정</summary>
 
   #### Frontend
   
@@ -160,7 +162,7 @@ $ yarn dev
   - Husky (Git Hooks)
     - Husky는 Git Hook 관리 도구로, 코드 커밋 시 자동으로 린트와 테스트를 실행하여 코드 품질을 유지하기 위해 선택했습니다. 코드 커밋 전에 오류를 방지하고, 지속적인 품질 관리를 가능하게 합니다.
       
-  - Github Actions (CI/CD Automation)
+  - GitHub Actions (CI/CD Automation)
     - GitHub Actions는 CI/CD 자동화 도구로, 빌드, 테스트, 배포 과정을 손쉽게 설정하고 관리할 수 있어 개발 효율성을 높이기 위해 선택했습니다. 지속적인 통합과 배포를 통해 코드 품질을 유지하며, 개발 프로세스를 최적화할 수 있습니다.
       
   - ESLint (Linting)
@@ -198,7 +200,7 @@ $ yarn dev
 </details>
 
 <details>
-  <summary><h3>컨벤션</h3></summary>
+  <summary>컨벤션</summary>
 
   #### 커밋 컨벤션
   
@@ -264,6 +266,7 @@ $ yarn dev
 <br>
 <br>
 
+<!--
 ## <span id='architecture'>4. 아키텍처</span>
 
 <p align="center">
@@ -272,8 +275,9 @@ $ yarn dev
 
 <br>
 <br>
+-->
 
-## <span id='feature'>5. 주요 기능</span>
+## <span id='feature'>4. 주요 기능</span>
 - 모임 조회 (+필터링)
 - 모임 생성
 - 모임 참여
@@ -284,25 +288,25 @@ $ yarn dev
 <br>
 <br>
 
-## <span id='screen'>6. 화면 구성</span>
+## <span id='screen'>5. 화면 구성</span>
 
 | 로그인 페이지 | 회원가입 페이지 | 비밀번호 찾기 페이지 | 비밀번호 변경 페이지 |
 | :---: | :---: | :---: | :---: |
 | <img height="500" alt="image" src="https://github.com/user-attachments/assets/e26706d6-a76c-454c-90f9-5c09f187d393"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/7707c966-cf76-4915-8d9b-d66750595a20"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/33238cb1-f730-4ffd-88f7-93c55696c42a"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/06e15b2b-e618-4f84-81d3-6bc5009eb732"> |
 
-| 모임 찾기 페이지 (홈) | 모임 찾기 페이지 - 모임 생성 | GNB |
-| :---: | :---: | :---: |
-| <img height="500" alt="image" src="https://github.com/user-attachments/assets/e48c1106-b5e2-4b80-8237-68c1c28b5e13"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/41ce3387-c133-44d1-b4eb-699f93a2e50a"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/de89d8c3-c186-4c02-9dd1-1e6f6561f6c3"> |
-
-| 모임 상세 페이지 | 찜한 모임 페이지 | 모든 리뷰 페이지 | 마이 페이지 |
+| 모임 찾기 페이지 (홈) | 모임 찾기 페이지 - 모임 생성 | 모임 상세 페이지 | 찜한 모임 페이지 |
 | :---: | :---: | :---: | :---: |
-| <img height="500" alt="image" src="https://github.com/user-attachments/assets/202e2ef6-865c-4919-b14e-b35e1f123440"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/d663e3c6-a5cb-42b5-9411-d361a8ddee11"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/7d0143a5-3c4d-42ba-abaf-0da6e1af326d"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/711d8c99-795b-42ce-8ed7-2ec394118b9d"> |
+| <img height="500" alt="image" src="https://github.com/user-attachments/assets/e48c1106-b5e2-4b80-8237-68c1c28b5e13"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/41ce3387-c133-44d1-b4eb-699f93a2e50a"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/202e2ef6-865c-4919-b14e-b35e1f123440"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/d663e3c6-a5cb-42b5-9411-d361a8ddee11"> |
+
+| 모든 리뷰 페이지 | 마이 페이지 | GNB | 404 페이지 |
+| :---: | :---: | :---: | :---: |
+| <img height="500" alt="image" src="https://github.com/user-attachments/assets/7d0143a5-3c4d-42ba-abaf-0da6e1af326d"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/711d8c99-795b-42ce-8ed7-2ec394118b9d"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/de89d8c3-c186-4c02-9dd1-1e6f6561f6c3"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/18576d63-ddcd-45eb-93f6-f284e708c853"> |
 
 <br>
 <br>
 
 
-## <span id='trouble'>7. 트러블 슈팅</span>
+## <span id='trouble'>6. 트러블 슈팅</span>
 
 <details>
   <summary><b>withCredentials 옵션 미설정으로 CORS 에러 발생</b></summary>
@@ -321,7 +325,7 @@ $ yarn dev
   <br/>
 
   - BASE_URL을 지정하지 않은 경우
-    - 상대 경로(/api/auths/login) 사용 시, 현재 호스트를 기준으로 요청 전송
+    - 상대 경로(/api/auths/login) 사용 시,  현재 호스트를 기준으로 요청 전송
     - Firebase 호스팅 환경에서는 요청이 Next.js 서버로 전달
   - BASE_URL을 지정한 경우
     - 직접 지정된 URL로 요청 전송
@@ -356,15 +360,15 @@ $ yarn dev
   - 원인
     - 같은 브라우저를 이용하여 다른 계정으로 로그인할 경우, 이전에 사용되던 accessToken을 사용하게 되어 발생
       - 싱글톤 인스턴스 사용으로 하나의 인스턴스만 사용하고 있었음
-      - accessToken 메소드에서 localStorage와
+      - setAccessToken 메소드에서 localStorage와 axios 기본 헤더는 업데이트되지만, 이미 설정된 request 인터셉터는 그대로 남아있었음
   - 해결
-    - 
+    - accessToken을 갱신할 때마다 interceptor를 새로 호출
 </details>
 
 <br>
 <br>
 
-## <span id='branch'>8. Git Branch 전략</span>
+## <span id='branch'>7. Git Branch 전략</span>
 
 ### Trunk Based Development
 
@@ -381,21 +385,20 @@ $ yarn dev
 
 #### 팀 사용 예시
 
-- feature 브랜치를 생성하고 main에 merge하는 방식 (필요 시 feature 브랜치 사용 가능)
-- 테스트 자동화
+- feature 브랜치를 생성하고 main에 merge 하는 방식 (필요시 feature 브랜치 사용 가능)
+- CI/CD 파이프라인에 자동화된 테스트 추가
 - 코드 리뷰
-- 2명 이상 PR 승인 시 merge 가능
-- PR template 사용 (작업한 기능에 대한 상세 설명)
+- PR template 적용, merge 시 2명 이상 승인 필요
 
 <br>
 <br>
 
-## <span id='directory'>9. 폴더 구조</span>
+## <span id='directory'>8. 폴더 구조</span>
 
 ### FSD (Feature-Sliced Design)
 
 #### 선택 이유
-- 기능의 명확한 분리: 각 기능이 독립적으로 관리되어, 특정 기능을 수정할 때 다른 부분에 영향을 최소화할 수 있어 유지보수가 용이합니다.
+- 기능의 명확한 분리: 각 기능이 독립적으로 관리되어, 특정 기능을 수정할 때 다른 부분에 영향을 최소화할 수 있어 유지 보수가 용이합니다.
 - 일관된 계층적 구조: 코드가 체계적인 계층 구조로 관리되며, 항상 일관된 구조를 유지할 수 있어 코드 관리가 편리합니다.
 - 접근성과 재사용성: 기능별로 폴더가 구성되어 있어 필요한 모듈에 쉽게 접근할 수 있으며, 재사용성이 높은 코드 작성이 가능합니다.
 - 효율적인 협업: 기능 단위로 작업을 분리할 수 있어 팀원들이 맡은 부분을 독립적으로 개발할 수 있어 협업이 더욱 효율적입니다.
@@ -418,6 +421,7 @@ $ yarn dev
  ┃ ┃ ┃ ┣ 📂signin
  ┃ ┃ ┃ ┗ 📂signup
  ┃ ┃ ┣ 📂gatherings
+ ┃ ┃ ┃ ┗ 📂[id]
  ┃ ┃ ┣ 📂like-gatherings
  ┃ ┃ ┣ 📂mypage
  ┃ ┃ ┣ 📂reset-password
@@ -492,7 +496,7 @@ $ yarn dev
 <br>
 <br>
 
-## <span id='document'>10. 프로젝트 관련 문서</span>
+## <span id='document'>9. 프로젝트 관련 문서</span>
 
 - [Notion](https://www.notion.so/Relax-Together-162984bc9f3f43fb9a95834f8372ae91)
 - [Figma](https://www.figma.com/design/KCOgIUeLBFU1emVqWA38fe/2024-09%EC%9B%94-%EA%B0%99%EC%9D%B4%EB%8B%AC%EB%9E%A8?node-id=0-1&node-type=canvas&t=2xQ6TSHKS9s8Bbfu-0)
