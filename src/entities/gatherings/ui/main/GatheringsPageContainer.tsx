@@ -12,7 +12,7 @@ export default function GatheringsPageContainer({
 }: PropsWithChildren) {
   return (
     <Suspense fallback={null}>
-      <div className="relative mt-0 flex w-full flex-col justify-center overflow-y-scroll bg-white px-4 md:px-6 xl:bg-transparent xl:px-0">
+      <div className="relative mt-0 flex w-full flex-col justify-center bg-white px-4 md:px-6 xl:bg-transparent xl:px-0">
         <BannerBackground />
         <Banner />
         <div className="z-10 flex w-full flex-col items-center bg-white lg:min-h-[calc(100vh-71px)] xl:min-h-[calc(100vh-625px)]">

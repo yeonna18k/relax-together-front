@@ -5,6 +5,7 @@ import { cn } from '@/shared/lib/utils';
 import { useResponsiveGNBPopoverStore } from '@/shared/store/useResponsiveGNBPopoverStore';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
 interface TopTapProps {
@@ -14,8 +15,13 @@ interface TopTapProps {
 }
 export default function TopTap({ path, name, className }: TopTapProps) {
   const currentPathName = usePathname();
-  const [value] = useLocalStorage('like-gatherings-count', 0);
+  const [value] = useLocalStorage('liked-count', 0);
   const { resetPopover } = useResponsiveGNBPopoverStore();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <Link
@@ -29,7 +35,7 @@ export default function TopTap({ path, name, className }: TopTapProps) {
       aria-label={`${path}로 이동`}
     >
       <p>{name}</p>
-      {value > 0 && path === '/like-gatherings' && (
+      {isClient && value > 0 && path === '/like-gatherings' && (
         <CommonBadge count={value} />
       )}
       {name === '로그인이 필요합니다.' ? (

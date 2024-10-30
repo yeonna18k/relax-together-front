@@ -5,7 +5,7 @@ import { MyGatheringStatus } from '@/shared/lib/constants';
 import Link from 'next/link';
 
 const defaultStyle =
-  'absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-6 rounded-md p-6 xs:flex-row xs:items-start xs:justify-between md:rounded-xl';
+  'absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-6 rounded-md p-6 xs:flex-row xs:items-start xs:justify-between md:rounded-xl z-30';
 export default function CommonBlurCard({
   id,
   status = MyGatheringStatus.ONGOING,
