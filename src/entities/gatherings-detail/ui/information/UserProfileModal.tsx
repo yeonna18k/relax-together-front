@@ -13,7 +13,7 @@ export default function UserProfileModal({
   return (
     <>
       {isModalVisible && (
-        <div className="absolute right-1/2 top-[256px] z-10 h-fit w-[96%] translate-x-1/2 rounded-xl border border-gray-200 bg-white p-[30px] shadow-custom sm:right-2 sm:top-[296px] sm:w-[477px] sm:translate-x-0">
+        <div className="absolute right-1/2 top-[250px] z-10 h-fit w-[328px] translate-x-1/2 rounded-xl border border-gray-200 bg-white p-[30px] shadow-custom sm:right-2 sm:top-[260px] sm:w-[477px] sm:translate-x-0 lg:top-[290px]">
           <div className="flex items-center">
             <p className="h-12 w-12 overflow-hidden rounded-full">
               <Image
@@ -25,6 +25,7 @@ export default function UserProfileModal({
                 alt="주최자 프로필 이미지"
                 width={48}
                 height={48}
+                className="h-full w-full object-cover"
               />
             </p>
             <span className="ml-[14px] text-lg font-bold">
@@ -38,16 +39,16 @@ export default function UserProfileModal({
             />
           </div>
           {participantList.totalElements >= 2 ? (
-            <ul className="mt-5 flex flex-wrap gap-x-[30px] gap-y-[10px]">
+            <ul className="mt-5 flex flex-wrap gap-y-[10px]">
               {participantList.participants
                 .slice(1)
                 .map((participant: Participants) => {
                   return (
                     <li
                       key={participant.userId}
-                      className="flex items-center gap-[10px]"
+                      className="flex w-1/2 items-center gap-[10px] sm:w-1/3"
                     >
-                      <p className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full">
+                      <p className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full">
                         <Image
                           src={
                             participant.profileImage === null
@@ -60,7 +61,7 @@ export default function UserProfileModal({
                           className="h-full w-full object-cover"
                         />
                       </p>
-                      <span className="text-sm font-semibold text-gray-700">
+                      <span className="truncate text-sm font-semibold text-gray-700">
                         {participant.name}
                       </span>
                     </li>
