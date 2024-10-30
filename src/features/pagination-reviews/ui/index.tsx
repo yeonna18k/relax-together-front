@@ -43,7 +43,7 @@ export default function PaginationReviews({
 
   const handlePageChange = (page: number) => {
     // 유효한 페이지 내에서만 작동하도록 설정
-    if (page < 1 || page > totalPages) return;
+    if (page < 0 || page > totalPages - 1) return;
 
     setCurrentPage(page);
   };
@@ -59,8 +59,8 @@ export default function PaginationReviews({
     className,
   }: PaginationItemRenderProps) => {
     // 첫 페이지, 마지막 페이지일 경우 좌우 버튼 비활성화
-    const isNextDisabled = currentPage === totalPages;
-    const isPrevDisabled = currentPage === 1;
+    const isNextDisabled = currentPage === totalPages - 1;
+    const isPrevDisabled = currentPage === 0;
 
     const handleNextBtnClick = () => {
       if (!isNextDisabled) {
@@ -149,7 +149,6 @@ export default function PaginationReviews({
         className={cn(
           className,
           'h-[34px] w-[34px] rounded-lg bg-white text-sm text-gray-300 md:h-12 md:w-12 md:text-base',
-
           isActive && 'font-semibold text-green-800',
         )}
         onClick={() => handlePageBtnClick(value)}
@@ -185,7 +184,7 @@ export default function PaginationReviews({
           disableCursorAnimation
           showControls
           total={totalPages}
-          page={currentPage}
+          page={currentPage + 1}
           className="gap-2"
           radius="full"
           renderItem={renderItem}

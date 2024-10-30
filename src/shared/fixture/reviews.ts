@@ -2,7 +2,7 @@ import { Reviews } from '@/features/pagination-reviews/model/reviews';
 import { REVIEWS_PER_PAGE } from '../lib/constants';
 
 export const dummyReviews: Reviews = {
-  reviews: Array.from({ length: 30 }, (_, index) => ({
+  reviews: Array.from({ length: 40 }, (_, index) => ({
     gatheringType: '달램핏',
     gatheringLocation: '건대입구',
     userProfileImage: '/assets/logo-icon.svg',
@@ -12,6 +12,6 @@ export const dummyReviews: Reviews = {
     createdDate: '2024.10.15',
   })),
   currentPage: 0,
-  totalPages: Math.ceil(30 / REVIEWS_PER_PAGE),
-  totalElements: 30,
+  totalPages: Math.ceil(40 / REVIEWS_PER_PAGE),
+  totalElements: 40,
 };

@@ -35,7 +35,7 @@ describe('Pagination Component', () => {
   });
 
   test('첫 페이지에서 이전 버튼이 비활성화된다.', () => {
-    render(<PaginationReviews {...mockProps} />);
+    render(<PaginationReviews {...mockProps} currentPage={0} />);
 
     const prevButton = screen.getByRole('button', { name: 'prev' });
     expect(prevButton).toBeDisabled();
@@ -43,7 +43,10 @@ describe('Pagination Component', () => {
 
   test('마지막 페이지에서 다음 버튼이 비활성화된다.', () => {
     render(
-      <PaginationReviews {...mockProps} currentPage={mockProps.totalPages} />,
+      <PaginationReviews
+        {...mockProps}
+        currentPage={mockProps.totalPages - 1}
+      />,
     );
 
     const nextButton = screen.getByRole('button', { name: 'next' });
