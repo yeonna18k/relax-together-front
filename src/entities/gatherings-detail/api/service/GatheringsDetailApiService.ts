@@ -2,6 +2,8 @@ import { PaginationParams } from '@/entities/mypage/model';
 import { Reviews } from '@/features/pagination-reviews/model/reviews';
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
+import axios from 'axios';
+import { notFound } from 'next/navigation';
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
@@ -11,11 +13,19 @@ class GatheringsDetailApiService extends ApiService {
   constructor() {
     super();
   }
+
   async getGatheringsInfo(id: string) {
-    const response = await this.get<GatheringsInfoTypes>(
-      `${BASE_URL}/api/gatherings/${id}`,
-    );
-    return response.data;
+    try {
+      const response = await this.get<GatheringsInfoTypes>(
+        `${BASE_URL}/api/gatherings/${id}`,
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 404) {
+        notFound();
+      }
+      throw error;
+    }
   }
 
   async getParticipantList({
@@ -25,10 +35,17 @@ class GatheringsDetailApiService extends ApiService {
   }: {
     id: string;
   } & PaginationParams) {
-    const response = await this.get<ParticipantListTypes>(
-      `${BASE_URL}/api/gatherings/${id}/participants?page=${page}&size=${size}`,
-    );
-    return response.data;
+    try {
+      const response = await this.get<ParticipantListTypes>(
+        `${BASE_URL}/api/gatherings/${id}/participants?page=${page}&size=${size}`,
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 404) {
+        notFound();
+      }
+      throw error;
+    }
   }
 
   async getReviewList({
