@@ -1,6 +1,5 @@
 import { FilterParams } from '@/entities/gatherings/model/params';
 import { FetchParams } from '@/entities/mypage/api/queries/common';
-import { LIMIT } from '@/shared/lib/constants';
 import { likeGatheringsApiService } from './service/LikeGatheringsApiService';
 
 export const fetchLikeGatherings = async ({
@@ -16,7 +15,7 @@ export const fetchLikeGatherings = async ({
     location,
     date,
     pageParam,
-    size: LIMIT,
+    size: 100,
     sortBy,
     sortOrder,
   });
