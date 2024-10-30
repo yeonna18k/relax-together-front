@@ -292,19 +292,18 @@ $ yarn dev
 
 | 로그인 페이지 | 회원가입 페이지 | 비밀번호 찾기 페이지 | 비밀번호 변경 페이지 |
 | :---: | :---: | :---: | :---: |
-| <img height="500" alt="image" src="https://github.com/user-attachments/assets/e26706d6-a76c-454c-90f9-5c09f187d393"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/7707c966-cf76-4915-8d9b-d66750595a20"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/33238cb1-f730-4ffd-88f7-93c55696c42a"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/06e15b2b-e618-4f84-81d3-6bc5009eb732"> |
+| ![로그인 페이지](https://github.com/user-attachments/assets/c89e29c5-ffdf-4d53-9b83-1b545885b0ba) | ![회원가입 페이지](https://github.com/user-attachments/assets/a7d4ad40-052d-40bd-bff8-7dbaeac4500f) | ![비밀번호 찾기 페이지](https://github.com/user-attachments/assets/d44e0883-ef41-46ab-967f-3a5977c957cb) | ![비밀번호 변경 페이지](https://github.com/user-attachments/assets/875a7cbe-8180-4e70-a3e2-c35b1d561b92) |
 
 | 모임 찾기 페이지 (홈) | 모임 찾기 페이지 - 모임 생성 | 모임 상세 페이지 | 찜한 모임 페이지 |
 | :---: | :---: | :---: | :---: |
-| <img height="500" alt="image" src="https://github.com/user-attachments/assets/e48c1106-b5e2-4b80-8237-68c1c28b5e13"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/41ce3387-c133-44d1-b4eb-699f93a2e50a"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/202e2ef6-865c-4919-b14e-b35e1f123440"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/d663e3c6-a5cb-42b5-9411-d361a8ddee11"> |
+| ![모임 찾기 페이지 (홈)](https://github.com/user-attachments/assets/cebf34d8-bbe4-491f-8e2f-cac4a1c1c84e) | ![모임 찾기 페이지 - 모임 생성](https://github.com/user-attachments/assets/ec735008-0f46-4a6c-9865-951a07746681) | ![모임 상세 페이지](https://github.com/user-attachments/assets/9abc0109-f37b-4c59-884c-ca25a261e58a) | ![찜한 모임 페이지](https://github.com/user-attachments/assets/62f69a7f-088c-4465-8c75-f1f387f2a7a5) |
 
 | 모든 리뷰 페이지 | 마이 페이지 | GNB | 404 페이지 |
 | :---: | :---: | :---: | :---: |
-| <img height="500" alt="image" src="https://github.com/user-attachments/assets/7d0143a5-3c4d-42ba-abaf-0da6e1af326d"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/711d8c99-795b-42ce-8ed7-2ec394118b9d"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/de89d8c3-c186-4c02-9dd1-1e6f6561f6c3"> | <img height="500" alt="image" src="https://github.com/user-attachments/assets/18576d63-ddcd-45eb-93f6-f284e708c853"> |
+| ![모든 리뷰 페이지](https://github.com/user-attachments/assets/5b1d96c3-b1c7-4baf-b469-a938150b8ae9) | ![마이 페이지](https://github.com/user-attachments/assets/82e2be35-3cbc-4097-9645-86851f7d36e2) | ![GNB](https://github.com/user-attachments/assets/b561b06c-ea8a-41b2-940a-4958500f2292) | ![404 페이지](https://github.com/user-attachments/assets/221d42ca-3e1a-4416-9348-8537d851d463) |
 
 <br>
 <br>
-
 
 ## <span id='trouble'>6. 트러블 슈팅</span>
 
@@ -426,9 +425,6 @@ $ yarn dev
  ┃ ┃ ┣ 📂mypage
  ┃ ┃ ┣ 📂reset-password
  ┃ ┃ ┣ 📂reviews
- ┃ ┃ ┣ 📂signin
- ┃ ┃ ┣ 📂signup
- ┃ ┃ ┣ 📜favicon.ico
  ┃ ┃ ┣ 📜firebase.ts
  ┃ ┃ ┣ 📜global-error.tsx
  ┃ ┃ ┣ 📜globals.css
