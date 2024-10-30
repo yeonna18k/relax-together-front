@@ -7,32 +7,32 @@ import ContentEmptySection from '@/shared/common/ui/content-empty-section';
 import CommonMoreInfoWrapper from '@/shared/common/ui/more-info-card/CommonMoreInfoWrapper';
 import MotionListItem from '@/shared/common/ui/motion-list-item';
 import { getTimeUntilDeadline } from '@/shared/lib/utils';
-
-import { useEffect, useState } from 'react';
+import { useLikeStore } from '@/shared/store/useLikeStore';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLikeGatheringsData } from '../../api/queries/like-gatherings';
 
 export default function LikeGatheringCardList() {
   const { additionalParams } = useAdditionalParams();
 
-  const [parsedLikeIds, setParsedLikeIds] = useState<string[]>([]);
+  const likedIds = useLikeStore(state => state.likedIds);
+  const setLikedIds = useLikeStore(state => state.setLikedIds);
 
   const { data, fetchNextPage, status } =
     useLikeGatheringsData(additionalParams);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const likeIds = localStorage.getItem('liked-gatherings-ids') || '[]';
-      setParsedLikeIds(JSON.parse(likeIds));
+      const storedLikeIds =
+        localStorage.getItem('liked-gatherings-ids') || '[]';
+      const parsedLikeIds = JSON.parse(storedLikeIds);
+      setLikedIds(parsedLikeIds);
     }
-  }, []);
+  }, [setLikedIds]);
 
-  const filteredData = data?.pages.map(page => {
-    const filteredContent = page.content.filter(item =>
-      parsedLikeIds.includes(String(item.id)),
-    );
-    return filteredContent;
-  });
+  const filteredData = data?.pages.flatMap(page =>
+    page.content.filter(item => likedIds.includes(String(item.id))),
+  );
 
   const { ref, inView } = useInView();
 
@@ -46,26 +46,21 @@ export default function LikeGatheringCardList() {
     return <LoadingSkeletonList />;
   }
 
-  return filteredData && filteredData[0].length > 0 ? (
-    <div
-      ref={ref}
-      className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]"
-    >
+  return filteredData && filteredData.length > 0 ? (
+    <div className="mt-0 w-full lg:max-h-[calc(100vh-455px)] xl:w-[996px]">
       <ul className="mt-2.5 md:mt-0 xl:mb-10">
-        {filteredData?.map(page =>
-          page.map((gathering, idx) => (
-            <MotionListItem key={gathering.id} index={idx}>
-              <CommonMoreInfoWrapper id={gathering.id} status={gathering.ended}>
-                <GatheringCard
-                  message={getTimeUntilDeadline(
-                    new Date(gathering.registrationEnd),
-                  )}
-                  {...gathering}
-                />
-              </CommonMoreInfoWrapper>
-            </MotionListItem>
-          )),
-        )}
+        {filteredData.map((gathering, idx) => (
+          <MotionListItem key={gathering.id} index={idx}>
+            <CommonMoreInfoWrapper id={gathering.id} status={gathering.ended}>
+              <GatheringCard
+                message={getTimeUntilDeadline(
+                  new Date(gathering.registrationEnd),
+                )}
+                {...gathering}
+              />
+            </CommonMoreInfoWrapper>
+          </MotionListItem>
+        ))}
       </ul>
       <div ref={ref} />
     </div>
