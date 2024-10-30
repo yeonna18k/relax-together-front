@@ -24,8 +24,15 @@ export default function GatheringsDetailMain({
   });
 
   const { data: participantList } = useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: ['participants', id],
-    queryFn: () => gatheringsDetailApiService.getParticipantList(id),
+    queryFn: () =>
+      gatheringsDetailApiService.getParticipantList({
+        id,
+        page: 0,
+        size: gatheringsInfo?.participantCount,
+      }),
+    enabled: !!gatheringsInfo,
   });
 
   // 데이터가 없을 때 처리

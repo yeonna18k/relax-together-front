@@ -1,3 +1,4 @@
+import { PaginationParams } from '@/entities/mypage/model';
 import { Reviews } from '@/features/pagination-reviews/model/reviews';
 import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
@@ -17,9 +18,15 @@ class GatheringsDetailApiService extends ApiService {
     return response.data;
   }
 
-  async getParticipantList(id: string) {
+  async getParticipantList({
+    id,
+    page,
+    size,
+  }: {
+    id: string;
+  } & PaginationParams) {
     const response = await this.get<ParticipantListTypes>(
-      `${BASE_URL}/api/gatherings/${id}/participants`,
+      `${BASE_URL}/api/gatherings/${id}/participants?page=${page}&size=${size}`,
     );
     return response.data;
   }
