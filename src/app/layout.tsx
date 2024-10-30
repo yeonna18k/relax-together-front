@@ -2,12 +2,39 @@ import Provider from '@/app/provider';
 import Header from '@/features/header';
 import Container from '@/shared/layout/Container';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const pretendard = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Pretendard-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+});
 
 const paperLogyExtraBold = localFont({
   src: '../../public/fonts/Paperlogy-8ExtraBold.ttf',
@@ -95,7 +122,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} ${paperLogyExtraBold.variable}`}>
+      <body
+        className={`${pretendard.className} ${paperLogyExtraBold.variable}`}
+      >
         <Provider>
           <Header />
           <Container>{children}</Container>
