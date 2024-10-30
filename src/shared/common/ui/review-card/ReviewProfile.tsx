@@ -12,7 +12,7 @@ export default function ReviewProfile({
         alt="user-profile-img"
         width={24}
         height={24}
-        className="rounded-full"
+        className="h-6 w-6 rounded-full object-cover"
       />
       <span>{userName}</span>
       <span>|</span>
