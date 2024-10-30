@@ -56,7 +56,7 @@ export default function JoinBtn({
         </Button>
       ) : (
         <Button
-          disabled={isClosed}
+          disabled={isClosed || isCapacityFull}
           variant={isClosed || isCapacityFull ? 'disabled' : 'default'}
           size={CommonSize.LARGE}
           className="h-11 w-[115px]"
