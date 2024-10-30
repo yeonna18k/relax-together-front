@@ -22,6 +22,7 @@ export default function LoginUser({ image, name }: LoginUserProps) {
           alt="user"
           width={32}
           height={32}
+          className="h-8 w-8 rounded-full"
         />
         <p className="font-bold text-green-700">{name}님</p>
       </PopoverTrigger>
