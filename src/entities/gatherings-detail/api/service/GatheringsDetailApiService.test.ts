@@ -3,6 +3,7 @@ import {
   dummyParticipantList,
 } from '@/shared/fixture/information';
 import { dummyReviews } from '@/shared/fixture/reviews';
+import { LIMIT } from '@/shared/lib/constants';
 import { gatheringsDetailApiService } from './GatheringsDetailApiService';
 
 describe('GatheringsDetailApiService', () => {
@@ -26,7 +27,11 @@ describe('GatheringsDetailApiService', () => {
 
   describe('getParticipantList를 호출하면', () => {
     it('특정 모임의 참가자 목록 조회를 할 수 있다.', async () => {
-      const result = await gatheringsDetailApiService.getParticipantList('0');
+      const result = await gatheringsDetailApiService.getParticipantList({
+        id: '0',
+        page: 0,
+        size: LIMIT,
+      });
       const response = result.participants[0];
       const fixture = dummyParticipantList.participants[0];
       expect(response.userId).toBe(fixture.userId);
@@ -39,7 +44,11 @@ describe('GatheringsDetailApiService', () => {
 
     it('잘못된 id로 호출 시 에러가 발생한다.', async () => {
       await expect(
-        gatheringsDetailApiService.getParticipantList('invalid-id'),
+        gatheringsDetailApiService.getParticipantList({
+          id: 'invalid-id',
+          page: 0,
+          size: LIMIT,
+        }),
       ).rejects.toThrow();
     });
   });
