@@ -1,6 +1,6 @@
 import { Reviews } from '@/features/pagination-reviews/model/reviews';
 import ApiService from '@/shared/api/service/ApiService';
-import { BASE_URL, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
+import { REVIEWS_PER_PAGE } from '@/shared/lib/constants';
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
@@ -10,16 +10,18 @@ class GatheringsDetailApiService extends ApiService {
   constructor() {
     super();
   }
+  private API_URL =
+    typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_API_URL;
   async getGatheringsInfo(id: string) {
     const response = await this.get<GatheringsInfoTypes>(
-      `${BASE_URL}/api/gatherings/${id}`,
+      `${this.API_URL}/api/gatherings/${id}`,
     );
     return response.data;
   }
 
   async getParticipantList(id: string) {
     const response = await this.get<ParticipantListTypes>(
-      `${BASE_URL}/api/gatherings/${id}/participants`,
+      `${this.API_URL}/api/gatherings/${id}/participants`,
     );
     return response.data;
   }
@@ -32,7 +34,7 @@ class GatheringsDetailApiService extends ApiService {
     currentPage: number;
   }) {
     const response = await this.get<Reviews>(
-      `${BASE_URL}/api/gatherings/${id}/reviews`,
+      `${this.API_URL}/api/gatherings/${id}/reviews`,
       {
         params: {
           page: currentPage,
@@ -45,21 +47,21 @@ class GatheringsDetailApiService extends ApiService {
 
   async joinGathering(id: string) {
     const response = await this.post<string>(
-      `${BASE_URL}/api/gatherings/${id}/join`,
+      `${this.API_URL}/api/gatherings/${id}/join`,
     );
     return response.data;
   }
 
   async leaveGathering(id: string) {
     const response = await this.delete<string>(
-      `${BASE_URL}/api/gatherings/${id}/leave`,
+      `${this.API_URL}/api/gatherings/${id}/leave`,
     );
     return response.data;
   }
 
   async cancelGathering(id: string) {
     const response = await this.put<string>(
-      `${BASE_URL}/api/gatherings/${id}/cancel`,
+      `${this.API_URL}/api/gatherings/${id}/cancel`,
     );
     return response.data;
   }
