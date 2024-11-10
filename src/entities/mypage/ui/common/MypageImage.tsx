@@ -6,11 +6,10 @@ interface MypageImageProps {
   className?: string;
 }
 export default function MypageImage({ image, className }: MypageImageProps) {
-  const isDefaultImage = image === undefined || image === '';
   return (
     <Image
       priority
-      src={isDefaultImage ? '/assets/default-user.svg' : image}
+      src={image || '/assets/default-user.svg'}
       alt="user"
       width={72}
       height={72}
