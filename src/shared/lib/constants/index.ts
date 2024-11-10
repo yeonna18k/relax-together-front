@@ -15,9 +15,6 @@ export const REVIEWS_PER_PAGE = 4;
 
 export const LIMIT = 10;
 
-export const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : process.env.NEXT_PUBLIC_API_URL;
+export const BASE_URL = '';
 
 export const ACCESS_TOKEN_KEY = 'accessToken';
