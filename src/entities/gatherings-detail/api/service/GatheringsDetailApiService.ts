@@ -4,6 +4,7 @@ import ApiService from '@/shared/api/service/ApiService';
 import { BASE_URL, REVIEWS_PER_PAGE } from '@/shared/lib/constants';
 import axios from 'axios';
 import { notFound } from 'next/navigation';
+
 import {
   GatheringsInfoTypes,
   ParticipantListTypes,
@@ -14,10 +15,13 @@ class GatheringsDetailApiService extends ApiService {
     super();
   }
 
+  private API_URL =
+    typeof window !== 'undefined' ? '' : process.env.NEXT_PUBLIC_API_URL;
+
   async getGatheringsInfo(id: string) {
     try {
       const response = await this.get<GatheringsInfoTypes>(
-        `${BASE_URL}/api/gatherings/${id}`,
+        `${this.API_URL}/api/gatherings/${id}`,
       );
       return response.data;
     } catch (error) {
@@ -37,7 +41,7 @@ class GatheringsDetailApiService extends ApiService {
   } & PaginationParams) {
     try {
       const response = await this.get<ParticipantListTypes>(
-        `${BASE_URL}/api/gatherings/${id}/participants?page=${page}&size=${size}`,
+        `${this.API_URL}/api/gatherings/${id}/participants?page=${page}&size=${size}`,
       );
       return response.data;
     } catch (error) {
@@ -46,6 +50,7 @@ class GatheringsDetailApiService extends ApiService {
       }
       throw error;
     }
+
   }
 
   async getReviewList({
@@ -56,7 +61,7 @@ class GatheringsDetailApiService extends ApiService {
     currentPage: number;
   }) {
     const response = await this.get<Reviews>(
-      `${BASE_URL}/api/gatherings/${id}/reviews`,
+      `${this.API_URL}/api/gatherings/${id}/reviews`,
       {
         params: {
           page: currentPage,
@@ -68,20 +73,22 @@ class GatheringsDetailApiService extends ApiService {
   }
 
   async joinGathering(id: string) {
-    const response = await this.post(`${BASE_URL}/api/gatherings/${id}/join`);
+    const response = await this.post(`${this.API_URL}/api/gatherings/${id}/join`);
     return response;
   }
 
   async leaveGathering(id: string) {
     const response = await this.delete(
-      `${BASE_URL}/api/gatherings/${id}/leave`,
+      `${this.API_URL}/api/gatherings/${id}/leave`,
+
     );
     return response;
   }
 
   async cancelGathering(id: string) {
-    const response = await this.put(`${BASE_URL}/api/gatherings/${id}/cancel`);
+    const response = await this.put(`${this.API_URL}/api/gatherings/${id}/cancel`);
     return response;
+
   }
 }
 

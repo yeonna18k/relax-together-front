@@ -17,7 +17,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://dev.relax-together.shop/api/:path*',
+        destination: 'http://43.203.245.196:8080/api/:path*',
       },
     ];
   },
@@ -28,11 +28,17 @@ const nextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         pathname: '/v0/b/relax-together.appspot.com/o/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'wfftvdtsykljejnuzibc.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  webpack(config, { dev, isServer }) {
+
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
