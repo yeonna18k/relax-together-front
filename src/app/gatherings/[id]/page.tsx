@@ -1,5 +1,6 @@
 import { gatheringsDetailApiService } from '@/entities/gatherings-detail/api/service/GatheringsDetailApiService';
 import GatheringsDetailMain from '@/entities/gatherings-detail/ui/gatherings-detail-main';
+import { LIMIT } from '@/shared/lib/constants';
 import {
   dehydrate,
   HydrationBoundary,
@@ -24,7 +25,12 @@ export default async function GatheringsDetail({ params }: GatheringsDetail) {
     }),
     queryClient.prefetchQuery({
       queryKey: ['participants', id],
-      queryFn: () => gatheringsDetailApiService.getParticipantList(id),
+      queryFn: () =>
+        gatheringsDetailApiService.getParticipantList({
+          id,
+          page: 0,
+          size: LIMIT,
+        }),
     }),
     queryClient.prefetchQuery({
       queryKey: ['review', id, 0],

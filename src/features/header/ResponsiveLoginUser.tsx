@@ -27,6 +27,7 @@ export default function ResponsiveLoginUser({
           alt="user"
           width={60}
           height={60}
+          className="h-[60px] w-[60px] rounded-full"
         />
         <div className="flex cursor-default flex-col gap-1">
           <p className="text-sm font-medium text-gray-600">안녕하세요!</p>

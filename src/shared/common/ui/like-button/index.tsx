@@ -1,8 +1,9 @@
 'use client';
 import LikeHeartEmptyIcon from '@/shared/assets/icons/like-heart-empty-icon.svg';
 import LikeHeartIcon from '@/shared/assets/icons/like-heart-icon.svg';
+import { useLikeStore } from '@/shared/store/useLikeStore';
 import { Button } from '@/shared/ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
 interface LikeButtonProps {
@@ -22,16 +23,19 @@ export default function LikeButton({ gatheringId }: LikeButtonProps) {
     'liked-gatherings-ids',
     [] as string[],
   );
-  const [liked, setLiked] = useState(false);
+
+  const { setLikedIds, removeLikedId } = useLikeStore();
+  const liked = likedGatheringsIds.includes(gatheringId);
 
   useEffect(() => {
-    setLiked(likedGatheringsIds.find(id => id === gatheringId) !== undefined);
-  }, [likedGatheringsIds, gatheringId]);
+    setLikedIds(likedGatheringsIds);
+  }, [likedGatheringsIds, setLikedIds]);
 
   const toggleLike = () => {
     if (liked) {
       setLikedCount(prev => prev - 1);
       setLikedGatheringsIds(prev => prev.filter(id => id !== gatheringId));
+      removeLikedId(gatheringId);
     } else {
       setLikedCount(prev => prev + 1);
       setLikedGatheringsIds(prev => [...prev, gatheringId]);

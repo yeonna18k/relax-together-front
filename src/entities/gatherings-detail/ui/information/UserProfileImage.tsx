@@ -52,6 +52,7 @@ export default function UserProfileImage({
                 alt="참여 유저 프로필 이미지"
                 width={29}
                 height={29}
+                className="h-full w-full object-cover"
               />
             </li>
           );

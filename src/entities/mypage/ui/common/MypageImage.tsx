@@ -13,7 +13,7 @@ export default function MypageImage({ image, className }: MypageImageProps) {
       alt="user"
       width={72}
       height={72}
-      className={cn('h-[72px] w-[72px]', className)}
+      className={cn('h-[72px] w-[72px] rounded-full', className)}
     />
   );
 }
