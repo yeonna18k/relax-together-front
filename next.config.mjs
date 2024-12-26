@@ -25,11 +25,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
-        pathname: '/v0/b/relax-together.appspot.com/o/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'wfftvdtsykljejnuzibc.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },

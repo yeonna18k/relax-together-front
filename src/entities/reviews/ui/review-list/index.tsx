@@ -16,6 +16,8 @@ export default function ReviewList() {
     }
   }, [fetchNextPage, inView]);
 
+  console.log(data);
+
   return (
     <div>
       {data && data.pages[0].totalElements > 0 ? (
