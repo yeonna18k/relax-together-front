@@ -4,7 +4,7 @@ export default function AuthImage() {
   return (
     <div className="flex justify-center">
       <Image
-        src="https://firebasestorage.googleapis.com/v0/b/relax-together.appspot.com/o/images%2Fauth-img.svg?alt=media&token=ce608fd0-2caf-4999-969e-ec0dcfc6b4df"
+        src="https://wfftvdtsykljejnuzibc.supabase.co/storage/v1/object/public/relax-together/auth-left-image-600-400.png"
         alt="Auth image"
         width={600}
         height={400}

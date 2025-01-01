@@ -1,5 +1,4 @@
 import { useUploadStore } from '@/shared/store/useUploadStore';
-// import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 
