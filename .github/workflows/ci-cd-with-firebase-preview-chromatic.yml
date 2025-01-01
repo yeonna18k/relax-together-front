@@ -68,16 +68,9 @@ jobs:
 
       # Vercel Preview 배포
       - name: Deploy to Vercel
-        run: yarn vercel --token ${{ secrets.VERCEL_TOKEN }} --prod=false
+        run: yarn vercel --token ${{ secrets.VERCEL_TOKEN }} --prod=false --yes
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-
-      # PR에 Vercel Preview URL 추가
-      - name: Publish Vercel Preview Link in the comments
-        run: |
-          echo "Vercel Preview URL: $(yarn vercel --token ${{ secrets.VERCEL_TOKEN }} --prod=false)"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Vercel Preview URL PR 코멘트 추가
       - name: Comment Vercel Preview Link
