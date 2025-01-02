@@ -9,5 +9,5 @@ export const dummyUser: User = {
   name: '권철진',
   companyName: '코드잇-퇴사',
   profileImage:
-    'https://firebasestorage.googleapis.com/v0/b/relax-together.appspot.com/o/images%2Fprofile-test-removebg-preview.png?alt=media&token=452a344e-3c4f-48d9-b156-4591d3d68fb3',
+    'https://wfftvdtsykljejnuzibc.supabase.co/storage/v1/object/public/relax-together/next-js.png',
 };

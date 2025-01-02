@@ -11,7 +11,7 @@
     "test:watch": "jest --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_c28032a4c31d317",
+    "chromatic": "npx chromatic --project-token=chpt_3e1c52b89556430",
     "add-component": "bash ./scripts/add-component.sh",
     "prepare": "husky",
     "commit-msg": "npx --no -- commitlint --edit $1",
@@ -109,7 +109,8 @@
     "storybook": "^8.2.9",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vercel": "^39.2.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

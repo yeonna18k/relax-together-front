@@ -1,4 +1,4 @@
-name: CI/CD Pipeline with Firebase Preview Deploy and Chromatic
+name: CI/CD Pipeline with Vercel Preview Deploy and Chromatic
 
 on:
   pull_request:
@@ -62,12 +62,20 @@ jobs:
           build-url: ${{ steps.chromatic.outputs.buildUrl }}
           storybook-url: ${{ steps.chromatic.outputs.storybookUrl }}
 
-      # Firebase PR Preview 배포
-      - name: Firebase Deploy Preview
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RELAX_TOGETHER }}
-          projectId: relax-together
+      # Vercel CLI 설치
+      - name: Install Vercel CLI
+        run: yarn global add vercel
+
+      # Vercel Preview 배포
+      - name: Deploy to Vercel
+        run: yarn vercel --token ${{ secrets.VERCEL_TOKEN }} --prod=false --yes
         env:
-          FIREBASE_CLI_EXPERIMENTS: webframeworks
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+
+      # Vercel Preview URL PR 코멘트 추가
+      - name: Comment Vercel Preview Link
+        run: |
+          echo "Vercel Preview: ${{ steps.vercel.outputs.preview-url }}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "Vercel Preview: ${{ steps.vercel.outputs.preview-url }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,3 +1,7 @@
+import {
+  dummyGatheringsInfo,
+  dummyParticipantList,
+} from '@/shared/fixture/information';
 import type { Meta, StoryObj } from '@storybook/react';
 import BottomFloatingBar from './index';
 
@@ -16,6 +20,9 @@ type Story = StoryObj<typeof BottomFloatingBar>;
 
 export const Default: Story = {
   args: {
+    id: '1',
     isHost: false,
+    gatheringsInfo: dummyGatheringsInfo,
+    participantList: dummyParticipantList,
   },
 };
