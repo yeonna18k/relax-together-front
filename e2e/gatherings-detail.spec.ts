@@ -7,7 +7,7 @@ import test from '@playwright/test';
 test.describe('모임 상세', () => {
   test.beforeEach(async ({ page }) => {
     await page.route(
-      'http://localhost:3000/api/gatherings/127',
+      'http://localhost:3000/api/gatherings/115',
       async route => {
         await route.fulfill({
           status: 200,
@@ -17,7 +17,7 @@ test.describe('모임 상세', () => {
       },
     );
     await page.route(
-      'http://localhost:3000/api/gatherings/127/participants',
+      'http://localhost:3000/api/gatherings/115/participants',
       async route => {
         await route.fulfill({
           status: 200,
@@ -27,7 +27,7 @@ test.describe('모임 상세', () => {
       },
     );
     await page.route(
-      'http://localhost:3000/api/gatherings/127/join',
+      'http://localhost:3000/api/gatherings/115/join',
       async route => {
         await route.fulfill({
           status: 200,
@@ -37,7 +37,7 @@ test.describe('모임 상세', () => {
       },
     );
     await page.route(
-      'http://localhost:3000/api/gatherings/127/leave',
+      'http://localhost:3000/api/gatherings/115/leave',
       async route => {
         await route.fulfill({
           status: 200,
@@ -49,7 +49,7 @@ test.describe('모임 상세', () => {
   });
 
   test('모임에 참여, 참여 취소 할 수 있다.', async ({ page }) => {
-    await page.goto('http://localhost:3000/gatherings/127');
+    await page.goto('http://localhost:3000/gatherings/115');
 
     await page.getByLabel('참여하기').waitFor({ state: 'visible' });
     await page.getByLabel('참여하기').click();
